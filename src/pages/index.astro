@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Map from "../components/Map.astro";
 import { buildSearchIndex } from "../lib/search-index";
 import "../styles/index.css";
+import mapScriptUrl from "../scripts/map.ts?url";
 
 const entries = await getCollection("benefits");
 const rawItems = buildSearchIndex(entries);
@@ -149,6 +150,6 @@ const items = rawItems.map((item) => ({
       id="benefits-data"
       set:html={JSON.stringify(items)}
     ></script>
-    <script type="module" src="/src/scripts/map.ts"></script>
+    <script type="module" src={mapScriptUrl}></script>
   </body>
 </html>
