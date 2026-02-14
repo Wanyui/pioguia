@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.map-style-button.is-active {
+  border-color: #0ea5e9;
+  background: #f0f9ff;
+  color: #0369a1;
+  font-weight: 600;
+}
+
+.card.is-active {
+  border-color: #0ea5e9;
+  background: #eff6ff;
+  box-shadow:
+    0 0 0 2px rgba(14, 165, 233, 0.2),
+    0 10px 16px -12px rgba(15, 23, 42, 0.45);
+}
+
+.popup-logo {
+  width: 100%;
+  max-width: 180px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.popup-content {
+  max-width: 240px;
+  text-align: left;
+}
+
+.leaflet-popup-content {
+  max-width: 220px;
+}
+
+.leaflet-control-custom-location {
+  margin-top: 0.625rem;
+}
+
+.leaflet-top,
+.leaflet-bottom {
+  z-index: 500;
+}
+
+.map {
+  width: 100%;
+  height: clamp(440px, calc(100vh - 170px), 900px);
+  border-radius: 0.75rem;
+}
+
+@media (max-width: 900px) {
+  .map {
+    height: min(56vh, 520px);
+  }
+}

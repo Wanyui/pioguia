@@ -1,0 +1,154 @@
+---
+import { getCollection } from "astro:content";
+import Map from "../components/Map.astro";
+import { buildSearchIndex } from "../lib/search-index";
+import "../styles/index.css";
+
+const entries = await getCollection("benefits");
+const rawItems = buildSearchIndex(entries);
+const initialLang = "es";
+const BLANK_LOGO_DATA_URI =
+  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+
+const resolveLogo = (logo: string | undefined) => {
+  if (!logo || logo === "/img/*") return BLANK_LOGO_DATA_URI;
+  const normalized = logo.trim();
+  if (normalized.startsWith("/")) return normalized;
+  if (/^https?:\/\//i.test(normalized)) return normalized;
+  if (
+    /^data:image\/(?:png|jpe?g|gif|webp);base64,[a-z0-9+/=]+$/i.test(normalized)
+  ) {
+    return normalized;
+  }
+  return BLANK_LOGO_DATA_URI;
+};
+
+const items = rawItems.map((item) => ({
+  ...item,
+  logo: resolveLogo(item.logo),
+}));
+---
+
+<!doctype html>
+<html lang={initialLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Guía Piolet</title>
+    <meta
+      name="description"
+      content="Guía de ventajas del Club Piolet para consultar beneficios y localizarlos en el mapa."
+    />
+    <meta name="theme-color" content="#0ea5e9" />
+    <meta property="og:title" content="Guía Piolet" />
+    <meta
+      property="og:description"
+      content="Consulta las ventajas del Club Piolet y encuéntralas fácilmente en el mapa."
+    />
+    <meta property="og:type" content="website" />
+  </head>
+  <body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
+    <header
+      id="app-header"
+      class="sticky top-0 z-[1100] border-b border-slate-200/80 bg-white/90 backdrop-blur"
+    >
+      <div id="header-inner" class="mx-auto max-w-[1600px] px-4 py-3 md:px-6">
+        <div id="header-meta-row" class="mb-3 flex items-center justify-between gap-3">
+          <h1 id="page-title" class="text-base font-semibold text-slate-900 md:text-xl">
+            Guía de ventajas Piolet
+          </h1>
+          <div class="rounded-full bg-sky-100 px-3 py-1 text-xs font-medium text-sky-700">
+            Club Piolet
+          </div>
+        </div>
+        <div class="controls flex flex-wrap items-center gap-2 md:gap-3">
+        <input
+          id="search-input"
+          type="search"
+          aria-label="Buscar beneficios por palabra clave"
+          class="h-10 min-w-[220px] flex-[1_1_320px] rounded-xl border border-slate-300 bg-white px-3 text-sm shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
+          placeholder="Buscar por palabra clave (ej: desayuno)"
+          autocomplete="off"
+        />
+        <div id="lang-controls" class="relative w-[170px] shrink-0">
+          <button
+            id="lang-trigger"
+            type="button"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            class="inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-slate-300 bg-white px-3 text-sm font-medium text-slate-700 shadow-sm outline-none transition hover:border-slate-400 focus:border-sky-500 focus:ring-2 focus:ring-sky-200"
+          >
+            <span id="lang-trigger-label" class="truncate">🇪🇸 Español</span>
+            <span aria-hidden="true">▾</span>
+          </button>
+          <ul
+            id="lang-menu"
+            role="listbox"
+            class="absolute right-0 z-[1300] mt-2 hidden min-w-full overflow-hidden rounded-xl border border-slate-200 bg-white p-1 shadow-xl"
+          >
+            <li>
+              <button type="button" data-lang-option="es" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">🇪🇸 Español</button>
+            </li>
+            <li>
+              <button type="button" data-lang-option="ca" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">🇦🇩 Català</button>
+            </li>
+            <li>
+              <button type="button" data-lang-option="en" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">🇬🇧 English</button>
+            </li>
+            <li>
+              <button type="button" data-lang-option="fr" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">🇫🇷 Français</button>
+            </li>
+            <li>
+              <button type="button" data-lang-option="ru" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-slate-700 transition hover:bg-sky-50 hover:text-sky-700">🇷🇺 Русский</button>
+            </li>
+          </ul>
+          <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
+            <option value="es" selected>Español</option>
+            <option value="ca">Català</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ru">Русский</option>
+          </select>
+        </div>
+        <div
+          id="map-style-controls"
+          class="map-styles inline-flex shrink-0 items-center gap-2"
+          aria-label="Estilos de mapa"
+        >
+          <button
+            class="map-style-button is-active inline-flex h-8 w-[64px] items-center justify-center rounded-full border border-slate-300 bg-white px-2 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:border-slate-400"
+            data-style="osm"
+          >
+            <span class="map-style-label">OSM</span>
+          </button>
+          <button
+            class="map-style-button inline-flex h-8 w-[86px] items-center justify-center rounded-full border border-slate-300 bg-white px-2 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition hover:border-slate-400"
+            data-style="positron"
+          >
+            <span class="map-style-label truncate">Claro</span>
+          </button>
+        </div>
+      </div>
+      </div>
+    </header>
+
+    <main class="mx-auto grid max-w-[1600px] grid-cols-1 gap-4 p-4 md:grid-cols-[360px_minmax(0,1fr)] md:gap-5 md:p-6">
+      <aside class="sidebar order-2 overflow-y-auto rounded-2xl border border-slate-200 bg-white shadow-sm md:order-1 md:h-[calc(100vh-140px)]">
+        <ul id="results" class="results"></ul>
+        <div id="empty-state" class="empty p-8 text-center text-sm text-slate-500" hidden>
+          No se han encontrado resultados.
+        </div>
+      </aside>
+      <div class="map-container order-1 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm md:order-2 md:p-4">
+        <Map id="map" />
+      </div>
+    </main>
+
+    <script
+      type="application/json"
+      id="benefits-data"
+      set:html={JSON.stringify(items)}
+    ></script>
+    <script type="module" src="/src/scripts/map.ts"></script>
+  </body>
+</html>
