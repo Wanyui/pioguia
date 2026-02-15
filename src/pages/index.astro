@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import Map from "../components/Map.astro";
 import { buildSearchIndex } from "../lib/search-index";
 import "../styles/index.css";
-import mapScriptUrl from "../scripts/map.ts?url";
 
 const entries = await getCollection("benefits");
 const rawItems = buildSearchIndex(entries);
@@ -47,6 +46,7 @@ const items = rawItems.map((item) => ({
       content="Consulta las ventajas del Club Piolet y encuéntralas fácilmente en el mapa."
     />
     <meta property="og:type" content="website" />
+    <link rel="stylesheet" href="/scripts/map.css" />
   </head>
   <body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
     <header
@@ -150,6 +150,6 @@ const items = rawItems.map((item) => ({
       id="benefits-data"
       set:html={JSON.stringify(items)}
     ></script>
-    <script type="module" src={mapScriptUrl}></script>
+    <script type="module" src="/scripts/map.js"></script>
   </body>
 </html>
