@@ -24,14 +24,15 @@ category:
   en: "Sports"
   fr: "Sports"
   ru: "Спорт"
-address: "Grandvalira - Sectors Encamp, Canillo, El Tarter, Soldeu, Grau Roig i Pas de la Casa"
-city: "Canillo"
-lat: 42.5786601
-lng: 1.6463181
+address: "Grandvalira Funicamp, Av. de la Bartra, AD200 Encamp"
+city: "Encamp"
+lat: 42.5354418
+lng: 1.588173
 phone: "891 810"
 web: "https://www.grandvalira.com"
-googleMapsUrl: "https://www.google.com/maps/place/Grandvalira/@42.5786601,1.6082093,14z/data=!4m10!1m2!2m1!1sGrandvalira!3m6!1s0x12a58adb817ec90d:0xa9c1962f7ddfd9e0!8m2!3d42.5786601!4d1.6463181!15sCgtHcmFuZHZhbGlyYSIDiAEBWg0iC2dyYW5kdmFsaXJhkgEKc2tpX3Jlc29ydOABAA!16s%2Fg%2F120wkss7?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+googleMapsUrl: "https://www.google.com/maps/place/grandvalira+funicamp/@42.5354418,1.5855981,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58b0055e93fbb:0x4c512cdd8e25dedf!8m2!3d42.5354418!4d1.588173!16s%2Fg%2F11w30j0kz1?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
+Beneficio 2025-31

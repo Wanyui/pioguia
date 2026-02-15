@@ -1,5 +1,5 @@
 ---
-id: "benefit-anigami-les-comes"
+id: "benefit-anigami-maslescomes"
 title:
   es: "Anigami Experiences"
   ca: "Anigami Experiences"
@@ -34,3 +34,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Parque+de+Aventura+Anigami/@42
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-13

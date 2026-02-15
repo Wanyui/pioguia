@@ -35,3 +35,4 @@ logo: "/img/United-Colors-of-Benetton-logo.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
+Beneficio 2025-21

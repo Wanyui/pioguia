@@ -1,5 +1,5 @@
 ---
-id: "benefit-aquopolis-la-pineda"
+id: "benefit-aquopolis-pineda"
 title:
   es: "Aquopolis Costa Dorada"
   ca: "Aquopolis Costa Daurada"
@@ -34,3 +34,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Aquopolis+Costa+Daurada+-+La+P
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-4

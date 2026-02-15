@@ -1,5 +1,5 @@
 ---
-id: "benefit-els-blaus-roses-centre"
+id: "benefit-elsblaus-rosescentre"
 title:
   es: "Els Blaus de Roses - Taquilla Roses Centre"
   ca: "Els Blaus de Roses - Taquilla Roses Centre"
@@ -35,3 +35,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Els+Blaus+de+Roses/@42.2622563
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-6

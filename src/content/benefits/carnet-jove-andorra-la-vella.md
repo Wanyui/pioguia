@@ -36,3 +36,4 @@ logo: "/img/carnet-jove-andorra-la-vella.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-17

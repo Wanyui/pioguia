@@ -36,3 +36,4 @@ logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
+Beneficio 2025-55

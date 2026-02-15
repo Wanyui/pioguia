@@ -62,6 +62,16 @@ Si no hay traduccion en algun idioma, se puede dejar sin ese campo y la UI aplic
 - Debe ser una URL completa y valida (`https://...`).
 - Sirve para enlazar directamente a la ubicacion exacta del beneficio.
 
+## Beneficios caducados (archivo historico)
+
+- Carpeta recomendada: `src/content/benefits-archived/`.
+- Estos archivos no se publican en la web activa porque el listado usa `src/content/benefits/`.
+- Mantener el mismo frontmatter del beneficio original para facilitar su reactivacion.
+- Campos opcionales recomendados para historico:
+  - `expiredAt: "YYYY-MM-DD"`
+  - `notes: "Motivo/temporada/acciones pendientes"`
+- Cuando una ventaja vuelva a estar vigente, mover el archivo otra vez a `src/content/benefits/` y revisar condiciones.
+
 ## Flujo sugerido para altas/actualizaciones
 
 1. Crear o editar archivo en `src/content/benefits/`.

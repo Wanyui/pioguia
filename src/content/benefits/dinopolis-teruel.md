@@ -35,3 +35,4 @@ logo: "/img/dinopolis-teruel.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Descuento válido con carnet de socio.
+Beneficio 2025-2

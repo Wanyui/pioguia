@@ -35,3 +35,4 @@ logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Dos sedes en Andorra la Vella.
+Beneficio 2025-52

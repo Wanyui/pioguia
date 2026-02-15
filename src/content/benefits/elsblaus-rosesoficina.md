@@ -1,5 +1,5 @@
 ---
-id: "benefit-els-blaus-oficina-roses"
+id: "benefit-elsblaus-rosesoficina"
 title:
   es: "Els Blaus de Roses - Oficina Centre"
   ca: "Els Blaus de Roses - Oficina Centre"
@@ -35,3 +35,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Carrer+de+Sant+Elm,+5,+17480+R
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-6

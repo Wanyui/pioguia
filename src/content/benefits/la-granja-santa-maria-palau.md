@@ -1,5 +1,5 @@
 ---
-id: "benefit-la-granja-santa-maria-palau"
+id: "benefit-lagranja-santamariapalau"
 title:
   es: "La Granja Ability Training Center"
   ca: "La Granja Ability Training Center"
@@ -35,3 +35,4 @@ logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-5

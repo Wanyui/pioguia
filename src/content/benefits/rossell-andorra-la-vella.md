@@ -35,3 +35,4 @@ logo: "/img/rossell-andorra-la-vella.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Esta ventaja comparte contacto con SACS & BAGS.
+Beneficio 2025-19

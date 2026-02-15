@@ -32,5 +32,8 @@ web: "https://www.portaventuraworld.com"
 googleMapsUrl: "https://www.google.com/maps/place/PortAventura+Park/@41.0858616,1.151366,17z/data=!3m1!4b1!4m6!3m5!1s0x12a159bb97a24019:0x9bb01aabaec2d626!8m2!3d41.0858616!4d1.1539409!16s%2Fg%2F11ckrzv_c8?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/portaventura-world-vilaseca.png"
 languages: ["es", "ca", "en", "fr", "ru"]
+expiredAt: "2025-12-31"
+notes: "Promocion 2025 archivada para posible reutilizacion en temporadas futuras."
 ---
-Datos extraídos de la guía. Condiciones completas en la web oficial.
+Datos extraidos de la guia. Condiciones completas en la web oficial.
+Beneficio 2025-1

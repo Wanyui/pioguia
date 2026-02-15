@@ -50,6 +50,16 @@ body {
   max-width: 220px;
 }
 
+.leaflet-container .leaflet-popup-content-wrapper {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.leaflet-container .leaflet-popup-tip {
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
 .leaflet-control-custom-location {
   margin-top: 0.625rem;
 }

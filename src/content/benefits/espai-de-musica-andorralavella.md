@@ -1,11 +1,11 @@
 ---
-id: "benefit-espai-de-musica-sant-julia"
+id: "benefit-espai-musica-andorra"
 title:
-  es: "Espai de Música - La Trapa"
-  ca: "Espai de Música - La Trapa"
-  en: "Music Space - La Trapa"
-  fr: "Espace Musique - La Trapa"
-  ru: "Музыкальное пространство - La Trapa"
+  es: "Espai de Música"
+  ca: "Espai de Música"
+  en: "Music Space"
+  fr: "Espace Musique"
+  ru: "Музыкальное пространство"
 description:
   es: "25% de descuento en la matrícula para niños (+5 años) que se inscriban por primera vez. Presentar el carnet de socio."
   ca: "25% de descompte en la matrícula per a nens (+5 anys) que s'inscriguin per primera vegada. Cal presentar el carnet de soci."
@@ -24,14 +24,15 @@ category:
   en: "Education"
   fr: "Éducation"
   ru: "Образование"
-address: "LA TRAPA, Centre Cultural Lauredià, Plaça de la Germandat 4-5-6, AD600 Sant Julià de Lòria"
-city: "Sant Julià de Lòria"
-lat: 42.4651808
-lng: 1.4903872
+address: "Carrer Dr. Nequi, 7, 1r pis, porta D, AD500 Andorra la Vella"
+city: "Andorra la Vella"
+lat: 42.5076859
+lng: 1.5207976
 phone: "861 999"
 web: "https://www.espaidemusica.com"
-googleMapsUrl: "https://www.google.com/maps/place/Centre+Cultural+i+de+Congressos+Lauredi%C3%A0/@42.4651925,1.4905367,21z/data=!4m6!3m5!1s0x12a5f482e1c17015:0xf91df23baf35dc20!8m2!3d42.4651808!4d1.4903872!16s%2Fg%2F11y0qrr9b?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+googleMapsUrl: "https://www.google.com/maps/place/Espai+de+M%C3%BAsica+Moderna/@42.5076859,1.5182227,827m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12a5f52cb5232c6f:0xc85fab30ef129b69!8m2!3d42.5076859!4d1.5207976!16s%2Fg%2F11b6wqp7lj?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/espai-de-musica.svg"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-15

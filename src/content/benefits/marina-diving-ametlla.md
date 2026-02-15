@@ -36,3 +36,4 @@ logo: "/img/marina-diving-ametlla.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Temporada marzo/abril a septiembre/octubre.
+Beneficio 2025-3

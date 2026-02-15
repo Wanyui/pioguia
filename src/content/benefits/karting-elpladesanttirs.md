@@ -1,5 +1,5 @@
 ---
-id: "benefit-karting-el-pla"
+id: "benefit-karting-elpladesanttirs"
 title:
   es: "Karting El Pla"
   ca: "Karting El Pla"
@@ -34,3 +34,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Karting+El+Pla/@42.3034095,1.3
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-9

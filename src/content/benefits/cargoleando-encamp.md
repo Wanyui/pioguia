@@ -35,3 +35,4 @@ logo: "/img/cargoleando-encamp.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-16

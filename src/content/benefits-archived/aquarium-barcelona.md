@@ -34,3 +34,4 @@ googleMapsUrl: "https://www.google.com/maps/place/L'Aqu%C3%A0rium+de+Barcelona/@
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-8

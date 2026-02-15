@@ -34,3 +34,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Jard%C3%ADn+Bot%C3%A1nico+Mari
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-14

@@ -1,5 +1,5 @@
 ---
-id: "benefit-els-blaus-santa-margarita"
+id: "benefit-elsblaus-santamargarita"
 title:
   es: "Els Blaus de Roses - Taquilla Santa Margarida"
   ca: "Els Blaus de Roses - Taquilla Santa Margarida"
@@ -35,3 +35,4 @@ googleMapsUrl: "https://www.google.com/maps/place/Els+Blaus+de+Roses+Santa+marga
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
+Beneficio 2025-6
