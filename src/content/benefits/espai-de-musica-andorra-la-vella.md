@@ -30,6 +30,7 @@ lat: 42.5076859
 lng: 1.5207976
 phone: "861 999"
 web: "https://www.espaidemusica.com"
+googleMapsUrl: "https://www.google.com/maps/place/Espai+de+M%C3%BAsica+Moderna/@42.5076859,1.5182227,827m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12a5f52cb5232c6f:0xc85fab30ef129b69!8m2!3d42.5076859!4d1.5207976!16s%2Fg%2F11b6wqp7lj?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/espai-de-musica.svg"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

@@ -26,10 +26,11 @@ category:
   ru: "Образование"
 address: "Finca Granja Escola Santa Maria de Palautordera (Montseny, Barcelona)"
 city: "Santa Maria de Palautordera"
-lat: 41.6889
-lng: 2.4453
+lat: 41.6683879
+lng: 2.461352
 phone: "+34 938 481 125"
 web: "https://www.lagranja.cat"
+googleMapsUrl: "https://www.google.com/maps/place/La+Granja+-+Ability+Training+Center/@41.6683133,2.4616401,19.77z/data=!4m6!3m5!1s0x12a4cce7f03466eb:0x5bb12e7d3d4b46a7!8m2!3d41.6683879!4d2.461352!16s%2Fg%2F1vv2pdc5?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

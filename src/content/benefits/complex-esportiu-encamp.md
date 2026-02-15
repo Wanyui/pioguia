@@ -26,11 +26,12 @@ category:
   ru: "Спорт"
 address: "Passeig de l'Alguer, 1, AD200 Encamp"
 city: "Encamp"
-lat: 0
-lng: 0
+lat: 42.5357717
+lng: 1.5807041
 phone: "732 700"
 email: "recepcio@encamp.ad"
 web: "https://www.comuencamp.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Complejo+Deportivo+y+Sociocultural+de+Encamp/@42.5357717,1.5781292,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58a0b689ff82f:0xa16a185cd7412864!8m2!3d42.5357717!4d1.5807041!16s%2Fg%2F11y9bcmmx?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

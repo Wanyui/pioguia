@@ -30,6 +30,7 @@ lat: 42.507716
 lng: 1.5234388
 phone: "Tel i WhatsApp 879 337"
 web: "https://www.viamoda.ad"
+googleMapsUrl: "https://www.google.com/maps/place/OVS+KIDS+ANDORRA+-+VIA+MODA/@42.5077284,1.5234298,21z/data=!4m6!3m5!1s0x12a58ad39f6f9565:0xb247cccc3778cb72!8m2!3d42.507716!4d1.5234388!16s%2Fg%2F11b6b5k3h_?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/ovs-via-moda.svg"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

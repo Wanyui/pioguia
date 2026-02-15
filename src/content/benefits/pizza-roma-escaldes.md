@@ -26,10 +26,11 @@ category:
   ru: "Рестораны"
 address: "Av. Carlemany, 70, 2a planta, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5090696
+lng: 1.5346266
 phone: "863 190"
 web: "https://www.hotansa.ad"
+googleMapsUrl: "https://www.google.com/maps/place/PIZZA+ROMA/@42.5090696,1.5320517,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58adc7cf744fb:0xace7deaf520066ea!8m2!3d42.5090696!4d1.5346266!16s%2Fg%2F12qg8drx4?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

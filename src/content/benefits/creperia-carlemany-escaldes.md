@@ -26,10 +26,11 @@ category:
   ru: "Рестораны"
 address: "Av. Carlemany, 70, planta baixa, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.50886
+lng: 1.5350336
 phone: "863 190"
 web: "https://www.hotansa.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Centro+Comercial+Illa+Carlemany/@42.508759,1.5349588,21z/data=!3m1!5s0x12af61fced47e3cb:0x10583df4191f848a!4m6!3m5!1s0x12a58adb9d0c0707:0x800b06ed7a03af5f!8m2!3d42.50886!4d1.5350336!16s%2Fg%2F119w0ddl8?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

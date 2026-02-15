@@ -26,10 +26,11 @@ category:
   ru: "Мода"
 address: "Edifici Prat de Patrona, Av. de les Nacions Unides, Bloc A Local 3, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5098907
+lng: 1.5344042
 phone: "802 582"
 web: "https://www.ofijet.com"
+googleMapsUrl: "https://www.google.com/maps/place/OFIJET/@42.5098907,1.5318293,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58ad730c4f58d:0xe0d687ddb113140!8m2!3d42.5098907!4d1.5344042!16s%2Fg%2F1yhbjnzjq?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

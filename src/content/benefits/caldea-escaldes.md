@@ -26,10 +26,11 @@ category:
   ru: "Досуг"
 address: "Parc de la Mola, 10, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5111929
+lng: 1.5379712
 phone: "800 999"
 web: "https://www.caldea.com"
+googleMapsUrl: "https://www.google.com/maps/place/Centro+Termol%C3%BAdico+Caldea/@42.5107187,1.5359295,17.59z/data=!4m6!3m5!1s0x12a58ac331e56f71:0x141e950f0686515b!8m2!3d42.5111929!4d1.5379712!16s%2Fg%2F121xq823?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

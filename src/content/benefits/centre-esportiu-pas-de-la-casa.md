@@ -26,11 +26,12 @@ category:
   ru: "Спорт"
 address: "Avinguda Consell General s/n, AD200 Pas de la Casa"
 city: "Pas de la Casa"
-lat: 0
-lng: 0
+lat: 42.5445971
+lng: 1.7331963
 phone: "755 111"
 email: "centrepas@encamp.ad"
 web: "https://www.encamp.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Centro+Deportivo+y+Sociocultural+del+Pas+de+la+Casa/@42.5445971,1.7306214,17z/data=!3m1!4b1!4m6!3m5!1s0x12af7d8ce4064a73:0x8286a8fc0c2af5c6!8m2!3d42.5445971!4d1.7331963!16s%2Fg%2F11xcd3kkh?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

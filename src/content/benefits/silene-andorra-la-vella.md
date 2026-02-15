@@ -29,6 +29,7 @@ city: "Andorra la Vella"
 lat: 42.5045355
 lng: 1.5147014
 phone: "728 208"
+googleMapsUrl: "https://www.google.com/maps/place/Perruqueria+SilMar/@42.504553,1.5146507,21z/data=!4m6!3m5!1s0x12a5f5cfdef171fd:0x389ecd31f943e55d!8m2!3d42.5045355!4d1.5147014!16s%2Fg%2F11ngdy3xvd?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/silene-andorra-la-vella.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

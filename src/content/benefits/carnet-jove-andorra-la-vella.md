@@ -31,6 +31,7 @@ lng: 1.5259177
 phone: "864 976"
 email: "contacte@carnetjove.ad"
 web: "https://www.carnetjove.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Carnet+Jove+Andorra/@42.5052337,1.5260367,19.16z/data=!4m6!3m5!1s0x12a58ad3236febbf:0xdbbbdc36c492fcfd!8m2!3d42.5052097!4d1.5259177!16s%2Fg%2F11xnl4rc2?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/carnet-jove-andorra-la-vella.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

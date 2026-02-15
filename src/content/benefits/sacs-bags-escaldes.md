@@ -30,6 +30,7 @@ lat: 42.5086281
 lng: 1.5383229
 phone: "826 366 / 822 453"
 email: "m.rossell@andorra.ad"
+googleMapsUrl: "https://www.google.com/maps/place/SACS+%26+BAGS/@42.5086281,1.535748,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58adda8f42163:0xedc52d442af5729d!8m2!3d42.5086281!4d1.5383229!16s%2Fg%2F11b6gl4k_d?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/sacs-bags-escaldes.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Casa de Muntanya, Carrer Major s/n. Punt de trobada: Oficina de Turisme d'Ordino, AD300 Ordino"
 city: "Ordino"
-lat: 0
-lng: 0
+lat: 42.5566946
+lng: 1.5335487
 phone: "847 888"
 email: "experienciamuntanya@andorra.ad"
 web: "https://www.experienciamuntanya.com"
+googleMapsUrl: "https://www.google.com/maps/place/eXperienCia+en+mUntanya/@42.5566946,1.5309738,17z/data=!3m1!4b1!4m6!3m5!1s0x12af60122a840b29:0xf08e89c3acd83927!8m2!3d42.5566946!4d1.5335487!16s%2Fg%2F1ptxxw318?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

@@ -26,10 +26,11 @@ category:
   ru: "Услуги"
 address: "Av. de les Nacions Unides, 17, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5097693
+lng: 1.5347241
 phone: "885 544"
 web: "https://www.imo.ad"
+googleMapsUrl: "https://www.google.com/maps/place/IMO+Grupo+Miranza+Andorra+-+Oftalmologia+a+Andorra/@42.5097693,1.5321492,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58adb66128961:0x53d1be04f89d7eb8!8m2!3d42.5097693!4d1.5347241!16s%2Fg%2F1q69sn5yz?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

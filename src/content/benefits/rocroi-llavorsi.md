@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Hort de Rei s/n, Ctra Vall d'Aran C-13 km 140, 25595 Llavorsí (Lleida)"
 city: "Llavorsí"
-lat: 0
-lng: 0
+lat: 42.4825383
+lng: 1.206755
 phone: "+34 973 622 035"
 email: "reservas@rocroi.com"
 web: "https://www.rocroi.com"
+googleMapsUrl: "https://www.google.com/maps/place/RocRoi+Adventure+Center+-+Rafting+en+Llavors%C3%AD/@42.4825383,1.2041801,17z/data=!3m1!4b1!4m6!3m5!1s0x12a600a3dcec6169:0x1660a6d6f6c52b2a!8m2!3d42.4825383!4d1.206755!16s%2Fg%2F11bbtmy71z?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

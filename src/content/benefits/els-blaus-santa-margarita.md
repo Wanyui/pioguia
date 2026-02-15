@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Taquilla Santa Margarida: Av. de la Bocana s/n, Passeig Marítim (al costat de l'Hotel Victoria)"
 city: "Roses"
-lat: 42.2472
-lng: 3.1652
+lat: 42.2603213
+lng: 3.1504354
 phone: "+34 689 392 744 / +34 609 328 177"
 email: "info@elsblausderoses.com"
 web: "https://www.elsblausderoses.com"
+googleMapsUrl: "https://www.google.com/maps/place/Els+Blaus+de+Roses+Santa+margarita/@42.2603213,3.1478605,830m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12ba61b3b6678661:0x8edcc183cc2fe2fd!8m2!3d42.2603213!4d3.1504354!16s%2Fg%2F11w_t57j7_?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

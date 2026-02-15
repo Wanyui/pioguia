@@ -25,11 +25,12 @@ category:
   fr: "Sports"
   ru: "Спорт"
 address: "Grandvalira - Sectors Encamp, Canillo, El Tarter, Soldeu, Grau Roig i Pas de la Casa"
-city: "Encamp"
-lat: 0
-lng: 0
+city: "Canillo"
+lat: 42.5786601
+lng: 1.6463181
 phone: "891 810"
 web: "https://www.grandvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/Grandvalira/@42.5786601,1.6082093,14z/data=!4m10!1m2!2m1!1sGrandvalira!3m6!1s0x12a58adb817ec90d:0xa9c1962f7ddfd9e0!8m2!3d42.5786601!4d1.6463181!15sCgtHcmFuZHZhbGlyYSIDiAEBWg0iC2dyYW5kdmFsaXJhkgEKc2tpX3Jlc29ydOABAA!16s%2Fg%2F120wkss7?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

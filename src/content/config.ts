@@ -32,6 +32,7 @@ const benefits = defineCollection({
     email: z.string().email().optional(),
     logo: z.string().optional(),
     web: z.string().url().optional(),
+    googleMapsUrl: z.string().url().optional(),
     languages: z.array(z.string()).default(["es"]),
   }),
 });

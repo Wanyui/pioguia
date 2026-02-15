@@ -26,10 +26,11 @@ category:
   ru: "Мода"
 address: "Joguets: Av. Carlemany 28, Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 42.5086503
-lng: 1.5410672
+lat: 42.5088717
+lng: 1.5411787
 phone: "+376 829 387"
 web: "https://www.basarvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/BASAR+VALIRA+JOGUINES/@42.5089644,1.5406345,19.52z/data=!4m6!3m5!1s0x12a58ae784e4115f:0xebf03afc6ebcbab0!8m2!3d42.5088717!4d1.5411787!16s%2Fg%2F1yh4g7bdv?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/basar-valira.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

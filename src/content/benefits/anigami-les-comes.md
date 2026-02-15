@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "Parc d'Aventura Anigami Mas les Comes, Carretera C153, km 18,7, 08511 L'Esquirol"
 city: "L'Esquirol"
-lat: 42.0465
-lng: 2.3725
+lat: 42.0460298
+lng: 2.3783625
 phone: "+34 937 447 295"
 web: "https://www.anigamiparc.cat"
+googleMapsUrl: "https://www.google.com/maps/place/Parque+de+Aventura+Anigami/@42.0460298,2.3783625,17z/data=!3m1!4b1!4m6!3m5!1s0x12a52e131ddbed49:0x379e10e2e54d5f6e!8m2!3d42.0460298!4d2.3783625!16s%2Fg%2F1tf550pb?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

@@ -30,6 +30,7 @@ lat: 42.4651808
 lng: 1.4903872
 phone: "861 999"
 web: "https://www.espaidemusica.com"
+googleMapsUrl: "https://www.google.com/maps/place/Centre+Cultural+i+de+Congressos+Lauredi%C3%A0/@42.4651925,1.4905367,21z/data=!4m6!3m5!1s0x12a5f482e1c17015:0xf91df23baf35dc20!8m2!3d42.4651808!4d1.4903872!16s%2Fg%2F11y0qrr9b?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/espai-de-musica.svg"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

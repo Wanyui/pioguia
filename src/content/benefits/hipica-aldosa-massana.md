@@ -26,11 +26,12 @@ category:
   ru: "Спорт"
 address: "Carretera general de l'Aldosa, AD400 La Massana"
 city: "La Massana"
-lat: 0
-lng: 0
+lat: 42.5488534
+lng: 1.5255555
 phone: "837 329"
 logo: "/img/*"
 web: "https://www.hipica-aldosa.com"
+googleMapsUrl: "https://www.google.com/maps/place/Club+H%C3%ADpic+l'Aldosa/@42.5488534,1.5229806,17z/data=!3m1!4b1!4m6!3m5!1s0x12af6006779d7069:0x4dc4ae964bccc768!8m2!3d42.5488534!4d1.5255555!16s%2Fg%2F11xmdmkxn?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.

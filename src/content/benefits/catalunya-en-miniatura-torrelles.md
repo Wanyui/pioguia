@@ -26,10 +26,11 @@ category:
   ru: "Образование"
 address: "Carrer Can Balasch de Baix s/n, 08629 Torrelles de Llobregat (Barcelona)"
 city: "Torrelles de Llobregat"
-lat: 0
-lng: 0
+lat: 41.3591537
+lng: 1.9859967
 phone: "+34 936 890 960"
 web: "https://www.catalunyaenminiatura.com"
+googleMapsUrl: "https://www.google.com/maps/place/Catalu%C3%B1a+en+Miniatura/@41.3591537,1.9834218,17z/data=!3m1!4b1!4m6!3m5!1s0x12a484bca608211d:0xb0dfabf47ca67acd!8m2!3d41.3591537!4d1.9859967!16s%2Fm%2F0g5s1jd?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

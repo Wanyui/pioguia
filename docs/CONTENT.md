@@ -23,6 +23,7 @@ address: "Direccion completa"
 lat: 0
 lng: 0
 logo: "/img/*"
+googleMapsUrl: "https://www.google.com/maps/place/..."
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 ```
@@ -54,6 +55,12 @@ Si no hay traduccion en algun idioma, se puede dejar sin ese campo y la UI aplic
 - Si no hay logo definitivo: `logo: "/img/*"` (placeholder operativo).
 - Si hay logo final, ubicar archivo en `public/img/` y referenciar con ruta absoluta:
   - `logo: "/img/nombre-logo.png"`
+
+## URL de Google Maps
+
+- Propiedad opcional: `googleMapsUrl`.
+- Debe ser una URL completa y valida (`https://...`).
+- Sirve para enlazar directamente a la ubicacion exacta del beneficio.
 
 ## Flujo sugerido para altas/actualizaciones
 

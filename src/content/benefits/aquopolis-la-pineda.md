@@ -26,10 +26,11 @@ category:
   ru: "Досуг"
 address: "Passeig Pau Casals, 65, 43481 La Pineda (Tarragona)"
 city: "La Pineda"
-lat: 41.0699
-lng: 1.1893
+lat: 41.073503
+lng: 1.177771
 phone: "+34 977 371 640"
 web: "https://www.costa-dorada.aquopolis.es"
+googleMapsUrl: "https://www.google.com/maps/place/Aquopolis+Costa+Daurada+-+La+Pineda+Salou/@41.0735029,1.1729001,845m/data=!3m1!1e3!4m6!3m5!1s0x12a158f893cf3ec1:0x7b1c7bc9688c7a2!8m2!3d41.073503!4d1.177771!16s%2Fg%2F1q5bktfby?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

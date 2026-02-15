@@ -26,10 +26,11 @@ category:
   ru: "Досуг"
 address: "Grandvalira Sector Canillo"
 city: "Canillo"
-lat: 0
-lng: 0
+lat: 42.5659122
+lng: 1.601354
 phone: "891 810"
 web: "https://www.grandvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/Telecabina+Grandvalira+Mon(t)+M%C3%A0gic+%7C+Canillo/@42.5659122,1.5987791,17z/data=!3m1!4b1!4m6!3m5!1s0x12af637a04eb5543:0x32ec9b36b6663b9c!8m2!3d42.5659122!4d1.601354!16s%2Fg%2F11f91qwdjb?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

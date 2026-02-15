@@ -26,10 +26,11 @@ category:
   ru: "Досуг"
 address: "Moll d'Espanya del Port Vell, s/n, 08039 Barcelona"
 city: "Barcelona"
-lat: 41.3767
-lng: 2.1869
+lat: 41.3768473
+lng: 2.1843334
 phone: "+34 932 217 474"
 web: "https://www.aquariumbcn.com"
+googleMapsUrl: "https://www.google.com/maps/place/L'Aqu%C3%A0rium+de+Barcelona/@41.3768473,2.18171,463m/data=!3m1!1e3!4m10!1m2!2m1!1saquarium!3m6!1s0x12a4a254b5b360b5:0x3b20125368799960!8m2!3d41.3768473!4d2.1843334!15sCghhcXVhcml1bVoKIghhcXVhcml1bZIBCGFxdWFyaXVtmgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5UVU4zYjBsbWJIWjNSUkFC4AEA-gEECAAQRA!16zL20vMGQ2MGYy?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

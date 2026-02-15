@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "Pavelló Prat Gran, C/ Prat Gran 2-4, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5098613
+lng: 1.5393834
 phone: "331 860"
 email: "xh@andorra.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Pabell%C3%B3n+del+Prat+Gran/@42.5098613,1.5368085,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58add699e7abf:0xba5dc914cc2f8879!8m2!3d42.5098613!4d1.5393834!16s%2Fg%2F11xblbp1m?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

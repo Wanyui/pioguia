@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Pàrquing de Cubil - Grau Roig, Estació d'esquí Grandvalira, AD200 Encamp"
 city: "Encamp"
-lat: 0
-lng: 0
+lat: 42.5333432
+lng: 1.6965964
 phone: "687 734"
 email: "reservas@rocroi.com"
 web: "https://www.rocroi.com"
+googleMapsUrl: "https://www.google.com/maps/place/RocRoi+Adventure+Center+Andorra+-+Grau+Roig+-+Grandvalira/@42.5333432,1.6940215,17z/data=!3m1!4b1!4m6!3m5!1s0x12a587d44c75dbe1:0xcc067702d22642f8!8m2!3d42.5333432!4d1.6965964!16s%2Fg%2F11lkjvmdtl?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

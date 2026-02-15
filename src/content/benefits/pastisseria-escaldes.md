@@ -26,9 +26,10 @@ category:
   ru: "Рестораны"
 address: "Plaça Coprínceps, 6 (Roc Blanc), AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 0
-lng: 0
+lat: 42.5092686
+lng: 1.5393217
 phone: "800 302"
+googleMapsUrl: "https://www.google.com/maps/place/Hotel+Roc+Blanc+%26+Spa/@42.5091431,1.5391579,19.58z/data=!4m9!3m8!1s0x12a57747adea44ab:0xd0df98116a24ed12!5m2!4m1!1i2!8m2!3d42.5092686!4d1.5393217!16s%2Fg%2F1v6p1ffb?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

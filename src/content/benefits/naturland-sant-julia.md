@@ -26,10 +26,11 @@ category:
   ru: "Досуг"
 address: "Ctra. de la Rabassa Km 8, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
-lat: 0
-lng: 0
+lat: 42.4420394
+lng: 1.5020964
 phone: "741 444"
 web: "https://www.naturland.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Naturland+%7C+Sant+Juli%C3%A0+de+L%C3%B2ria/@42.4420394,1.4995215,17z/data=!3m1!4b1!4m6!3m5!1s0x12a5f3157214fc39:0xff42ec7514e7faa9!8m2!3d42.4420394!4d1.5020964!16s%2Fg%2F1q5hn0v97?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

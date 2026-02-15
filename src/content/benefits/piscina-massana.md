@@ -31,6 +31,7 @@ lng: 1.5163513
 phone: "+376 738 363"
 email: "recepcio@hotelmarcopolo.com"
 web: "https://www.hotelmarcopolo.com"
+googleMapsUrl: "https://www.google.com/maps/place/Piscina+Prat+del+Mol%C3%AD/@42.5449181,1.5137764,17z/data=!3m1!4b1!4m6!3m5!1s0x12af5fff224c0635:0x2f28ea068996ef6f!8m2!3d42.5449181!4d1.5163513!16s%2Fg%2F1pp2tl987?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/piscina-massana.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

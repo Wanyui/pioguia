@@ -26,10 +26,11 @@ category:
   ru: "Мода"
 address: "LEGO: Av. Carlemany 47, Escaldes-Engordany"
 city: "Escaldes-Engordany"
-lat: 42.5088717
-lng: 1.5411787
+lat: 42.5086503
+lng: 1.5410672
 phone: "+376 727 808"
 web: "https://www.basarvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/TOT+LEGO+ANDORRA/@42.5089644,1.5406345,19.52z/data=!3m1!5s0x12a58ae7765bee5d:0x55f3beea2180326a!4m6!3m5!1s0x12a58ae7831ede97:0x91355cabd21dc8cd!8m2!3d42.5086503!4d1.5410672!16s%2Fg%2F11btwr2rmz?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/basar-valira.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

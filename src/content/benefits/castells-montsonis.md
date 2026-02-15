@@ -26,10 +26,11 @@ category:
   ru: "Образование"
 address: "C/ Major, 7-9, Montsonís (Lleida)"
 city: "Montsonís"
-lat: 0
-lng: 0
+lat: 41.8870862
+lng: 1.0224526
 phone: "+34 973 402 045"
 web: "https://castellsdelleida.com"
+googleMapsUrl: "https://www.google.com/maps/place/Castillo+de+Montson%C3%ADs/@41.8870862,1.0198777,17z/data=!3m1!4b1!4m6!3m5!1s0x12a6884d0625890b:0xaf40c5928b1416c0!8m2!3d41.8870862!4d1.0224526!16s%2Fg%2F122_g2qn?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

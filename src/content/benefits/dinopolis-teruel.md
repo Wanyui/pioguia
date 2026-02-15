@@ -30,6 +30,7 @@ lat: 40.3325029
 lng: -1.0811274
 phone: "+34 902 448 000 / +34 978 617 715"
 web: "https://www.dinopolis.com"
+googleMapsUrl: "https://www.google.com/maps/place/Din%C3%B3polis/@40.3333793,-1.0822168,18z/data=!3m1!4b1!4m6!3m5!1s0xd5e12a555555555:0x65777f966275c42c!8m2!3d40.3325029!4d-1.0811274!16s%2Fm%2F0bbvyls?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/dinopolis-teruel.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "Plaça de Calonge - Sant Antoni s/n, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
-lat: 0
-lng: 0
+lat: 42.4657225
+lng: 1.4921917
 phone: "743 700"
 web: "https://www.lauesport.ad"
+googleMapsUrl: "https://www.google.com/maps/place/LAUesport+(Centro+Deportivo+de+L%C3%B2ria)/@42.4657225,1.4896168,17z/data=!3m1!4b1!4m6!3m5!1s0x12a5f49cd28ccb97:0x3e23cb3a24301f54!8m2!3d42.4657225!4d1.4921917!16s%2Fg%2F11cmh90j7g?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

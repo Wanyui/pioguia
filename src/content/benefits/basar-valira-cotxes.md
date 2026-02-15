@@ -30,6 +30,7 @@ lat: 42.5090649
 lng: 1.5406042
 phone: "+376 821 314"
 web: "https://www.basarvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/BASAR+VALIRA+HOBBIES/@42.5089644,1.5406345,19.52z/data=!4m6!3m5!1s0x12a58b369afb7b65:0x8004b6d9cd356a0a!8m2!3d42.5090649!4d1.5406042!16s%2Fg%2F11t5dzsk3_?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/basar-valira.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

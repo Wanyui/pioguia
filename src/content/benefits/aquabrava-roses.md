@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Carretera de Cadaqués, km 1, 17480 Roses (Girona)"
 city: "Roses"
-lat: 42.2671
-lng: 3.1805
+lat: 42.2752626
+lng: 3.1563454
 phone: "+34 972 254 344"
 email: "info@aquabrava.com"
 web: "https://www.aquabrava.com"
+googleMapsUrl: "https://www.google.com/maps/place/Aquabrava/@42.2752626,3.1537705,17z/data=!3m1!4b1!4m6!3m5!1s0x12ba63df1cbb824b:0x5bb83dc78b8df19!8m2!3d42.2752626!4d3.1563454!16s%2Fg%2F1v7x_vps?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

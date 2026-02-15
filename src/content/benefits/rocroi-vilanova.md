@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Moll de Ponent s/n, 08800 Vilanova i la Geltrú (Barcelona)"
 city: "Vilanova i la Geltrú"
-lat: 0
-lng: 0
+lat: 41.2097047
+lng: 1.7287721
 phone: "+34 973 622 035"
 email: "reservas@rocroi.com"
 web: "https://www.rocroi.com"
+googleMapsUrl: "https://www.google.com/maps/place/RocRoi+Adventure+Center+Vilanova+i+la+Geltr%C3%BA+HQ+-+(Oficinas)/@41.2097047,1.7261972,17z/data=!3m1!4b1!4m6!3m5!1s0x12a386e8c94f1775:0xa1a85284e789e7a9!8m2!3d41.2097047!4d1.7287721!16s%2Fg%2F12cpd0y54?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

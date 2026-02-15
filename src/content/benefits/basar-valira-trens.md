@@ -30,6 +30,7 @@ lat: 42.508388
 lng: 1.541023
 phone: "+376 800 675 / 821 682"
 web: "https://www.basarvalira.com"
+googleMapsUrl: "https://www.google.com/maps/place/Basar+Valira+trenes/@42.5089644,1.5406345,19.52z/data=!3m1!5s0x12a58ae7714705e3:0xf23b9496026f5c52!4m6!3m5!1s0x12a58ae771233d11:0xf2751e952ef54444!8m2!3d42.508388!4d1.541023!16s%2Fg%2F1yh4g7bds?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/basar-valira.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

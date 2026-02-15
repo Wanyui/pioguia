@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "C/ Santa Bàrbara s/n, AD300 Ordino"
 city: "Ordino"
-lat: 0
-lng: 0
+lat: 42.556249
+lng: 1.5322772
 phone: "878 110"
 web: "https://www.ceo.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Centro+C%C3%ADvico+y+Deportivo+de+Ordino/@42.556249,1.5297023,17z/data=!3m1!4b1!4m6!3m5!1s0x12af6012396e459d:0x96fca86f7b1afda3!8m2!3d42.556249!4d1.5322772!16s%2Fg%2F11y0j3bg5?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

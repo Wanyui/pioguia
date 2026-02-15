@@ -30,6 +30,7 @@ lat: 42.5342775
 lng: 1.5800623
 phone: "+376 641 045"
 web: "https://www.cargoleando.com"
+googleMapsUrl: "https://www.google.com/maps/place/Parque+Infantil+Cargoleando+Xiquibar+%E2%80%8D/@42.5342775,1.5774874,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58bf5c2f8c38b:0xb068826ed40ffc2!8m2!3d42.5342775!4d1.5800623!16s%2Fg%2F11h193f1n5?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/cargoleando-encamp.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

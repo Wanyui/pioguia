@@ -1,5 +1,6 @@
 ---
-id: "benefit-pollyanna-andorra"
+id: "benefit-pollyanna-kids-escaldes
+"
 title:
   es: "Pollyanna Kids"
   ca: "Pollyanna Kids"
@@ -24,14 +25,15 @@ category:
   en: "Fashion"
   fr: "Mode"
   ru: "Мода"
-address: "Pollyanna Kids #P1, Pollyanna Baby #P2"
-city: "Andorra"
-lat: 0
-lng: 0
+address: "Av. Carlemany, 83, AD700 Escaldes-Engordany"
+city: "Escaldes-Engordany"
+lat: 42.5086403
+lng: 1.53777
 phone: "803 140"
 email: "pollyanna@pollyanna.ad"
 web: "https://www.pollyanna.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Pollyanna+Nens+Concept+Store+I/@42.5086403,1.5353882,18z/data=!4m10!1m2!2m1!1sPollyanna!3m6!1s0x12a58adc5527cedd:0x36c8cc006951a422!8m2!3d42.5086403!4d1.53777!15sCglQb2xseWFubmEiA4gBAVoLIglwb2xseWFubmGSAQ5jbG90aGluZ19zdG9yZZoBI0NoWkRTVWhOTUc5blMwVkpRMEZuU1VSWWFrOVFhbU5uRUFF4AEA-gEECGEQDg!16s%2Fg%2F11g9h1wtmt?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
-Datos extraídos de la guía. Dirección exacta no especificada en el PDF (Pollyanna Kids #P1, Pollyanna Baby #P2).
+Datos extraídos de la guía.

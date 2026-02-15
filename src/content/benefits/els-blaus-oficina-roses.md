@@ -26,11 +26,12 @@ category:
   ru: "Досуг"
 address: "Oficina Centre de Roses: C/ Sant Elm, 5, 17480 Roses (Girona)"
 city: "Roses"
-lat: 42.2631
-lng: 3.1724
+lat: 42.2617102
+lng: 3.1763075
 phone: "+34 689 392 744 / +34 609 328 177"
 email: "info@elsblausderoses.com"
 web: "https://www.elsblausderoses.com"
+googleMapsUrl: "https://www.google.com/maps/place/Carrer+de+Sant+Elm,+5,+17480+Roses,+Girona,+Espa%C3%B1a/@42.2617102,3.1763075,830m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12ba61529c17544b:0xe79e5f94fdf803eb!8m2!3d42.2617102!4d3.1763075!16s%2Fg%2F11q2nhh1c3?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.

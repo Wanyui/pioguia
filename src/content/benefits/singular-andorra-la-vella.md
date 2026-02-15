@@ -26,10 +26,11 @@ category:
   ru: "Образование"
 address: "Ed. Montclar Bonav. Armengol 10, 267 i Ed. Cornella II Pau Casals 8, 1-4, AD500 Andorra la Vella"
 city: "Andorra la Vella"
-lat: 0
-lng: 0
+lat: 42.5079449
+lng: 1.5289023
 phone: "813 989"
 web: "https://www.singular.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Singular+Acad%C3%A8mia+d%E2%80%99Angl%C3%A8s/@42.5079449,1.5263274,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58ad0efad4787:0x593223d1a37d915d!8m2!3d42.5079449!4d1.5289023!16s%2Fg%2F11bxg8t9sg?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

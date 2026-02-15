@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "Carrer Santa Bàrbara s/n, AD300 Ordino"
 city: "Ordino"
-lat: 0
-lng: 0
+lat: 42.5559563
+lng: 1.5309977
 phone: "331 860"
 email: "xh@andorra.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Carrer+de+Santa+B%C3%A0rbara,+AD300/@42.5557877,1.5306906,19.25z/data=!4m6!3m5!1s0x12af601204a6121d:0x47b1aafae0eff0ca!8m2!3d42.5559563!4d1.5309977!16s%2Fg%2F11yfw5dy3?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

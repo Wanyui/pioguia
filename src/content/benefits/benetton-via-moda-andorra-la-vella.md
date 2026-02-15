@@ -30,6 +30,7 @@ lat: 42.5083617
 lng: 1.5314355
 phone: "Tel i WhatsApp 879 312"
 web: "https://www.viamoda.ad"
+googleMapsUrl: "https://www.google.com/maps/place/URBAN+VIA+MODA/@42.5084204,1.531299,20.23z/data=!4m6!3m5!1s0x12a58ada65918ea7:0xf408f03155d69fb7!8m2!3d42.5083617!4d1.5314355!16s%2Fg%2F1pv6yx5zc?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/United-Colors-of-Benetton-logo.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

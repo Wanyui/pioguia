@@ -30,6 +30,7 @@ lat: 42.5088351
 lng: 1.5349083
 phone: "Tel i WhatsApp 879 304"
 web: "https://www.viamoda.ad"
+googleMapsUrl: "https://www.google.com/maps/place/OVS+KIDS+ILLA+-+VIA+MODA/@42.5087213,1.5347855,20.15z/data=!4m6!3m5!1s0x12a58adba02beaed:0xfa1743a3f7f8d254!8m2!3d42.5088351!4d1.5349083!16s%2Fg%2F1pv6ywrwx?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/ovs-via-moda.svg"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

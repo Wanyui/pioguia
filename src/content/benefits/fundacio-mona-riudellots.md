@@ -26,10 +26,11 @@ category:
   ru: "Образование"
 address: "Veïnat de l'Estació s/n, 17457 Riudellots de la Selva (Girona)"
 city: "Riudellots de la Selva"
-lat: 0
-lng: 0
+lat: 41.9016324
+lng: 2.8172027
 phone: "+34 972 477 618"
 web: "https://www.fundaciomona.org"
+googleMapsUrl: "https://www.google.com/maps/place/Fundaci%C3%B3+MONA+(Visitas+solo+con+reserva+previa)/@41.9007804,2.8154403,17z/data=!4m6!3m5!1s0x12bae0333d2d9489:0xc34c17f6278e231f!8m2!3d41.9016324!4d2.8172027!16s%2Fg%2F1tg3f2cg?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

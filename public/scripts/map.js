@@ -9635,6 +9635,12 @@ var sanitizeImageUrl = (value) => {
   }
   return "";
 };
+var sanitizeExternalUrl = (value) => {
+  if (!value) return "";
+  const trimmed = value.trim();
+  if (/^https?:\/\//i.test(trimmed)) return trimmed;
+  return "";
+};
 var uiText = {
   es: {
     title: "Gu\xEDa de ventajas Piolet",
@@ -9910,17 +9916,25 @@ var renderList = (items) => {
     const tags = (item.tags[lang] || item.tags.es || []).map(escapeHtml);
     const address = escapeHtml(item.address);
     const safeLogoUrl = sanitizeImageUrl(item.logo);
+    const safeMapsUrl = sanitizeExternalUrl(item.googleMapsUrl);
     const hasLogo = Boolean(safeLogoUrl);
     const logo = hasLogo ? `<img class="card-logo h-16 w-24 rounded-lg border border-slate-200 bg-white object-contain p-1" src="${safeLogoUrl}" alt="${title}">` : "";
+    const mapLink = safeMapsUrl ? `<a class="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" href="${safeMapsUrl}" target="_blank" rel="noopener noreferrer" data-map-link aria-label="Abrir en Google Maps" title="Abrir en Google Maps"><img src="/img/Google_Maps_icon_(2020).svg" alt="" aria-hidden="true" class="h-4 w-4 object-contain" /></a>` : "";
+    const logoColumn = hasLogo ? `<div class="card-media grid content-between justify-items-start gap-2">${logo}<div class="card-actions flex w-full items-center justify-start gap-2">${mapLink}</div></div>` : "";
     return `
         <li class="card ${hasLogo ? "" : "no-logo"} group relative grid gap-3 rounded-xl border border-amber-300 bg-amber-50 p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${hasLogo ? "grid-cols-[96px_minmax(0,1fr)]" : "grid-cols-1"}" data-id="${item.id}">
-          ${logo}
-          <div class="card-content grid gap-1">
+          ${logoColumn}
+          <div class="card-content grid min-w-0 gap-1">
             <h3 class="line-clamp-2 text-sm font-semibold text-slate-900">${title}</h3>
             <p class="line-clamp-3 text-xs leading-relaxed text-slate-700">${description}</p>
-            <div class="card-meta mt-1 grid gap-1">
-              <div class="meta text-[11px] text-slate-500">${address}</div>
-              <div class="meta text-[11px] text-slate-500">${tags.join(", ")}</div>
+            <div class="card-meta mt-1 grid min-w-0 gap-1">
+              <div class="meta min-w-0 text-[11px] text-slate-500">
+                <span class="block truncate">${address}</span>
+              </div>
+              <div class="meta flex min-w-0 items-center justify-between gap-2 text-[11px] text-slate-500">
+                <span class="truncate">${tags.join(", ")}</span>
+                ${hasLogo ? "" : mapLink}
+              </div>
             </div>
           </div>
         </li>
@@ -10099,6 +10113,7 @@ window.addEventListener("resize", updateHeaderCompactMode);
 updateHeaderCompactMode();
 results.addEventListener("click", (event) => {
   const target = event.target;
+  if (target?.closest("[data-map-link]")) return;
   const card = target?.closest(".card");
   const id = card?.dataset?.id;
   if (id) focusOnMarker(id);

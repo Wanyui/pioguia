@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "C/ de l'Església s/n (sala miralls, al costat Esplai La Massana), AD400 La Massana"
 city: "La Massana"
-lat: 0
-lng: 0
+lat: 42.5449996
+lng: 1.5145278
 phone: "331 860"
 email: "xh@andorra.ad"
+googleMapsUrl: "https://www.google.com/maps/place/Parc+Infantil+de+l'Hort+de+l'Esgl%C3%A9sia/@42.544908,1.5145941,21z/data=!4m6!3m5!1s0x12af5ff96951805b:0x89c0621c61a90970!8m2!3d42.5449996!4d1.5145278!16s%2Fg%2F11mltb3_b3?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

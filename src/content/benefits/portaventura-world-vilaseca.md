@@ -26,9 +26,10 @@ category:
   ru: "Досуг"
 address: "Avinguda Alcalde Pere Molas, km. 2, 43480 Vila-seca (Tarragona)"
 city: "Vila-seca"
-lat: 41.0879066
-lng: 1.1573705
+lat: 41.0858616
+lng: 1.1539409
 web: "https://www.portaventuraworld.com"
+googleMapsUrl: "https://www.google.com/maps/place/PortAventura+Park/@41.0858616,1.151366,17z/data=!3m1!4b1!4m6!3m5!1s0x12a159bb97a24019:0x9bb01aabaec2d626!8m2!3d41.0858616!4d1.1539409!16s%2Fg%2F11ckrzv_c8?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/portaventura-world-vilaseca.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

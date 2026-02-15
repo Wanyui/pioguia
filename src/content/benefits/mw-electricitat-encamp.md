@@ -26,11 +26,12 @@ category:
   ru: "Образование"
 address: "Av. de la Bartra s/n, AD200 Encamp"
 city: "Encamp"
-lat: 0
-lng: 0
+lat: 42.5146202
+lng: 1.5533863
 phone: "739 111"
 email: "fedacultura@feda.ad"
 web: "https://www.fedacultura.ad"
+googleMapsUrl: "https://www.google.com/maps/place/MW+Museu+de+l'Electricitat+-+FEDA/@42.5146202,1.5508114,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58af114e02dbb:0x5315ce78e24f4c97!8m2!3d42.5146202!4d1.5533863!16s%2Fg%2F11yhm13x3?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

@@ -26,10 +26,11 @@ category:
   ru: "Спорт"
 address: "La Massana"
 city: "La Massana"
-lat: 0
-lng: 0
+lat: 42.5729281
+lng: 1.4707663
 phone: "891 815"
 web: "https://www.palarinsal.com"
+googleMapsUrl: "https://www.google.com/maps/place/Estaci%C3%B3n+Esqui+Pal-Arinsal,+Vallnord/@42.5729281,1.4681914,17z/data=!3m1!4b1!4m6!3m5!1s0x12a5f564a4dbeddd:0x9e4c2f17c5a78392!8m2!3d42.5729281!4d1.4707663!16s%2Fg%2F11d_8g4r81?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

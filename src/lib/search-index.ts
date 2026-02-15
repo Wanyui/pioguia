@@ -23,6 +23,7 @@ export type SearchItem = {
   email?: string;
   logo?: string;
   web?: string;
+  googleMapsUrl?: string;
   languages: string[];
   text: Record<string, string>;
 };
@@ -92,6 +93,7 @@ export const buildSearchIndex = (
       email: data.email,
       logo: data.logo,
       web: data.web,
+      googleMapsUrl: data.googleMapsUrl,
       languages: data.languages ?? ["es"],
       text,
     };

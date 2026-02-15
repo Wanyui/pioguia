@@ -26,9 +26,10 @@ category:
   ru: "Спорт"
 address: "Carretera Circumval·lació s/n, 25700 La Seu d'Urgell"
 city: "La Seu d'Urgell"
-lat: 42.3561
-lng: 1.4564
+lat: 42.3540974
+lng: 1.4628842
 phone: "+34 973 360 092"
+googleMapsUrl: "https://www.google.com/maps/place/Parque+Ol%C3%ADmpico+del+Segre/@42.3540974,1.4603093,17z/data=!3m1!4b1!4m6!3m5!1s0x12a5edd1e7ac45a9:0x4341c99e8d51a816!8m2!3d42.3540974!4d1.4628842!16s%2Fm%2F0524qs_?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

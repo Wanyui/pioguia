@@ -26,9 +26,10 @@ category:
   ru: "Спорт"
 address: "Av. François Miterrand, 83, AD200 Encamp"
 city: "Encamp"
-lat: 0
-lng: 0
+lat: 42.5349589
+lng: 1.5874301
 phone: "731 530"
+googleMapsUrl: "https://www.google.com/maps/place/Shusski+56+Encamp+Telecabina/@42.5349589,1.5848552,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58a0f35764fd9:0x174135632d7cdae3!8m2!3d42.5349589!4d1.5874301!16s%2Fg%2F1ptx5rc4q?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---

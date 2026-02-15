@@ -30,6 +30,7 @@ lat: 42.5103273
 lng: 1.5324496
 phone: "80 80 70"
 email: "info@centreauditiu.com"
+googleMapsUrl: "https://www.google.com/maps/place/Centre+Auditiu+Andorr%C3%A0+Serac+SLU/@42.5103273,1.5298747,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58adac26539dd:0x44be94d6b4efe39f!8m2!3d42.5103273!4d1.5324496!16s%2Fg%2F1td6_4g2?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
 logo: "/img/centre-auditiu-andorra.png"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
