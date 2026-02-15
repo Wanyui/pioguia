@@ -26,7 +26,6 @@ category:
   ru: "Технологии"
 address: "C/ Prat del Rull, 12, AD500 Andorra la Vella"
 city: "Andorra la Vella"
-lat: 0
 lat: 42.5051245
 lng: 1.5199321
 phone: "863 708"

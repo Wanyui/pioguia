@@ -16,25 +16,35 @@ const localizedStringArray = z.object({
   ru: z.array(z.string()).optional(),
 });
 
-const benefits = defineCollection({
-  type: "content",
-  schema: z.object({
-    id: z.string(),
-    title: localizedString,
-    description: localizedString,
-    tags: localizedStringArray,
-    category: localizedString.optional(),
-    address: z.string(),
-    city: z.string().optional(),
-    lat: z.number(),
-    lng: z.number(),
-    phone: z.string().optional(),
-    email: z.string().email().optional(),
-    logo: z.string().optional(),
-    web: z.string().url().optional(),
-    googleMapsUrl: z.string().url().optional(),
-    languages: z.array(z.string()).default(["es"]),
-  }),
+const benefitSchema = z.object({
+  id: z.string(),
+  title: localizedString,
+  description: localizedString,
+  tags: localizedStringArray,
+  category: localizedString.optional(),
+  address: z.string(),
+  city: z.string().optional(),
+  lat: z.number(),
+  lng: z.number(),
+  phone: z.string().optional(),
+  email: z.string().email().optional(),
+  logo: z.string().optional(),
+  web: z.string().url().optional(),
+  googleMapsUrl: z.string().url().optional(),
+  languages: z.array(z.string()).default(["es"]),
 });
 
-export const collections = { benefits };
+const benefits = defineCollection({
+  type: "content",
+  schema: benefitSchema,
+});
+
+const benefitsArchived = defineCollection({
+  type: "content",
+  schema: benefitSchema,
+});
+
+export const collections = {
+  benefits,
+  "benefits-archived": benefitsArchived,
+};
