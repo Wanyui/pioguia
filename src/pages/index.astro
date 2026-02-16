@@ -28,6 +28,63 @@ const items = rawItems.map((item) => ({
   ...item,
   logo: resolveLogo(item.logo),
 }));
+
+const siteOrigin = (() => {
+  const candidates = [Astro.site?.href, import.meta.env.SITE, "http://localhost:4321"];
+  for (const candidate of candidates) {
+    if (!candidate) continue;
+    try {
+      return new URL(String(candidate)).origin;
+    } catch {
+      // Ignore malformed site values and try next fallback.
+    }
+  }
+  return "http://localhost:4321";
+})();
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: "Guía Piolet",
+      url: `${siteOrigin}/`,
+      inLanguage: ["es", "ca", "en", "fr", "ru"],
+    },
+    ...items
+      .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng) && !(item.lat === 0 && item.lng === 0))
+      .map((item) => {
+        const logoUrl =
+          item.logo && item.logo !== BLANK_LOGO_DATA_URI
+            ? item.logo.startsWith("/")
+              ? `${siteOrigin}${item.logo}`
+              : item.logo
+            : undefined;
+        const sameAs = [item.googleMapsUrl, item.web].filter(Boolean);
+        return {
+          "@type": "Place",
+          "@id": `${siteOrigin}/#${item.id}`,
+          name: item.title.es,
+          description: item.description.es,
+          ...(item.phone ? { telephone: item.phone } : {}),
+          ...(item.web ? { url: item.web } : {}),
+          ...(logoUrl ? { image: logoUrl } : {}),
+          ...(sameAs.length ? { sameAs } : {}),
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: item.address,
+            ...(item.city ? { addressLocality: item.city } : {}),
+            addressCountry: "AD",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: item.lat,
+            longitude: item.lng,
+          },
+        };
+      }),
+  ],
+};
 ---
 
 <!doctype html>
@@ -47,6 +104,7 @@ const items = rawItems.map((item) => ({
       content="Consulta las ventajas del Club Piolet y encuéntralas fácilmente en el mapa."
     />
     <meta property="og:type" content="website" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
   </head>
   <body class="min-h-screen bg-slate-100 text-slate-800 antialiased">
