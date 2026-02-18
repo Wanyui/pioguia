@@ -4,6 +4,10 @@ import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import type { SearchItem } from "../lib/search-index";
+import { buildCardHtml } from "./map-card";
+import { animateCardResize } from "./map-card-state";
+import { resolveLanguage, type LanguageCode, uiText } from "./map-i18n";
+import { escapeHtml, normalize, sanitizeImageUrl } from "./map-utils";
 
 const dataElement = document.getElementById("benefits-data");
 const mapElement = document.getElementById("map");
@@ -51,156 +55,8 @@ try {
   }
 }
 
-const normalize = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const truncateText = (value: string, maxChars: number) => {
-  if (value.length <= maxChars) return value;
-  return `${value.slice(0, Math.max(0, maxChars - 1)).trimEnd()}…`;
-};
-
-const escapeHtml = (value: string) =>
-  value
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#39;");
-
-const sanitizeImageUrl = (value: string | undefined) => {
-  if (!value) return "";
-  const trimmed = value.trim();
-  if (trimmed.startsWith("/")) return trimmed;
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  if (/^data:image\/(?:png|jpe?g|gif|webp);base64,[a-z0-9+/=]+$/i.test(trimmed)) {
-    return trimmed;
-  }
-  return "";
-};
-
-const sanitizeExternalUrl = (value: string | undefined) => {
-  if (!value) return "";
-  const trimmed = value.trim();
-  if (/^https?:\/\//i.test(trimmed)) return trimmed;
-  return "";
-};
-
-const splitPhoneNumbers = (value: string | undefined) => {
-  if (!value) return [];
-  return Array.from(
-    new Set(
-      value
-        .split(/\s*(?:\/|,|;|\||\by\b|\bi\b|\band\b)\s*/i)
-        .map((part) => part.trim())
-        .filter(Boolean)
-    )
-  );
-};
-
-const normalizePhoneForTel = (value: string) => {
-  const trimmed = value.trim();
-  if (!trimmed) return "";
-  const digits = trimmed.replace(/\D/g, "");
-  if (!digits) return "";
-  if (trimmed.startsWith("+")) return `+${digits}`;
-  if (digits.startsWith("00")) return `+${digits.slice(2)}`;
-  // Andorran local numbers in content are often stored as 6 digits.
-  if (digits.length === 6) return `+376${digits}`;
-  return digits;
-};
-
-const formatPhoneLabel = (value: string) => {
-  const tel = normalizePhoneForTel(value);
-  if (!tel) return "";
-  if (tel.startsWith("+376") && tel.length === 10) {
-    return `+376 ${tel.slice(4, 7)} ${tel.slice(7)}`;
-  }
-  return tel.startsWith("+") ? tel : value.trim();
-};
-
-type LanguageCode = "es" | "ca" | "en" | "fr" | "ru";
-
-const uiText: Record<
-  LanguageCode,
-  {
-    title: string;
-    searchPlaceholder: string;
-    emptyState: string;
-    locationButton: string;
-    locationPopup: string;
-    mapStyleOsm: string;
-    mapStylePositron: string;
-    languageLabel: string;
-  }
-> = {
-  es: {
-    title: "Guía de ventajas Piolet",
-    searchPlaceholder: "Buscar por palabra clave (ej: desayuno)",
-    emptyState: "No se han encontrado resultados.",
-    locationButton: "Volver a mi ubicación",
-    locationPopup: "Tu ubicación aproximada",
-    mapStyleOsm: "OSM",
-    mapStylePositron: "Claro",
-    languageLabel: "🇪🇸 Español",
-  },
-  ca: {
-    title: "Guia d'avantatges Piolet",
-    searchPlaceholder: "Cerca per paraula clau (ex: esmorzar)",
-    emptyState: "No s'han trobat resultats.",
-    locationButton: "Tornar a la meva ubicació",
-    locationPopup: "La teva ubicació aproximada",
-    mapStyleOsm: "OSM",
-    mapStylePositron: "Clar",
-    languageLabel: "🇦🇩 Català",
-  },
-  en: {
-    title: "Piolet Benefits Guide",
-    searchPlaceholder: "Search by keyword (e.g. breakfast)",
-    emptyState: "No results found.",
-    locationButton: "Back to my location",
-    locationPopup: "Your approximate location",
-    mapStyleOsm: "OSM",
-    mapStylePositron: "Light",
-    languageLabel: "🇬🇧 English",
-  },
-  fr: {
-    title: "Guide des avantages Piolet",
-    searchPlaceholder: "Rechercher par mot-clé (ex : petit-déjeuner)",
-    emptyState: "Aucun résultat trouvé.",
-    locationButton: "Revenir à ma position",
-    locationPopup: "Votre position approximative",
-    mapStyleOsm: "OSM",
-    mapStylePositron: "Clair",
-    languageLabel: "🇫🇷 Français",
-  },
-  ru: {
-    title: "Гид по преимуществам Piolet",
-    searchPlaceholder: "Поиск по ключевому слову (напр. завтрак)",
-    emptyState: "Ничего не найдено.",
-    locationButton: "Вернуться к моему местоположению",
-    locationPopup: "Ваше примерное местоположение",
-    mapStyleOsm: "OSM",
-    mapStylePositron: "Светлая",
-    languageLabel: "🇷🇺 Русский",
-  },
-};
-
 function getLang(): LanguageCode {
-  const currentLang = langSelect?.value || document.documentElement.lang || "es";
-  if (
-    currentLang === "ca" ||
-    currentLang === "en" ||
-    currentLang === "fr" ||
-    currentLang === "ru"
-  ) {
-    return currentLang;
-  }
-  return "es";
+  return resolveLanguage(langSelect?.value || document.documentElement.lang || "es");
 }
 
 const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
@@ -356,58 +212,6 @@ const setActive = (
     scroll = false,
   }: { center?: boolean; openPopup?: boolean; scroll?: boolean } = {}
 ) => {
-  const toggleCardExpandedContent = (card: Element | null, expanded: boolean) => {
-    const description = card?.querySelector(".card-description");
-    if (description instanceof HTMLElement) {
-      description.classList.toggle("line-clamp-3", !expanded);
-      description.classList.toggle("line-clamp-none", expanded);
-      if (expanded) {
-        // Force expanded text even if utility classes are not generated.
-        description.style.display = "block";
-        description.style.overflow = "visible";
-        description.style.removeProperty("-webkit-line-clamp");
-        description.style.removeProperty("-webkit-box-orient");
-      } else {
-        description.style.removeProperty("display");
-        description.style.removeProperty("overflow");
-        description.style.removeProperty("-webkit-line-clamp");
-        description.style.removeProperty("-webkit-box-orient");
-      }
-    }
-
-    const tags = card?.querySelector(".card-tags");
-    if (tags instanceof HTMLElement) {
-      tags.classList.toggle("truncate", !expanded);
-      tags.classList.toggle("whitespace-normal", expanded);
-    }
-  };
-  const animateCardResize = (card: Element | null, expanded: boolean) => {
-    if (!(card instanceof HTMLElement)) {
-      toggleCardExpandedContent(card, expanded);
-      return;
-    }
-    const startHeight = card.getBoundingClientRect().height;
-    toggleCardExpandedContent(card, expanded);
-    const endHeight = card.getBoundingClientRect().height;
-    if (Math.abs(endHeight - startHeight) < 1) return;
-
-    card.style.height = `${startHeight}px`;
-    card.style.overflow = "hidden";
-    card.style.transition = "height 220ms ease";
-
-    requestAnimationFrame(() => {
-      card.style.height = `${endHeight}px`;
-    });
-
-    const onEnd = () => {
-      card.style.removeProperty("height");
-      card.style.removeProperty("overflow");
-      card.style.removeProperty("transition");
-      card.removeEventListener("transitionend", onEnd);
-    };
-    card.addEventListener("transitionend", onEnd);
-  };
-
   if (activeId) {
     const previousMarker = markers.get(activeId);
     if (previousMarker) previousMarker.setStyle(defaultMarkerStyle);
@@ -502,61 +306,8 @@ const setLanguage = (lang: LanguageCode) => {
 
 const renderList = (items: SearchItem[]) => {
   if (!results) return;
-  results.innerHTML = items
-    .map((item) => {
-      const lang = getLang();
-      const title = escapeHtml(item.title[lang] || item.title.es);
-      const rawDescription = item.description[lang] || item.description.es || "";
-      const description = escapeHtml(truncateText(rawDescription, 250));
-      const tags = (item.tags[lang] || item.tags.es || []).map(escapeHtml);
-      const safeLogoUrl = sanitizeImageUrl(item.logo);
-      const safeMapsUrl = sanitizeExternalUrl(item.googleMapsUrl);
-      const safeWebUrl = sanitizeExternalUrl(item.web);
-      const phoneNumbers = splitPhoneNumbers(item.phone);
-      const hasLogo = Boolean(safeLogoUrl);
-      const logo = hasLogo
-        ? `<img class="card-logo h-16 w-24 rounded-lg border border-slate-200 bg-white object-contain p-1" src="${safeLogoUrl}" alt="${title}">`
-        : "";
-      const mapLink = safeMapsUrl
-        ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" href="${safeMapsUrl}" target="_blank" rel="noopener noreferrer" data-map-link data-card-action aria-label="Abrir en Google Maps" title="Abrir en Google Maps"><img src="/img/Google_Maps_icon_(2020).svg" alt="" aria-hidden="true" class="h-3.5 w-3.5 object-contain" /></a>`
-        : "";
-      const webLink = safeWebUrl
-        ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" href="${safeWebUrl}" target="_blank" rel="noopener noreferrer" data-web-link data-card-action aria-label="Abrir sitio web" title="Abrir sitio web"><svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.19 8.688a4.5 4.5 0 0 1 6.364 6.364l-1.757 1.757a4.5 4.5 0 0 1-6.364 0m1.061-5.303a4.5 4.5 0 0 1 0 6.364l-1.757 1.757a4.5 4.5 0 1 1-6.364-6.364l1.757-1.757a4.5 4.5 0 0 1 6.364 0"></path></svg></a>`
-        : "";
-      const phoneEntries = phoneNumbers
-        .map((phone) => ({ tel: normalizePhoneForTel(phone), label: formatPhoneLabel(phone) }))
-        .filter((phone) => Boolean(phone.tel && phone.label));
-      const phoneIcon =
-        '<svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a.75.75 0 0 0 .75-.75V16.88a.75.75 0 0 0-.57-.73l-4.42-1.01a.75.75 0 0 0-.78.29l-.97 1.29a12.12 12.12 0 0 1-5.96-5.96l1.29-.97a.75.75 0 0 0 .29-.78L7.1 4.57a.75.75 0 0 0-.73-.57H3a.75.75 0 0 0-.75.75v2Z"></path></svg>';
-      const callLinks =
-        phoneEntries.length === 1
-          ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50" href="tel:${phoneEntries[0]?.tel}" data-call-link data-card-action aria-label="Llamar al beneficio (${escapeHtml(phoneEntries[0]?.label || "")})" title="Llamar ${escapeHtml(phoneEntries[0]?.label || "")}">${phoneIcon}</a>`
-          : phoneEntries.length > 1
-            ? `<details class="relative" data-call-menu data-card-action><summary class="inline-flex h-7 w-7 shrink-0 cursor-pointer list-none items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-700 shadow-sm transition hover:border-slate-400 hover:bg-slate-50 [&::-webkit-details-marker]:hidden" data-card-action aria-label="Mostrar telefonos" title="Mostrar telefonos">${phoneIcon}</summary><div class="absolute bottom-full left-0 z-20 mb-1 grid min-w-[11rem] gap-1 rounded-lg border border-slate-200 bg-white p-1 shadow-lg">${phoneEntries
-                .map((phone) => `<a class="rounded-md px-2 py-1 text-xs text-slate-700 transition hover:bg-slate-100" href="tel:${phone.tel}" data-call-link data-card-action title="Llamar ${escapeHtml(phone.label)}">${escapeHtml(phone.label)}</a>`)
-                .join("")}</div></details>`
-            : "";
-      const actionLinks = `${mapLink}${callLinks}${webLink}`;
-      const logoColumn = hasLogo
-        ? `<div class="card-media grid content-between justify-items-start gap-2">${logo}<div class="card-actions flex w-full items-center justify-start gap-2">${actionLinks}</div></div>`
-        : "";
-      return `
-        <li class="card ${hasLogo ? "" : "no-logo"} group relative grid gap-3 rounded-xl border border-amber-300 bg-amber-50 p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${hasLogo ? "grid-cols-[96px_minmax(0,1fr)]" : "grid-cols-1"}" data-id="${item.id}">
-          ${logoColumn}
-          <div class="card-content grid min-w-0 gap-1">
-            <h3 class="line-clamp-2 text-sm font-semibold text-slate-900">${title}</h3>
-            <p class="card-description line-clamp-3 text-xs leading-relaxed text-slate-700">${description}</p>
-            <div class="card-meta mt-1 grid min-w-0 gap-1">
-              <div class="meta flex min-w-0 items-center justify-between gap-2 text-[11px] text-slate-500">
-                <span class="card-tags truncate">${tags.join(", ")}</span>
-                ${hasLogo ? "" : actionLinks}
-              </div>
-            </div>
-          </div>
-        </li>
-      `;
-    })
-    .join("");
+  const lang = getLang();
+  results.innerHTML = items.map((item) => buildCardHtml(item, lang)).join("");
 };
 
 const focusOnMarker = (id: string) => {
