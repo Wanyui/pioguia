@@ -11,8 +11,37 @@ const isDev = import.meta.env.DEV;
 const BLANK_LOGO_DATA_URI =
   "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
 
-const resolveLogo = (logo: string | undefined) => {
-  if (!logo || logo === "/img/*") return BLANK_LOGO_DATA_URI;
+const normalizeCity = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+const defaultLogoForCity = (city: string | undefined) => {
+  if (!city) return "";
+  const normalized = normalizeCity(city);
+  if (normalized.includes("andorra la vella")) return "/img/Escut_d'Andorra_la_Vella.svg";
+  if (normalized.includes("escaldes-engordany"))
+    return "/img/Escut_d'Escaldes-Engordany.svg";
+  if (normalized.includes("sant julia de loria"))
+    return "/img/Escut_de_Sant_Julià_de_Lòria.svg";
+  if (normalized.includes("la massana")) return "/img/Escut_de_La_Massana.svg";
+  if (normalized.includes("ordino")) return "/img/Escut_d'Ordino.svg.png";
+  // Pas de la Casa belong to Encamp parish.
+  if (normalized.includes("pas de la casa")) return "/img/Escut_d'Encamp.svg";
+  if (normalized.includes("encamp")) return "/img/Escut_d'Encamp.svg";
+  // Soldeu belongs to the Canillo parish.
+  if (normalized.includes("soldeu")) return "/img/Escut_de_Canillo.svg";
+  if (normalized.includes("canillo")) return "/img/Escut_de_Canillo.svg";
+  return "";
+};
+
+const resolveLogo = (logo: string | undefined, city: string | undefined) => {
+  if (!logo || logo === "/img/*") {
+    return defaultLogoForCity(city) || BLANK_LOGO_DATA_URI;
+  }
   const normalized = logo.trim();
   if (normalized.startsWith("/")) return normalized;
   if (/^https?:\/\//i.test(normalized)) return normalized;
@@ -26,7 +55,7 @@ const resolveLogo = (logo: string | undefined) => {
 
 const items = rawItems.map((item) => ({
   ...item,
-  logo: resolveLogo(item.logo),
+  logo: resolveLogo(item.logo, item.city),
 }));
 
 const siteOrigin = (() => {
@@ -92,6 +121,8 @@ const structuredData = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/img/marker.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/img/marker.png" />
     <title>Guía Piolet</title>
     <meta
       name="description"

@@ -25,7 +25,7 @@ category:
   fr: "Sports"
   ru: "Спорт"
 address: "Av. d'Enclar, 105, AD500 Santa Coloma"
-city: "Santa Coloma"
+city: "Andorra la Vella"
 lat: 42.4930534
 lng: 1.4984654
 phone: "833 871"
