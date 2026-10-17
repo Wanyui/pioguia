@@ -7,11 +7,11 @@ title:
   fr: "Marina Diving Center"
   ru: "Marina Diving Center"
 description:
-  es: "2x1 en actividades con carnet del Club Piolet. Ofrecen buceo, kayak y snorkel; edad mínima 10 años para buceo y 6 años para el resto. Menores con autorización."
-  ca: "2x1 en activitats amb carnet del Club Piolet. Ofereixen busseig, caiac i snorkel; edat mínima 10 anys per a busseig i 6 anys per a la resta. Menors amb autorització."
-  en: "2-for-1 on activities with Club Piolet card. Diving, kayak and snorkel; minimum age 10 for diving, 6 for the rest. Minors with parental consent."
-  fr: "2x1 sur les activités avec carte Club Piolet. Plongée, kayak et snorkel ; âge minimum 10 ans pour la plongée et 6 ans pour le reste. Mineurs avec autorisation."
-  ru: "2 по цене 1 на активности по карте Club Piolet. Дайвинг, каякинг и снорклинг; мин. возраст 10 лет для дайвинга, 6 — для остального. Несовершеннолетние с разрешением."
+  es: "2x1 en todas las actividades con el carnet del Club Piolet. Ofrecen buceo, kayak y snorkel; edad mínima 10 años cumplidos para buceo y 6 años para el resto. Menores con autorización de los padres."
+  ca: "2x1 en totes les activitats amb el carnet del Club Piolet. Ofereixen busseig, caiac i snorkel; edat mínima 10 anys fets per a busseig i 6 anys per a la resta. Menors amb autorització dels pares."
+  en: "2-for-1 on all activities with the Club Piolet card. Diving, kayak and snorkel; minimum age 10 (completed) for diving, 6 for the rest. Minors with parental consent."
+  fr: "2x1 sur toutes les activités avec la carte Club Piolet. Plongée, kayak et snorkel ; âge minimum 10 ans révolus pour la plongée et 6 ans pour le reste. Mineurs avec autorisation parentale."
+  ru: "2 по цене 1 на все активности по карте Club Piolet. Дайвинг, каякинг и снорклинг; минимальный возраст 10 полных лет для дайвинга и 6 лет для остального. Несовершеннолетние — с разрешения родителей."
 tags:
   es: ["buceo", "kayak", "snorkel", "actividades", "2x1"]
   ca: ["busseig", "caiac", "snorkel", "activitats", "2x1"]
@@ -24,7 +24,7 @@ category:
   en: "Sports"
   fr: "Sports"
   ru: "Спорт"
-address: "Ametlla de Mar i port Marina Sant Jordi, Cala Fata, a 4 km d'Ametlla de Mar, 43860 (Tarragona)"
+address: "Ametlla de Mar i port Marina Sant Jordi, Calafat, a 4 km d'Ametlla de Mar, 43860 (Tarragona)"
 city: "L'Ametlla de Mar"
 lat: 40.9153131
 lng: 0.8359013
@@ -37,3 +37,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Temporada marzo/abril a septiembre/octubre.
 Beneficio 2025-3
+Beneficio 2026-3
