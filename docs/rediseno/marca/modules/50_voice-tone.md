@@ -67,7 +67,7 @@ Si hay un problema, explica qué pasa y qué puedes hacer. La decisión siempre 
 - Hace falta un campo **"ventaja corta"** por beneficio y por idioma ("−15%", "2x1", "Gratis") y otro de
   **"a quién aplica"** ("tú + 3 acompañantes"). Se pueden extraer de forma semiautomática de las descripciones.
 - Hay que revisar los textos de la interfaz en los 5 idiomas con esta voz. En catalán y francés, el tuteo
-  equivale a "tu"; en ruso, a "ты", aunque ❓ en ruso para una web pública suele usarse "вы" (validar).
+  equivale a "tu"; en ruso también "ты": decisión del autor, porque es una web personal y del ámbito andorrano.
 
 ### Tensiones con el módulo 40
 

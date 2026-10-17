@@ -71,7 +71,7 @@
 - **Mapa protagonista** en móvil, con controles flotantes redondeados y una tarjeta inferior al tocar.
 - **Iconos de categoría compactos** en marcadores y tarjetas, coherentes en todo el sistema.
 - **Un único acento de color** para acciones y estado activo; el resto, neutro.
-- ❓ **Modo oscuro**: Geocaching es oscuro; ¿Pioguia oscura por defecto, clara o según el sistema? (módulo 50 o decisión de diseño)
+- **Modo claro u oscuro según el dispositivo** (decidido en la síntesis).
 
 ### Tensiones con el módulo 50 (voz)
 

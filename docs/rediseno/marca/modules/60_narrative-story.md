@@ -49,4 +49,4 @@ describe la diferencia, pero nombra al "rival" y no conviene usarla en público.
 
 "Pioguia nació porque la guía de ventajas del Club Piolet solo se podía consultar en un PDF de 30 MB. La
 hice para usarla con mi hija, y ahora es para cualquiera. Es una web independiente y sin publicidad."
-(❓ validar que el autor quiere contar el origen personal en público)
+(Validado: el autor quiere que sea personal. No se incluye el nombre de su hija.)

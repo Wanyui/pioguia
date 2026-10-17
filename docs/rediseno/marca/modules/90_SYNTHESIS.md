@@ -1,6 +1,6 @@
 # Brandbook de Pioguia
 
-> Síntesis de la entrevista de marca (módulos 10-60), 2026-10-17. Es la fuente de verdad para el
+> Síntesis de la entrevista de marca (módulos 10-60), 2026-10-17. **Cerrado**: sin preguntas abiertas. Es la fuente de verdad para el
 > `DESIGN.md` y para todos los textos del rediseño. El módulo 70 se omitió porque es un proyecto personal,
 > sin estudio ni equipo.
 
@@ -97,13 +97,15 @@ No aplica (módulo 70 omitido). Pioguia es un proyecto personal; el autor solo a
 | Cercano frente a sin adornos | 40 "amigo, tono amigable" | 10 "sin adornos inútiles" | Calidez en las palabras ("vaya", tuteo), no en la decoración ni en los emojis |
 | Mucha información frente a escaneable | 40 Geocaching "ordenado pese a toda la información" | 20 rechazo a agenda.ad | Jerarquía estricta: descuento y distancia, luego el nombre y el resto bajo demanda (detalle) |
 | Público general frente a familia | PRD "público general" | 30 caso padre e hija | Diseño para el caso familiar en la calle, sin excluir a nadie; los textos no asumen hijos |
-| Referente oscuro (Geocaching) frente a legible en exterior | 40 | 30 | ❓ Pendiente: modo claro por defecto (mejor al sol) con modo oscuro según el sistema |
+| Referente oscuro (Geocaching) frente a legible en exterior | 40 | 30 | Claro u oscuro **según el dispositivo** (`prefers-color-scheme`); los dos temas con contraste AA |
 
-## 9. Preguntas abiertas
+## 9. Decisiones finales
 
-1. ¿Modo claro, oscuro o según el sistema? (recomendación: según el sistema y claro por defecto)
-2. ¿Se cuenta el origen personal ("con mi hija") en "Acerca de", o una versión sin datos personales?
-3. En ruso, ¿tuteo ("ты") o trato de usted ("вы")? Lo habitual en una web pública es "вы".
+| Pregunta | Decisión |
+|---|---|
+| Modo claro u oscuro | El que marque el dispositivo (`prefers-color-scheme`) |
+| "Acerca de" | Personal: se cuenta que nació para usarla con su hija (sin su nombre) |
+| Trato en ruso | Tuteo ("ты"), igual que en el resto de idiomas: web personal y del ámbito andorrano |
 
 ## 10. Siguientes pasos
 
