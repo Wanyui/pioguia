@@ -5,6 +5,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
+import { GUIDE } from "../lib/guide";
 import type { SearchItem } from "../lib/search-index";
 import { resolveLanguage, uiText, type LanguageCode } from "./map-i18n";
 import { normalize } from "./map-utils";
@@ -96,8 +97,16 @@ function setNearBusy(busy: boolean) {
   else nearChip?.removeAttribute("aria-busy");
 }
 
+/** Panel heading: "Benefits", or "Near you" while sorted by distance. */
+function updatePanelTitle() {
+  const pageTitle = document.getElementById("page-title");
+  const text = uiText[getLang()];
+  if (pageTitle) pageTitle.textContent = nearMe ? text.titleNear : text.title;
+}
+
 function setNearMe(on: boolean) {
   nearMe = on;
+  updatePanelTitle();
   setNearBusy(false);
   nearChip?.setAttribute("aria-pressed", String(on));
   if (sortIndicator) sortIndicator.hidden = !on;
@@ -197,15 +206,19 @@ document.querySelectorAll<HTMLElement>("[data-empty-action]").forEach((button) =
 
 const updateUiText = (lang: LanguageCode) => {
   const text = uiText[lang];
-  const pageTitle = document.getElementById("page-title");
   const langTriggerLabel = document.getElementById("lang-trigger-label");
-  if (pageTitle) pageTitle.textContent = text.title;
   if (searchInput) searchInput.placeholder = text.searchPlaceholder;
   filters.updateLabels(lang);
+  const [year, month] = GUIDE.reviewed.split("-").map(Number);
+  const reviewed = new Intl.DateTimeFormat(lang, { month: "long", year: "numeric" }).format(
+    new Date(year!, (month ?? 1) - 1, 1)
+  );
   document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n as keyof typeof text;
-    if (typeof text[key] === "string") element.textContent = text[key];
+    if (typeof text[key] !== "string") return;
+    element.textContent = text[key].replace("{year}", String(GUIDE.edition)).replace("{date}", reviewed);
   });
+  updatePanelTitle();
   document.getElementById("filters")?.setAttribute("aria-label", text.filtersLabel);
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
   document.querySelectorAll<HTMLButtonElement>("[data-lang-option]").forEach((button) => {
@@ -280,6 +293,15 @@ layersButton?.addEventListener("click", () => {
   void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
 document.getElementById("locate-button")?.addEventListener("click", askNearMe);
+
+// ----- "About" dialog -----
+const about = document.getElementById("about") as HTMLDialogElement | null;
+document.getElementById("about-open")?.addEventListener("click", () => about?.showModal());
+about?.addEventListener("click", (event) => {
+  // Close on the ✕ button or a click on the backdrop (outside the inner box).
+  const target = event.target as HTMLElement;
+  if (target === about || target.closest("[data-about-close]")) about.close();
+});
 
 setLanguage(preferredLanguage(), { remember: false });
 // Size the map first; centring on a benefit before that gets cancelled.

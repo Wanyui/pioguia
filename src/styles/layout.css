@@ -230,7 +230,8 @@
   .app {
     --sheet-peek: 112px;
     --sheet-half: 46dvh;
-    --sheet-full: calc(100dvh - 76px);
+    /* Below the floating search + filter rows (~118px). */
+    --sheet-full: calc(100dvh - 122px);
     --toggle-space: 76px;
   }
 

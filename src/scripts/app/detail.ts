@@ -3,7 +3,7 @@ import { uiText } from "../map-i18n";
 import { getLang } from "./context";
 import { buildDetailHtml } from "./detail-view";
 
-const HOME_TITLE = "Guía Piolet";
+const HOME_TITLE = "Pioguia · Las ventajas del Club Piolet, fáciles de encontrar";
 const SWIPE_CLOSE_PX = 80;
 
 const slugFromPath = (path: string) => path.match(/^\/beneficio\/([^/]+)\/?$/)?.[1];

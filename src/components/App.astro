@@ -4,6 +4,7 @@ import { icon } from "../icons";
 import { ZONES, ZONE_KEYS } from "../lib/zones";
 import { CATEGORIES, CATEGORY_KEYS } from "../lib/categories";
 import { hasCoordinates, loadBenefits, placeJsonLd, siteOriginFrom } from "../lib/benefits";
+import { GUIDE } from "../lib/guide";
 import "../styles/index.css";
 
 type Props = {
@@ -21,8 +22,8 @@ type Props = {
 };
 
 const {
-  title = "Guía Piolet",
-  description = "Guía de ventajas del Club Piolet para consultar beneficios y localizarlos en el mapa.",
+  title = "Pioguia · Las ventajas del Club Piolet, fáciles de encontrar",
+  description = "Las ventajas del Club Piolet, fáciles de encontrar: búscalas por tema, zona o cercanía, y llama o ve en un toque. Web independiente y sin publicidad.",
   path = "/",
   initialSlug,
   unavailable = false,
@@ -42,7 +43,7 @@ const structuredData = {
   "@graph": selected
     ? [placeJsonLd(selected, siteOrigin)]
     : [
-        { "@type": "WebSite", name: "Guía Piolet", url: `${siteOrigin}/`, inLanguage: ["es", "ca", "en", "fr", "ru"] },
+        { "@type": "WebSite", name: "Pioguia", description, url: `${siteOrigin}/`, inLanguage: ["es", "ca", "en", "fr", "ru"] },
         ...items.filter(hasCoordinates).map((item) => placeJsonLd(item, siteOrigin)),
       ],
 };
@@ -69,6 +70,7 @@ const structuredData = {
     {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
   </head>
   <body class="h-dvh overflow-hidden bg-canvas font-sans text-ink antialiased" data-initial-slug={initialSlug} data-unavailable={unavailable ? "true" : undefined}>
+    <a class="skip-link" href="#results" data-i18n="skipToList">Ir a la lista</a>
     <div id="app" class="app" data-view="map">
       <header id="app-header" class="app-top">
         <div class="search-row">
@@ -78,7 +80,7 @@ const structuredData = {
               id="search-input"
               type="search"
               aria-label="Buscar ventajas"
-              placeholder="Buscar por palabra clave (ej: desayuno)"
+              placeholder="Buscar ventajas…"
               autocomplete="off"
             />
             <span class="brand" aria-hidden="true">Pioguia</span>
@@ -163,7 +165,7 @@ const structuredData = {
           <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
             <Fragment set:html={icon("layers")} />
           </button>
-          <button id="locate-button" type="button" class="fab" title="Volver a mi ubicación" aria-label="Volver a mi ubicación">
+          <button id="locate-button" type="button" class="fab" title="Ver dónde estoy" aria-label="Ver dónde estoy">
             <Fragment set:html={icon("locateFixed")} />
           </button>
         </div>
@@ -174,7 +176,7 @@ const structuredData = {
           <span aria-hidden="true"></span>
         </button>
         <div class="panel-head">
-          <h1 id="page-title" class="panel-title">Guía de ventajas Piolet</h1>
+          <h1 id="page-title" class="panel-title">Ventajas</h1>
           <div class="panel-status">
             <button type="button" id="sort-indicator" class="sort-indicator" hidden>
               <span data-i18n="sortedByDistance">Ordenado por cercanía</span>
@@ -187,14 +189,47 @@ const structuredData = {
           <ul id="results" class="results"></ul>
           <div id="empty-state" class="empty-state" hidden>
             <Fragment set:html={icon("search", "icon empty-icon")} />
-            <p id="empty-message">No se han encontrado resultados.</p>
+            <p id="empty-message">Vaya, no hay ventajas con estos filtros.</p>
             <div class="empty-actions">
               <button type="button" class="empty-button" data-empty-action="filters" data-i18n="clearFilters">Quitar filtros</button>
               <button type="button" class="empty-button" data-empty-action="search" data-i18n="clearSearch">Borrar búsqueda</button>
             </div>
           </div>
+          <footer class="panel-foot">
+            <p>
+              <span data-i18n="unofficial">Web no oficial</span>
+              <span aria-hidden="true">·</span>
+              <a href={GUIDE.sourceUrl} target="_blank" rel="noopener noreferrer" data-i18n="sourceLink">Guía {GUIDE.edition} del Club Piolet</a>
+            </p>
+            <button type="button" id="about-open" class="link-button" data-i18n="about">Acerca de</button>
+          </footer>
         </div>
       </aside>
+
+      <dialog id="about" class="about" aria-labelledby="about-title">
+        <div class="about-inner">
+          <header class="about-head">
+            <h2 id="about-title" data-i18n="aboutTitle">Acerca de Pioguia</h2>
+            <button type="button" class="detail-close" data-about-close aria-label="Cerrar">
+              <Fragment set:html={icon("x")} />
+            </button>
+          </header>
+          <p data-i18n="aboutStory"></p>
+          <p data-i18n="aboutIndependent"></p>
+          <p class="about-data" data-i18n="aboutData"></p>
+          <a class="detail-row" href={GUIDE.sourceUrl} target="_blank" rel="noopener noreferrer">
+            <Fragment set:html={icon("globe")} />
+            <span data-i18n="aboutGuide">Ver la guía oficial</span>
+            <Fragment set:html={icon("chevronRight", "icon detail-chevron")} />
+          </a>
+          <p class="about-report"><span data-i18n="aboutReport"></span></p>
+          <a class="detail-row" href={GUIDE.reportUrl} target="_blank" rel="noopener noreferrer">
+            <Fragment set:html={icon("info")} />
+            <span data-i18n="aboutReportLink">Avísame en GitHub</span>
+            <Fragment set:html={icon("chevronRight", "icon detail-chevron")} />
+          </a>
+        </div>
+      </dialog>
 
       <section id="detail" class="detail" role="dialog" aria-modal="false" aria-labelledby="detail-title" hidden>
         <div class="detail-grip" id="detail-grip" aria-hidden="true"><span></span></div>

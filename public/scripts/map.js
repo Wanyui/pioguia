@@ -15,16 +15,27 @@ var marker_icon_2x_default = "./assets/marker-icon-2x-SP63CLEO.png";
 // node_modules/leaflet/dist/images/marker-shadow.png
 var marker_shadow_default = "./assets/marker-shadow-MEXDWUU7.png";
 
+// src/lib/guide.ts
+var GUIDE = {
+  edition: 2026,
+  /** Month of the last review of the benefits (YYYY-MM). */
+  reviewed: "2026-10",
+  /** Official page of the club, where the guide PDF is published. */
+  sourceUrl: "https://www.rtva.ad/club-piolet",
+  /** Where to report a mistake in a benefit. */
+  reportUrl: "https://github.com/Wanyui/pioguia/issues"
+};
+
 // src/scripts/map-i18n.ts
 var uiText = {
   es: {
-    title: "Gu\xEDa de ventajas Piolet",
-    searchPlaceholder: "Buscar por palabra clave (ej: desayuno)",
+    title: "Ventajas",
+    searchPlaceholder: "Buscar ventajas\u2026",
     emptyState: "No se han encontrado resultados.",
-    locationButton: "Volver a mi ubicaci\xF3n",
-    locationPopup: "Tu ubicaci\xF3n aproximada",
-    locationDenied: "Activa el permiso de ubicaci\xF3n del navegador para ver d\xF3nde est\xE1s.",
-    locationUnavailable: "No se ha podido obtener tu ubicaci\xF3n. Int\xE9ntalo de nuevo.",
+    locationButton: "Ver d\xF3nde estoy",
+    locationPopup: "Est\xE1s aqu\xED",
+    locationDenied: "No vemos tu ubicaci\xF3n. Act\xEDvala en el navegador para ver lo que tienes cerca.",
+    locationUnavailable: "Vaya, no hemos podido encontrarte. Int\xE9ntalo otra vez.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Claro",
     languageLabel: "\u{1F1EA}\u{1F1F8} Espa\xF1ol",
@@ -54,16 +65,28 @@ var uiText = {
     unavailable: "Esta ventaja ya no est\xE1 disponible.",
     nearMe: "Cerca de m\xED",
     sortedByDistance: "Ordenado por cercan\xEDa",
-    stopSorting: "Quitar orden por cercan\xEDa"
+    stopSorting: "Quitar orden por cercan\xEDa",
+    titleNear: "Cerca de ti",
+    unofficial: "Web no oficial",
+    sourceLink: "Gu\xEDa {year} del Club Piolet",
+    about: "Acerca de",
+    aboutTitle: "Acerca de Pioguia",
+    aboutStory: "Pioguia naci\xF3 porque la gu\xEDa de ventajas del Club Piolet solo se pod\xEDa consultar en un PDF de 30 MB, imposible de abrir en la calle. La hice para usarla con mi hija, y ahora es para cualquiera: las mismas ventajas, buscables, en el mapa y a un toque.",
+    aboutIndependent: "Es una web independiente y sin publicidad. No es la web oficial del Club Piolet.",
+    aboutData: "Datos de la gu\xEDa {year}, revisados en {date}.",
+    aboutGuide: "Ver la gu\xEDa oficial",
+    aboutReport: "\xBFVes alg\xFAn error en una ficha?",
+    aboutReportLink: "Av\xEDsame en GitHub",
+    skipToList: "Ir a la lista"
   },
   ca: {
-    title: "Guia d'avantatges Piolet",
-    searchPlaceholder: "Cerca per paraula clau (ex: esmorzar)",
+    title: "Avantatges",
+    searchPlaceholder: "Cerca avantatges\u2026",
     emptyState: "No s'han trobat resultats.",
-    locationButton: "Tornar a la meva ubicaci\xF3",
-    locationPopup: "La teva ubicaci\xF3 aproximada",
-    locationDenied: "Activa el perm\xEDs d'ubicaci\xF3 del navegador per veure on ets.",
-    locationUnavailable: "No s'ha pogut obtenir la teva ubicaci\xF3. Torna-ho a provar.",
+    locationButton: "Veure on soc",
+    locationPopup: "Ets aqu\xED",
+    locationDenied: "No veiem la teva ubicaci\xF3. Activa-la al navegador per veure qu\xE8 tens a prop.",
+    locationUnavailable: "Vaja, no t'hem pogut trobar. Torna-ho a provar.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clar",
     languageLabel: "\u{1F1E6}\u{1F1E9} Catal\xE0",
@@ -93,16 +116,28 @@ var uiText = {
     unavailable: "Aquest avantatge ja no est\xE0 disponible.",
     nearMe: "A prop meu",
     sortedByDistance: "Ordenat per proximitat",
-    stopSorting: "Treu l'ordre per proximitat"
+    stopSorting: "Treu l'ordre per proximitat",
+    titleNear: "A prop teu",
+    unofficial: "Web no oficial",
+    sourceLink: "Guia {year} del Club Piolet",
+    about: "Sobre Pioguia",
+    aboutTitle: "Sobre Pioguia",
+    aboutStory: "Pioguia va n\xE9ixer perqu\xE8 la guia d'avantatges del Club Piolet nom\xE9s es podia consultar en un PDF de 30 MB, impossible d'obrir al carrer. La vaig fer per fer-la servir amb la meva filla, i ara \xE9s per a tothom: els mateixos avantatges, cercables, al mapa i a un toc.",
+    aboutIndependent: "\xC9s una web independent i sense publicitat. No \xE9s la web oficial del Club Piolet.",
+    aboutData: "Dades de la guia {year}. \xDAltima revisi\xF3: {date}.",
+    aboutGuide: "Veure la guia oficial",
+    aboutReport: "Hi veus algun error en una fitxa?",
+    aboutReportLink: "Avisa'm a GitHub",
+    skipToList: "Ves a la llista"
   },
   en: {
-    title: "Piolet Benefits Guide",
-    searchPlaceholder: "Search by keyword (e.g. breakfast)",
+    title: "Benefits",
+    searchPlaceholder: "Search benefits\u2026",
     emptyState: "No results found.",
-    locationButton: "Back to my location",
-    locationPopup: "Your approximate location",
-    locationDenied: "Allow location access in your browser to see where you are.",
-    locationUnavailable: "Your location could not be determined. Please try again.",
+    locationButton: "Show where I am",
+    locationPopup: "You're here",
+    locationDenied: "We can't see your location. Turn it on in your browser to see what's near you.",
+    locationUnavailable: "Oh, we couldn't find you. Try again.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Light",
     languageLabel: "\u{1F1EC}\u{1F1E7} English",
@@ -132,16 +167,28 @@ var uiText = {
     unavailable: "This benefit is no longer available.",
     nearMe: "Near me",
     sortedByDistance: "Sorted by distance",
-    stopSorting: "Stop sorting by distance"
+    stopSorting: "Stop sorting by distance",
+    titleNear: "Near you",
+    unofficial: "Unofficial site",
+    sourceLink: "Club Piolet {year} guide",
+    about: "About",
+    aboutTitle: "About Pioguia",
+    aboutStory: "Pioguia was born because the Club Piolet benefits guide could only be read as a 30 MB PDF, impossible to open out and about. I made it to use with my daughter, and now it's for everyone: the same benefits, searchable, on the map and one tap away.",
+    aboutIndependent: "It's an independent site with no ads. It's not the official Club Piolet website.",
+    aboutData: "Data from the {year} guide, reviewed in {date}.",
+    aboutGuide: "See the official guide",
+    aboutReport: "Spotted a mistake in a benefit?",
+    aboutReportLink: "Tell me on GitHub",
+    skipToList: "Skip to the list"
   },
   fr: {
-    title: "Guide des avantages Piolet",
-    searchPlaceholder: "Rechercher par mot-cl\xE9 (ex : petit-d\xE9jeuner)",
+    title: "Avantages",
+    searchPlaceholder: "Chercher un avantage\u2026",
     emptyState: "Aucun r\xE9sultat trouv\xE9.",
-    locationButton: "Revenir \xE0 ma position",
-    locationPopup: "Votre position approximative",
-    locationDenied: "Autorisez la localisation dans votre navigateur pour voir o\xF9 vous \xEAtes.",
-    locationUnavailable: "Impossible d'obtenir votre position. Veuillez r\xE9essayer.",
+    locationButton: "Voir o\xF9 je suis",
+    locationPopup: "Tu es ici",
+    locationDenied: "On ne voit pas ta position. Active-la dans ton navigateur pour voir ce qu'il y a pr\xE8s de toi.",
+    locationUnavailable: "Mince, on n'a pas pu te trouver. R\xE9essaie.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clair",
     languageLabel: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
@@ -171,16 +218,28 @@ var uiText = {
     unavailable: "Cet avantage n'est plus disponible.",
     nearMe: "Pr\xE8s de moi",
     sortedByDistance: "Tri\xE9 par proximit\xE9",
-    stopSorting: "Ne plus trier par proximit\xE9"
+    stopSorting: "Ne plus trier par proximit\xE9",
+    titleNear: "Pr\xE8s de toi",
+    unofficial: "Site non officiel",
+    sourceLink: "Guide {year} du Club Piolet",
+    about: "\xC0 propos",
+    aboutTitle: "\xC0 propos de Pioguia",
+    aboutStory: "Pioguia est n\xE9 parce que le guide des avantages du Club Piolet n'\xE9tait consultable qu'en PDF de 30 Mo, impossible \xE0 ouvrir dans la rue. Je l'ai fait pour l'utiliser avec ma fille, et maintenant il est pour tout le monde : les m\xEAmes avantages, faciles \xE0 chercher, sur la carte et en un geste.",
+    aboutIndependent: "C'est un site ind\xE9pendant et sans publicit\xE9. Ce n'est pas le site officiel du Club Piolet.",
+    aboutData: "Donn\xE9es du guide {year}, revues en {date}.",
+    aboutGuide: "Voir le guide officiel",
+    aboutReport: "Tu vois une erreur dans une fiche ?",
+    aboutReportLink: "Pr\xE9viens-moi sur GitHub",
+    skipToList: "Aller \xE0 la liste"
   },
   ru: {
-    title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
-    searchPlaceholder: "\u041F\u043E\u0438\u0441\u043A \u043F\u043E \u043A\u043B\u044E\u0447\u0435\u0432\u043E\u043C\u0443 \u0441\u043B\u043E\u0432\u0443 (\u043D\u0430\u043F\u0440. \u0437\u0430\u0432\u0442\u0440\u0430\u043A)",
+    title: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F",
+    searchPlaceholder: "\u041F\u043E\u0438\u0441\u043A \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439\u2026",
     emptyState: "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.",
-    locationButton: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u043C\u043E\u0435\u043C\u0443 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044E",
-    locationPopup: "\u0412\u0430\u0448\u0435 \u043F\u0440\u0438\u043C\u0435\u0440\u043D\u043E\u0435 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435",
-    locationDenied: "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u0435 \u0434\u043E\u0441\u0442\u0443\u043F \u043A \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044E \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435, \u0447\u0442\u043E\u0431\u044B \u0443\u0432\u0438\u0434\u0435\u0442\u044C, \u0433\u0434\u0435 \u0432\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435\u0441\u044C.",
-    locationUnavailable: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u0442\u044C \u0432\u0430\u0448\u0435 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.",
+    locationButton: "\u0413\u0434\u0435 \u044F",
+    locationPopup: "\u0422\u044B \u0437\u0434\u0435\u0441\u044C",
+    locationDenied: "\u041D\u0435 \u0432\u0438\u0434\u0438\u043C, \u0433\u0434\u0435 \u0442\u044B. \u0412\u043A\u043B\u044E\u0447\u0438 \u0433\u0435\u043E\u043B\u043E\u043A\u0430\u0446\u0438\u044E \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435, \u0447\u0442\u043E\u0431\u044B \u0443\u0432\u0438\u0434\u0435\u0442\u044C, \u0447\u0442\u043E \u0440\u044F\u0434\u043E\u043C.",
+    locationUnavailable: "\u0425\u043C, \u043D\u0435 \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u043E\u0441\u044C \u0442\u0435\u0431\u044F \u043D\u0430\u0439\u0442\u0438. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0435\u0449\u0451 \u0440\u0430\u0437.",
     mapStyleOsm: "OSM",
     mapStylePositron: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F",
     languageLabel: "\u{1F1F7}\u{1F1FA} \u0420\u0443\u0441\u0441\u043A\u0438\u0439",
@@ -210,7 +269,19 @@ var uiText = {
     unavailable: "\u042D\u0442\u043E \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0431\u043E\u043B\u044C\u0448\u0435 \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E.",
     nearMe: "\u0420\u044F\u0434\u043E\u043C \u0441\u043E \u043C\u043D\u043E\u0439",
     sortedByDistance: "\u041F\u043E \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u044E",
-    stopSorting: "\u0423\u0431\u0440\u0430\u0442\u044C \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0443 \u043F\u043E \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u044E"
+    stopSorting: "\u0423\u0431\u0440\u0430\u0442\u044C \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0443 \u043F\u043E \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u044E",
+    titleNear: "\u0420\u044F\u0434\u043E\u043C \u0441 \u0442\u043E\u0431\u043E\u0439",
+    unofficial: "\u041D\u0435\u043E\u0444\u0438\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0439 \u0441\u0430\u0439\u0442",
+    sourceLink: "\u0413\u0438\u0434 Club Piolet {year}",
+    about: "\u041E \u0441\u0430\u0439\u0442\u0435",
+    aboutTitle: "\u041E Pioguia",
+    aboutStory: "Pioguia \u043F\u043E\u044F\u0432\u0438\u043B\u0430\u0441\u044C \u043F\u043E\u0442\u043E\u043C\u0443, \u0447\u0442\u043E \u0433\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F\u043C Club Piolet \u043C\u043E\u0436\u043D\u043E \u0431\u044B\u043B\u043E \u043F\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u0442\u043E\u043B\u044C\u043A\u043E \u0432 PDF \u043D\u0430 30 \u041C\u0411, \u043A\u043E\u0442\u043E\u0440\u044B\u0439 \u043D\u0430 \u0443\u043B\u0438\u0446\u0435 \u043D\u0435 \u043E\u0442\u043A\u0440\u044B\u0442\u044C. \u0421\u043D\u0430\u0447\u0430\u043B\u0430 \u044D\u0442\u043E \u0431\u044B\u043B \u043F\u0440\u043E\u0435\u043A\u0442 \u0434\u043B\u044F \u0441\u0435\u0431\u044F \u0438 \u0434\u043E\u0447\u043A\u0438, \u0430 \u0442\u0435\u043F\u0435\u0440\u044C \u043E\u043D \u0434\u043B\u044F \u0432\u0441\u0435\u0445: \u0442\u0435 \u0436\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F, \u0441 \u043F\u043E\u0438\u0441\u043A\u043E\u043C, \u043D\u0430 \u043A\u0430\u0440\u0442\u0435 \u0438 \u0432 \u043E\u0434\u043D\u043E \u043A\u0430\u0441\u0430\u043D\u0438\u0435.",
+    aboutIndependent: "\u042D\u0442\u043E \u043D\u0435\u0437\u0430\u0432\u0438\u0441\u0438\u043C\u044B\u0439 \u0441\u0430\u0439\u0442 \u0431\u0435\u0437 \u0440\u0435\u043A\u043B\u0430\u043C\u044B. \u042D\u0442\u043E \u043D\u0435 \u043E\u0444\u0438\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0439 \u0441\u0430\u0439\u0442 Club Piolet.",
+    aboutData: "\u0414\u0430\u043D\u043D\u044B\u0435 \u0433\u0438\u0434\u0430 {year}. \u041F\u043E\u0441\u043B\u0435\u0434\u043D\u044F\u044F \u043F\u0440\u043E\u0432\u0435\u0440\u043A\u0430: {date}",
+    aboutGuide: "\u041E\u0444\u0438\u0446\u0438\u0430\u043B\u044C\u043D\u044B\u0439 \u0433\u0438\u0434",
+    aboutReport: "\u0412\u0438\u0434\u0438\u0448\u044C \u043E\u0448\u0438\u0431\u043A\u0443 \u0432 \u043A\u0430\u0440\u0442\u043E\u0447\u043A\u0435?",
+    aboutReportLink: "\u041D\u0430\u043F\u0438\u0448\u0438 \u043C\u043D\u0435 \u043D\u0430 GitHub",
+    skipToList: "\u041A \u0441\u043F\u0438\u0441\u043A\u0443"
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -544,7 +615,7 @@ var buildDetailHtml = (item, lang, distanceKm2) => {
 };
 
 // src/scripts/app/detail.ts
-var HOME_TITLE = "Gu\xEDa Piolet";
+var HOME_TITLE = "Pioguia \xB7 Las ventajas del Club Piolet, f\xE1ciles de encontrar";
 var SWIPE_CLOSE_PX = 80;
 var slugFromPath = (path) => path.match(/^\/beneficio\/([^/]+)\/?$/)?.[1];
 var benefitUrl = (slug) => `/beneficio/${slug}/`;
@@ -1138,8 +1209,14 @@ function setNearBusy(busy) {
   if (busy) nearChip?.setAttribute("aria-busy", "true");
   else nearChip?.removeAttribute("aria-busy");
 }
+function updatePanelTitle() {
+  const pageTitle = document.getElementById("page-title");
+  const text = uiText[getLang()];
+  if (pageTitle) pageTitle.textContent = nearMe ? text.titleNear : text.title;
+}
 function setNearMe(on) {
   nearMe = on;
+  updatePanelTitle();
   setNearBusy(false);
   nearChip?.setAttribute("aria-pressed", String(on));
   if (sortIndicator) sortIndicator.hidden = !on;
@@ -1228,15 +1305,19 @@ document.querySelectorAll("[data-empty-action]").forEach((button) => {
 });
 var updateUiText = (lang) => {
   const text = uiText[lang];
-  const pageTitle = document.getElementById("page-title");
   const langTriggerLabel = document.getElementById("lang-trigger-label");
-  if (pageTitle) pageTitle.textContent = text.title;
   if (searchInput) searchInput.placeholder = text.searchPlaceholder;
   filters.updateLabels(lang);
+  const [year, month] = GUIDE.reviewed.split("-").map(Number);
+  const reviewed = new Intl.DateTimeFormat(lang, { month: "long", year: "numeric" }).format(
+    new Date(year, (month ?? 1) - 1, 1)
+  );
   document.querySelectorAll("[data-i18n]").forEach((element) => {
     const key = element.dataset.i18n;
-    if (typeof text[key] === "string") element.textContent = text[key];
+    if (typeof text[key] !== "string") return;
+    element.textContent = text[key].replace("{year}", String(GUIDE.edition)).replace("{date}", reviewed);
   });
+  updatePanelTitle();
   document.getElementById("filters")?.setAttribute("aria-label", text.filtersLabel);
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
   document.querySelectorAll("[data-lang-option]").forEach((button) => {
@@ -1301,6 +1382,12 @@ layersButton?.addEventListener("click", () => {
   void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
 document.getElementById("locate-button")?.addEventListener("click", askNearMe);
+var about = document.getElementById("about");
+document.getElementById("about-open")?.addEventListener("click", () => about?.showModal());
+about?.addEventListener("click", (event) => {
+  const target = event.target;
+  if (target === about || target.closest("[data-about-close]")) about.close();
+});
 setLanguage(preferredLanguage(), { remember: false });
 requestAnimationFrame(() => {
   mapView.map.invalidateSize();
