@@ -1,6 +1,5 @@
 import type { SearchItem } from "../../lib/search-index";
 import { buildCardHtml } from "../map-card";
-import { animateCardResize } from "../map-card-state";
 import type { LanguageCode } from "../map-i18n";
 
 type ListViewOptions = {
@@ -12,8 +11,8 @@ type ListViewOptions = {
 export const createListView = ({ results, emptyState, onCardClick }: ListViewOptions) => {
   const cardFor = (id: string) => results.querySelector<HTMLElement>(`.card[data-id="${CSS.escape(id)}"]`);
 
-  const render = (items: SearchItem[], lang: LanguageCode) => {
-    results.innerHTML = items.map((item) => buildCardHtml(item, lang)).join("");
+  const render = (items: SearchItem[], lang: LanguageCode, distanceOf?: (item: SearchItem) => number | undefined) => {
+    results.innerHTML = items.map((item) => buildCardHtml(item, lang, distanceOf?.(item))).join("");
     if (emptyState) emptyState.hidden = items.length > 0;
   };
 
@@ -21,7 +20,7 @@ export const createListView = ({ results, emptyState, onCardClick }: ListViewOpt
     const card = cardFor(id);
     if (!card) return;
     card.classList.toggle("is-active", active);
-    animateCardResize(card, active);
+    card.setAttribute("aria-current", String(active));
     if (active && scroll) card.scrollIntoView({ block: "nearest", behavior: "smooth" });
   };
 

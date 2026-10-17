@@ -74,6 +74,7 @@ const mapView = createMapView({
     setActive(id, { openPopup: true, scroll: true });
   },
   onUserLocation: () => applyFilter(),
+  bottomInset: () => sheetOffset(),
 });
 
 const applyFilter = () => {
@@ -85,12 +86,12 @@ const applyFilter = () => {
     return text.includes(query);
   });
   const origin = mapView.getUserLocation();
+  const distanceOf = (item: SearchItem) =>
+    origin && hasValidCoordinates(item) ? distanceKm(origin, item) : undefined;
   if (origin) {
-    const distance = (item: SearchItem) =>
-      hasValidCoordinates(item) ? distanceKm(origin, item) : Number.POSITIVE_INFINITY;
-    filtered.sort((a, b) => distance(a) - distance(b));
+    filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
-  listView.render(filtered, lang);
+  listView.render(filtered, lang, distanceOf);
   if (resultsCount) {
     const text = uiText[lang];
     resultsCount.textContent =

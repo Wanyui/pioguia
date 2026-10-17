@@ -25,6 +25,7 @@ export type SearchItem = {
   phone?: string;
   email?: string;
   logo?: string;
+  logoBackground?: "light" | "dark";
   web?: string;
   googleMapsUrl?: string;
   languages: string[];
@@ -99,6 +100,7 @@ export const buildSearchIndex = (
       phone: data.phone,
       email: data.email,
       logo: data.logo,
+      logoBackground: data.logoBackground,
       web: data.web,
       googleMapsUrl: data.googleMapsUrl,
       languages: data.languages ?? ["es"],

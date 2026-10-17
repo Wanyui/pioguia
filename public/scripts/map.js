@@ -34,7 +34,8 @@ var uiText = {
     mapStyleToggle: "Mapa claro",
     sheetHandle: "Ampliar o reducir la lista",
     resultsOne: "1 ventaja",
-    resultsMany: "{n} ventajas"
+    resultsMany: "{n} ventajas",
+    distanceAway: "a {d}"
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -53,7 +54,8 @@ var uiText = {
     mapStyleToggle: "Mapa clar",
     sheetHandle: "Amplia o redueix la llista",
     resultsOne: "1 avantatge",
-    resultsMany: "{n} avantatges"
+    resultsMany: "{n} avantatges",
+    distanceAway: "a {d}"
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -72,7 +74,8 @@ var uiText = {
     mapStyleToggle: "Light map",
     sheetHandle: "Expand or collapse the list",
     resultsOne: "1 benefit",
-    resultsMany: "{n} benefits"
+    resultsMany: "{n} benefits",
+    distanceAway: "{d} away"
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -91,7 +94,8 @@ var uiText = {
     mapStyleToggle: "Carte claire",
     sheetHandle: "Agrandir ou r\xE9duire la liste",
     resultsOne: "1 avantage",
-    resultsMany: "{n} avantages"
+    resultsMany: "{n} avantages",
+    distanceAway: "\xE0 {d}"
   },
   ru: {
     title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
@@ -110,7 +114,8 @@ var uiText = {
     mapStyleToggle: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F \u043A\u0430\u0440\u0442\u0430",
     sheetHandle: "\u0420\u0430\u0437\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0438\u043B\u0438 \u0441\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0441\u043F\u0438\u0441\u043E\u043A",
     resultsOne: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: 1",
-    resultsMany: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: {n}"
+    resultsMany: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: {n}",
+    distanceAway: "{d} \u043E\u0442 \u0442\u0435\u0431\u044F"
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -122,10 +127,6 @@ var resolveLanguage = (currentLang) => {
 
 // src/scripts/map-utils.ts
 var normalize = (value) => value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, " ").trim();
-var truncateText = (value, maxChars) => {
-  if (value.length <= maxChars) return value;
-  return `${value.slice(0, Math.max(0, maxChars - 1)).trimEnd()}\u2026`;
-};
 var escapeHtml = (value) => value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 var sanitizeImageUrl = (value) => {
   if (!value) return "";
@@ -273,102 +274,116 @@ var setupLanguageMenu = (onChange) => {
   return { close };
 };
 
-// src/scripts/map-card.ts
-var buildCardHtml = (item, lang) => {
-  const title = escapeHtml(item.title[lang] || item.title.es);
-  const rawDescription = item.description[lang] || item.description.es || "";
-  const description = escapeHtml(truncateText(rawDescription, 250));
-  const tags = (item.tags[lang] || item.tags.es || []).map(escapeHtml);
-  const safeLogoUrl = sanitizeImageUrl(item.logo);
-  const safeMapsUrl = sanitizeExternalUrl(item.googleMapsUrl);
-  const safeWebUrl = sanitizeExternalUrl(item.web);
-  const phoneNumbers = splitPhoneNumbers(item.phone);
-  const hasLogo = Boolean(safeLogoUrl);
-  const logo = hasLogo ? `<img class="card-logo h-16 w-24 rounded-lg border border-line bg-surface object-contain p-1" src="${safeLogoUrl}" alt="${title}">` : "";
-  const mapLink = safeMapsUrl ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-ink shadow-sm transition hover:border-muted hover:bg-soft" href="${safeMapsUrl}" target="_blank" rel="noopener noreferrer" data-map-link data-card-action aria-label="Abrir en Google Maps" title="Abrir en Google Maps"><img src="/img/Google_Maps_icon_(2020).svg" alt="" aria-hidden="true" class="h-3.5 w-3.5 object-contain" /></a>` : "";
-  const webLink = safeWebUrl ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-ink shadow-sm transition hover:border-muted hover:bg-soft" href="${safeWebUrl}" target="_blank" rel="noopener noreferrer" data-web-link data-card-action aria-label="Abrir sitio web" title="Abrir sitio web"><svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.19 8.688a4.5 4.5 0 0 1 6.364 6.364l-1.757 1.757a4.5 4.5 0 0 1-6.364 0m1.061-5.303a4.5 4.5 0 0 1 0 6.364l-1.757 1.757a4.5 4.5 0 1 1-6.364-6.364l1.757-1.757a4.5 4.5 0 0 1 6.364 0"></path></svg></a>` : "";
-  const phoneEntries = phoneNumbers.map((phone) => ({ tel: normalizePhoneForTel(phone), label: formatPhoneLabel(phone) })).filter((phone) => Boolean(phone.tel && phone.label));
-  const phoneIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" class="h-3.5 w-3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a.75.75 0 0 0 .75-.75V16.88a.75.75 0 0 0-.57-.73l-4.42-1.01a.75.75 0 0 0-.78.29l-.97 1.29a12.12 12.12 0 0 1-5.96-5.96l1.29-.97a.75.75 0 0 0 .29-.78L7.1 4.57a.75.75 0 0 0-.73-.57H3a.75.75 0 0 0-.75.75v2Z"></path></svg>';
-  const callLinks = phoneEntries.length === 1 ? `<a class="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg border border-line bg-surface text-ink shadow-sm transition hover:border-muted hover:bg-soft" href="tel:${phoneEntries[0]?.tel}" data-call-link data-card-action aria-label="Llamar al beneficio (${escapeHtml(phoneEntries[0]?.label || "")})" title="Llamar ${escapeHtml(phoneEntries[0]?.label || "")}">${phoneIcon}</a>` : phoneEntries.length > 1 ? `<details class="relative" data-call-menu data-card-action><summary class="inline-flex h-7 w-7 shrink-0 cursor-pointer list-none items-center justify-center rounded-lg border border-line bg-surface text-ink shadow-sm transition hover:border-muted hover:bg-soft [&::-webkit-details-marker]:hidden" data-card-action aria-label="Mostrar telefonos" title="Mostrar telefonos">${phoneIcon}</summary><div class="absolute bottom-full left-0 z-20 mb-1 grid min-w-[11rem] gap-1 rounded-lg border border-line bg-surface p-1 shadow-lg">${phoneEntries.map((phone) => `<a class="rounded-md px-2 py-1 text-xs text-ink transition hover:bg-soft" href="tel:${phone.tel}" data-call-link data-card-action title="Llamar ${escapeHtml(phone.label)}">${escapeHtml(phone.label)}</a>`).join("")}</div></details>` : "";
-  const actionLinks = `${mapLink}${callLinks}${webLink}`;
-  const logoColumn = hasLogo ? `<div class="card-media grid content-between justify-items-start gap-2">${logo}<div class="card-actions flex w-full items-center justify-start gap-2">${actionLinks}</div></div>` : "";
-  return `
-    <li class="card ${hasLogo ? "" : "no-logo"} group relative grid gap-3 rounded-xl border border-line bg-surface p-3 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md ${hasLogo ? "grid-cols-[96px_minmax(0,1fr)]" : "grid-cols-1"}" data-id="${item.id}">
-      ${logoColumn}
-      <div class="card-content grid min-w-0 gap-1">
-        <h3 class="line-clamp-2 text-sm font-semibold text-ink">${title}</h3>
-        <p class="card-description line-clamp-3 text-xs leading-relaxed text-ink">${description}</p>
-        <div class="card-meta mt-1 grid min-w-0 gap-1">
-          <div class="meta flex min-w-0 items-center justify-between gap-2 text-[11px] text-muted">
-            <span class="card-tags truncate">${tags.join(", ")}</span>
-            ${hasLogo ? "" : actionLinks}
-          </div>
-        </div>
-      </div>
-    </li>
-  `;
+// src/lib/categories.ts
+var CATEGORIES = {
+  deportes: {
+    label: { es: "Deportes", ca: "Esports", en: "Sports", fr: "Sports", ru: "\u0421\u043F\u043E\u0440\u0442" },
+    icon: "mountainSnow",
+    color: "--pg-cat-deportes"
+  },
+  ocio: {
+    label: { es: "Ocio", ca: "Oci", en: "Leisure", fr: "Loisirs", ru: "\u0414\u043E\u0441\u0443\u0433" },
+    icon: "ferrisWheel",
+    color: "--pg-cat-ocio"
+  },
+  tiendas: {
+    label: { es: "Tiendas", ca: "Botigues", en: "Shops", fr: "Boutiques", ru: "\u041C\u0430\u0433\u0430\u0437\u0438\u043D\u044B" },
+    icon: "shoppingBag",
+    color: "--pg-cat-tiendas"
+  },
+  educacion: {
+    label: { es: "Educaci\xF3n", ca: "Educaci\xF3", en: "Education", fr: "\xC9ducation", ru: "\u041E\u0431\u0440\u0430\u0437\u043E\u0432\u0430\u043D\u0438\u0435" },
+    icon: "landmark",
+    color: "--pg-cat-educacion"
+  },
+  servicios: {
+    label: { es: "Servicios", ca: "Serveis", en: "Services", fr: "Services", ru: "\u0423\u0441\u043B\u0443\u0433\u0438" },
+    icon: "conciergeBell",
+    color: "--pg-cat-servicios"
+  },
+  restauracion: {
+    label: { es: "Restauraci\xF3n", ca: "Restauraci\xF3", en: "Dining", fr: "Restauration", ru: "\u0420\u0435\u0441\u0442\u043E\u0440\u0430\u043D\u044B" },
+    icon: "utensils",
+    color: "--pg-cat-restauracion"
+  }
 };
 
-// src/scripts/map-card-state.ts
-var toggleCardExpandedContent = (card, expanded) => {
-  const description = card?.querySelector(".card-description");
-  if (description instanceof HTMLElement) {
-    description.classList.toggle("line-clamp-3", !expanded);
-    description.classList.toggle("line-clamp-none", expanded);
-    if (expanded) {
-      description.style.display = "block";
-      description.style.overflow = "visible";
-      description.style.removeProperty("-webkit-line-clamp");
-      description.style.removeProperty("-webkit-box-orient");
-    } else {
-      description.style.removeProperty("display");
-      description.style.removeProperty("overflow");
-      description.style.removeProperty("-webkit-line-clamp");
-      description.style.removeProperty("-webkit-box-orient");
-    }
-  }
-  const tags = card?.querySelector(".card-tags");
-  if (tags instanceof HTMLElement) {
-    tags.classList.toggle("truncate", !expanded);
-    tags.classList.toggle("whitespace-normal", expanded);
-  }
+// src/icons/index.ts
+var ICON_PATHS = {
+  "mountainSnow": '<path d="m8 3 4 8 5-5 5 15H2L8 3z" /><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />',
+  "ferrisWheel": '<circle cx="12" cy="12" r="2" /><path d="M12 2v4" /><path d="m6.8 15-3.5 2" /><path d="m20.7 7-3.5 2" /><path d="M6.8 9 3.3 7" /><path d="m20.7 17-3.5-2" /><path d="m9 22 3-8 3 8" /><path d="M8 22h8" /><path d="M18 18.7a9 9 0 1 0-12 0" />',
+  "shoppingBag": '<path d="M16 10a4 4 0 0 1-8 0" /><path d="M3.103 6.034h17.794" /><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />',
+  "landmark": '<path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" />',
+  "conciergeBell": '<path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z" /><path d="M20 16a8 8 0 1 0-16 0" /><path d="M12 4v4" /><path d="M10 4h4" />',
+  "utensils": '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />',
+  "search": '<path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" />',
+  "slidersHorizontal": '<path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" />',
+  "locateFixed": '<line x1="2" x2="5" y1="12" y2="12" /><line x1="19" x2="22" y1="12" y2="12" /><line x1="12" x2="12" y1="2" y2="5" /><line x1="12" x2="12" y1="19" y2="22" /><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="3" />',
+  "layers": '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />',
+  "list": '<path d="M3 5h.01" /><path d="M3 12h.01" /><path d="M3 19h.01" /><path d="M8 5h13" /><path d="M8 12h13" /><path d="M8 19h13" />',
+  "map": '<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" />',
+  "phone": '<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />',
+  "navigation": '<polygon points="3 11 22 2 13 21 11 13 3 11" />',
+  "globe": '<circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />',
+  "mail": '<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />',
+  "x": '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
+  "chevronRight": '<path d="m9 18 6-6-6-6" />',
+  "share2": '<circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />',
+  "info": '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />'
 };
-var animateCardResize = (card, expanded) => {
-  if (!(card instanceof HTMLElement)) {
-    toggleCardExpandedContent(card, expanded);
-    return;
+var icon = (name, className = "icon", label) => `<svg class="${className}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${ICON_PATHS[name]}</svg>`;
+
+// src/scripts/map-card.ts
+var formatDistance = (km, lang) => {
+  if (km < 1) return `${Math.max(10, Math.round(km * 1e3 / 10) * 10)} m`;
+  const value = km < 10 ? km.toFixed(1) : Math.round(km).toString();
+  return `${lang === "en" ? value : value.replace(".", ",")} km`;
+};
+var buildLogoHtml = (item, title) => {
+  const category = CATEGORIES[item.category];
+  const logoUrl = sanitizeImageUrl(item.logo);
+  if (logoUrl) {
+    const dark = item.logoBackground === "dark" ? " card-logo--dark" : "";
+    return `<span class="card-logo${dark}"><img src="${logoUrl}" alt="" loading="lazy" decoding="async"></span>`;
   }
-  const startHeight = card.getBoundingClientRect().height;
-  toggleCardExpandedContent(card, expanded);
-  const endHeight = card.getBoundingClientRect().height;
-  if (Math.abs(endHeight - startHeight) < 1) return;
-  card.style.height = `${startHeight}px`;
-  card.style.overflow = "hidden";
-  card.style.transition = "height 220ms ease";
-  requestAnimationFrame(() => {
-    card.style.height = `${endHeight}px`;
-  });
-  const onEnd = () => {
-    card.style.removeProperty("height");
-    card.style.removeProperty("overflow");
-    card.style.removeProperty("transition");
-    card.removeEventListener("transitionend", onEnd);
-  };
-  card.addEventListener("transitionend", onEnd);
+  return `<span class="card-logo card-logo--icon" style="--cat: var(${category.color})" aria-hidden="true">${icon(category.icon)}</span>`;
+};
+var buildCardHtml = (item, lang, distanceKm2) => {
+  const category = CATEGORIES[item.category];
+  const title = escapeHtml(item.title[lang] || item.title.es);
+  const highlight = item.highlight ? escapeHtml(item.highlight[lang] || item.highlight.es) : "";
+  const appliesTo = item.appliesTo ? escapeHtml(item.appliesTo[lang] || item.appliesTo.es) : "";
+  const where = distanceKm2 !== void 0 && Number.isFinite(distanceKm2) ? escapeHtml(uiText[lang].distanceAway.replace("{d}", formatDistance(distanceKm2, lang))) : escapeHtml(item.city ?? "");
+  const tag = highlight ? `<span class="card-tag"><span class="tag">${highlight}</span>${appliesTo ? `<span class="tag-who">${appliesTo}</span>` : ""}</span>` : "";
+  return `
+    <li>
+      <button type="button" class="card" data-id="${escapeHtml(item.id)}">
+        ${buildLogoHtml(item, title)}
+        <span class="card-main">
+          <span class="card-name">${title}</span>
+          <span class="card-meta">
+            <span class="card-cat" style="--cat-text: var(${category.color}-text)">${icon(category.icon)}${escapeHtml(category.label[lang])}</span>
+            ${where ? `<span aria-hidden="true">\xB7</span><span class="card-where">${where}</span>` : ""}
+          </span>
+        </span>
+        ${tag}
+      </button>
+    </li>
+  `;
 };
 
 // src/scripts/app/list-view.ts
 var createListView = ({ results: results2, emptyState: emptyState2, onCardClick }) => {
   const cardFor = (id) => results2.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
-  const render = (items, lang) => {
-    results2.innerHTML = items.map((item) => buildCardHtml(item, lang)).join("");
+  const render = (items, lang, distanceOf) => {
+    results2.innerHTML = items.map((item) => buildCardHtml(item, lang, distanceOf?.(item))).join("");
     if (emptyState2) emptyState2.hidden = items.length > 0;
   };
   const setCardActive = (id, active, { scroll = false } = {}) => {
     const card = cardFor(id);
     if (!card) return;
     card.classList.toggle("is-active", active);
-    animateCardResize(card, active);
+    card.setAttribute("aria-current", String(active));
     if (active && scroll) card.scrollIntoView({ block: "nearest", behavior: "smooth" });
   };
   results2.addEventListener("click", (event) => {
@@ -429,19 +444,17 @@ var GEOLOCATION_OPTIONS = {
   timeout: 8e3,
   maximumAge: 6e4
 };
-var defaultMarkerStyle = {
-  radius: 6,
-  fillOpacity: 1,
-  weight: 2,
-  className: "pg-marker"
+var markerIcon = (item) => {
+  const category = CATEGORIES[item.category];
+  return import_leaflet.default.divIcon({
+    className: "pg-marker-icon",
+    html: `<span class="pg-marker" style="--cat: var(${category.color})">${icon(category.icon)}</span>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -18]
+  });
 };
-var activeMarkerStyle = {
-  radius: 9,
-  fillOpacity: 1,
-  weight: 3,
-  className: "pg-marker"
-};
-var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) => {
+var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bottomInset = () => 0 }) => {
   const map = import_leaflet.default.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   import_leaflet.default.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
@@ -481,7 +494,12 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
   const markers = /* @__PURE__ */ new Map();
   data2.forEach((item) => {
     if (!hasValidCoordinates(item)) return;
-    const marker = import_leaflet.default.circleMarker([item.lat, item.lng], defaultMarkerStyle);
+    const marker = import_leaflet.default.marker([item.lat, item.lng], {
+      icon: markerIcon(item),
+      title: item.title.es,
+      alt: item.title.es,
+      riseOnHover: true
+    });
     marker.bindPopup(buildPopupHtml(item), { autoPan: false });
     marker.on("click", () => onMarkerClick(item.id));
     markers.set(item.id, marker);
@@ -504,10 +522,9 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
   const setMarkerActive = (id, active, { center = false, openPopup = false, offsetY = 0 } = {}) => {
     const marker = markers.get(id);
     if (!marker) return;
-    marker.setStyle(active ? activeMarkerStyle : defaultMarkerStyle);
-    marker.getElement()?.classList.toggle("is-active", active);
+    marker.getElement()?.querySelector(".pg-marker")?.classList.toggle("is-active", active);
+    marker.setZIndexOffset(active ? 1e3 : 0);
     if (!active) return;
-    marker.bringToFront();
     if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
     if (openPopup) marker.openPopup();
   };
@@ -516,7 +533,7 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
   const updateUserLocation = (position) => {
     const { latitude, longitude } = position.coords;
     userLocation = { lat: latitude, lng: longitude };
-    map.setView([latitude, longitude], LOCATION_ZOOM, { animate: true });
+    frameUserAndNearest();
     const userIcon = import_leaflet.default.icon({
       iconUrl: "/img/marker.png",
       iconSize: [48, 48],
@@ -549,6 +566,18 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
       GEOLOCATION_OPTIONS
     );
   };
+  const frameUserAndNearest = () => {
+    if (!userLocation) return;
+    const origin = userLocation;
+    const nearest = data2.filter(hasValidCoordinates).map((item) => ({ item, d: distanceKm(origin, item) })).sort((a, b) => a.d - b.d).slice(0, 3).map(({ item }) => [item.lat, item.lng]);
+    const frame = import_leaflet.default.latLngBounds([[origin.lat, origin.lng], ...nearest]);
+    map.fitBounds(frame, {
+      paddingTopLeft: [32, 80],
+      paddingBottomRight: [64, bottomInset() + 32],
+      maxZoom: LOCATION_ZOOM - 1,
+      animate: true
+    });
+  };
   const showLocationError = (error) => {
     const text = uiText[getLang()];
     const message = error && error.code === error.PERMISSION_DENIED ? text.locationDenied : text.locationUnavailable;
@@ -556,9 +585,7 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
   };
   const centerOnUser = () => {
     if (userLocation) {
-      map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), LOCATION_ZOOM), {
-        animate: true
-      });
+      frameUserAndNearest();
       return;
     }
     if (!("geolocation" in navigator)) {
@@ -722,7 +749,8 @@ var mapView = createMapView({
     if (sheet.isMobile() && sheet.getSnap() === "peek") sheet.setSnap("half");
     setActive(id, { openPopup: true, scroll: true });
   },
-  onUserLocation: () => applyFilter()
+  onUserLocation: () => applyFilter(),
+  bottomInset: () => sheetOffset()
 });
 var applyFilter = () => {
   const query = normalize(searchInput?.value ?? "");
@@ -733,11 +761,11 @@ var applyFilter = () => {
     return text.includes(query);
   });
   const origin = mapView.getUserLocation();
+  const distanceOf = (item) => origin && hasValidCoordinates(item) ? distanceKm(origin, item) : void 0;
   if (origin) {
-    const distance = (item) => hasValidCoordinates(item) ? distanceKm(origin, item) : Number.POSITIVE_INFINITY;
-    filtered.sort((a, b) => distance(a) - distance(b));
+    filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
-  listView.render(filtered, lang);
+  listView.render(filtered, lang, distanceOf);
   if (resultsCount) {
     const text = uiText[lang];
     resultsCount.textContent = filtered.length === 1 ? text.resultsOne : text.resultsMany.replace("{n}", String(filtered.length));

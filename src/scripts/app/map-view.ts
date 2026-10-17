@@ -1,8 +1,10 @@
 import L from "leaflet";
+import { CATEGORIES } from "../../lib/categories";
 import type { SearchItem } from "../../lib/search-index";
+import { icon } from "../../icons";
 import { uiText } from "../map-i18n";
 import { escapeHtml } from "../map-utils";
-import { getLang, hasValidCoordinates, type LatLng } from "./context";
+import { distanceKm, getLang, hasValidCoordinates, type LatLng } from "./context";
 import { buildPopupHtml } from "./map-popup";
 
 const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
@@ -20,18 +22,16 @@ export type BaseStyle = "osm" | "positron";
 export const isBaseStyle = (value: string | undefined): value is BaseStyle =>
   value === "osm" || value === "positron";
 
-// Colours come from CSS (.pg-marker in index.css) so they follow the design tokens and dark mode.
-const defaultMarkerStyle: L.CircleMarkerOptions = {
-  radius: 6,
-  fillOpacity: 1,
-  weight: 2,
-  className: "pg-marker",
-};
-const activeMarkerStyle: L.CircleMarkerOptions = {
-  radius: 9,
-  fillOpacity: 1,
-  weight: 3,
-  className: "pg-marker",
+/** Circular marker with the category colour and icon (styles in components.css). */
+const markerIcon = (item: SearchItem) => {
+  const category = CATEGORIES[item.category];
+  return L.divIcon({
+    className: "pg-marker-icon",
+    html: `<span class="pg-marker" style="--cat: var(${category.color})">${icon(category.icon)}</span>`,
+    iconSize: [30, 30],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -18],
+  });
 };
 
 type MapViewOptions = {
@@ -39,9 +39,11 @@ type MapViewOptions = {
   data: SearchItem[];
   onMarkerClick: (id: string) => void;
   onUserLocation: () => void;
+  /** Pixels of map hidden at the bottom (mobile sheet), so framing keeps things visible. */
+  bottomInset?: () => number;
 };
 
-export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: MapViewOptions) => {
+export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bottomInset = () => 0 }: MapViewOptions) => {
   const map = L.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   L.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
@@ -90,10 +92,15 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
   };
 
   // ----- Benefit markers -----
-  const markers = new Map<string, L.CircleMarker>();
+  const markers = new Map<string, L.Marker>();
   data.forEach((item) => {
     if (!hasValidCoordinates(item)) return;
-    const marker = L.circleMarker([item.lat, item.lng], defaultMarkerStyle);
+    const marker = L.marker([item.lat, item.lng], {
+      icon: markerIcon(item),
+      title: item.title.es,
+      alt: item.title.es,
+      riseOnHover: true,
+    });
     marker.bindPopup(buildPopupHtml(item), { autoPan: false });
     marker.on("click", () => onMarkerClick(item.id));
     markers.set(item.id, marker);
@@ -125,10 +132,9 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
   ) => {
     const marker = markers.get(id);
     if (!marker) return;
-    marker.setStyle(active ? activeMarkerStyle : defaultMarkerStyle);
-    marker.getElement()?.classList.toggle("is-active", active);
+    marker.getElement()?.querySelector(".pg-marker")?.classList.toggle("is-active", active);
+    marker.setZIndexOffset(active ? 1000 : 0);
     if (!active) return;
-    marker.bringToFront();
     if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
     if (openPopup) marker.openPopup();
   };
@@ -140,7 +146,7 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
   const updateUserLocation = (position: GeolocationPosition) => {
     const { latitude, longitude } = position.coords;
     userLocation = { lat: latitude, lng: longitude };
-    map.setView([latitude, longitude], LOCATION_ZOOM, { animate: true });
+    frameUserAndNearest();
     const userIcon = L.icon({
       iconUrl: "/img/marker.png",
       iconSize: [48, 48],
@@ -182,6 +188,25 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
     );
   };
 
+  /** Frames the user together with the 3 closest benefits, above the mobile sheet. */
+  const frameUserAndNearest = () => {
+    if (!userLocation) return;
+    const origin = userLocation;
+    const nearest = data
+      .filter(hasValidCoordinates)
+      .map((item) => ({ item, d: distanceKm(origin, item) }))
+      .sort((a, b) => a.d - b.d)
+      .slice(0, 3)
+      .map(({ item }): L.LatLngTuple => [item.lat, item.lng]);
+    const frame = L.latLngBounds([[origin.lat, origin.lng], ...nearest]);
+    map.fitBounds(frame, {
+      paddingTopLeft: [32, 80],
+      paddingBottomRight: [64, bottomInset() + 32],
+      maxZoom: LOCATION_ZOOM - 1,
+      animate: true,
+    });
+  };
+
   const showLocationError = (error?: GeolocationPositionError) => {
     const text = uiText[getLang()];
     const message =
@@ -191,9 +216,7 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
 
   const centerOnUser = () => {
     if (userLocation) {
-      map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), LOCATION_ZOOM), {
-        animate: true,
-      });
+      frameUserAndNearest();
       return;
     }
     if (!("geolocation" in navigator)) {

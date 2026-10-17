@@ -34,6 +34,8 @@ const benefitSchema = z.object({
   phone: z.string().optional(),
   email: z.string().email().optional(),
   logo: z.string().optional(),
+  /** Use "dark" for logos drawn in white on a transparent background. */
+  logoBackground: z.enum(["light", "dark"]).optional(),
   web: z.string().url().optional(),
   googleMapsUrl: z.string().url().optional(),
   languages: z.array(z.string()).default(["es"]),

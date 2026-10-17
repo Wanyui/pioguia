@@ -1,0 +1,182 @@
+/* Benefit card and map markers (docs/rediseno/04-DESIGN.md §5.3, §5.5, §5.6). */
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0 16px 16px;
+}
+
+.results > li + li .card {
+  border-top: 1px solid var(--pg-line);
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 10px 6px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 120ms ease;
+}
+
+.card:hover {
+  background: color-mix(in srgb, var(--pg-soft) 60%, transparent);
+}
+
+.card.is-active {
+  background: var(--pg-soft);
+  box-shadow: inset 3px 0 0 var(--pg-accent);
+}
+
+.card-logo {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid var(--pg-line);
+  overflow: hidden;
+}
+
+.card-logo--dark {
+  background: #17201b;
+  border-color: #17201b;
+}
+
+.card-logo img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.card-logo--icon {
+  background: var(--cat);
+  border-color: transparent;
+  color: #ffffff;
+}
+
+.card-logo--icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.card-main {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.card-name {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.2;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+  font-size: 12.5px;
+  color: var(--pg-muted);
+  white-space: nowrap;
+}
+
+.card-cat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.card-cat .icon {
+  width: 14px;
+  height: 14px;
+  color: var(--cat-text);
+}
+
+.card-where {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-variant-numeric: tabular-nums;
+}
+
+.card-tag {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+  max-width: 120px;
+  text-align: right;
+}
+
+.tag {
+  display: inline-block;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--pg-accent);
+  color: var(--pg-on-accent);
+  font-size: 15px;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tag-who {
+  font-size: 11.5px;
+  line-height: 1.2;
+  color: var(--pg-muted);
+}
+
+/* ---------- Map markers ---------- */
+
+.pg-marker-icon {
+  background: transparent;
+  border: 0;
+}
+
+.pg-marker {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cat);
+  color: #ffffff;
+  box-shadow: 0 0 0 3px var(--pg-surface), 0 2px 6px rgb(0 0 0 / 0.3);
+  transition: transform 120ms ease;
+}
+
+.pg-marker .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.pg-marker.is-active {
+  transform: scale(1.27);
+  box-shadow: 0 0 0 3px var(--pg-accent), 0 0 0 6px var(--pg-surface), 0 4px 10px rgb(0 0 0 / 0.35);
+}
+
+.leaflet-marker-icon:focus-visible .pg-marker {
+  outline: 2px solid var(--pg-focus);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pg-marker,
+  .card {
+    transition: none;
+  }
+}

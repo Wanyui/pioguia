@@ -9,8 +9,6 @@ const entries = await getCollection("benefits");
 const rawItems = buildSearchIndex(entries);
 const initialLang = "es";
 const isDev = import.meta.env.DEV;
-const BLANK_LOGO_DATA_URI =
-  "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
 
 const normalizeCity = (value: string) =>
   value
@@ -23,25 +21,26 @@ const normalizeCity = (value: string) =>
 const defaultLogoForCity = (city: string | undefined) => {
   if (!city) return "";
   const normalized = normalizeCity(city);
-  if (normalized.includes("andorra la vella")) return "/img/Escut_d'Andorra_la_Vella.svg";
+  if (normalized.includes("andorra la vella")) return "/img/escuts/andorra-la-vella.png";
   if (normalized.includes("escaldes-engordany"))
-    return "/img/Escut_d'Escaldes-Engordany.svg";
+    return "/img/escuts/escaldes-engordany.png";
   if (normalized.includes("sant julia de loria"))
-    return "/img/Escut_de_Sant_Julia_de_Loria.svg";
-  if (normalized.includes("la massana")) return "/img/Escut_de_La_Massana.svg";
-  if (normalized.includes("ordino")) return "/img/Escut_d'Ordino.svg.png";
+    return "/img/escuts/sant-julia-de-loria.png";
+  if (normalized.includes("la massana")) return "/img/escuts/la-massana.png";
+  if (normalized.includes("ordino")) return "/img/escuts/ordino.png";
   // Pas de la Casa belong to Encamp parish.
-  if (normalized.includes("pas de la casa")) return "/img/Escut_d'Encamp.svg";
-  if (normalized.includes("encamp")) return "/img/Escut_d'Encamp.svg";
+  if (normalized.includes("pas de la casa")) return "/img/escuts/encamp.png";
+  if (normalized.includes("encamp")) return "/img/escuts/encamp.png";
   // Soldeu belongs to the Canillo parish.
-  if (normalized.includes("soldeu")) return "/img/Escut_de_Canillo.svg";
-  if (normalized.includes("canillo")) return "/img/Escut_de_Canillo.svg";
+  if (normalized.includes("soldeu")) return "/img/escuts/canillo.png";
+  if (normalized.includes("canillo")) return "/img/escuts/canillo.png";
   return "";
 };
 
 const resolveLogo = (logo: string | undefined, city: string | undefined) => {
   if (!logo || logo === "/img/*") {
-    return defaultLogoForCity(city) || BLANK_LOGO_DATA_URI;
+    // Without a logo, Andorran benefits show their parish shield; the rest fall back to the category icon (client side).
+    return defaultLogoForCity(city);
   }
   const normalized = logo.trim();
   if (normalized.startsWith("/")) return normalized;
@@ -51,7 +50,7 @@ const resolveLogo = (logo: string | undefined, city: string | undefined) => {
   ) {
     return normalized;
   }
-  return BLANK_LOGO_DATA_URI;
+  return "";
 };
 
 const items = rawItems.map((item) => ({
@@ -85,7 +84,7 @@ const structuredData = {
       .filter((item) => Number.isFinite(item.lat) && Number.isFinite(item.lng) && !(item.lat === 0 && item.lng === 0))
       .map((item) => {
         const logoUrl =
-          item.logo && item.logo !== BLANK_LOGO_DATA_URI
+          item.logo
             ? item.logo.startsWith("/")
               ? `${siteOrigin}${item.logo}`
               : item.logo

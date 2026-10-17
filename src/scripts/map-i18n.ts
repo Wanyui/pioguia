@@ -20,6 +20,7 @@ export const uiText: Record<
     sheetHandle: string;
     resultsOne: string;
     resultsMany: string;
+    distanceAway: string;
   }
 > = {
   es: {
@@ -40,6 +41,7 @@ export const uiText: Record<
     sheetHandle: "Ampliar o reducir la lista",
     resultsOne: "1 ventaja",
     resultsMany: "{n} ventajas",
+    distanceAway: "a {d}",
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -59,6 +61,7 @@ export const uiText: Record<
     sheetHandle: "Amplia o redueix la llista",
     resultsOne: "1 avantatge",
     resultsMany: "{n} avantatges",
+    distanceAway: "a {d}",
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -78,6 +81,7 @@ export const uiText: Record<
     sheetHandle: "Expand or collapse the list",
     resultsOne: "1 benefit",
     resultsMany: "{n} benefits",
+    distanceAway: "{d} away",
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -97,6 +101,7 @@ export const uiText: Record<
     sheetHandle: "Agrandir ou réduire la liste",
     resultsOne: "1 avantage",
     resultsMany: "{n} avantages",
+    distanceAway: "à {d}",
   },
   ru: {
     title: "Гид по преимуществам Piolet",
@@ -116,6 +121,7 @@ export const uiText: Record<
     sheetHandle: "Развернуть или свернуть список",
     resultsOne: "Предложений: 1",
     resultsMany: "Предложений: {n}",
+    distanceAway: "{d} от тебя",
   },
 };
 
