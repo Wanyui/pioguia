@@ -238,19 +238,18 @@ const locationControlInstance = new locationControl({ position: "topleft" });
 locationControlInstance.addTo(map);
 
 let activeId: string | null = null;
+// Colours come from CSS (.pg-marker in index.css) so they follow the design tokens and dark mode.
 const defaultMarkerStyle: L.CircleMarkerOptions = {
   radius: 6,
-  color: "#15803d",
-  fillColor: "#22c55e",
-  fillOpacity: 0.9,
+  fillOpacity: 1,
   weight: 2,
+  className: "pg-marker",
 };
 const activeMarkerStyle: L.CircleMarkerOptions = {
   radius: 9,
-  color: "#1d4ed8",
-  fillColor: "#60a5fa",
   fillOpacity: 1,
   weight: 3,
+  className: "pg-marker",
 };
 
 const setActive = (
@@ -263,7 +262,10 @@ const setActive = (
 ) => {
   if (activeId) {
     const previousMarker = markers.get(activeId);
-    if (previousMarker) previousMarker.setStyle(defaultMarkerStyle);
+    if (previousMarker) {
+      previousMarker.setStyle(defaultMarkerStyle);
+      previousMarker.getElement()?.classList.remove("is-active");
+    }
     const previousCard = results?.querySelector(`.card[data-id="${activeId}"]`);
     previousCard?.classList.remove("is-active");
     animateCardResize(previousCard ?? null, false);
@@ -275,6 +277,7 @@ const setActive = (
   const marker = markers.get(id);
   if (marker) {
     marker.setStyle(activeMarkerStyle);
+    marker.getElement()?.classList.add("is-active");
     marker.bringToFront();
     if (center) {
       const targetZoom = Math.max(map.getZoom(), 18);
@@ -369,8 +372,8 @@ const updateUiText = (lang: LanguageCode) => {
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
   langOptionButtons.forEach((button) => {
     const isSelected = button.dataset.langOption === lang;
-    button.classList.toggle("bg-sky-100", isSelected);
-    button.classList.toggle("text-sky-700", isSelected);
+    button.classList.toggle("bg-soft", isSelected);
+    button.classList.toggle("text-accent", isSelected);
     button.classList.toggle("font-semibold", isSelected);
   });
 
