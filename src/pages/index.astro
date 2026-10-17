@@ -3,6 +3,8 @@ import { getCollection } from "astro:content";
 import Map from "../components/Map.astro";
 import { buildSearchIndex } from "../lib/search-index";
 import { icon } from "../icons";
+import { ZONES, ZONE_KEYS, zoneOf } from "../lib/zones";
+import { CATEGORIES, CATEGORY_KEYS } from "../lib/categories";
 import "../styles/index.css";
 
 const entries = await getCollection("benefits");
@@ -10,32 +12,8 @@ const rawItems = buildSearchIndex(entries);
 const initialLang = "es";
 const isDev = import.meta.env.DEV;
 
-const normalizeCity = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const defaultLogoForCity = (city: string | undefined) => {
-  if (!city) return "";
-  const normalized = normalizeCity(city);
-  if (normalized.includes("andorra la vella")) return "/img/escuts/andorra-la-vella.png";
-  if (normalized.includes("escaldes-engordany"))
-    return "/img/escuts/escaldes-engordany.png";
-  if (normalized.includes("sant julia de loria"))
-    return "/img/escuts/sant-julia-de-loria.png";
-  if (normalized.includes("la massana")) return "/img/escuts/la-massana.png";
-  if (normalized.includes("ordino")) return "/img/escuts/ordino.png";
-  // Pas de la Casa belong to Encamp parish.
-  if (normalized.includes("pas de la casa")) return "/img/escuts/encamp.png";
-  if (normalized.includes("encamp")) return "/img/escuts/encamp.png";
-  // Soldeu belongs to the Canillo parish.
-  if (normalized.includes("soldeu")) return "/img/escuts/canillo.png";
-  if (normalized.includes("canillo")) return "/img/escuts/canillo.png";
-  return "";
-};
+// Without a logo, Andorran benefits show their parish shield (see src/lib/zones.ts).
+const defaultLogoForCity = (city: string | undefined) => ZONES[zoneOf(city)].shield ?? "";
 
 const resolveLogo = (logo: string | undefined, city: string | undefined) => {
   if (!logo || logo === "/img/*") {
@@ -189,6 +167,38 @@ const structuredData = {
             </select>
           </div>
         </div>
+        <div class="filters" role="group" aria-label="Filtros" id="filters">
+          <div class="chips" id="filter-chips">
+            <button type="button" id="zone-trigger" class="chip" aria-expanded="false" aria-controls="zone-panel">
+              <span class="chip-dot chip-dot--plain"><Fragment set:html={icon("mapPin")} /></span>
+              <span class="chip-label" data-i18n="zoneButton">Zona</span>
+              <span class="chip-count" id="zone-count" hidden></span>
+              <Fragment set:html={icon("chevronDown", "icon chip-caret")} />
+            </button>
+            {CATEGORY_KEYS.map((key) => (
+              <button type="button" class="chip" data-category={key} aria-pressed="false">
+                <span class="chip-dot" style={`--cat: var(${CATEGORIES[key].color})`}>
+                  <Fragment set:html={icon(CATEGORIES[key].icon)} />
+                </span>
+                <span class="chip-label">{CATEGORIES[key].label.es}</span>
+                <span class="chip-count"></span>
+              </button>
+            ))}
+            <button type="button" id="clear-filters" class="chip chip-clear" hidden>
+              <Fragment set:html={icon("x")} />
+              <span data-i18n="clearFilters">Quitar filtros</span>
+            </button>
+          </div>
+          <div id="zone-panel" class="zone-panel" hidden>
+            {ZONE_KEYS.map((key) => (
+              <button type="button" class="zone-option" data-zone={key} aria-pressed="false">
+                {ZONES[key].shield ? <img src={ZONES[key].shield} alt="" width="20" height="20" /> : <span class="zone-dot"><Fragment set:html={icon("mapPin")} /></span>}
+                <span class="zone-label">{ZONES[key].label.es}</span>
+                <span class="chip-count"></span>
+              </button>
+            ))}
+          </div>
+        </div>
       </header>
 
       <section class="map-area" aria-label="Mapa">
@@ -213,7 +223,14 @@ const structuredData = {
         </div>
         <div class="panel-scroll">
           <ul id="results" class="results"></ul>
-          <div id="empty-state" class="empty-state" hidden>No se han encontrado resultados.</div>
+          <div id="empty-state" class="empty-state" hidden>
+            <Fragment set:html={icon("search", "icon empty-icon")} />
+            <p id="empty-message">No se han encontrado resultados.</p>
+            <div class="empty-actions">
+              <button type="button" class="empty-button" data-empty-action="filters" data-i18n="clearFilters">Quitar filtros</button>
+              <button type="button" class="empty-button" data-empty-action="search" data-i18n="clearSearch">Borrar búsqueda</button>
+            </div>
+          </div>
         </div>
       </aside>
 

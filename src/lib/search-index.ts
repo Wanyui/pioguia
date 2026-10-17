@@ -1,5 +1,6 @@
 import type { CollectionEntry } from "astro:content";
 import { CATEGORIES, type CategoryKey } from "./categories";
+import { zoneOf, type ZoneKey } from "./zones";
 
 export type Localized<T> = {
   es: T;
@@ -16,6 +17,7 @@ export type SearchItem = {
   description: Localized<string>;
   tags: Localized<string[]>;
   category: CategoryKey;
+  zone: ZoneKey;
   highlight?: Localized<string>;
   appliesTo?: Localized<string>;
   address: string;
@@ -91,6 +93,7 @@ export const buildSearchIndex = (
       description: data.description,
       tags: data.tags,
       category: data.category,
+      zone: zoneOf(data.city),
       highlight: data.highlight,
       appliesTo: data.appliesTo,
       address: data.address,

@@ -21,6 +21,12 @@ export const uiText: Record<
     resultsOne: string;
     resultsMany: string;
     distanceAway: string;
+    filtersLabel: string;
+    zoneButton: string;
+    clearFilters: string;
+    clearSearch: string;
+    emptyQuery: string;
+    emptyFilters: string;
   }
 > = {
   es: {
@@ -42,6 +48,12 @@ export const uiText: Record<
     resultsOne: "1 ventaja",
     resultsMany: "{n} ventajas",
     distanceAway: "a {d}",
+    filtersLabel: "Filtros",
+    zoneButton: "Zona",
+    clearFilters: "Quitar filtros",
+    clearSearch: "Borrar búsqueda",
+    emptyQuery: "Vaya, no hay «{q}» por aquí. Prueba con otra palabra o quita los filtros.",
+    emptyFilters: "Vaya, no hay ventajas con estos filtros.",
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -62,6 +74,12 @@ export const uiText: Record<
     resultsOne: "1 avantatge",
     resultsMany: "{n} avantatges",
     distanceAway: "a {d}",
+    filtersLabel: "Filtres",
+    zoneButton: "Zona",
+    clearFilters: "Treu els filtres",
+    clearSearch: "Esborra la cerca",
+    emptyQuery: "Vaja, no hi ha «{q}» per aquí. Prova una altra paraula o treu els filtres.",
+    emptyFilters: "Vaja, no hi ha avantatges amb aquests filtres.",
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -82,6 +100,12 @@ export const uiText: Record<
     resultsOne: "1 benefit",
     resultsMany: "{n} benefits",
     distanceAway: "{d} away",
+    filtersLabel: "Filters",
+    zoneButton: "Area",
+    clearFilters: "Clear filters",
+    clearSearch: "Clear search",
+    emptyQuery: "Oh, there's no “{q}” around here. Try another word or clear the filters.",
+    emptyFilters: "Oh, there are no benefits with these filters.",
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -102,6 +126,12 @@ export const uiText: Record<
     resultsOne: "1 avantage",
     resultsMany: "{n} avantages",
     distanceAway: "à {d}",
+    filtersLabel: "Filtres",
+    zoneButton: "Zone",
+    clearFilters: "Effacer les filtres",
+    clearSearch: "Effacer la recherche",
+    emptyQuery: "Mince, pas de « {q} » par ici. Essaie un autre mot ou enlève les filtres.",
+    emptyFilters: "Mince, aucun avantage avec ces filtres.",
   },
   ru: {
     title: "Гид по преимуществам Piolet",
@@ -122,6 +152,12 @@ export const uiText: Record<
     resultsOne: "Предложений: 1",
     resultsMany: "Предложений: {n}",
     distanceAway: "{d} от тебя",
+    filtersLabel: "Фильтры",
+    zoneButton: "Район",
+    clearFilters: "Сбросить фильтры",
+    clearSearch: "Очистить поиск",
+    emptyQuery: "Хм, «{q}» здесь нет. Попробуй другое слово или сбрось фильтры.",
+    emptyFilters: "Хм, с этими фильтрами ничего нет.",
   },
 };
 

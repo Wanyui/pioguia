@@ -113,6 +113,37 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     map.fitBounds(bounds, { padding: [24, 24] });
   }
 
+  // Track whether the user moved the map by hand, so filtering does not fight them.
+  let programmatic = false;
+  let userMoved = false;
+  const asProgram = (move: () => void) => {
+    programmatic = true;
+    move();
+    window.setTimeout(() => (programmatic = false), 450);
+  };
+  map.on("dragstart zoomstart", () => {
+    if (!programmatic) userMoved = true;
+  });
+
+  /** Re-frames the map on the given results unless the user has moved it since the last reset. */
+  const fitResults = (items: SearchItem[]) => {
+    if (userMoved) return;
+    const points = items.filter(hasValidCoordinates).map((item): L.LatLngTuple => [item.lat, item.lng]);
+    if (points.length === 0) return;
+    asProgram(() => {
+      if (points.length === 1) {
+        centerOn(points[0]!, Math.max(map.getZoom(), 15), bottomInset());
+      } else {
+        map.fitBounds(L.latLngBounds(points), {
+          paddingTopLeft: [32, 120],
+          paddingBottomRight: [64, bottomInset() + 32],
+          maxZoom: 16,
+          animate: true,
+        });
+      }
+    });
+  };
+
   const showOnly = (items: SearchItem[]) => {
     markers.forEach((marker) => map.removeLayer(marker));
     items.forEach((item) => markers.get(item.id)?.addTo(map));
@@ -120,10 +151,12 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
   };
 
   /** Centres a point, shifted up by `offsetY` px so it stays visible above the mobile sheet. */
-  const centerOn = (latLng: L.LatLngExpression, zoom: number, offsetY = 0) => {
+  function centerOn(latLng: L.LatLngExpression, zoom: number, offsetY = 0) {
     const point = map.project(latLng, zoom).add([0, offsetY / 2]);
+    programmatic = true;
     map.setView(map.unproject(point, zoom), zoom, { animate: true });
-  };
+    window.setTimeout(() => (programmatic = false), 450);
+  }
 
   const setMarkerActive = (
     id: string,
@@ -199,6 +232,8 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
       .slice(0, 3)
       .map(({ item }): L.LatLngTuple => [item.lat, item.lng]);
     const frame = L.latLngBounds([[origin.lat, origin.lng], ...nearest]);
+    programmatic = true;
+    window.setTimeout(() => (programmatic = false), 450);
     map.fitBounds(frame, {
       paddingTopLeft: [32, 80],
       paddingBottomRight: [64, bottomInset() + 32],
@@ -237,6 +272,8 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     map,
     applyBaseLayer,
     showOnly,
+    fitResults,
+    resetUserMoved: () => (userMoved = false),
     setMarkerActive,
     hasMarker: (id: string) => markers.has(id),
     centerOnUser,

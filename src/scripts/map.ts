@@ -10,6 +10,7 @@ import { uiText, type LanguageCode } from "./map-i18n";
 import { normalize } from "./map-utils";
 import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
+import { matchesFilters, setupFilters } from "./app/filters";
 import { createListView } from "./app/list-view";
 import { createMapView } from "./app/map-view";
 import { setupSheet } from "./app/sheet";
@@ -77,14 +78,21 @@ const mapView = createMapView({
   bottomInset: () => sheetOffset(),
 });
 
-const applyFilter = () => {
-  const query = normalize(searchInput?.value ?? "");
+const filters = setupFilters(() => applyFilter({ refit: true }));
+const emptyMessage = document.getElementById("empty-message");
+
+const applyFilter = ({ refit = false } = {}) => {
+  const rawQuery = searchInput?.value.trim() ?? "";
+  const query = normalize(rawQuery);
   const lang = getLang();
-  const filtered: SearchItem[] = data.filter((item) => {
+  const textMatches: SearchItem[] = data.filter((item) => {
     if (!query) return true;
     const text = item.text?.[lang] || item.text?.all || "";
     return text.includes(query);
   });
+  filters.updateCounts(textMatches);
+  const filtered = textMatches.filter((item) => matchesFilters(item, filters.state));
+  if (!query && !filters.isActive()) mapView.resetUserMoved();
   const origin = mapView.getUserLocation();
   const distanceOf = (item: SearchItem) =>
     origin && hasValidCoordinates(item) ? distanceKm(origin, item) : undefined;
@@ -92,6 +100,8 @@ const applyFilter = () => {
     filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
   listView.render(filtered, lang, distanceOf);
+  updateEmptyState(filtered.length === 0, rawQuery, lang);
+  if (refit && filtered.length > 0 && filtered.length < data.length) mapView.fitResults(filtered);
   if (resultsCount) {
     const text = uiText[lang];
     resultsCount.textContent =
@@ -105,13 +115,39 @@ const applyFilter = () => {
   }
 };
 
+const updateEmptyState = (isEmpty: boolean, rawQuery: string, lang: LanguageCode) => {
+  if (!isEmpty || !emptyMessage) return;
+  const text = uiText[lang];
+  emptyMessage.textContent = rawQuery ? text.emptyQuery.replace("{q}", rawQuery) : text.emptyFilters;
+  document.querySelectorAll<HTMLElement>("[data-empty-action]").forEach((button) => {
+    button.hidden = button.dataset.emptyAction === "filters" ? !filters.isActive() : !rawQuery;
+  });
+};
+
+document.querySelectorAll<HTMLElement>("[data-empty-action]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.dataset.emptyAction === "filters") {
+      filters.clear();
+    } else if (searchInput) {
+      searchInput.value = "";
+      applyFilter({ refit: true });
+      searchInput.focus();
+    }
+  });
+});
+
 const updateUiText = (lang: LanguageCode) => {
   const text = uiText[lang];
   const pageTitle = document.getElementById("page-title");
   const langTriggerLabel = document.getElementById("lang-trigger-label");
   if (pageTitle) pageTitle.textContent = text.title;
   if (searchInput) searchInput.placeholder = text.searchPlaceholder;
-  if (emptyState) emptyState.textContent = text.emptyState;
+  filters.updateLabels(lang);
+  document.querySelectorAll<HTMLElement>("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n as keyof typeof text;
+    if (typeof text[key] === "string") element.textContent = text[key];
+  });
+  document.getElementById("filters")?.setAttribute("aria-label", text.filtersLabel);
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
   document.querySelectorAll<HTMLButtonElement>("[data-lang-option]").forEach((button) => {
     const isSelected = button.dataset.langOption === lang;
@@ -145,7 +181,11 @@ const setLanguage = (lang: LanguageCode) => {
 };
 
 setupLanguageMenu(setLanguage);
-searchInput?.addEventListener("input", applyFilter);
+let searchTimer = 0;
+searchInput?.addEventListener("input", () => {
+  window.clearTimeout(searchTimer);
+  searchTimer = window.setTimeout(() => applyFilter({ refit: true }), 150);
+});
 
 const layersButton = document.getElementById("layers-button");
 layersButton?.addEventListener("click", () => {

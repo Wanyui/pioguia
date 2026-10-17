@@ -35,7 +35,13 @@ var uiText = {
     sheetHandle: "Ampliar o reducir la lista",
     resultsOne: "1 ventaja",
     resultsMany: "{n} ventajas",
-    distanceAway: "a {d}"
+    distanceAway: "a {d}",
+    filtersLabel: "Filtros",
+    zoneButton: "Zona",
+    clearFilters: "Quitar filtros",
+    clearSearch: "Borrar b\xFAsqueda",
+    emptyQuery: "Vaya, no hay \xAB{q}\xBB por aqu\xED. Prueba con otra palabra o quita los filtros.",
+    emptyFilters: "Vaya, no hay ventajas con estos filtros."
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -55,7 +61,13 @@ var uiText = {
     sheetHandle: "Amplia o redueix la llista",
     resultsOne: "1 avantatge",
     resultsMany: "{n} avantatges",
-    distanceAway: "a {d}"
+    distanceAway: "a {d}",
+    filtersLabel: "Filtres",
+    zoneButton: "Zona",
+    clearFilters: "Treu els filtres",
+    clearSearch: "Esborra la cerca",
+    emptyQuery: "Vaja, no hi ha \xAB{q}\xBB per aqu\xED. Prova una altra paraula o treu els filtres.",
+    emptyFilters: "Vaja, no hi ha avantatges amb aquests filtres."
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -75,7 +87,13 @@ var uiText = {
     sheetHandle: "Expand or collapse the list",
     resultsOne: "1 benefit",
     resultsMany: "{n} benefits",
-    distanceAway: "{d} away"
+    distanceAway: "{d} away",
+    filtersLabel: "Filters",
+    zoneButton: "Area",
+    clearFilters: "Clear filters",
+    clearSearch: "Clear search",
+    emptyQuery: "Oh, there's no \u201C{q}\u201D around here. Try another word or clear the filters.",
+    emptyFilters: "Oh, there are no benefits with these filters."
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -95,7 +113,13 @@ var uiText = {
     sheetHandle: "Agrandir ou r\xE9duire la liste",
     resultsOne: "1 avantage",
     resultsMany: "{n} avantages",
-    distanceAway: "\xE0 {d}"
+    distanceAway: "\xE0 {d}",
+    filtersLabel: "Filtres",
+    zoneButton: "Zone",
+    clearFilters: "Effacer les filtres",
+    clearSearch: "Effacer la recherche",
+    emptyQuery: "Mince, pas de \xAB {q} \xBB par ici. Essaie un autre mot ou enl\xE8ve les filtres.",
+    emptyFilters: "Mince, aucun avantage avec ces filtres."
   },
   ru: {
     title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
@@ -115,7 +139,13 @@ var uiText = {
     sheetHandle: "\u0420\u0430\u0437\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0438\u043B\u0438 \u0441\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0441\u043F\u0438\u0441\u043E\u043A",
     resultsOne: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: 1",
     resultsMany: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: {n}",
-    distanceAway: "{d} \u043E\u0442 \u0442\u0435\u0431\u044F"
+    distanceAway: "{d} \u043E\u0442 \u0442\u0435\u0431\u044F",
+    filtersLabel: "\u0424\u0438\u043B\u044C\u0442\u0440\u044B",
+    zoneButton: "\u0420\u0430\u0439\u043E\u043D",
+    clearFilters: "\u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B",
+    clearSearch: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043F\u043E\u0438\u0441\u043A",
+    emptyQuery: "\u0425\u043C, \xAB{q}\xBB \u0437\u0434\u0435\u0441\u044C \u043D\u0435\u0442. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0434\u0440\u0443\u0433\u043E\u0435 \u0441\u043B\u043E\u0432\u043E \u0438\u043B\u0438 \u0441\u0431\u0440\u043E\u0441\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B.",
+    emptyFilters: "\u0425\u043C, \u0441 \u044D\u0442\u0438\u043C\u0438 \u0444\u0438\u043B\u044C\u0442\u0440\u0430\u043C\u0438 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442."
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -308,6 +338,130 @@ var CATEGORIES = {
   }
 };
 
+// src/lib/zones.ts
+var parish = (name) => ({ es: name, ca: name, en: name, fr: name, ru: name });
+var ZONES = {
+  "andorra-la-vella": { label: parish("Andorra la Vella"), shield: "/img/escuts/andorra-la-vella.png" },
+  "escaldes-engordany": { label: parish("Escaldes-Engordany"), shield: "/img/escuts/escaldes-engordany.png" },
+  encamp: { label: parish("Encamp"), shield: "/img/escuts/encamp.png" },
+  canillo: { label: parish("Canillo"), shield: "/img/escuts/canillo.png" },
+  ordino: { label: parish("Ordino"), shield: "/img/escuts/ordino.png" },
+  "la-massana": { label: parish("La Massana"), shield: "/img/escuts/la-massana.png" },
+  "sant-julia-de-loria": { label: parish("Sant Juli\xE0 de L\xF2ria"), shield: "/img/escuts/sant-julia-de-loria.png" },
+  fuera: {
+    label: {
+      es: "Fuera de Andorra",
+      ca: "Fora d'Andorra",
+      en: "Outside Andorra",
+      fr: "Hors d'Andorre",
+      ru: "\u0417\u0430 \u043F\u0440\u0435\u0434\u0435\u043B\u0430\u043C\u0438 \u0410\u043D\u0434\u043E\u0440\u0440\u044B"
+    }
+  }
+};
+
+// src/scripts/app/filters.ts
+var matchesFilters = (item, state, skip) => (skip === "categories" || state.categories.size === 0 || state.categories.has(item.category)) && (skip === "zones" || state.zones.size === 0 || state.zones.has(item.zone));
+var setupFilters = (onChange) => {
+  const state = { categories: /* @__PURE__ */ new Set(), zones: /* @__PURE__ */ new Set() };
+  const categoryChips = Array.from(document.querySelectorAll("[data-category]"));
+  const zoneOptions = Array.from(document.querySelectorAll("[data-zone]"));
+  const zoneTrigger = document.getElementById("zone-trigger");
+  const zonePanel = document.getElementById("zone-panel");
+  const zoneCount = document.getElementById("zone-count");
+  const clearButton = document.getElementById("clear-filters");
+  const isActive = () => state.categories.size > 0 || state.zones.size > 0;
+  const sync = () => {
+    categoryChips.forEach((chip) => {
+      chip.setAttribute("aria-pressed", String(state.categories.has(chip.dataset.category)));
+    });
+    zoneOptions.forEach((option) => {
+      option.setAttribute("aria-pressed", String(state.zones.has(option.dataset.zone)));
+    });
+    zoneTrigger?.classList.toggle("has-selection", state.zones.size > 0);
+    if (zoneCount) {
+      zoneCount.hidden = state.zones.size === 0;
+      zoneCount.textContent = String(state.zones.size);
+    }
+    if (clearButton) clearButton.hidden = !isActive();
+  };
+  const toggle = (set, value) => set.has(value) ? set.delete(value) : set.add(value);
+  categoryChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      toggle(state.categories, chip.dataset.category);
+      sync();
+      onChange();
+    });
+  });
+  zoneOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      toggle(state.zones, option.dataset.zone);
+      sync();
+      onChange();
+    });
+  });
+  const setZonePanel = (open) => {
+    if (!zonePanel || !zoneTrigger) return;
+    zonePanel.hidden = !open;
+    zoneTrigger.setAttribute("aria-expanded", String(open));
+    if (open) zoneOptions[0]?.focus();
+  };
+  zoneTrigger?.addEventListener("click", () => setZonePanel(zonePanel?.hidden ?? false));
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (zonePanel && !zonePanel.hidden && !zonePanel.contains(target) && !zoneTrigger?.contains(target)) {
+      setZonePanel(false);
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && zonePanel && !zonePanel.hidden) {
+      setZonePanel(false);
+      zoneTrigger?.focus();
+    }
+  });
+  const clear = () => {
+    state.categories.clear();
+    state.zones.clear();
+    sync();
+    onChange();
+  };
+  clearButton?.addEventListener("click", clear);
+  const updateCounts = (pool) => {
+    const byCategory = /* @__PURE__ */ new Map();
+    const byZone = /* @__PURE__ */ new Map();
+    pool.forEach((item) => {
+      if (matchesFilters(item, state, "categories")) {
+        byCategory.set(item.category, (byCategory.get(item.category) ?? 0) + 1);
+      }
+      if (matchesFilters(item, state, "zones")) {
+        byZone.set(item.zone, (byZone.get(item.zone) ?? 0) + 1);
+      }
+    });
+    categoryChips.forEach((chip) => {
+      const n = byCategory.get(chip.dataset.category) ?? 0;
+      const count = chip.querySelector(".chip-count");
+      if (count) count.textContent = String(n);
+      chip.classList.toggle("is-empty", n === 0);
+    });
+    zoneOptions.forEach((option) => {
+      const n = byZone.get(option.dataset.zone) ?? 0;
+      const count = option.querySelector(".chip-count");
+      if (count) count.textContent = String(n);
+    });
+  };
+  const updateLabels = (lang) => {
+    categoryChips.forEach((chip) => {
+      const label = chip.querySelector(".chip-label");
+      if (label) label.textContent = CATEGORIES[chip.dataset.category].label[lang];
+    });
+    zoneOptions.forEach((option) => {
+      const label = option.querySelector(".zone-label");
+      if (label) label.textContent = ZONES[option.dataset.zone].label[lang];
+    });
+  };
+  sync();
+  return { state, isActive, clear, updateCounts, updateLabels };
+};
+
 // src/icons/index.ts
 var ICON_PATHS = {
   "mountainSnow": '<path d="m8 3 4 8 5-5 5 15H2L8 3z" /><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />',
@@ -328,8 +482,10 @@ var ICON_PATHS = {
   "mail": '<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />',
   "x": '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
   "chevronRight": '<path d="m9 18 6-6-6-6" />',
+  "chevronDown": '<path d="m6 9 6 6 6-6" />',
   "share2": '<circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />',
-  "info": '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />'
+  "info": '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />',
+  "mapPin": '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" />'
 };
 var icon = (name, className = "icon", label) => `<svg class="${className}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${ICON_PATHS[name]}</svg>`;
 
@@ -510,15 +666,44 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
   if (bounds.isValid()) {
     map.fitBounds(bounds, { padding: [24, 24] });
   }
+  let programmatic = false;
+  let userMoved = false;
+  const asProgram = (move) => {
+    programmatic = true;
+    move();
+    window.setTimeout(() => programmatic = false, 450);
+  };
+  map.on("dragstart zoomstart", () => {
+    if (!programmatic) userMoved = true;
+  });
+  const fitResults = (items) => {
+    if (userMoved) return;
+    const points = items.filter(hasValidCoordinates).map((item) => [item.lat, item.lng]);
+    if (points.length === 0) return;
+    asProgram(() => {
+      if (points.length === 1) {
+        centerOn(points[0], Math.max(map.getZoom(), 15), bottomInset());
+      } else {
+        map.fitBounds(import_leaflet.default.latLngBounds(points), {
+          paddingTopLeft: [32, 120],
+          paddingBottomRight: [64, bottomInset() + 32],
+          maxZoom: 16,
+          animate: true
+        });
+      }
+    });
+  };
   const showOnly = (items) => {
     markers.forEach((marker) => map.removeLayer(marker));
     items.forEach((item) => markers.get(item.id)?.addTo(map));
     map.invalidateSize();
   };
-  const centerOn = (latLng, zoom, offsetY = 0) => {
+  function centerOn(latLng, zoom, offsetY = 0) {
     const point = map.project(latLng, zoom).add([0, offsetY / 2]);
+    programmatic = true;
     map.setView(map.unproject(point, zoom), zoom, { animate: true });
-  };
+    window.setTimeout(() => programmatic = false, 450);
+  }
   const setMarkerActive = (id, active, { center = false, openPopup = false, offsetY = 0 } = {}) => {
     const marker = markers.get(id);
     if (!marker) return;
@@ -571,6 +756,8 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
     const origin = userLocation;
     const nearest = data2.filter(hasValidCoordinates).map((item) => ({ item, d: distanceKm(origin, item) })).sort((a, b) => a.d - b.d).slice(0, 3).map(({ item }) => [item.lat, item.lng]);
     const frame = import_leaflet.default.latLngBounds([[origin.lat, origin.lng], ...nearest]);
+    programmatic = true;
+    window.setTimeout(() => programmatic = false, 450);
     map.fitBounds(frame, {
       paddingTopLeft: [32, 80],
       paddingBottomRight: [64, bottomInset() + 32],
@@ -602,6 +789,8 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
     map,
     applyBaseLayer,
     showOnly,
+    fitResults,
+    resetUserMoved: () => userMoved = false,
     setMarkerActive,
     hasMarker: (id) => markers.has(id),
     centerOnUser,
@@ -752,20 +941,28 @@ var mapView = createMapView({
   onUserLocation: () => applyFilter(),
   bottomInset: () => sheetOffset()
 });
-var applyFilter = () => {
-  const query = normalize(searchInput?.value ?? "");
+var filters = setupFilters(() => applyFilter({ refit: true }));
+var emptyMessage = document.getElementById("empty-message");
+var applyFilter = ({ refit = false } = {}) => {
+  const rawQuery = searchInput?.value.trim() ?? "";
+  const query = normalize(rawQuery);
   const lang = getLang();
-  const filtered = data.filter((item) => {
+  const textMatches = data.filter((item) => {
     if (!query) return true;
     const text = item.text?.[lang] || item.text?.all || "";
     return text.includes(query);
   });
+  filters.updateCounts(textMatches);
+  const filtered = textMatches.filter((item) => matchesFilters(item, filters.state));
+  if (!query && !filters.isActive()) mapView.resetUserMoved();
   const origin = mapView.getUserLocation();
   const distanceOf = (item) => origin && hasValidCoordinates(item) ? distanceKm(origin, item) : void 0;
   if (origin) {
     filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
   listView.render(filtered, lang, distanceOf);
+  updateEmptyState(filtered.length === 0, rawQuery, lang);
+  if (refit && filtered.length > 0 && filtered.length < data.length) mapView.fitResults(filtered);
   if (resultsCount) {
     const text = uiText[lang];
     resultsCount.textContent = filtered.length === 1 ? text.resultsOne : text.resultsMany.replace("{n}", String(filtered.length));
@@ -777,13 +974,37 @@ var applyFilter = () => {
     setActive(activeId);
   }
 };
+var updateEmptyState = (isEmpty, rawQuery, lang) => {
+  if (!isEmpty || !emptyMessage) return;
+  const text = uiText[lang];
+  emptyMessage.textContent = rawQuery ? text.emptyQuery.replace("{q}", rawQuery) : text.emptyFilters;
+  document.querySelectorAll("[data-empty-action]").forEach((button) => {
+    button.hidden = button.dataset.emptyAction === "filters" ? !filters.isActive() : !rawQuery;
+  });
+};
+document.querySelectorAll("[data-empty-action]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (button.dataset.emptyAction === "filters") {
+      filters.clear();
+    } else if (searchInput) {
+      searchInput.value = "";
+      applyFilter({ refit: true });
+      searchInput.focus();
+    }
+  });
+});
 var updateUiText = (lang) => {
   const text = uiText[lang];
   const pageTitle = document.getElementById("page-title");
   const langTriggerLabel = document.getElementById("lang-trigger-label");
   if (pageTitle) pageTitle.textContent = text.title;
   if (searchInput) searchInput.placeholder = text.searchPlaceholder;
-  if (emptyState) emptyState.textContent = text.emptyState;
+  filters.updateLabels(lang);
+  document.querySelectorAll("[data-i18n]").forEach((element) => {
+    const key = element.dataset.i18n;
+    if (typeof text[key] === "string") element.textContent = text[key];
+  });
+  document.getElementById("filters")?.setAttribute("aria-label", text.filtersLabel);
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
   document.querySelectorAll("[data-lang-option]").forEach((button) => {
     const isSelected = button.dataset.langOption === lang;
@@ -813,7 +1034,11 @@ var setLanguage = (lang) => {
   applyFilter();
 };
 setupLanguageMenu(setLanguage);
-searchInput?.addEventListener("input", applyFilter);
+var searchTimer = 0;
+searchInput?.addEventListener("input", () => {
+  window.clearTimeout(searchTimer);
+  searchTimer = window.setTimeout(() => applyFilter({ refit: true }), 150);
+});
 var layersButton = document.getElementById("layers-button");
 layersButton?.addEventListener("click", () => {
   const light = layersButton.getAttribute("aria-pressed") !== "true";

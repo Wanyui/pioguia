@@ -9,7 +9,7 @@ const ICONS = [
   "mountain-snow", "ferris-wheel", "shopping-bag", "landmark", "concierge-bell", "utensils",
   // Interface
   "search", "sliders-horizontal", "locate-fixed", "layers", "list", "map", "phone", "navigation",
-  "globe", "mail", "x", "chevron-right", "share-2", "info",
+  "globe", "mail", "x", "chevron-right", "chevron-down", "share-2", "info", "map-pin",
 ];
 
 const require = createRequire(import.meta.url);
