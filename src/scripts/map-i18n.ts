@@ -13,6 +13,13 @@ export const uiText: Record<
     mapStyleOsm: string;
     mapStylePositron: string;
     languageLabel: string;
+    searchLabel: string;
+    viewList: string;
+    viewMap: string;
+    mapStyleToggle: string;
+    sheetHandle: string;
+    resultsOne: string;
+    resultsMany: string;
   }
 > = {
   es: {
@@ -26,6 +33,13 @@ export const uiText: Record<
     mapStyleOsm: "OSM",
     mapStylePositron: "Claro",
     languageLabel: "🇪🇸 Español",
+    searchLabel: "Buscar ventajas",
+    viewList: "Lista",
+    viewMap: "Mapa",
+    mapStyleToggle: "Mapa claro",
+    sheetHandle: "Ampliar o reducir la lista",
+    resultsOne: "1 ventaja",
+    resultsMany: "{n} ventajas",
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -38,6 +52,13 @@ export const uiText: Record<
     mapStyleOsm: "OSM",
     mapStylePositron: "Clar",
     languageLabel: "🇦🇩 Català",
+    searchLabel: "Cerca avantatges",
+    viewList: "Llista",
+    viewMap: "Mapa",
+    mapStyleToggle: "Mapa clar",
+    sheetHandle: "Amplia o redueix la llista",
+    resultsOne: "1 avantatge",
+    resultsMany: "{n} avantatges",
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -50,6 +71,13 @@ export const uiText: Record<
     mapStyleOsm: "OSM",
     mapStylePositron: "Light",
     languageLabel: "🇬🇧 English",
+    searchLabel: "Search benefits",
+    viewList: "List",
+    viewMap: "Map",
+    mapStyleToggle: "Light map",
+    sheetHandle: "Expand or collapse the list",
+    resultsOne: "1 benefit",
+    resultsMany: "{n} benefits",
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -62,6 +90,13 @@ export const uiText: Record<
     mapStyleOsm: "OSM",
     mapStylePositron: "Clair",
     languageLabel: "🇫🇷 Français",
+    searchLabel: "Rechercher des avantages",
+    viewList: "Liste",
+    viewMap: "Carte",
+    mapStyleToggle: "Carte claire",
+    sheetHandle: "Agrandir ou réduire la liste",
+    resultsOne: "1 avantage",
+    resultsMany: "{n} avantages",
   },
   ru: {
     title: "Гид по преимуществам Piolet",
@@ -74,6 +109,13 @@ export const uiText: Record<
     mapStyleOsm: "OSM",
     mapStylePositron: "Светлая",
     languageLabel: "🇷🇺 Русский",
+    searchLabel: "Искать предложения",
+    viewList: "Список",
+    viewMap: "Карта",
+    mapStyleToggle: "Светлая карта",
+    sheetHandle: "Развернуть или свернуть список",
+    resultsOne: "Предложений: 1",
+    resultsMany: "Предложений: {n}",
   },
 };
 

@@ -41,5 +41,8 @@ export const createListView = ({ results, emptyState, onCardClick }: ListViewOpt
     });
   });
 
-  return { render, setCardActive };
+  /** Brings a card to the top of the list (used after the mobile sheet changes height). */
+  const scrollToCard = (id: string) => cardFor(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
+
+  return { render, setCardActive, scrollToCard };
 };

@@ -42,7 +42,8 @@ type MapViewOptions = {
 };
 
 export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: MapViewOptions) => {
-  const map = L.map(element).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  const map = L.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  L.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
 
   // ----- Base layers -----
@@ -111,16 +112,24 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
     map.invalidateSize();
   };
 
-  const setMarkerActive = (id: string, active: boolean, { center = false, openPopup = false } = {}) => {
+  /** Centres a point, shifted up by `offsetY` px so it stays visible above the mobile sheet. */
+  const centerOn = (latLng: L.LatLngExpression, zoom: number, offsetY = 0) => {
+    const point = map.project(latLng, zoom).add([0, offsetY / 2]);
+    map.setView(map.unproject(point, zoom), zoom, { animate: true });
+  };
+
+  const setMarkerActive = (
+    id: string,
+    active: boolean,
+    { center = false, openPopup = false, offsetY = 0 } = {}
+  ) => {
     const marker = markers.get(id);
     if (!marker) return;
     marker.setStyle(active ? activeMarkerStyle : defaultMarkerStyle);
     marker.getElement()?.classList.toggle("is-active", active);
     if (!active) return;
     marker.bringToFront();
-    if (center) {
-      map.setView(marker.getLatLng(), Math.max(map.getZoom(), 18), { animate: true });
-    }
+    if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
     if (openPopup) marker.openPopup();
   };
 
@@ -194,26 +203,6 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation }: 
     requestUserLocation(updateUserLocation, showLocationError);
   };
 
-  const LocationControl = L.Control.extend({
-    onAdd() {
-      const container = L.DomUtil.create(
-        "div",
-        "leaflet-bar leaflet-control leaflet-control-zoom leaflet-control-custom-location"
-      );
-      const button = L.DomUtil.create("a", "leaflet-control-zoom-in", container);
-      button.href = "#";
-      button.title = uiText[getLang()].locationButton;
-      button.setAttribute("aria-label", uiText[getLang()].locationButton);
-      button.textContent = "◎";
-      L.DomEvent.disableClickPropagation(container);
-      L.DomEvent.on(button, "click", (event) => {
-        L.DomEvent.preventDefault(event);
-        centerOnUser();
-      });
-      return container;
-    },
-  });
-  new LocationControl({ position: "topleft" }).addTo(map);
 
   const requestInitialLocation = () => {
     if ("geolocation" in navigator) requestUserLocation(updateUserLocation);

@@ -8,11 +8,11 @@ import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import type { SearchItem } from "../lib/search-index";
 import { uiText, type LanguageCode } from "./map-i18n";
 import { normalize } from "./map-utils";
-import { distanceKm, getLang, hasValidCoordinates, MOBILE_QUERY, readBenefits } from "./app/context";
-import { setupCompactHeader } from "./app/header";
+import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
 import { createListView } from "./app/list-view";
-import { createMapView, isBaseStyle } from "./app/map-view";
+import { createMapView } from "./app/map-view";
+import { setupSheet } from "./app/sheet";
 
 const dataElement = document.getElementById("benefits-data");
 const mapElement = document.getElementById("map");
@@ -26,9 +26,13 @@ L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 const data = readBenefits(dataElement);
 const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
 const emptyState = document.getElementById("empty-state");
-const mapContainer = mapElement.closest(".map-container") as HTMLElement | null;
+const resultsCount = document.getElementById("results-count");
+const sheet = setupSheet();
 
 let activeId: string | null = null;
+
+/** Height of the mobile sheet covering the map, so centred markers stay visible above it. */
+const sheetOffset = () => sheet.currentHeight();
 
 const setActive = (
   id: string | null,
@@ -40,7 +44,7 @@ const setActive = (
   }
   activeId = id;
   if (!id) return;
-  mapView.setMarkerActive(id, true, { center, openPopup });
+  mapView.setMarkerActive(id, true, { center, openPopup, offsetY: sheetOffset() });
   listView.setCardActive(id, true, { scroll });
 };
 
@@ -48,8 +52,11 @@ const listView = createListView({
   results,
   emptyState,
   onCardClick: (id) => {
-    if (window.matchMedia(MOBILE_QUERY).matches) {
-      mapContainer?.scrollIntoView({ behavior: "smooth", block: "start" });
+    // On mobile, picking a card from the full list goes back to the map to show it.
+    if (sheet.isMobile() && sheet.getSnap() === "full") {
+      sheet.setSnap("half");
+      // Wait for the sheet to shrink, then keep the chosen card in view.
+      window.setTimeout(() => listView.scrollToCard(id), 240);
     }
     if (!mapView.hasMarker(id)) {
       setActive(id, { scroll: true });
@@ -62,7 +69,10 @@ const listView = createListView({
 const mapView = createMapView({
   element: mapElement,
   data,
-  onMarkerClick: (id) => setActive(id, { openPopup: true, scroll: true }),
+  onMarkerClick: (id) => {
+    if (sheet.isMobile() && sheet.getSnap() === "peek") sheet.setSnap("half");
+    setActive(id, { openPopup: true, scroll: true });
+  },
   onUserLocation: () => applyFilter(),
 });
 
@@ -81,6 +91,11 @@ const applyFilter = () => {
     filtered.sort((a, b) => distance(a) - distance(b));
   }
   listView.render(filtered, lang);
+  if (resultsCount) {
+    const text = uiText[lang];
+    resultsCount.textContent =
+      filtered.length === 1 ? text.resultsOne : text.resultsMany.replace("{n}", String(filtered.length));
+  }
   mapView.showOnly(filtered);
   if (activeId && !filtered.some((item) => item.id === activeId)) {
     setActive(null);
@@ -104,20 +119,18 @@ const updateUiText = (lang: LanguageCode) => {
     button.classList.toggle("font-semibold", isSelected);
   });
 
-  const locationButton = document.querySelector<HTMLAnchorElement>(
-    ".leaflet-control-custom-location .leaflet-control-zoom-in"
-  );
-  if (locationButton) {
-    locationButton.title = text.locationButton;
-    locationButton.setAttribute("aria-label", text.locationButton);
-  }
-
-  const osmLabel = document.querySelector<HTMLElement>('.map-style-button[data-style="osm"] .map-style-label');
-  const positronLabel = document.querySelector<HTMLElement>(
-    '.map-style-button[data-style="positron"] .map-style-label'
-  );
-  if (osmLabel) osmLabel.textContent = text.mapStyleOsm;
-  if (positronLabel) positronLabel.textContent = text.mapStylePositron;
+  const setLabel = (element: Element | null, label: string) => {
+    element?.setAttribute("aria-label", label);
+    element?.setAttribute("title", label);
+  };
+  setLabel(searchInput, text.searchLabel);
+  setLabel(document.getElementById("locate-button"), text.locationButton);
+  setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
+  setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
+  document.querySelectorAll<HTMLElement>("[data-view-button]").forEach((button) => {
+    const label = button.querySelector(".view-label");
+    if (label) label.textContent = button.dataset.viewButton === "list" ? text.viewList : text.viewMap;
+  });
 
   mapView.setUserPopupText(text.locationPopup);
 };
@@ -130,20 +143,16 @@ const setLanguage = (lang: LanguageCode) => {
   applyFilter();
 };
 
-const languageMenu = setupLanguageMenu(setLanguage);
-setupCompactHeader(() => languageMenu.close());
+setupLanguageMenu(setLanguage);
 searchInput?.addEventListener("input", applyFilter);
 
-const styleButtons = document.querySelectorAll<HTMLButtonElement>(".map-style-button");
-styleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const style = button.dataset.style;
-    if (!isBaseStyle(style)) return;
-    void mapView.applyBaseLayer(style);
-    styleButtons.forEach((btn) => btn.classList.remove("is-active"));
-    button.classList.add("is-active");
-  });
+const layersButton = document.getElementById("layers-button");
+layersButton?.addEventListener("click", () => {
+  const light = layersButton.getAttribute("aria-pressed") !== "true";
+  layersButton.setAttribute("aria-pressed", String(light));
+  void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
+document.getElementById("locate-button")?.addEventListener("click", () => mapView.centerOnUser());
 
 mapView.requestInitialLocation();
 setLanguage(getLang());

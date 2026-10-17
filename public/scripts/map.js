@@ -27,7 +27,14 @@ var uiText = {
     locationUnavailable: "No se ha podido obtener tu ubicaci\xF3n. Int\xE9ntalo de nuevo.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Claro",
-    languageLabel: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
+    languageLabel: "\u{1F1EA}\u{1F1F8} Espa\xF1ol",
+    searchLabel: "Buscar ventajas",
+    viewList: "Lista",
+    viewMap: "Mapa",
+    mapStyleToggle: "Mapa claro",
+    sheetHandle: "Ampliar o reducir la lista",
+    resultsOne: "1 ventaja",
+    resultsMany: "{n} ventajas"
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -39,7 +46,14 @@ var uiText = {
     locationUnavailable: "No s'ha pogut obtenir la teva ubicaci\xF3. Torna-ho a provar.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clar",
-    languageLabel: "\u{1F1E6}\u{1F1E9} Catal\xE0"
+    languageLabel: "\u{1F1E6}\u{1F1E9} Catal\xE0",
+    searchLabel: "Cerca avantatges",
+    viewList: "Llista",
+    viewMap: "Mapa",
+    mapStyleToggle: "Mapa clar",
+    sheetHandle: "Amplia o redueix la llista",
+    resultsOne: "1 avantatge",
+    resultsMany: "{n} avantatges"
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -51,7 +65,14 @@ var uiText = {
     locationUnavailable: "Your location could not be determined. Please try again.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Light",
-    languageLabel: "\u{1F1EC}\u{1F1E7} English"
+    languageLabel: "\u{1F1EC}\u{1F1E7} English",
+    searchLabel: "Search benefits",
+    viewList: "List",
+    viewMap: "Map",
+    mapStyleToggle: "Light map",
+    sheetHandle: "Expand or collapse the list",
+    resultsOne: "1 benefit",
+    resultsMany: "{n} benefits"
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -63,7 +84,14 @@ var uiText = {
     locationUnavailable: "Impossible d'obtenir votre position. Veuillez r\xE9essayer.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clair",
-    languageLabel: "\u{1F1EB}\u{1F1F7} Fran\xE7ais"
+    languageLabel: "\u{1F1EB}\u{1F1F7} Fran\xE7ais",
+    searchLabel: "Rechercher des avantages",
+    viewList: "Liste",
+    viewMap: "Carte",
+    mapStyleToggle: "Carte claire",
+    sheetHandle: "Agrandir ou r\xE9duire la liste",
+    resultsOne: "1 avantage",
+    resultsMany: "{n} avantages"
   },
   ru: {
     title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
@@ -75,7 +103,14 @@ var uiText = {
     locationUnavailable: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u0442\u044C \u0432\u0430\u0448\u0435 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.",
     mapStyleOsm: "OSM",
     mapStylePositron: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F",
-    languageLabel: "\u{1F1F7}\u{1F1FA} \u0420\u0443\u0441\u0441\u043A\u0438\u0439"
+    languageLabel: "\u{1F1F7}\u{1F1FA} \u0420\u0443\u0441\u0441\u043A\u0438\u0439",
+    searchLabel: "\u0418\u0441\u043A\u0430\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F",
+    viewList: "\u0421\u043F\u0438\u0441\u043E\u043A",
+    viewMap: "\u041A\u0430\u0440\u0442\u0430",
+    mapStyleToggle: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F \u043A\u0430\u0440\u0442\u0430",
+    sheetHandle: "\u0420\u0430\u0437\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0438\u043B\u0438 \u0441\u0432\u0435\u0440\u043D\u0443\u0442\u044C \u0441\u043F\u0438\u0441\u043E\u043A",
+    resultsOne: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: 1",
+    resultsMany: "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0439: {n}"
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -160,42 +195,6 @@ var distanceKm = (from, to) => {
   const dLng = toRad(to.lng - from.lng);
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(from.lat)) * Math.cos(toRad(to.lat)) * Math.sin(dLng / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-};
-
-// src/scripts/app/header.ts
-var COMPACT_ENTER_Y = 12;
-var COMPACT_EXIT_Y = 2;
-var setupCompactHeader = (onCompact) => {
-  const appHeader = document.getElementById("app-header");
-  const headerInner = document.getElementById("header-inner");
-  const headerMetaRow = document.getElementById("header-meta-row");
-  const langControls = document.getElementById("lang-controls");
-  const mapStyleControls = document.getElementById("map-style-controls");
-  if (!appHeader || !headerInner || !headerMetaRow || !langControls || !mapStyleControls) return;
-  let isCompact = false;
-  const apply = (compact) => {
-    if (isCompact === compact) return;
-    isCompact = compact;
-    appHeader.classList.toggle("header-compact", compact);
-    headerInner.classList.toggle("py-3", !compact);
-    headerInner.classList.toggle("py-2", compact);
-    headerMetaRow.classList.toggle("hidden", compact);
-    langControls.classList.toggle("hidden", compact);
-    mapStyleControls.classList.toggle("hidden", compact);
-    mapStyleControls.classList.toggle("inline-flex", !compact);
-    if (compact) onCompact();
-  };
-  const update = () => {
-    if (!window.matchMedia(MOBILE_QUERY).matches) {
-      apply(false);
-      return;
-    }
-    const y = window.scrollY;
-    apply(!isCompact && y > COMPACT_ENTER_Y || isCompact && y > COMPACT_EXIT_Y);
-  };
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update);
-  update();
 };
 
 // src/scripts/app/language-menu.ts
@@ -385,7 +384,8 @@ var createListView = ({ results: results2, emptyState: emptyState2, onCardClick 
       menu.removeAttribute("open");
     });
   });
-  return { render, setCardActive };
+  const scrollToCard = (id) => cardFor(id)?.scrollIntoView({ block: "start", behavior: "smooth" });
+  return { render, setCardActive, scrollToCard };
 };
 
 // src/scripts/app/map-view.ts
@@ -429,7 +429,6 @@ var GEOLOCATION_OPTIONS = {
   timeout: 8e3,
   maximumAge: 6e4
 };
-var isBaseStyle = (value) => value === "osm" || value === "positron";
 var defaultMarkerStyle = {
   radius: 6,
   fillOpacity: 1,
@@ -443,7 +442,8 @@ var activeMarkerStyle = {
   className: "pg-marker"
 };
 var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) => {
-  const map = import_leaflet.default.map(element).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  const map = import_leaflet.default.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  import_leaflet.default.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
   const osmLayer = import_leaflet.default.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "&copy; OpenStreetMap contributors",
@@ -497,16 +497,18 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
     items.forEach((item) => markers.get(item.id)?.addTo(map));
     map.invalidateSize();
   };
-  const setMarkerActive = (id, active, { center = false, openPopup = false } = {}) => {
+  const centerOn = (latLng, zoom, offsetY = 0) => {
+    const point = map.project(latLng, zoom).add([0, offsetY / 2]);
+    map.setView(map.unproject(point, zoom), zoom, { animate: true });
+  };
+  const setMarkerActive = (id, active, { center = false, openPopup = false, offsetY = 0 } = {}) => {
     const marker = markers.get(id);
     if (!marker) return;
     marker.setStyle(active ? activeMarkerStyle : defaultMarkerStyle);
     marker.getElement()?.classList.toggle("is-active", active);
     if (!active) return;
     marker.bringToFront();
-    if (center) {
-      map.setView(marker.getLatLng(), Math.max(map.getZoom(), 18), { animate: true });
-    }
+    if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
     if (openPopup) marker.openPopup();
   };
   let userLocation = null;
@@ -565,26 +567,6 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
     }
     requestUserLocation(updateUserLocation, showLocationError);
   };
-  const LocationControl = import_leaflet.default.Control.extend({
-    onAdd() {
-      const container = import_leaflet.default.DomUtil.create(
-        "div",
-        "leaflet-bar leaflet-control leaflet-control-zoom leaflet-control-custom-location"
-      );
-      const button = import_leaflet.default.DomUtil.create("a", "leaflet-control-zoom-in", container);
-      button.href = "#";
-      button.title = uiText[getLang()].locationButton;
-      button.setAttribute("aria-label", uiText[getLang()].locationButton);
-      button.textContent = "\u25CE";
-      import_leaflet.default.DomEvent.disableClickPropagation(container);
-      import_leaflet.default.DomEvent.on(button, "click", (event) => {
-        import_leaflet.default.DomEvent.preventDefault(event);
-        centerOnUser();
-      });
-      return container;
-    }
-  });
-  new LocationControl({ position: "topleft" }).addTo(map);
   const requestInitialLocation = () => {
     if ("geolocation" in navigator) requestUserLocation(updateUserLocation);
   };
@@ -602,6 +584,97 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation }) =>
   };
 };
 
+// src/scripts/app/sheet.ts
+var SNAPS = ["peek", "half", "full"];
+var DRAG_THRESHOLD = 6;
+var setupSheet = (onSnapChange) => {
+  const panel = document.getElementById("panel");
+  const handle = document.getElementById("sheet-handle");
+  const head = panel?.querySelector(".panel-head");
+  const app = document.getElementById("app");
+  const viewButtons = Array.from(document.querySelectorAll("[data-view-button]"));
+  const isMobile = () => window.matchMedia(MOBILE_QUERY).matches;
+  const getSnap = () => panel?.dataset.snap || "half";
+  const snapHeight = (snap) => {
+    if (!isMobile() || !app) return 0;
+    const probe = document.createElement("div");
+    probe.style.cssText = "position:absolute;visibility:hidden;height:var(--h)";
+    const value = { peek: "calc(var(--sheet-peek) + var(--toggle-space))", half: "var(--sheet-half)", full: "var(--sheet-full)" }[snap];
+    probe.style.setProperty("--h", value);
+    app.appendChild(probe);
+    const height = probe.getBoundingClientRect().height;
+    probe.remove();
+    return height;
+  };
+  const setSnap = (snap) => {
+    if (!panel) return;
+    panel.dataset.snap = snap;
+    app?.style.setProperty("--sheet-current", `${snapHeight(snap)}px`);
+    const view = snap === "full" ? "list" : "map";
+    if (app) app.dataset.view = view;
+    viewButtons.forEach((button) => {
+      button.setAttribute("aria-pressed", String(button.dataset.viewButton === view));
+    });
+    handle?.setAttribute("aria-expanded", String(snap === "full"));
+    onSnapChange?.(snap);
+  };
+  viewButtons.forEach((button) => {
+    button.addEventListener("click", () => setSnap(button.dataset.viewButton === "list" ? "full" : "half"));
+  });
+  let lastDragEnd = 0;
+  handle?.addEventListener("click", () => {
+    if (!isMobile() || performance.now() - lastDragEnd < 300) return;
+    const order = ["peek", "half", "full", "half"];
+    const current = getSnap();
+    const next = current === "full" ? "half" : order[order.indexOf(current) + 1] ?? "half";
+    setSnap(next);
+  });
+  const startDrag = (event) => {
+    if (!panel || !isMobile()) return;
+    const startY = event.clientY;
+    const startHeight = panel.getBoundingClientRect().height;
+    let dragging = false;
+    const onMove = (move) => {
+      const dy = startY - move.clientY;
+      if (!dragging && Math.abs(dy) < DRAG_THRESHOLD) return;
+      dragging = true;
+      panel.classList.add("is-dragging");
+      const max = window.innerHeight - 64;
+      panel.style.height = `${Math.min(max, Math.max(96, startHeight + dy))}px`;
+    };
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      window.removeEventListener("pointercancel", onUp);
+      if (!dragging) return;
+      const height = panel.getBoundingClientRect().height;
+      panel.style.removeProperty("height");
+      const heights = SNAPS.map((snap) => {
+        panel.dataset.snap = snap;
+        return panel.getBoundingClientRect().height;
+      });
+      panel.style.height = `${height}px`;
+      void panel.offsetHeight;
+      panel.classList.remove("is-dragging");
+      panel.style.removeProperty("height");
+      const closest = heights.reduce(
+        (best, h, i) => Math.abs(h - height) < Math.abs(heights[best] - height) ? i : best,
+        0
+      );
+      setSnap(SNAPS[closest]);
+      lastDragEnd = performance.now();
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+    window.addEventListener("pointercancel", onUp);
+  };
+  handle?.addEventListener("pointerdown", startDrag);
+  head?.addEventListener("pointerdown", startDrag);
+  setSnap(getSnap());
+  window.addEventListener("resize", () => setSnap(getSnap()));
+  return { getSnap, setSnap, isMobile, panel, currentHeight: () => snapHeight(getSnap()) };
+};
+
 // src/scripts/map.ts
 var dataElement = document.getElementById("benefits-data");
 var mapElement = document.getElementById("map");
@@ -613,8 +686,10 @@ import_leaflet2.default.Icon.Default.mergeOptions({ iconRetinaUrl: marker_icon_2
 var data = readBenefits(dataElement);
 var searchInput = document.getElementById("search-input");
 var emptyState = document.getElementById("empty-state");
-var mapContainer = mapElement.closest(".map-container");
+var resultsCount = document.getElementById("results-count");
+var sheet = setupSheet();
 var activeId = null;
+var sheetOffset = () => sheet.currentHeight();
 var setActive = (id, { center = false, openPopup = false, scroll = false } = {}) => {
   if (activeId) {
     mapView.setMarkerActive(activeId, false);
@@ -622,15 +697,16 @@ var setActive = (id, { center = false, openPopup = false, scroll = false } = {})
   }
   activeId = id;
   if (!id) return;
-  mapView.setMarkerActive(id, true, { center, openPopup });
+  mapView.setMarkerActive(id, true, { center, openPopup, offsetY: sheetOffset() });
   listView.setCardActive(id, true, { scroll });
 };
 var listView = createListView({
   results,
   emptyState,
   onCardClick: (id) => {
-    if (window.matchMedia(MOBILE_QUERY).matches) {
-      mapContainer?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (sheet.isMobile() && sheet.getSnap() === "full") {
+      sheet.setSnap("half");
+      window.setTimeout(() => listView.scrollToCard(id), 240);
     }
     if (!mapView.hasMarker(id)) {
       setActive(id, { scroll: true });
@@ -642,7 +718,10 @@ var listView = createListView({
 var mapView = createMapView({
   element: mapElement,
   data,
-  onMarkerClick: (id) => setActive(id, { openPopup: true, scroll: true }),
+  onMarkerClick: (id) => {
+    if (sheet.isMobile() && sheet.getSnap() === "peek") sheet.setSnap("half");
+    setActive(id, { openPopup: true, scroll: true });
+  },
   onUserLocation: () => applyFilter()
 });
 var applyFilter = () => {
@@ -659,6 +738,10 @@ var applyFilter = () => {
     filtered.sort((a, b) => distance(a) - distance(b));
   }
   listView.render(filtered, lang);
+  if (resultsCount) {
+    const text = uiText[lang];
+    resultsCount.textContent = filtered.length === 1 ? text.resultsOne : text.resultsMany.replace("{n}", String(filtered.length));
+  }
   mapView.showOnly(filtered);
   if (activeId && !filtered.some((item) => item.id === activeId)) {
     setActive(null);
@@ -680,19 +763,18 @@ var updateUiText = (lang) => {
     button.classList.toggle("text-accent", isSelected);
     button.classList.toggle("font-semibold", isSelected);
   });
-  const locationButton = document.querySelector(
-    ".leaflet-control-custom-location .leaflet-control-zoom-in"
-  );
-  if (locationButton) {
-    locationButton.title = text.locationButton;
-    locationButton.setAttribute("aria-label", text.locationButton);
-  }
-  const osmLabel = document.querySelector('.map-style-button[data-style="osm"] .map-style-label');
-  const positronLabel = document.querySelector(
-    '.map-style-button[data-style="positron"] .map-style-label'
-  );
-  if (osmLabel) osmLabel.textContent = text.mapStyleOsm;
-  if (positronLabel) positronLabel.textContent = text.mapStylePositron;
+  const setLabel = (element, label) => {
+    element?.setAttribute("aria-label", label);
+    element?.setAttribute("title", label);
+  };
+  setLabel(searchInput, text.searchLabel);
+  setLabel(document.getElementById("locate-button"), text.locationButton);
+  setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
+  setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
+  document.querySelectorAll("[data-view-button]").forEach((button) => {
+    const label = button.querySelector(".view-label");
+    if (label) label.textContent = button.dataset.viewButton === "list" ? text.viewList : text.viewMap;
+  });
   mapView.setUserPopupText(text.locationPopup);
 };
 var setLanguage = (lang) => {
@@ -702,19 +784,15 @@ var setLanguage = (lang) => {
   updateUiText(lang);
   applyFilter();
 };
-var languageMenu = setupLanguageMenu(setLanguage);
-setupCompactHeader(() => languageMenu.close());
+setupLanguageMenu(setLanguage);
 searchInput?.addEventListener("input", applyFilter);
-var styleButtons = document.querySelectorAll(".map-style-button");
-styleButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const style = button.dataset.style;
-    if (!isBaseStyle(style)) return;
-    void mapView.applyBaseLayer(style);
-    styleButtons.forEach((btn) => btn.classList.remove("is-active"));
-    button.classList.add("is-active");
-  });
+var layersButton = document.getElementById("layers-button");
+layersButton?.addEventListener("click", () => {
+  const light = layersButton.getAttribute("aria-pressed") !== "true";
+  layersButton.setAttribute("aria-pressed", String(light));
+  void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
+document.getElementById("locate-button")?.addEventListener("click", () => mapView.centerOnUser());
 mapView.requestInitialLocation();
 setLanguage(getLang());
 requestAnimationFrame(() => mapView.map.invalidateSize());

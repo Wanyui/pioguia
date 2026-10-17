@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Map from "../components/Map.astro";
 import { buildSearchIndex } from "../lib/search-index";
+import { icon } from "../icons";
 import "../styles/index.css";
 
 const entries = await getCollection("benefits");
@@ -138,102 +139,96 @@ const structuredData = {
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
   </head>
-  <body class="min-h-screen bg-canvas text-ink antialiased">
-    <header
-      id="app-header"
-      class="sticky top-0 z-[1100] border-b border-line bg-surface/90 backdrop-blur"
-    >
-      <div id="header-inner" class="mx-auto max-w-[1600px] px-4 py-3 md:px-6">
-        <div id="header-meta-row" class="mb-3 flex items-center justify-between gap-3">
-          <h1 id="page-title" class="text-base font-semibold text-ink md:text-xl">
-            Guía de ventajas Piolet
-          </h1>
-          <div class="rounded-full bg-soft px-3 py-1 text-xs font-medium text-accent">
-            Club Piolet
-          </div>
-        </div>
-        <div class="controls flex flex-wrap items-center gap-2 md:gap-3">
-        <input
-          id="search-input"
-          type="search"
-          aria-label="Buscar beneficios por palabra clave"
-          class="h-10 min-w-[220px] flex-[1_1_320px] rounded-xl border border-line bg-surface px-3 text-sm shadow-sm outline-none transition focus:border-accent focus:ring-2 focus:ring-accent/30"
-          placeholder="Buscar por palabra clave (ej: desayuno)"
-          autocomplete="off"
-        />
-        <div id="lang-controls" class="relative w-[170px] shrink-0">
-          <button
-            id="lang-trigger"
-            type="button"
-            aria-haspopup="listbox"
-            aria-expanded="false"
-            class="inline-flex h-10 w-full items-center justify-between gap-2 rounded-xl border border-line bg-surface px-3 text-sm font-medium text-ink shadow-sm outline-none transition hover:border-muted focus:border-accent focus:ring-2 focus:ring-accent/30"
-          >
-            <span id="lang-trigger-label" class="truncate">🇪🇸 Español</span>
-            <span aria-hidden="true">▾</span>
-          </button>
-          <ul
-            id="lang-menu"
-            role="listbox"
-            class="absolute right-0 z-[1300] mt-2 hidden min-w-full overflow-hidden rounded-xl border border-line bg-surface p-1 shadow-xl"
-          >
-            <li>
-              <button type="button" data-lang-option="es" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
-            </li>
-            <li>
-              <button type="button" data-lang-option="ca" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
-            </li>
-            <li>
-              <button type="button" data-lang-option="en" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
-            </li>
-            <li>
-              <button type="button" data-lang-option="fr" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
-            </li>
-            <li>
-              <button type="button" data-lang-option="ru" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
-            </li>
-          </ul>
-          <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
+  <body class="h-dvh overflow-hidden bg-canvas font-sans text-ink antialiased">
+    <div id="app" class="app" data-view="map">
+      <header id="app-header" class="app-top">
+        <div class="search-row">
+          <label class="search-pill">
+            <Fragment set:html={icon("search", "icon text-muted")} />
+            <input
+              id="search-input"
+              type="search"
+              aria-label="Buscar ventajas"
+              placeholder="Buscar por palabra clave (ej: desayuno)"
+              autocomplete="off"
+            />
+            <span class="brand" aria-hidden="true">Pioguia</span>
+          </label>
+          <div id="lang-controls" class="lang-controls">
+            <button
+              id="lang-trigger"
+              type="button"
+              class="lang-trigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span id="lang-trigger-label">🇪🇸 Español</span>
+            </button>
+            <ul id="lang-menu" role="listbox" class="lang-menu hidden">
+              <li>
+                <button type="button" data-lang-option="es" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="ca" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="en" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="fr" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="ru" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
+              </li>
+            </ul>
+            <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
             <option value="es" selected>Español</option>
             <option value="ca">Català</option>
             <option value="en">English</option>
             <option value="fr">Français</option>
             <option value="ru">Русский</option>
-          </select>
+            </select>
+          </div>
         </div>
-        <div
-          id="map-style-controls"
-          class="map-styles inline-flex shrink-0 items-center gap-2"
-          aria-label="Estilos de mapa"
-        >
-          <button
-            class="map-style-button is-active inline-flex h-8 w-[64px] items-center justify-center rounded-full border border-line bg-surface px-2 py-1.5 text-xs font-medium text-ink shadow-sm transition hover:border-muted"
-            data-style="osm"
-          >
-            <span class="map-style-label">OSM</span>
-          </button>
-          <button
-            class="map-style-button inline-flex h-8 w-[86px] items-center justify-center rounded-full border border-line bg-surface px-2 py-1.5 text-xs font-medium text-ink shadow-sm transition hover:border-muted"
-            data-style="positron"
-          >
-            <span class="map-style-label truncate">Claro</span>
-          </button>
-        </div>
-      </div>
-      </div>
-    </header>
+      </header>
 
-    <main class="mx-auto grid max-w-[1600px] grid-cols-1 gap-4 p-4 md:grid-cols-[360px_minmax(0,1fr)] md:gap-5 md:p-6">
-      <aside class="sidebar order-2 overflow-y-auto rounded-2xl border border-line bg-surface shadow-sm md:order-1 md:h-[calc(100vh-140px)]">
-        <ul id="results" class="results"></ul>
-        <div id="empty-state" class="empty p-8 text-center text-sm text-muted" hidden>
-          No se han encontrado resultados.
+      <section class="map-area" aria-label="Mapa">
+        <Map id="map" />
+        <div class="map-fabs">
+          <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
+            <Fragment set:html={icon("layers")} />
+          </button>
+          <button id="locate-button" type="button" class="fab" title="Volver a mi ubicación" aria-label="Volver a mi ubicación">
+            <Fragment set:html={icon("locateFixed")} />
+          </button>
+        </div>
+      </section>
+
+      <aside id="panel" class="panel" data-snap="half" aria-labelledby="page-title">
+        <button id="sheet-handle" type="button" class="sheet-handle" aria-label="Ampliar o reducir la lista">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="panel-head">
+          <h1 id="page-title" class="panel-title">Guía de ventajas Piolet</h1>
+          <p id="results-count" class="panel-count" aria-live="polite"></p>
+        </div>
+        <div class="panel-scroll">
+          <ul id="results" class="results"></ul>
+          <div id="empty-state" class="empty-state" hidden>No se han encontrado resultados.</div>
         </div>
       </aside>
-      <div class="map-container order-1 rounded-2xl border border-line bg-surface p-3 shadow-sm md:order-2 md:p-4">
-        <Map id="map" />
-      </div>
-    </main>
+
+      <nav id="view-toggle" class="view-toggle" aria-label="Vista">
+        <button type="button" data-view-button="list" aria-pressed="false">
+          <Fragment set:html={icon("list")} />
+          <span class="view-label">Lista</span>
+        </button>
+        <button type="button" data-view-button="map" aria-pressed="true">
+          <Fragment set:html={icon("map")} />
+          <span class="view-label">Mapa</span>
+        </button>
+      </nav>
+    </div>
 
     <script
       type="application/json"

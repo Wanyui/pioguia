@@ -1,0 +1,354 @@
+/*
+ * App layout (docs/rediseno/04-DESIGN.md §5–6).
+ * Desktop (≥ 900px): 400px column (search + results) beside a full-height map.
+ * Mobile: full-screen map, floating search, bottom sheet with three snaps and a Lista | Mapa toggle.
+ */
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+}
+
+/* ---------- Shared pieces ---------- */
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.search-pill {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 46px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--pg-surface);
+  border: 1px solid var(--pg-line);
+  box-shadow: var(--pg-shadow-float);
+  cursor: text;
+}
+
+.search-pill:focus-within {
+  border-color: var(--pg-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--pg-accent) 25%, transparent), var(--pg-shadow-float);
+}
+
+.search-pill input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  background: transparent;
+  color: var(--pg-ink);
+  font: inherit;
+  font-size: 15px;
+  outline: none;
+}
+
+.search-pill input::placeholder {
+  color: var(--pg-muted);
+}
+
+.search-pill .brand {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--pg-accent);
+  white-space: nowrap;
+}
+
+.lang-controls {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.lang-trigger {
+  display: inline-flex;
+  align-items: center;
+  height: 46px;
+  max-width: 150px;
+  padding: 0 14px;
+  border-radius: 999px;
+  border: 1px solid var(--pg-line);
+  background: var(--pg-surface);
+  color: var(--pg-ink);
+  box-shadow: var(--pg-shadow-float);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.lang-menu {
+  position: absolute;
+  right: 0;
+  z-index: 1300;
+  margin-top: 8px;
+  min-width: 160px;
+  padding: 4px;
+  list-style: none;
+  border-radius: 14px;
+  border: 1px solid var(--pg-line);
+  background: var(--pg-surface);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.18);
+}
+
+.map-area {
+  position: relative;
+}
+
+.map-area .map {
+  width: 100%;
+  height: 100%;
+}
+
+.map-fabs {
+  position: absolute;
+  z-index: 800;
+  right: 12px;
+  top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.fab {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 1px solid var(--pg-line);
+  background: var(--pg-surface);
+  color: var(--pg-accent);
+  box-shadow: var(--pg-shadow-float);
+  cursor: pointer;
+}
+
+.fab .icon {
+  width: 20px;
+  height: 20px;
+}
+
+.fab[aria-pressed="true"] {
+  background: var(--pg-accent);
+  color: var(--pg-on-accent);
+  border-color: var(--pg-accent);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--pg-surface);
+}
+
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 16px 8px;
+}
+
+.panel-title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.panel-count {
+  margin: 0;
+  font-size: 13px;
+  color: var(--pg-muted);
+  white-space: nowrap;
+}
+
+.panel-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.empty-state {
+  padding: 32px 16px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--pg-muted);
+}
+
+.sheet-handle,
+.view-toggle {
+  display: none;
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 900px) {
+  .app {
+    display: grid;
+    grid-template-columns: 400px minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    grid-template-areas:
+      "top map"
+      "panel map";
+    height: 100dvh;
+  }
+
+  .app-top {
+    grid-area: top;
+    padding: 16px 16px 8px;
+    background: var(--pg-surface);
+    border-right: 1px solid var(--pg-line);
+  }
+
+  .panel {
+    grid-area: panel;
+    border-right: 1px solid var(--pg-line);
+    padding-top: 8px;
+  }
+
+  .map-area {
+    grid-area: map;
+  }
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 899.98px) {
+  .app {
+    --sheet-peek: 112px;
+    --sheet-half: 46dvh;
+    --sheet-full: calc(100dvh - 76px);
+    --toggle-space: 76px;
+  }
+
+  .map-area {
+    position: fixed;
+    inset: 0;
+  }
+
+  .app-top {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 12px 12px 0;
+    pointer-events: none;
+  }
+
+  .app-top > * {
+    pointer-events: auto;
+  }
+
+  .lang-trigger {
+    max-width: 112px;
+  }
+
+  .map-fabs {
+    top: 70px;
+  }
+
+  .panel {
+    position: fixed;
+    z-index: 900;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: var(--sheet-half);
+    border-radius: 22px 22px 0 0;
+    box-shadow: var(--pg-shadow-sheet);
+    padding-bottom: var(--toggle-space);
+    transition: height 200ms ease-out;
+    touch-action: pan-y;
+  }
+
+  .panel[data-snap="peek"] {
+    height: calc(var(--sheet-peek) + var(--toggle-space));
+  }
+
+  .panel[data-snap="full"] {
+    height: var(--sheet-full);
+  }
+
+  .panel.is-dragging {
+    transition: none;
+  }
+
+  .sheet-handle {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .sheet-handle span {
+    width: 38px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--pg-line);
+  }
+
+  .view-toggle {
+    position: fixed;
+    z-index: 1100;
+    left: 50%;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    transform: translateX(-50%);
+    display: flex;
+    padding: 4px;
+    border-radius: 999px;
+    background: var(--pg-surface);
+    border: 1px solid var(--pg-line);
+    box-shadow: var(--pg-shadow-float);
+  }
+
+  .view-toggle button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--pg-ink);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .view-toggle button[aria-pressed="true"] {
+    background: var(--pg-accent);
+    color: var(--pg-on-accent);
+  }
+
+  .leaflet-control-zoom {
+    display: none;
+  }
+
+  .map-area .leaflet-bottom {
+    bottom: var(--sheet-current, 0);
+    transition: bottom 200ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel {
+    transition: none;
+  }
+}
