@@ -7,11 +7,11 @@ title:
   fr: "Tibet"
   ru: "Tibet"
 description:
-  es: "10% de descuento presentando el carnet de socio. Descuento aplicado en el servicio de peluquería."
-  ca: "10% de descompte presentant el carnet de soci. Descompte aplicat al servei de perruqueria."
-  en: "10% discount when presenting membership card. Discount applied to hairdressing service."
-  fr: "10% de réduction sur présentation de la carte de membre. Réduction appliquée au service coiffure."
-  ru: "10% скидка при предъявлении карты. Скидка на услуги парикмахерской."
+  es: "10% de descuento presentando el carnet de socio, excepto en el servicio de peluquería."
+  ca: "10% de descompte presentant el carnet de soci llevat del servei de perruqueria."
+  en: "10% discount when presenting your membership card, except on the hairdressing service."
+  fr: "10% de réduction sur présentation de la carte de membre, sauf sur le service coiffure."
+  ru: "10% скидка при предъявлении карты, кроме услуг парикмахерской."
 tags:
   es: ["peluqueria", "descuento", "servicios"]
   ca: ["perruqueria", "descompte", "serveis"]
@@ -35,3 +35,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-12
+Beneficio 2026-13

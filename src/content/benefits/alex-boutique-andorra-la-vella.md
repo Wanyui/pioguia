@@ -24,11 +24,14 @@ category:
   en: "Fashion"
   fr: "Mode"
   ru: "Мода"
-address: "Av. Meritxell, 45, AD500 Andorra la Vella"
+address: "Av. Meritxell, 92, AD500 Andorra la Vella"
 city: "Andorra la Vella"
-lat: 0
-lng: 0
+lat: 42.5080655
+lng: 1.5303197
+googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Alex+Boutique+Av.+Meritxell+92+Andorra+la+Vella"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
+La guía 2026 indica Av. Meritxell, 45; se usa la tienda de Av. Meritxell, 92 que aparece en Google Maps.
+Beneficio 2026-25

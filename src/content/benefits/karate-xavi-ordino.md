@@ -24,7 +24,7 @@ category:
   en: "Sports"
   fr: "Sports"
   ru: "Спорт"
-address: "Carrer Santa Bàrbara s/n, AD300 Ordino"
+address: "Centre Esportiu Ordino, Carrer Santa Bàrbara s/n, AD300 Ordino"
 city: "Ordino"
 lat: 42.5559563
 lng: 1.5309977
@@ -36,3 +36,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-45
+Beneficio 2026-46

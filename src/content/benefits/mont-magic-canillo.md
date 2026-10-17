@@ -7,11 +7,11 @@ title:
   fr: "Mont Magic"
   ru: "Mont Magic"
 description:
-  es: "10% de descuento con el carnet de socio del Club Piolet en la entrada del parc Mont Magic para el verano 2025. Presentar carnet de socio y documento de identidad en taquillas."
-  ca: "10% CLUBPIOLET a l'entrada del parc Mont Magic amb el carnet de soci del Club Piolet per a l'estiu 2025. S'ha de presentar el carnet de soci i un document d'identitat a taquilles."
-  en: "10% discount with Club Piolet card on Mont Magic park entry for summer 2025. Present membership card and ID at ticket offices."
-  fr: "10% de réduction avec la carte Club Piolet à l'entrée du parc Mont Magic pour l'été 2025. Présenter carte de membre et pièce d'identité aux guichets."
-  ru: "10% скидка по карте Club Piolet на вход в парк Mont Magic летом 2025. Предъявить карту и документ в кассах."
+  es: "10% de descuento con el carnet de socio del Club Piolet en la entrada del parc Mont Magic para el verano 2026. Presentar carnet de socio y documento de identidad en taquillas."
+  ca: "10% CLUBPIOLET a l'entrada del parc Mont Magic amb el carnet de soci del Club Piolet per a l'estiu 2026. S'ha de presentar el carnet de soci i un document d'identitat a taquilles."
+  en: "10% discount with Club Piolet card on Mont Magic park entry for summer 2026. Present membership card and ID at ticket offices."
+  fr: "10% de réduction avec la carte Club Piolet à l'entrée du parc Mont Magic pour l'été 2026. Présenter carte de membre et pièce d'identité aux guichets."
+  ru: "10% скидка по карте Club Piolet на вход в парк Mont Magic летом 2026. Предъявить карту и документ в кассах."
 tags:
   es: ["parque", "verano", "familia", "descuento"]
   ca: ["parc", "estiu", "familia", "descompte"]
@@ -36,3 +36,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-32
+Beneficio 2026-33

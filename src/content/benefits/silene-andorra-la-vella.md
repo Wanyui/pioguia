@@ -7,11 +7,11 @@ title:
   fr: "Silene Coiffure et Esthétique"
   ru: "Silene Парикмахерская и эстетика"
 description:
-  es: "Todos los miércoles, corte niño/niña a 9€. Recuerda llevar el carnet de socio."
-  ca: "Tots els dimecres, tall nen/nena a 9€. Recorda portar el carnet de soci."
-  en: "Every Wednesday, children's haircut at €9. Remember to bring your membership card."
-  fr: "Tous les mercredis, coupe enfant à 9€. N'oubliez pas la carte de membre."
-  ru: "По средам детская стрижка за 9€. Не забудьте карту члена клуба."
+  es: "Todos los martes, corte niño/niña a 9€. Recuerda llevar el carnet de socio."
+  ca: "Tots els dimarts, tall nen/nena a 9€. Recorda portar el carnet de soci."
+  en: "Every Tuesday, children's haircut at €9. Remember to bring your membership card."
+  fr: "Tous les mardis, coupe enfant à 9€. N'oubliez pas la carte de membre."
+  ru: "По вторникам детская стрижка за 9€. Не забудьте карту члена клуба."
 tags:
   es: ["peluqueria", "estetica", "descuento"]
   ca: ["perruqueria", "estetica", "descompte"]
@@ -35,3 +35,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-18
+Beneficio 2026-19

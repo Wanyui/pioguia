@@ -36,3 +36,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-44
+Beneficio 2026-45

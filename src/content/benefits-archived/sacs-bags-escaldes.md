@@ -36,3 +36,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Esta ventaja comparte contacto con M. Rossell.
 Beneficio 2025-19
+Archivado: no aparece en la guía 2026.

@@ -35,3 +35,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
 Beneficio 2025-13
+Beneficio 2026-14

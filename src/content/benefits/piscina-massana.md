@@ -7,11 +7,11 @@ title:
   fr: "Piscine de la Massana"
   ru: "Бассейн Ла-Массана"
 description:
-  es: "Presentando el carnet, la entrada infantil a la piscina de la Massana cuesta 6€ durante 2025."
-  ca: "Si presentes el carnet, et costarà 6€ infant entrar a la piscina de la Massana aquest 2025."
-  en: "With membership card, children's admission to La Massana pool costs €6 during 2025."
-  fr: "Avec la carte de membre, l'entrée enfant à la piscine de la Massana coûte 6€ en 2025."
-  ru: "По карте детский вход в бассейн Ла-Массана стоит 6€ в 2025 году."
+  es: "Presentando el carnet, la entrada infantil a la piscina de la Massana cuesta 6€ este verano 2026."
+  ca: "Si presentes el carnet, et costarà 6€ infant entrar a la piscina de la Massana aquest estiu 2026."
+  en: "With your membership card, children's admission to La Massana pool costs €6 this summer 2026."
+  fr: "Avec la carte de membre, l'entrée enfant à la piscine de la Massana coûte 6€ cet été 2026."
+  ru: "По карте детский вход в бассейн Ла-Массана стоит 6€ летом 2026 года."
 tags:
   es: ["piscina", "familia", "infantil", "descuento"]
   ca: ["piscina", "familia", "infantil", "descompte"]
@@ -37,3 +37,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
 Beneficio 2025-10
+Beneficio 2026-11

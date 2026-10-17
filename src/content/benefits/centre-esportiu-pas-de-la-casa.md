@@ -7,11 +7,11 @@ title:
   fr: "Centre Sportif El Pas de la Casa"
   ru: "Спортивный центр Пас-де-ла-Каса"
 description:
-  es: "10% de descuento en actividades deportivas y de ocio con el carnet de socio."
-  ca: "10% de descompte en activitats esportives i de lleure amb el carnet de soci."
-  en: "10% discount on sports and leisure activities with membership card."
-  fr: "10% de réduction sur les activités sportives et de loisirs avec la carte de membre."
-  ru: "10% скидка на спортивные и досуговые занятия по карте члена."
+  es: "Con el carnet de socio tienes un 10% de descuento en todas las escuelas deportivas y de ocio."
+  ca: "Amb el carnet de soci tens un 10% de descompte a totes les escoles esportives i de lleure."
+  en: "With your membership card you get 10% off all sports and leisure schools."
+  fr: "Avec la carte de membre, 10% de réduction dans toutes les écoles sportives et de loisirs."
+  ru: "По карте члена клуба скидка 10% во всех спортивных и досуговых школах."
 tags:
   es: ["deportes", "ocio", "descuento"]
   ca: ["esports", "oci", "descompte"]
@@ -37,3 +37,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-35
+Beneficio 2026-36

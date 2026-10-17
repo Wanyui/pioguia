@@ -1,17 +1,17 @@
 ---
 id: "benefit-mw-electricitat-encamp"
 title:
-  es: "MW de l'Electricitat i Camí hidroelèctric d'Engolasters"
-  ca: "MW de l'Electricitat i Camí hidroelèctric d'Engolasters"
-  en: "MW of Electricity and Engolasters Hydroelectric Path"
-  fr: "MW de l'Électricité et Chemin hydroélectrique d'Engolasters"
-  ru: "MW электричества и гидроэлектрическая тропа Энголастерс"
+  es: "Camí hidroelèctric d'Engolasters"
+  ca: "Camí hidroelèctric d'Engolasters"
+  en: "Camí hidroelèctric d'Engolasters"
+  fr: "Camí hidroelèctric d'Engolasters"
+  ru: "Camí hidroelèctric d'Engolasters"
 description:
-  es: "Entrada gratuita al MW de la Electricidad y al Camino hidroeléctrico de Engolasters para miembros del Club Piolet, padres y hermanos. ¡Contacta con nosotros!"
-  ca: "Entrada gratuïta al MW de l'Electricitat i al Camí hidroelèctric d'Engolasters per als membres del Club Piolet, els pares i els germans. Contacta amb nosaltres!"
-  en: "Free admission to the MW of Electricity and Engolasters Hydroelectric Path for Club Piolet members, parents and siblings. Contact us!"
-  fr: "Entrée gratuite au MW de l'Électricité et au Chemin hydroélectrique d'Engolasters pour les membres du Club Piolet, parents et frères et sœurs. Contactez-nous !"
-  ru: "Бесплатный вход в MW электричества и на гидроэлектрическую тропу Энголастерс для членов Club Piolet, родителей и братьев/сестёр. Свяжитесь с нами!"
+  es: "Entrada gratuita al Camino hidroeléctrico de Engolasters para miembros del Club Piolet, padres y hermanos. Mayo, junio y septiembre: sábados a las 11 h. Julio y agosto: de martes a sábado a las 10, 11, 12 y 17 h, y domingos a las 10, 11 y 12 h."
+  ca: "Entrada gratuïta al camí hidroelèctric d'Engolasters per als membres del Club Piolet, pares i germans. Maig, juny i setembre: dissabtes a les 11 h. Juliol i agost: de dimarts a dissabte a les 10, 11, 12 i 17 h i diumenges a les 10, 11 i 12 h."
+  en: "Free admission to the Engolasters hydroelectric trail for Club Piolet members, parents and siblings. May, June and September: Saturdays at 11am. July and August: Tuesday to Saturday at 10am, 11am, 12pm and 5pm, and Sundays at 10am, 11am and 12pm."
+  fr: "Entrée gratuite au chemin hydroélectrique d'Engolasters pour les membres du Club Piolet, parents et frères et sœurs. Mai, juin et septembre : samedis à 11h. Juillet et août : du mardi au samedi à 10h, 11h, 12h et 17h, et dimanches à 10h, 11h et 12h."
+  ru: "Бесплатный вход на гидроэлектрическую тропу Энголастерс для членов Club Piolet, родителей и братьев/сестёр. Май, июнь и сентябрь: по субботам в 11:00. Июль и август: со вторника по субботу в 10, 11, 12 и 17 ч, по воскресеньям в 10, 11 и 12 ч."
 tags:
   es: ["museo", "electricidad", "entrada gratuita"]
   ca: ["museu", "electricitat", "entrada gratuïta"]
@@ -24,16 +24,17 @@ category:
   en: "Education"
   fr: "Éducation"
   ru: "Образование"
-address: "Av. de la Bartra s/n, AD200 Encamp"
-city: "Encamp"
-lat: 42.5146202
-lng: 1.5533863
+address: "Carretera d'Engolasters s/n, AD700 Escaldes-Engordany"
+city: "Escaldes-Engordany"
+lat: 42.516962
+lng: 1.5656405
 phone: "739 111"
 email: "fedacultura@feda.ad"
 web: "https://www.fedacultura.ad"
-googleMapsUrl: "https://www.google.com/maps/place/MW+Museu+de+l'Electricitat+-+FEDA/@42.5146202,1.5508114,17z/data=!3m1!4b1!4m6!3m5!1s0x12a58af114e02dbb:0x5315ce78e24f4c97!8m2!3d42.5146202!4d1.5533863!16s%2Fg%2F11yhm13x3?entry=ttu&g_ep=EgoyMDI2MDIxMS4wIKXMDSoASAFQAw%3D%3D"
+googleMapsUrl: "https://www.google.com/maps/place/Cam%C3%AD+hidroel%C3%A8ctric+d%27Engolasters/@42.516962,1.5656405,644m/data=!3m2!1e3!4b1!4m6!3m5!1s0x12a58bc85bf0c21b:0x16cfe9b1eebeaf3!8m2!3d42.516962!4d1.5656405!16s%2Fg%2F11j7bj8r1l"
 logo: "/img/*"
 languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-59
+Beneficio 2026-60

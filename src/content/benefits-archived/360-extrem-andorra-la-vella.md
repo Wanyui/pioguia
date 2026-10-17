@@ -37,3 +37,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía.
 Beneficio 2025-37.5
+Archivado: no aparece en la guía 2026.

@@ -7,11 +7,11 @@ title:
   fr: "L'Aquarium de Barcelone"
   ru: "Аквариум Барселоны"
 description:
-  es: "Descuento de 3€ para un máximo de 5 personas presentando el carnet del Club Piolet en taquillas o comprando por anticipado con el código QR. Válido hasta el 31/12/2025. No acumulable con otras promociones. Prohibida la venta y reproducción."
-  ca: "Descompte de 3€ per a un màxim de 5 persones presentant el carnet del Club Piolet a taquilles o comprant per anticipat amb el codi QR. Vàlid fins al 31/12/2025. No acumulable amb altres promocions. Prohibida la venda i reproducció."
-  en: "€3 discount for up to 5 people when presenting Club Piolet card at ticket offices or buying in advance with QR code. Valid until 31/12/2025. Not combinable with other promotions."
-  fr: "Réduction de 3€ pour jusqu'à 5 personnes sur présentation de la carte Club Piolet aux guichets ou achat à l'avance avec le code QR. Valable jusqu'au 31/12/2025. Non cumulable avec d'autres promotions."
-  ru: "Скидка 3€ для до 5 человек при предъявлении карты Club Piolet в кассах или покупке по QR-коду. Действительно до 31/12/2025. Не суммируется с другими акциями."
+  es: "Descuento de 3€ para un máximo de 5 personas presentando el carnet del Club Piolet en taquillas o comprando por anticipado con el código QR. Válido hasta el 31/12/2026. No acumulable con otras promociones. Prohibida la venta y reproducción."
+  ca: "Descompte de 3€ per a un màxim de 5 persones presentant el carnet del Club Piolet a taquilles o comprant per anticipat amb el codi QR. Vàlid fins al 31/12/2026. No acumulable amb altres promocions. Prohibida la venda i reproducció."
+  en: "€3 discount for up to 5 people when presenting Club Piolet card at ticket offices or buying in advance with QR code. Valid until 31/12/2026. Not combinable with other promotions."
+  fr: "Réduction de 3€ pour jusqu'à 5 personnes sur présentation de la carte Club Piolet aux guichets ou achat à l'avance avec le code QR. Valable jusqu'au 31/12/2026. Non cumulable avec d'autres promotions."
+  ru: "Скидка 3€ для до 5 человек при предъявлении карты Club Piolet в кассах или покупке по QR-коду. Действительно до 31/12/2026. Не суммируется с другими акциями."
 tags:
   es: ["acuarium", "entradas", "familia", "descuento"]
   ca: ["aquari", "entrades", "familia", "descompte"]
@@ -35,3 +35,4 @@ languages: ["es", "ca", "en", "fr", "ru"]
 ---
 Datos extraídos de la guía. Coordenadas aproximadas.
 Beneficio 2025-8
+Beneficio 2026-9
