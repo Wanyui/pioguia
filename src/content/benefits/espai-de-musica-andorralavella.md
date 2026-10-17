@@ -19,6 +19,18 @@ tags:
   fr: ["musique", "école", "réduction", "enfants"]
   ru: ["музыка", "школа", "скидка", "дети"]
 category: "educacion"
+highlight:
+  es: "−25%"
+  ca: "−25%"
+  en: "−25%"
+  fr: "−25%"
+  ru: "−25%"
+appliesTo:
+  es: "1.ª matrícula, +5 años"
+  ca: "1a matrícula, +5 anys"
+  en: "1st enrolment, 5+"
+  fr: "1re inscription, 5 ans+"
+  ru: "1-я запись, 5+ лет"
 address: "Carrer Dr. Nequi, 7, 1r pis, porta D, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5076859

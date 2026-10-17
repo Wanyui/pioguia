@@ -19,6 +19,18 @@ tags:
   fr: ["coiffure", "réduction", "services"]
   ru: ["парикмахерская", "скидка", "услуги"]
 category: "servicios"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "excepto peluquería"
+  ca: "excepte perruqueria"
+  en: "except hairdressing"
+  fr: "sauf coiffure"
+  ru: "кроме парикмахерской"
 address: "Carrer Josep Rossell, 8, AD400 La Massana"
 city: "La Massana"
 lat: 42.545041

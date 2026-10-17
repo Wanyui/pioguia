@@ -19,6 +19,18 @@ tags:
   fr: ["papeterie", "jouets", "livres", "réduction"]
   ru: ["канцтовары", "игрушки", "книги", "скидка"]
 category: "tiendas"
+highlight:
+  es: "−5%"
+  ca: "−5%"
+  en: "−5%"
+  fr: "−5%"
+  ru: "−5%"
+appliesTo:
+  es: "no acumulable"
+  ca: "no acumulable"
+  en: "not combinable"
+  fr: "non cumulable"
+  ru: "не суммируется"
 address: "Centre UAILO (antic CCA), 2ª planta, Av. Meritxell, 92, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5079096

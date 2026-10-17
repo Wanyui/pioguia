@@ -19,6 +19,18 @@ tags:
   fr: ["piscine", "famille", "enfants", "réduction"]
   ru: ["бассейн", "семья", "дети", "скидка"]
 category: "ocio"
+highlight:
+  es: "6 €"
+  ca: "6 €"
+  en: "6 €"
+  fr: "6 €"
+  ru: "6 €"
+appliesTo:
+  es: "entrada infantil"
+  ca: "entrada infantil"
+  en: "child ticket"
+  fr: "entrée enfant"
+  ru: "детский билет"
 address: "Complex Tabola, Piscina Prat del Molí, Camí Ral, s/n, AD400 La Massana"
 city: "La Massana"
 lat: 42.5449181

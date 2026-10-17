@@ -19,6 +19,18 @@ tags:
   fr: ["fêtes", "jeux", "enfants", "bon"]
   ru: ["праздники", "игры", "дети", "бонус"]
 category: "ocio"
+highlight:
+  es: "10 h gratis"
+  ca: "10 h gratis"
+  en: "10 h free"
+  fr: "10 h offertes"
+  ru: "10 ч бесплатно"
+appliesTo:
+  es: "al celebrar tu fiesta"
+  ca: "si celebres la teva festa"
+  en: "for your party"
+  fr: "pour ta fête"
+  ru: "на твой праздник"
 address: "C/ Príncep Benlloch, 4, AD200 Encamp"
 city: "Encamp"
 lat: 42.5342775

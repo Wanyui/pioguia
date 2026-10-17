@@ -19,6 +19,18 @@ tags:
   fr: ["mode", "boutique", "réduction"]
   ru: ["мода", "магазин", "скидка"]
 category: "tiendas"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "en puntos"
+  ca: "en punts"
+  en: "in points"
+  fr: "en points"
+  ru: "баллами"
 address: "Botiga Options+ (Planta +2), Av. Meritxell 87, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5083617

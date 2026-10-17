@@ -19,6 +19,18 @@ tags:
   fr: ["colonies", "aventure", "équitation", "éducation"]
   ru: ["лагеря", "приключения", "верховая езда", "образование"]
 category: "educacion"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "colonias"
+  ca: "colònies"
+  en: "summer camps"
+  fr: "colonies"
+  ru: "лагеря"
 address: "Finca Granja Escola Santa Maria de Palautordera (Montseny, Barcelona)"
 city: "Santa Maria de Palautordera"
 lat: 41.6683879

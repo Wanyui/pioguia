@@ -19,6 +19,18 @@ tags:
   fr: ["jouets", "boutique", "réduction"]
   ru: ["игрушки", "магазин", "скидка"]
 category: "tiendas"
+highlight:
+  es: "−8%"
+  ca: "−8%"
+  en: "−8%"
+  fr: "−8%"
+  ru: "−8%"
+appliesTo:
+  es: "juguetes"
+  ca: "joguines"
+  en: "toys"
+  fr: "jouets"
+  ru: "игрушки"
 address: "Trens: C/ Picó, 1-3, Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.508388

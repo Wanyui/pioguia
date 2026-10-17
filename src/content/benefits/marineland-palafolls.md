@@ -19,6 +19,18 @@ tags:
   fr: ["parc à thème", "marin", "billets", "réduction", "famille"]
   ru: ["тематический парк", "морской", "билеты", "скидка", "семья"]
 category: "ocio"
+highlight:
+  es: "−4 €"
+  ca: "−4 €"
+  en: "−4 €"
+  fr: "−4 €"
+  ru: "−4 €"
+appliesTo:
+  es: "hasta 5, con el QR"
+  ca: "fins a 5, amb el QR"
+  en: "up to 5, with the QR"
+  fr: "jusqu'à 5, avec le QR"
+  ru: "до 5, по QR-коду"
 address: "Ctra Malgrat a Palafolls s/n, 08389 Palafolls (Barcelona)"
 city: "Palafolls"
 lat: 41.6608358

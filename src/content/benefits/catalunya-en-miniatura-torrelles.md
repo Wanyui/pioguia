@@ -19,6 +19,18 @@ tags:
   fr: ["maquettes", "parc", "2x1"]
   ru: ["макеты", "парк", "2в1"]
 category: "educacion"
+highlight:
+  es: "2x1"
+  ca: "2x1"
+  en: "2x1"
+  fr: "2x1"
+  ru: "2x1"
+appliesTo:
+  es: "durante 2026"
+  ca: "durant el 2026"
+  en: "throughout 2026"
+  fr: "en 2026"
+  ru: "в 2026 году"
 address: "Carrer Can Balasch de Baix s/n, 08629 Torrelles de Llobregat (Barcelona)"
 city: "Torrelles de Llobregat"
 lat: 41.3591537

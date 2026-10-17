@@ -19,6 +19,18 @@ tags:
   fr: ["anglais", "éducation", "réduction"]
   ru: ["английский", "образование", "скидка"]
 category: "educacion"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "matrícula de inglés"
+  ca: "matrícula d'anglès"
+  en: "English enrolment"
+  fr: "inscription en anglais"
+  ru: "запись на английский"
 address: "Ed. Montclar Bonav. Armengol 10, 267 i Ed. Cornella II Pau Casals 8, 1-4, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5079449

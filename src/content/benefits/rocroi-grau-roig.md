@@ -19,6 +19,18 @@ tags:
   fr: ["mushing", "raquettes", "hiver", "réduction"]
   ru: ["собачьи упряжки", "снегоступы", "зима", "скидка"]
 category: "ocio"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "actividades de nieve"
+  ca: "activitats de neu"
+  en: "snow activities"
+  fr: "activités neige"
+  ru: "зимние активности"
 address: "Pàrquing de Cubil - Grau Roig, Estació d'esquí Grandvalira, AD200 Encamp"
 city: "Encamp"
 lat: 42.5333432

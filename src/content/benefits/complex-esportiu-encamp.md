@@ -19,6 +19,18 @@ tags:
   fr: ["sports", "loisirs", "réduction"]
   ru: ["спорт", "досуг", "скидка"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "escuelas deportivas"
+  ca: "escoles esportives"
+  en: "sports schools"
+  fr: "écoles sportives"
+  ru: "спортивные школы"
 address: "Passeig de l'Alguer, 1, AD200 Encamp"
 city: "Encamp"
 lat: 42.5357717

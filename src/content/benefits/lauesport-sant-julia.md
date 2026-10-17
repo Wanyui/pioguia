@@ -19,6 +19,18 @@ tags:
   fr: ["sports", "piscine", "anniversaires", "réduction"]
   ru: ["спорт", "бассейн", "дни рождения", "скидка"]
 category: "deportes"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "piscina en vacaciones"
+  ca: "piscina en vacances"
+  en: "pool in school holidays"
+  fr: "piscine en vacances"
+  ru: "бассейн на каникулах"
 address: "Plaça de Calonge - Sant Antoni s/n, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
 lat: 42.4657225

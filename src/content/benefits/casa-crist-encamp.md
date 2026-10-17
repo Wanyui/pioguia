@@ -19,6 +19,18 @@ tags:
   fr: ["musée", "cristal", "entrée gratuite"]
   ru: ["музей", "стекло", "бесплатный вход"]
 category: "educacion"
+highlight:
+  es: "1 €"
+  ca: "1 €"
+  en: "1 €"
+  fr: "1 €"
+  ru: "1 €"
+appliesTo:
+  es: "por persona"
+  ca: "per persona"
+  en: "per person"
+  fr: "par personne"
+  ru: "с человека"
 address: "Carrer Cavallers, 2, AD200 Encamp"
 city: "Encamp"
 lat: 42.5351509

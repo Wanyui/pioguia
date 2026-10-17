@@ -19,6 +19,18 @@ tags:
   fr: ["parc", "été", "famille", "réduction"]
   ru: ["парк", "лето", "семья", "скидка"]
 category: "ocio"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "verano 2026"
+  ca: "estiu 2026"
+  en: "summer 2026"
+  fr: "été 2026"
+  ru: "лето 2026"
 address: "Grandvalira Sector Canillo"
 city: "Canillo"
 lat: 42.5659122

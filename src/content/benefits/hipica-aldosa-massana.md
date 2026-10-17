@@ -19,6 +19,18 @@ tags:
   fr: ["équitation", "ponys", "réduction"]
   ru: ["верховая езда", "пони", "скидка"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "paseos y clases"
+  ca: "passejades i classes"
+  en: "rides and lessons"
+  fr: "balades et cours"
+  ru: "прогулки и уроки"
 address: "Carretera general de l'Aldosa, AD400 La Massana"
 city: "La Massana"
 lat: 42.5488534

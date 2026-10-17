@@ -19,6 +19,18 @@ tags:
   fr: ["thermes", "spa", "famille", "entrée gratuite"]
   ru: ["термы", "спа", "семья", "бесплатный вход"]
 category: "ocio"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "3–13 años, mañanas"
+  ca: "3–13 anys, matins"
+  en: "ages 3–13, mornings"
+  fr: "3–13 ans, matins"
+  ru: "3–13 лет, утром"
 address: "Parc de la Mola, 10, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5111929

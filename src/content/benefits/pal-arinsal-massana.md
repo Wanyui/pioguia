@@ -19,6 +19,18 @@ tags:
   fr: ["ski", "parc", "été", "réduction"]
   ru: ["лыжи", "парк", "лето", "скидка"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "clases y Bike World"
+  ca: "classes i Bike World"
+  en: "lessons and Bike World"
+  fr: "cours et Bike World"
+  ru: "уроки и Bike World"
 address: "La Massana"
 city: "La Massana"
 lat: 42.5729281

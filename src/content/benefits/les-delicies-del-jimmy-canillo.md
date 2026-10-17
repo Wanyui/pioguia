@@ -19,6 +19,18 @@ tags:
   fr: ["patisserie", "gateau", "anniversaire", "reduction", "boulangerie"]
   ru: ["кондитерская", "торт", "день рождения", "скидка", "выпечка"]
 category: "restauracion"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "pastel de cumpleaños"
+  ca: "pastís d'aniversari"
+  en: "birthday cake"
+  fr: "gâteau d'anniversaire"
+  ru: "торт на день рожд."
 address: "Canillo"
 city: "Canillo"
 lat: 42.5661089

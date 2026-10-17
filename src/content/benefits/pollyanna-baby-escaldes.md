@@ -19,6 +19,18 @@ tags:
   fr: ["puériculture", "boutique", "réduction", "enfants"]
   ru: ["товары для малышей", "магазин", "скидка", "дети"]
 category: "tiendas"
+highlight:
+  es: "−5%"
+  ca: "−5%"
+  en: "−5%"
+  fr: "−5%"
+  ru: "−5%"
+appliesTo:
+  es: "al registrarte"
+  ca: "si et registres"
+  en: "when you sign up"
+  fr: "en t'inscrivant"
+  ru: "при регистрации"
 address: "Carrer de la Unió, 13, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5076068

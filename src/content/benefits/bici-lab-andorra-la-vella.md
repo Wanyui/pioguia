@@ -19,6 +19,18 @@ tags:
   fr: ["musée", "vélos", "entrée gratuite"]
   ru: ["музей", "велосипеды", "бесплатный вход"]
 category: "educacion"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "entrada al museo"
+  ca: "entrada al museu"
+  en: "museum entry"
+  fr: "entrée au musée"
+  ru: "вход в музей"
 address: "Carrer Prat de la Creu, 70, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5062395

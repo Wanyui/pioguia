@@ -19,6 +19,18 @@ tags:
   fr: ["patinage", "glace", "famille", "entrée gratuite"]
   ru: ["катание на коньках", "лёд", "семья", "бесплатный вход"]
 category: "deportes"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "hasta 10 años"
+  ca: "fins a 10 anys"
+  en: "up to age 10"
+  fr: "jusqu'à 10 ans"
+  ru: "до 10 лет"
 address: "Carretera General, s/n, AD100 Canillo"
 city: "Canillo"
 lat: 42.5664099

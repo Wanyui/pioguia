@@ -19,6 +19,18 @@ tags:
   fr: ["papeterie", "informatique", "réduction"]
   ru: ["канцтовары", "IT", "скидка"]
 category: "tiendas"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "outlet hasta −50%"
+  ca: "outlet fins a −50%"
+  en: "outlet up to −50%"
+  fr: "outlet jusqu'à −50%"
+  ru: "аутлет до −50%"
 address: "Edifici Prat de Patrona, Av. de les Nacions Unides, Bloc A Local 3, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5098907

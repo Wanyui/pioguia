@@ -19,6 +19,18 @@ tags:
   fr: ["meubles", "mobilier enfant", "maison", "réduction"]
   ru: ["мебель", "детская мебель", "дом", "скидка"]
 category: "tiendas"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "muebles y hogar"
+  ca: "mobles i llar"
+  en: "furniture and home"
+  fr: "meubles et maison"
+  ru: "мебель и дом"
 address: "Av. el Través, 37 (Ctra. d'Ordino, al costat de Bombers), AD400 La Massana"
 city: "La Massana"
 lat: 42.545522

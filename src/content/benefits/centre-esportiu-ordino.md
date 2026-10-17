@@ -19,6 +19,18 @@ tags:
   fr: ["sports", "salle de sport", "tarif résident"]
   ru: ["спорт", "зал", "цена резидента"]
 category: "deportes"
+highlight:
+  es: "7 €"
+  ca: "7 €"
+  en: "7 €"
+  fr: "7 €"
+  ru: "7 €"
+appliesTo:
+  es: "entrada de un día"
+  ca: "entrada d'un dia"
+  en: "day pass"
+  fr: "entrée à la journée"
+  ru: "вход на день"
 address: "C/ Santa Bàrbara s/n, AD300 Ordino"
 city: "Ordino"
 lat: 42.556249

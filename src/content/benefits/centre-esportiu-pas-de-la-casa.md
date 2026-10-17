@@ -19,6 +19,18 @@ tags:
   fr: ["sports", "loisirs", "réduction"]
   ru: ["спорт", "досуг", "скидка"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "escuelas deportivas"
+  ca: "escoles esportives"
+  en: "sports schools"
+  fr: "écoles sportives"
+  ru: "спортивные школы"
 address: "Avinguda Consell General s/n, AD200 Pas de la Casa"
 city: "Pas de la Casa"
 lat: 42.5445971

@@ -19,6 +19,18 @@ tags:
   fr: ["sports", "campus", "anniversaires", "réduction"]
   ru: ["спорт", "лагеря", "дни рождения", "скидка"]
 category: "deportes"
+highlight:
+  es: "−5%"
+  ca: "−5%"
+  en: "−5%"
+  fr: "−5%"
+  ru: "−5%"
+appliesTo:
+  es: "campus y cumpleaños"
+  ca: "campus i aniversaris"
+  en: "camps and birthdays"
+  fr: "stages et anniversaires"
+  ru: "лагеря и дни рожд."
 address: "Av. d'Enclar, 105, AD500 Santa Coloma"
 city: "Andorra la Vella"
 lat: 42.4930534

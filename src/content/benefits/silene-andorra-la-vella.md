@@ -19,6 +19,18 @@ tags:
   fr: ["coiffure", "esthétique", "réduction"]
   ru: ["парикмахерская", "эстетика", "скидка"]
 category: "servicios"
+highlight:
+  es: "9 €"
+  ca: "9 €"
+  en: "9 €"
+  fr: "9 €"
+  ru: "9 €"
+appliesTo:
+  es: "corte, los martes"
+  ca: "tall, els dimarts"
+  en: "haircut, Tuesdays"
+  fr: "coupe, le mardi"
+  ru: "стрижка, по вторникам"
 address: "Av. Santa Coloma, 12, planta baixa local 1, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5045355

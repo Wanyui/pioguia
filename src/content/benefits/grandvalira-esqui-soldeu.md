@@ -19,6 +19,18 @@ tags:
   fr: ["ski", "sports", "réduction", "enfants"]
   ru: ["лыжи", "спорт", "скидка", "дети"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "clases infantiles"
+  ca: "classes infantils"
+  en: "kids' lessons"
+  fr: "cours enfants"
+  ru: "детские уроки"
 address: "Grandvalira - Sector Soldeu, AD100 Soldeu"
 city: "Soldeu"
 lat: 42.5765542

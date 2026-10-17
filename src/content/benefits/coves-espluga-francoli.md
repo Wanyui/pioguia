@@ -19,6 +19,18 @@ tags:
   fr: ["grottes", "musée", "entrée gratuite"]
   ru: ["пещеры", "музей", "бесплатный вход"]
 category: "educacion"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "el socio"
+  ca: "el soci"
+  en: "the member"
+  fr: "le membre"
+  ru: "член клуба"
 address: "L'Espluga de Francolí (Tarragona)"
 city: "L'Espluga de Francolí"
 lat: 41.398156

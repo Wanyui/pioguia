@@ -19,6 +19,18 @@ tags:
   fr: ["karting", "sport", "activités", "réduction"]
   ru: ["картинг", "спорт", "активности", "скидка"]
 category: "deportes"
+highlight:
+  es: "3x2"
+  ca: "3x2"
+  en: "3x2"
+  fr: "3x2"
+  ru: "3x2"
+appliesTo:
+  es: "tandas; +1 en tu cumple"
+  ca: "tandes; +1 el teu aniversari"
+  en: "laps; +1 on your birthday"
+  fr: "sessions ; +1 à ton anniv"
+  ru: "заезды; +1 в день рожд."
 address: "El Pla de Sant Tirs (Lleida), a 8 km de la Seu d'Urgell dirección Lleida"
 city: "El Pla de Sant Tirs"
 lat: 42.3034095

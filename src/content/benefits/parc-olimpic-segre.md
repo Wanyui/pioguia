@@ -19,6 +19,18 @@ tags:
   fr: ["kayak", "vélo", "famille", "activités"]
   ru: ["каякинг", "велосипед", "семья", "активности"]
 category: "deportes"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "1 actividad por adulto"
+  ca: "1 activitat per adult"
+  en: "1 activity per adult"
+  fr: "1 activité par adulte"
+  ru: "1 занятие на взрослого"
 address: "Carretera Circumval·lació s/n, 25700 La Seu d'Urgell"
 city: "La Seu d'Urgell"
 lat: 42.3540974

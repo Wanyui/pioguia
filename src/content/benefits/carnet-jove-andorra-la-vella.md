@@ -19,6 +19,18 @@ tags:
   fr: ["carte", "jeunesse", "réduction", "avantage"]
   ru: ["карта", "молодёжь", "скидка", "льгота"]
 category: "servicios"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "si tienes 12 años"
+  ca: "si tens 12 anys"
+  en: "if you're 12"
+  fr: "si tu as 12 ans"
+  ru: "если тебе 12 лет"
 address: "Av. Tarragona 58, local 2, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5052097

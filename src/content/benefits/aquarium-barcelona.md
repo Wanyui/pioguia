@@ -19,6 +19,18 @@ tags:
   fr: ["aquarium", "billets", "famille", "réduction"]
   ru: ["аквариум", "билеты", "семья", "скидка"]
 category: "ocio"
+highlight:
+  es: "−3 €"
+  ca: "−3 €"
+  en: "−3 €"
+  fr: "−3 €"
+  ru: "−3 €"
+appliesTo:
+  es: "hasta 5 personas"
+  ca: "fins a 5 persones"
+  en: "up to 5 people"
+  fr: "jusqu'à 5 personnes"
+  ru: "до 5 человек"
 address: "Moll d'Espanya del Port Vell, s/n, 08039 Barcelona"
 city: "Barcelona"
 lat: 41.3768473

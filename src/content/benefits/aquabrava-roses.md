@@ -19,6 +19,18 @@ tags:
   fr: ["parc aquatique", "billets", "famille", "réduction"]
   ru: ["аквапарк", "билеты", "семья", "скидка"]
 category: "ocio"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "con 1 adulto de pago"
+  ca: "amb 1 adult que pagui"
+  en: "with 1 paying adult"
+  fr: "avec 1 adulte payant"
+  ru: "с 1 платящим взрослым"
 address: "Carretera de Cadaqués, km 1, 17480 Roses (Girona)"
 city: "Roses"
 lat: 42.2752626

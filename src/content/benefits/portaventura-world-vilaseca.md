@@ -19,6 +19,18 @@ tags:
   fr: ["parc à thème", "billets", "réduction", "famille"]
   ru: ["тематический парк", "билеты", "скидка", "семья"]
 category: "ocio"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "niño ≤13 + 1 adulto"
+  ca: "nen ≤13 + 1 adult"
+  en: "child ≤13 + 1 adult"
+  fr: "enfant ≤13 + 1 adulte"
+  ru: "ребёнок ≤13 + 1 взрослый"
 address: "Avinguda Alcalde Pere Molas, km. 2, 43480 Vila-seca (Tarragona)"
 city: "Vila-seca"
 lat: 41.0858616

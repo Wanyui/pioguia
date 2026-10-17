@@ -19,6 +19,18 @@ tags:
   fr: ["musées", "monuments", "culture", "famille", "entrée gratuite"]
   ru: ["музеи", "памятники", "культура", "семья", "бесплатный вход"]
 category: "ocio"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "tú, padres y hermanos"
+  ca: "tu, pares i germans"
+  en: "you, parents, siblings"
+  fr: "toi, parents, frères et sœurs"
+  ru: "ты, родители, братья и сёстры"
 address: "Av. Meritxell, 73, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5087851

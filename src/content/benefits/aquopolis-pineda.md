@@ -19,6 +19,18 @@ tags:
   fr: ["parc aquatique", "billets", "famille", "réduction"]
   ru: ["аквапарк", "билеты", "семья", "скидка"]
 category: "ocio"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "de 1 a 1,40 m + 1 adulto"
+  ca: "d'1 a 1,40 m + 1 adult"
+  en: "1–1.40 m + 1 adult"
+  fr: "de 1 à 1,40 m + 1 adulte"
+  ru: "1–1,40 м + 1 взрослый"
 address: "Passeig Pau Casals, 65, 43481 La Pineda (Tarragona)"
 city: "La Pineda"
 lat: 41.073503

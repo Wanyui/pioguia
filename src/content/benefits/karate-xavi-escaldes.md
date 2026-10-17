@@ -19,6 +19,18 @@ tags:
   fr: ["karaté", "sports", "réduction"]
   ru: ["карате", "спорт", "скидка"]
 category: "deportes"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "cuota + matrícula gratis"
+  ca: "quota + matrícula gratis"
+  en: "fee + free enrolment"
+  fr: "cotisation + inscription offerte"
+  ru: "взнос + запись бесплатно"
 address: "Pavelló Prat Gran, C/ Prat Gran 2-4, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5098613

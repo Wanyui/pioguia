@@ -19,6 +19,18 @@ tags:
   fr: ["santé", "appareils auditifs", "réduction"]
   ru: ["здоровье", "слуховые аппараты", "скидка"]
 category: "servicios"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "audífonos"
+  ca: "audiòfons"
+  en: "hearing aids"
+  fr: "appareils auditifs"
+  ru: "слуховые аппараты"
 address: "Av. Doctor Mitjavila, 39, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5103273

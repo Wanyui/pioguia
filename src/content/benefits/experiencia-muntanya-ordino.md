@@ -19,6 +19,18 @@ tags:
   fr: ["montagne", "activités", "réduction"]
   ru: ["горы", "активности", "скидка"]
 category: "ocio"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "con 2 adultos, online"
+  ca: "amb 2 adults, en línia"
+  en: "with 2 adults, online"
+  fr: "avec 2 adultes, en ligne"
+  ru: "с 2 взрослыми, онлайн"
 address: "Casa de Muntanya, Carrer Major s/n. Punt de trobada: Oficina de Turisme d'Ordino, AD300 Ordino"
 city: "Ordino"
 lat: 42.5566946

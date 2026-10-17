@@ -19,6 +19,18 @@ tags:
   fr: ["musée", "jouets", "entrée gratuite"]
   ru: ["музей", "игрушки", "бесплатный вход"]
 category: "educacion"
+highlight:
+  es: "Gratis"
+  ca: "Gratis"
+  en: "Free"
+  fr: "Gratuit"
+  ru: "Бесплатно"
+appliesTo:
+  es: "el socio con 1 adulto"
+  ca: "el soci amb 1 adult"
+  en: "member with 1 adult"
+  fr: "le membre avec 1 adulte"
+  ru: "член клуба с 1 взрослым"
 address: "Carrer Sant Pere, 1, 17600 Figueres (Girona)"
 city: "Figueres"
 lat: 42.266631

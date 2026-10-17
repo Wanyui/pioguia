@@ -19,6 +19,11 @@ description:
   es: "Descripcion corta de la ventaja."
 tags:
   es: ["tag1", "tag2"]
+category: "ocio"
+highlight:
+  es: "−15%"
+appliesTo:
+  es: "tú + 3 acompañantes"
 address: "Direccion completa"
 lat: 0
 lng: 0
@@ -37,6 +42,16 @@ languages: ["es", "ca", "en", "fr", "ru"]
 - `tags` en minusculas y orientadas a busqueda.
 - Direccion lo mas completa posible.
 - Revisar manualmente coordenadas antes de publicacion.
+
+## Categoría, etiqueta y "a quién aplica"
+
+- `category`: una de estas claves: `deportes`, `ocio`, `tiendas`, `educacion`, `servicios`, `restauracion`.
+  Los nombres traducidos están en `src/lib/categories.ts`, no en cada ficha.
+- `highlight` (por idioma): la etiqueta corta que se ve primero en la tarjeta. Máximo unos 8 caracteres:
+  "−15%", "2x1", "Gratis", "9 €". Usa el signo menos tipográfico (−), no el guion.
+- `appliesTo` (por idioma): a quién o a qué aplica, en unos 25 caracteres: "tú + 3 acompañantes", "3–13 años".
+- Si hay varias ventajas, en `highlight` va la más fuerte y la segunda en `appliesTo`.
+- Tono: tuteo y frases cortas, sin exclamaciones ni emojis (ver `docs/rediseno/marca/modules/50_voice-tone.md`).
 
 ## Idiomas
 

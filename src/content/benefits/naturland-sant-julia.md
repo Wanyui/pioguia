@@ -19,6 +19,18 @@ tags:
   fr: ["parc", "aventure", "famille", "entrée gratuite"]
   ru: ["парк", "приключения", "семья", "бесплатный вход"]
 category: "ocio"
+highlight:
+  es: "2 gratis"
+  ca: "2 gratis"
+  en: "2 free"
+  fr: "2 gratuits"
+  ru: "2 бесплатно"
+appliesTo:
+  es: "por 1 entrada de adulto"
+  ca: "per 1 entrada d'adult"
+  en: "per adult ticket"
+  fr: "pour 1 entrée adulte"
+  ru: "за 1 взрослый билет"
 address: "Ctra. de la Rabassa Km 8, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
 lat: 42.4420394

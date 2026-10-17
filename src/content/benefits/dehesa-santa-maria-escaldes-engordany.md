@@ -19,6 +19,18 @@ tags:
   fr: ["restaurant", "iberique", "reduction", "anniversaire", "club piolet"]
   ru: ["ресторан", "иберико", "скидка", "день рождения", "club piolet"]
 category: "restauracion"
+highlight:
+  es: "−10%"
+  ca: "−10%"
+  en: "−10%"
+  fr: "−10%"
+  ru: "−10%"
+appliesTo:
+  es: "cumple: crep + zumo"
+  ca: "aniversari: crep + suc"
+  en: "birthday: crêpe + juice"
+  fr: "anniv : crêpe + jus"
+  ru: "день рожд.: блин + сок"
 address: "Av. Carlemany, 70, planta baixa, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5088948
