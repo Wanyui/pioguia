@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:map": "esbuild src/scripts/map.ts --bundle --splitting --format=esm --platform=browser --target=es2020 --outdir=public/scripts --entry-names=[name] --chunk-names=chunks/[name]-[hash] --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash]",
+    "build:map": "esbuild src/scripts/map.ts --bundle --splitting --format=esm --platform=browser --target=es2020 --define:import.meta.env.DEV=false --outdir=public/scripts --entry-names=[name] --chunk-names=chunks/[name]-[hash] --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash]",
     "predev": "npm run build:map",
     "dev": "astro dev",
     "prebuild": "npm run build:map",

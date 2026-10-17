@@ -157,6 +157,8 @@ var uiText = {
     emptyState: "No se han encontrado resultados.",
     locationButton: "Volver a mi ubicaci\xF3n",
     locationPopup: "Tu ubicaci\xF3n aproximada",
+    locationDenied: "Activa el permiso de ubicaci\xF3n del navegador para ver d\xF3nde est\xE1s.",
+    locationUnavailable: "No se ha podido obtener tu ubicaci\xF3n. Int\xE9ntalo de nuevo.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Claro",
     languageLabel: "\u{1F1EA}\u{1F1F8} Espa\xF1ol"
@@ -167,6 +169,8 @@ var uiText = {
     emptyState: "No s'han trobat resultats.",
     locationButton: "Tornar a la meva ubicaci\xF3",
     locationPopup: "La teva ubicaci\xF3 aproximada",
+    locationDenied: "Activa el perm\xEDs d'ubicaci\xF3 del navegador per veure on ets.",
+    locationUnavailable: "No s'ha pogut obtenir la teva ubicaci\xF3. Torna-ho a provar.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clar",
     languageLabel: "\u{1F1E6}\u{1F1E9} Catal\xE0"
@@ -177,6 +181,8 @@ var uiText = {
     emptyState: "No results found.",
     locationButton: "Back to my location",
     locationPopup: "Your approximate location",
+    locationDenied: "Allow location access in your browser to see where you are.",
+    locationUnavailable: "Your location could not be determined. Please try again.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Light",
     languageLabel: "\u{1F1EC}\u{1F1E7} English"
@@ -187,6 +193,8 @@ var uiText = {
     emptyState: "Aucun r\xE9sultat trouv\xE9.",
     locationButton: "Revenir \xE0 ma position",
     locationPopup: "Votre position approximative",
+    locationDenied: "Autorisez la localisation dans votre navigateur pour voir o\xF9 vous \xEAtes.",
+    locationUnavailable: "Impossible d'obtenir votre position. Veuillez r\xE9essayer.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clair",
     languageLabel: "\u{1F1EB}\u{1F1F7} Fran\xE7ais"
@@ -197,6 +205,8 @@ var uiText = {
     emptyState: "\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E.",
     locationButton: "\u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u043C\u043E\u0435\u043C\u0443 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044E",
     locationPopup: "\u0412\u0430\u0448\u0435 \u043F\u0440\u0438\u043C\u0435\u0440\u043D\u043E\u0435 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435",
+    locationDenied: "\u0420\u0430\u0437\u0440\u0435\u0448\u0438\u0442\u0435 \u0434\u043E\u0441\u0442\u0443\u043F \u043A \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u044E \u0432 \u0431\u0440\u0430\u0443\u0437\u0435\u0440\u0435, \u0447\u0442\u043E\u0431\u044B \u0443\u0432\u0438\u0434\u0435\u0442\u044C, \u0433\u0434\u0435 \u0432\u044B \u043D\u0430\u0445\u043E\u0434\u0438\u0442\u0435\u0441\u044C.",
+    locationUnavailable: "\u041D\u0435 \u0443\u0434\u0430\u043B\u043E\u0441\u044C \u043E\u043F\u0440\u0435\u0434\u0435\u043B\u0438\u0442\u044C \u0432\u0430\u0448\u0435 \u043C\u0435\u0441\u0442\u043E\u043F\u043E\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0435\u0449\u0451 \u0440\u0430\u0437.",
     mapStyleOsm: "OSM",
     mapStylePositron: "\u0421\u0432\u0435\u0442\u043B\u0430\u044F",
     languageLabel: "\u{1F1F7}\u{1F1FA} \u0420\u0443\u0441\u0441\u043A\u0438\u0439"
@@ -242,7 +252,7 @@ try {
   const parsedData = JSON.parse(dataElement.textContent ?? "[]");
   data = Array.isArray(parsedData) ? parsedData : [];
 } catch (error) {
-  if (import.meta.env.DEV) {
+  if (false) {
     console.error("No se pudo leer los datos del mapa", error);
   }
 }
@@ -250,7 +260,8 @@ function getLang() {
   return resolveLanguage(langSelect?.value || document.documentElement.lang || "es");
 }
 var DEFAULT_CENTER = [41.75, 2.2];
-var DEFAULT_ZOOM = 18;
+var DEFAULT_ZOOM = 8;
+var LOCATION_ZOOM = 18;
 var GEOLOCATION_OPTIONS = {
   enableHighAccuracy: true,
   timeout: 8e3,
@@ -281,6 +292,12 @@ activeBaseLayer.addTo(map);
 map.setMaxZoom(BASE_MAX_ZOOM);
 var userLocation = null;
 var hasValidCoordinates = (item) => Number.isFinite(item.lat) && Number.isFinite(item.lng) && !(item.lat === 0 && item.lng === 0);
+var benefitBounds = import_leaflet.default.latLngBounds(
+  data.filter(hasValidCoordinates).map((item) => [item.lat, item.lng])
+);
+if (benefitBounds.isValid()) {
+  map.fitBounds(benefitBounds, { padding: [24, 24] });
+}
 var toRad = (value) => value * Math.PI / 180;
 var distanceKm = (from, to) => {
   const R = 6371;
@@ -291,34 +308,10 @@ var distanceKm = (from, to) => {
   const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 };
-var centerOnUser = () => {
-  if (userLocation) {
-    map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), 18), {
-      animate: true
-    });
-    return;
-  }
-  if (!("geolocation" in navigator)) return;
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      userLocation = { lat: latitude, lng: longitude };
-      map.setView([latitude, longitude], Math.max(map.getZoom(), DEFAULT_ZOOM), {
-        animate: true
-      });
-    },
-    (error) => {
-      if (import.meta.env.DEV) {
-        console.warn("Geolocation error:", error.message);
-      }
-    },
-    GEOLOCATION_OPTIONS
-  );
-};
 var updateUserLocation = (position) => {
   const { latitude, longitude } = position.coords;
   userLocation = { lat: latitude, lng: longitude };
-  map.setView([latitude, longitude], DEFAULT_ZOOM, { animate: true });
+  map.setView([latitude, longitude], LOCATION_ZOOM, { animate: true });
   const userIcon = import_leaflet.default.icon({
     iconUrl: "/img/marker.png",
     iconSize: [48, 48],
@@ -331,16 +324,48 @@ var updateUserLocation = (position) => {
   userMarker = import_leaflet.default.marker([latitude, longitude], { icon: userIcon }).addTo(map).bindPopup(uiText[getLang()].locationPopup);
   applyFilter();
 };
-if ("geolocation" in navigator) {
+var requestUserLocation = (onSuccess, onError) => {
+  const fail = (error) => {
+    if (false) {
+      console.warn("Geolocation error:", error.message);
+    }
+    onError?.(error);
+  };
   navigator.geolocation.getCurrentPosition(
-    updateUserLocation,
+    onSuccess,
     (error) => {
-      if (import.meta.env.DEV) {
-        console.warn("Geolocation error:", error.message);
+      if (error.code === error.PERMISSION_DENIED) {
+        fail(error);
+        return;
       }
+      navigator.geolocation.getCurrentPosition(onSuccess, fail, {
+        ...GEOLOCATION_OPTIONS,
+        enableHighAccuracy: false
+      });
     },
     GEOLOCATION_OPTIONS
   );
+};
+var showLocationError = (error) => {
+  const text = uiText[getLang()];
+  const message = error && error.code === error.PERMISSION_DENIED ? text.locationDenied : text.locationUnavailable;
+  import_leaflet.default.popup().setLatLng(map.getCenter()).setContent(escapeHtml(message)).openOn(map);
+};
+var centerOnUser = () => {
+  if (userLocation) {
+    map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), LOCATION_ZOOM), {
+      animate: true
+    });
+    return;
+  }
+  if (!("geolocation" in navigator)) {
+    showLocationError();
+    return;
+  }
+  requestUserLocation(updateUserLocation, showLocationError);
+};
+if ("geolocation" in navigator) {
+  requestUserLocation(updateUserLocation);
 }
 var locationControl = import_leaflet.default.Control.extend({
   onAdd() {

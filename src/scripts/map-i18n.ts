@@ -8,6 +8,8 @@ export const uiText: Record<
     emptyState: string;
     locationButton: string;
     locationPopup: string;
+    locationDenied: string;
+    locationUnavailable: string;
     mapStyleOsm: string;
     mapStylePositron: string;
     languageLabel: string;
@@ -19,6 +21,8 @@ export const uiText: Record<
     emptyState: "No se han encontrado resultados.",
     locationButton: "Volver a mi ubicación",
     locationPopup: "Tu ubicación aproximada",
+    locationDenied: "Activa el permiso de ubicación del navegador para ver dónde estás.",
+    locationUnavailable: "No se ha podido obtener tu ubicación. Inténtalo de nuevo.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Claro",
     languageLabel: "🇪🇸 Español",
@@ -29,6 +33,8 @@ export const uiText: Record<
     emptyState: "No s'han trobat resultats.",
     locationButton: "Tornar a la meva ubicació",
     locationPopup: "La teva ubicació aproximada",
+    locationDenied: "Activa el permís d'ubicació del navegador per veure on ets.",
+    locationUnavailable: "No s'ha pogut obtenir la teva ubicació. Torna-ho a provar.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clar",
     languageLabel: "🇦🇩 Català",
@@ -39,6 +45,8 @@ export const uiText: Record<
     emptyState: "No results found.",
     locationButton: "Back to my location",
     locationPopup: "Your approximate location",
+    locationDenied: "Allow location access in your browser to see where you are.",
+    locationUnavailable: "Your location could not be determined. Please try again.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Light",
     languageLabel: "🇬🇧 English",
@@ -49,6 +57,8 @@ export const uiText: Record<
     emptyState: "Aucun résultat trouvé.",
     locationButton: "Revenir à ma position",
     locationPopup: "Votre position approximative",
+    locationDenied: "Autorisez la localisation dans votre navigateur pour voir où vous êtes.",
+    locationUnavailable: "Impossible d'obtenir votre position. Veuillez réessayer.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Clair",
     languageLabel: "🇫🇷 Français",
@@ -59,6 +69,8 @@ export const uiText: Record<
     emptyState: "Ничего не найдено.",
     locationButton: "Вернуться к моему местоположению",
     locationPopup: "Ваше примерное местоположение",
+    locationDenied: "Разрешите доступ к местоположению в браузере, чтобы увидеть, где вы находитесь.",
+    locationUnavailable: "Не удалось определить ваше местоположение. Попробуйте ещё раз.",
     mapStyleOsm: "OSM",
     mapStylePositron: "Светлая",
     languageLabel: "🇷🇺 Русский",

@@ -69,7 +69,9 @@ function getLang(): LanguageCode {
 }
 
 const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
-const DEFAULT_ZOOM = 18;
+// Fallback view when there are no benefits with coordinates.
+const DEFAULT_ZOOM = 8;
+const LOCATION_ZOOM = 18;
 const GEOLOCATION_OPTIONS: PositionOptions = {
   enableHighAccuracy: true,
   timeout: 8000,
@@ -116,6 +118,13 @@ const hasValidCoordinates = (item: Pick<SearchItem, "lat" | "lng">) =>
   Number.isFinite(item.lng) &&
   !(item.lat === 0 && item.lng === 0);
 
+const benefitBounds = L.latLngBounds(
+  data.filter(hasValidCoordinates).map((item): L.LatLngTuple => [item.lat, item.lng])
+);
+if (benefitBounds.isValid()) {
+  map.fitBounds(benefitBounds, { padding: [24, 24] });
+}
+
 const toRad = (value: number) => (value * Math.PI) / 180;
 const distanceKm = (from: { lat: number; lng: number }, to: { lat: number; lng: number }) => {
   const R = 6371;
@@ -129,35 +138,10 @@ const distanceKm = (from: { lat: number; lng: number }, to: { lat: number; lng: 
   return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 };
 
-const centerOnUser = () => {
-  if (userLocation) {
-    map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), 18), {
-      animate: true,
-    });
-    return;
-  }
-  if (!("geolocation" in navigator)) return;
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      userLocation = { lat: latitude, lng: longitude };
-      map.setView([latitude, longitude], Math.max(map.getZoom(), DEFAULT_ZOOM), {
-        animate: true,
-      });
-    },
-    (error) => {
-      if (import.meta.env.DEV) {
-        console.warn("Geolocation error:", error.message);
-      }
-    },
-    GEOLOCATION_OPTIONS
-  );
-};
-
 const updateUserLocation = (position: GeolocationPosition) => {
   const { latitude, longitude } = position.coords;
   userLocation = { lat: latitude, lng: longitude };
-  map.setView([latitude, longitude], DEFAULT_ZOOM, { animate: true });
+  map.setView([latitude, longitude], LOCATION_ZOOM, { animate: true });
   const userIcon = L.icon({
     iconUrl: "/img/marker.png",
     iconSize: [48, 48],
@@ -173,16 +157,59 @@ const updateUserLocation = (position: GeolocationPosition) => {
   applyFilter();
 };
 
-if ("geolocation" in navigator) {
+// High accuracy often times out on desktops without GPS, so retry once with
+// a coarse fix unless the user denied permission.
+const requestUserLocation = (
+  onSuccess: PositionCallback,
+  onError?: (error: GeolocationPositionError) => void
+) => {
+  const fail = (error: GeolocationPositionError) => {
+    if (import.meta.env.DEV) {
+      console.warn("Geolocation error:", error.message);
+    }
+    onError?.(error);
+  };
   navigator.geolocation.getCurrentPosition(
-    updateUserLocation,
+    onSuccess,
     (error) => {
-      if (import.meta.env.DEV) {
-        console.warn("Geolocation error:", error.message);
+      if (error.code === error.PERMISSION_DENIED) {
+        fail(error);
+        return;
       }
+      navigator.geolocation.getCurrentPosition(onSuccess, fail, {
+        ...GEOLOCATION_OPTIONS,
+        enableHighAccuracy: false,
+      });
     },
     GEOLOCATION_OPTIONS
   );
+};
+
+const showLocationError = (error?: GeolocationPositionError) => {
+  const text = uiText[getLang()];
+  const message =
+    error && error.code === error.PERMISSION_DENIED
+      ? text.locationDenied
+      : text.locationUnavailable;
+  L.popup().setLatLng(map.getCenter()).setContent(escapeHtml(message)).openOn(map);
+};
+
+const centerOnUser = () => {
+  if (userLocation) {
+    map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), LOCATION_ZOOM), {
+      animate: true,
+    });
+    return;
+  }
+  if (!("geolocation" in navigator)) {
+    showLocationError();
+    return;
+  }
+  requestUserLocation(updateUserLocation, showLocationError);
+};
+
+if ("geolocation" in navigator) {
+  requestUserLocation(updateUserLocation);
 }
 
 const locationControl = L.Control.extend({
