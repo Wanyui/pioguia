@@ -10,6 +10,7 @@ import { uiText, type LanguageCode } from "./map-i18n";
 import { normalize } from "./map-utils";
 import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
+import { setupDetail } from "./app/detail";
 import { matchesFilters, setupFilters } from "./app/filters";
 import { createListView } from "./app/list-view";
 import { createMapView } from "./app/map-view";
@@ -25,6 +26,8 @@ if (!dataElement || !mapElement || !results) {
 L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 
 const data = readBenefits(dataElement);
+const byId = new Map(data.map((item) => [item.id, item]));
+const bySlug = new Map(data.map((item) => [item.slug, item]));
 const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
 const emptyState = document.getElementById("empty-state");
 const resultsCount = document.getElementById("results-count");
@@ -33,19 +36,26 @@ const sheet = setupSheet();
 let activeId: string | null = null;
 
 /** Height of the mobile sheet covering the map, so centred markers stay visible above it. */
-const sheetOffset = () => sheet.currentHeight();
+/**
+ * Vertical shift for centred markers on mobile: covered bottom (sheet or detail) minus covered top
+ * (floating search and filters), so the marker lands in the middle of the free area.
+ */
+const sheetOffset = () => {
+  if (!sheet.isMobile()) return 0;
+  const detail = document.getElementById("detail");
+  const bottom = detail && !detail.hidden ? detail.getBoundingClientRect().height : sheet.currentHeight();
+  const top = document.getElementById("app-header")?.getBoundingClientRect().bottom ?? 0;
+  return bottom - top;
+};
 
-const setActive = (
-  id: string | null,
-  { center = false, openPopup = false, scroll = false } = {}
-) => {
+const setActive = (id: string | null, { center = false, scroll = false } = {}) => {
   if (activeId) {
     mapView.setMarkerActive(activeId, false);
     listView.setCardActive(activeId, false);
   }
   activeId = id;
   if (!id) return;
-  mapView.setMarkerActive(id, true, { center, openPopup, offsetY: sheetOffset() });
+  mapView.setMarkerActive(id, true, { center, offsetY: sheetOffset() });
   listView.setCardActive(id, true, { scroll });
 };
 
@@ -53,17 +63,8 @@ const listView = createListView({
   results,
   emptyState,
   onCardClick: (id) => {
-    // On mobile, picking a card from the full list goes back to the map to show it.
-    if (sheet.isMobile() && sheet.getSnap() === "full") {
-      sheet.setSnap("half");
-      // Wait for the sheet to shrink, then keep the chosen card in view.
-      window.setTimeout(() => listView.scrollToCard(id), 240);
-    }
-    if (!mapView.hasMarker(id)) {
-      setActive(id, { scroll: true });
-      return;
-    }
-    setActive(id, { center: true, openPopup: true, scroll: true });
+    const item = byId.get(id);
+    if (item) detail.open(item.slug);
   },
 });
 
@@ -71,14 +72,41 @@ const mapView = createMapView({
   element: mapElement,
   data,
   onMarkerClick: (id) => {
-    if (sheet.isMobile() && sheet.getSnap() === "peek") sheet.setSnap("half");
-    setActive(id, { openPopup: true, scroll: true });
+    const item = byId.get(id);
+    if (item) detail.open(item.slug);
   },
   onUserLocation: () => applyFilter(),
   bottomInset: () => sheetOffset(),
 });
 
 const filters = setupFilters(() => applyFilter({ refit: true }));
+
+const distanceTo = (item: SearchItem) => {
+  const origin = mapView.getUserLocation();
+  return origin && hasValidCoordinates(item) ? distanceKm(origin, item) : undefined;
+};
+
+const notice = document.getElementById("notice");
+let noticeTimer = 0;
+const showNotice = (message: string) => {
+  const textElement = document.getElementById("notice-text");
+  if (!notice || !textElement) return;
+  textElement.textContent = message;
+  notice.hidden = false;
+  window.clearTimeout(noticeTimer);
+  noticeTimer = window.setTimeout(() => (notice.hidden = true), 6000);
+};
+document.getElementById("notice-close")?.addEventListener("click", () => notice && (notice.hidden = true));
+
+const detail = setupDetail({
+  bySlug,
+  distanceOf: distanceTo,
+  showNotice,
+  onOpen: (item) => {
+    setActive(item.id, { center: mapView.hasMarker(item.id), scroll: true });
+  },
+  onClose: () => setActive(null),
+});
 const emptyMessage = document.getElementById("empty-message");
 
 const applyFilter = ({ refit = false } = {}) => {
@@ -178,6 +206,7 @@ const setLanguage = (lang: LanguageCode) => {
   document.documentElement.lang = lang;
   updateUiText(lang);
   applyFilter();
+  detail.render();
 };
 
 setupLanguageMenu(setLanguage);
@@ -197,4 +226,9 @@ document.getElementById("locate-button")?.addEventListener("click", () => mapVie
 
 mapView.requestInitialLocation();
 setLanguage(getLang());
-requestAnimationFrame(() => mapView.map.invalidateSize());
+// Size the map first; centring on a benefit before that gets cancelled.
+requestAnimationFrame(() => {
+  mapView.map.invalidateSize();
+  detail.openInitial();
+});
+

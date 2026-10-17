@@ -1,0 +1,48 @@
+---
+import App from "../../components/App.astro";
+import { benefitPath, loadArchivedSlugs, loadBenefits } from "../../lib/benefits";
+
+// One static page per benefit, plus archived ones so old shared links still explain what happened.
+export async function getStaticPaths() {
+  const active = await loadBenefits();
+  const archived = await loadArchivedSlugs();
+  const activeSlugs = new Set(active.map((item) => item.slug));
+  return [
+    ...active.map((item) => {
+      const name = item.title.es;
+      const highlight = item.highlight?.es;
+      const applies = item.appliesTo?.es;
+      const lead = [highlight, applies].filter(Boolean).join(" · ");
+      const summary = `${lead ? `${lead}. ` : ""}${item.description.es}`;
+      return {
+        params: { slug: item.slug },
+        props: {
+          title: `${name}${highlight ? `: ${highlight}` : ""} · Pioguia`,
+          description: summary.length > 158 ? `${summary.slice(0, 155).trimEnd()}…` : summary,
+          ogImage: item.logo?.startsWith("/") ? item.logo : undefined,
+          unavailable: false,
+        },
+      };
+    }),
+    ...archived
+      .filter(({ slug }) => !activeSlugs.has(slug))
+      .map(({ slug, title }) => ({
+        params: { slug },
+        props: { title: `${title.es} · Pioguia`, description: undefined, ogImage: undefined, unavailable: true },
+      })),
+  ];
+}
+
+const { slug } = Astro.params;
+const { title, description, ogImage, unavailable } = Astro.props;
+---
+
+<App
+  title={title}
+  description={description}
+  path={benefitPath(slug!)}
+  initialSlug={unavailable ? undefined : slug}
+  unavailable={unavailable}
+  noindex={unavailable}
+  ogImage={ogImage}
+/>

@@ -352,3 +352,56 @@
     transition: none;
   }
 }
+
+/* ---------- Detail placement ---------- */
+
+@media (min-width: 900px) {
+  .detail {
+    grid-column: 1;
+    grid-row: 1 / -1;
+    z-index: 5;
+    border-right: 1px solid var(--pg-line);
+  }
+}
+
+@media (max-width: 899.98px) {
+  .detail {
+    position: fixed;
+    z-index: 1200;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 72dvh;
+    border-radius: 22px 22px 0 0;
+    box-shadow: var(--pg-shadow-sheet);
+    transition: transform 160ms ease-out;
+  }
+
+  .detail-grip {
+    display: grid;
+    place-items: center;
+    height: 22px;
+    flex: 0 0 auto;
+    cursor: grab;
+    touch-action: none;
+  }
+
+  .detail-grip span {
+    width: 38px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--pg-line);
+  }
+
+  .detail-scroll {
+    padding-top: 4px;
+  }
+
+  .has-detail .view-toggle {
+    display: none;
+  }
+
+  .has-detail .map-area .leaflet-bottom {
+    bottom: 72dvh;
+  }
+}

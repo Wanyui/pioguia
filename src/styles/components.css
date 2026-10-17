@@ -392,3 +392,261 @@
 .empty-button[hidden] {
   display: none;
 }
+
+/* ---------- Detail (§5.7) ---------- */
+
+.detail {
+  display: flex;
+  flex-direction: column;
+  background: var(--pg-surface);
+  color: var(--pg-ink);
+}
+
+.detail[hidden] {
+  display: none;
+}
+
+.detail-grip {
+  display: none;
+}
+
+.detail-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px 16px calc(24px + env(safe-area-inset-bottom));
+  display: grid;
+  align-content: start;
+  gap: 16px;
+}
+
+.detail-head {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.detail-logo {
+  width: 64px;
+  height: 64px;
+}
+
+.detail-logo img {
+  width: 50px;
+  height: 50px;
+}
+
+.detail-logo.card-logo--icon .icon {
+  width: 28px;
+  height: 28px;
+}
+
+.detail-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.detail-meta {
+  margin: 4px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--pg-muted);
+}
+
+.detail-zone {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.detail-zone img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.detail-close {
+  align-self: start;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--pg-line);
+  background: var(--pg-surface);
+  color: var(--pg-ink);
+  cursor: pointer;
+}
+
+.detail-offer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag-xl {
+  font-size: 22px;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.detail-applies {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.detail-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.btn-primary {
+  background: var(--pg-accent);
+  color: var(--pg-on-accent);
+  border: 1px solid var(--pg-accent);
+}
+
+.btn-secondary {
+  background: var(--pg-surface);
+  color: var(--pg-accent);
+  border: 1.5px solid var(--pg-accent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--pg-accent);
+  border: 1px solid var(--pg-line);
+}
+
+.detail-place {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--pg-muted);
+}
+
+.detail-place .icon {
+  color: var(--pg-accent);
+}
+
+.detail-distance {
+  margin-left: auto;
+  font-weight: 600;
+  color: var(--pg-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.detail-description {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.detail-reminder {
+  margin: -6px 0 0;
+  font-size: 13px;
+  color: var(--pg-muted);
+}
+
+.detail-contact {
+  display: grid;
+  border-top: 1px solid var(--pg-line);
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  border-bottom: 1px solid var(--pg-line);
+  color: var(--pg-ink);
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.detail-row span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.detail-row .icon {
+  color: var(--pg-accent);
+}
+
+.detail-chevron {
+  color: var(--pg-muted) !important;
+}
+
+.detail-share {
+  justify-self: start;
+}
+
+/* ---------- Notice (toast) ---------- */
+
+.notice {
+  position: fixed;
+  z-index: 1400;
+  left: 50%;
+  top: 16px;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: calc(100vw - 24px);
+  padding: 10px 10px 10px 14px;
+  border-radius: 14px;
+  background: var(--pg-ink);
+  color: var(--pg-canvas);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 0.25);
+  font-size: 14px;
+}
+
+.notice[hidden] {
+  display: none;
+}
+
+.notice-close {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+}

@@ -41,7 +41,17 @@ var uiText = {
     clearFilters: "Quitar filtros",
     clearSearch: "Borrar b\xFAsqueda",
     emptyQuery: "Vaya, no hay \xAB{q}\xBB por aqu\xED. Prueba con otra palabra o quita los filtros.",
-    emptyFilters: "Vaya, no hay ventajas con estos filtros."
+    emptyFilters: "Vaya, no hay ventajas con estos filtros.",
+    close: "Cerrar",
+    directions: "C\xF3mo llegar",
+    call: "Llamar",
+    website: "Web",
+    email: "Email",
+    share: "Compartir",
+    linkCopied: "Enlace copiado",
+    address: "Direcci\xF3n",
+    showCard: "Presenta tu carnet del Club Piolet.",
+    unavailable: "Esta ventaja ya no est\xE1 disponible."
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -67,7 +77,17 @@ var uiText = {
     clearFilters: "Treu els filtres",
     clearSearch: "Esborra la cerca",
     emptyQuery: "Vaja, no hi ha \xAB{q}\xBB per aqu\xED. Prova una altra paraula o treu els filtres.",
-    emptyFilters: "Vaja, no hi ha avantatges amb aquests filtres."
+    emptyFilters: "Vaja, no hi ha avantatges amb aquests filtres.",
+    close: "Tanca",
+    directions: "Com arribar-hi",
+    call: "Truca",
+    website: "Web",
+    email: "Correu",
+    share: "Comparteix",
+    linkCopied: "Enlla\xE7 copiat",
+    address: "Adre\xE7a",
+    showCard: "Presenta el teu carnet del Club Piolet.",
+    unavailable: "Aquest avantatge ja no est\xE0 disponible."
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -93,7 +113,17 @@ var uiText = {
     clearFilters: "Clear filters",
     clearSearch: "Clear search",
     emptyQuery: "Oh, there's no \u201C{q}\u201D around here. Try another word or clear the filters.",
-    emptyFilters: "Oh, there are no benefits with these filters."
+    emptyFilters: "Oh, there are no benefits with these filters.",
+    close: "Close",
+    directions: "Directions",
+    call: "Call",
+    website: "Website",
+    email: "Email",
+    share: "Share",
+    linkCopied: "Link copied",
+    address: "Address",
+    showCard: "Show your Club Piolet card.",
+    unavailable: "This benefit is no longer available."
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -119,7 +149,17 @@ var uiText = {
     clearFilters: "Effacer les filtres",
     clearSearch: "Effacer la recherche",
     emptyQuery: "Mince, pas de \xAB {q} \xBB par ici. Essaie un autre mot ou enl\xE8ve les filtres.",
-    emptyFilters: "Mince, aucun avantage avec ces filtres."
+    emptyFilters: "Mince, aucun avantage avec ces filtres.",
+    close: "Fermer",
+    directions: "Itin\xE9raire",
+    call: "Appeler",
+    website: "Site web",
+    email: "E-mail",
+    share: "Partager",
+    linkCopied: "Lien copi\xE9",
+    address: "Adresse",
+    showCard: "Pr\xE9sente ta carte du Club Piolet.",
+    unavailable: "Cet avantage n'est plus disponible."
   },
   ru: {
     title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
@@ -145,7 +185,17 @@ var uiText = {
     clearFilters: "\u0421\u0431\u0440\u043E\u0441\u0438\u0442\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B",
     clearSearch: "\u041E\u0447\u0438\u0441\u0442\u0438\u0442\u044C \u043F\u043E\u0438\u0441\u043A",
     emptyQuery: "\u0425\u043C, \xAB{q}\xBB \u0437\u0434\u0435\u0441\u044C \u043D\u0435\u0442. \u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439 \u0434\u0440\u0443\u0433\u043E\u0435 \u0441\u043B\u043E\u0432\u043E \u0438\u043B\u0438 \u0441\u0431\u0440\u043E\u0441\u044C \u0444\u0438\u043B\u044C\u0442\u0440\u044B.",
-    emptyFilters: "\u0425\u043C, \u0441 \u044D\u0442\u0438\u043C\u0438 \u0444\u0438\u043B\u044C\u0442\u0440\u0430\u043C\u0438 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442."
+    emptyFilters: "\u0425\u043C, \u0441 \u044D\u0442\u0438\u043C\u0438 \u0444\u0438\u043B\u044C\u0442\u0440\u0430\u043C\u0438 \u043D\u0438\u0447\u0435\u0433\u043E \u043D\u0435\u0442.",
+    close: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C",
+    directions: "\u041C\u0430\u0440\u0448\u0440\u0443\u0442",
+    call: "\u041F\u043E\u0437\u0432\u043E\u043D\u0438\u0442\u044C",
+    website: "\u0421\u0430\u0439\u0442",
+    email: "\u041F\u043E\u0447\u0442\u0430",
+    share: "\u041F\u043E\u0434\u0435\u043B\u0438\u0442\u044C\u0441\u044F",
+    linkCopied: "\u0421\u0441\u044B\u043B\u043A\u0430 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0430",
+    address: "\u0410\u0434\u0440\u0435\u0441",
+    showCard: "\u041F\u043E\u043A\u0430\u0436\u0438 \u0441\u0432\u043E\u044E \u043A\u0430\u0440\u0442\u0443 Club Piolet.",
+    unavailable: "\u042D\u0442\u043E \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0431\u043E\u043B\u044C\u0448\u0435 \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E."
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -359,6 +409,223 @@ var ZONES = {
   }
 };
 
+// src/icons/index.ts
+var ICON_PATHS = {
+  "mountainSnow": '<path d="m8 3 4 8 5-5 5 15H2L8 3z" /><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />',
+  "ferrisWheel": '<circle cx="12" cy="12" r="2" /><path d="M12 2v4" /><path d="m6.8 15-3.5 2" /><path d="m20.7 7-3.5 2" /><path d="M6.8 9 3.3 7" /><path d="m20.7 17-3.5-2" /><path d="m9 22 3-8 3 8" /><path d="M8 22h8" /><path d="M18 18.7a9 9 0 1 0-12 0" />',
+  "shoppingBag": '<path d="M16 10a4 4 0 0 1-8 0" /><path d="M3.103 6.034h17.794" /><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />',
+  "landmark": '<path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" />',
+  "conciergeBell": '<path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z" /><path d="M20 16a8 8 0 1 0-16 0" /><path d="M12 4v4" /><path d="M10 4h4" />',
+  "utensils": '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />',
+  "search": '<path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" />',
+  "slidersHorizontal": '<path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" />',
+  "locateFixed": '<line x1="2" x2="5" y1="12" y2="12" /><line x1="19" x2="22" y1="12" y2="12" /><line x1="12" x2="12" y1="2" y2="5" /><line x1="12" x2="12" y1="19" y2="22" /><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="3" />',
+  "layers": '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />',
+  "list": '<path d="M3 5h.01" /><path d="M3 12h.01" /><path d="M3 19h.01" /><path d="M8 5h13" /><path d="M8 12h13" /><path d="M8 19h13" />',
+  "map": '<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" />',
+  "phone": '<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />',
+  "navigation": '<polygon points="3 11 22 2 13 21 11 13 3 11" />',
+  "globe": '<circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />',
+  "mail": '<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />',
+  "x": '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
+  "chevronRight": '<path d="m9 18 6-6-6-6" />',
+  "chevronDown": '<path d="m6 9 6 6 6-6" />',
+  "share2": '<circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />',
+  "info": '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />',
+  "mapPin": '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" />'
+};
+var icon = (name, className = "icon", label) => `<svg class="${className}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${ICON_PATHS[name]}</svg>`;
+
+// src/scripts/map-card.ts
+var formatDistance = (km, lang) => {
+  if (km < 1) return `${Math.max(10, Math.round(km * 1e3 / 10) * 10)} m`;
+  const value = km < 10 ? km.toFixed(1) : Math.round(km).toString();
+  return `${lang === "en" ? value : value.replace(".", ",")} km`;
+};
+var buildLogoHtml = (item, title) => {
+  const category = CATEGORIES[item.category];
+  const logoUrl = sanitizeImageUrl(item.logo);
+  if (logoUrl) {
+    const dark = item.logoBackground === "dark" ? " card-logo--dark" : "";
+    return `<span class="card-logo${dark}"><img src="${logoUrl}" alt="" loading="lazy" decoding="async"></span>`;
+  }
+  return `<span class="card-logo card-logo--icon" style="--cat: var(${category.color})" aria-hidden="true">${icon(category.icon)}</span>`;
+};
+var buildCardHtml = (item, lang, distanceKm2) => {
+  const category = CATEGORIES[item.category];
+  const title = escapeHtml(item.title[lang] || item.title.es);
+  const highlight = item.highlight ? escapeHtml(item.highlight[lang] || item.highlight.es) : "";
+  const appliesTo = item.appliesTo ? escapeHtml(item.appliesTo[lang] || item.appliesTo.es) : "";
+  const where = distanceKm2 !== void 0 && Number.isFinite(distanceKm2) ? escapeHtml(uiText[lang].distanceAway.replace("{d}", formatDistance(distanceKm2, lang))) : escapeHtml(item.city ?? "");
+  const tag = highlight ? `<span class="card-tag"><span class="tag">${highlight}</span>${appliesTo ? `<span class="tag-who">${appliesTo}</span>` : ""}</span>` : "";
+  return `
+    <li>
+      <button type="button" class="card" data-id="${escapeHtml(item.id)}">
+        ${buildLogoHtml(item, title)}
+        <span class="card-main">
+          <span class="card-name">${title}</span>
+          <span class="card-meta">
+            <span class="card-cat" style="--cat-text: var(${category.color}-text)">${icon(category.icon)}${escapeHtml(category.label[lang])}</span>
+            ${where ? `<span aria-hidden="true">\xB7</span><span class="card-where">${where}</span>` : ""}
+          </span>
+        </span>
+        ${tag}
+      </button>
+    </li>
+  `;
+};
+
+// src/scripts/app/detail-view.ts
+var directionsUrl = (item) => sanitizeExternalUrl(item.googleMapsUrl) || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${item.lat},${item.lng}`)}`;
+var row = (href, iconName, label, external = false) => `<a class="detail-row" href="${href}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>${icon(iconName)}<span>${label}</span>${icon("chevronRight", "icon detail-chevron")}</a>`;
+var buildDetailHtml = (item, lang, distanceKm2) => {
+  const text = uiText[lang];
+  const category = CATEGORIES[item.category];
+  const zone = ZONES[item.zone];
+  const title = escapeHtml(item.title[lang] || item.title.es);
+  const description = escapeHtml(item.description[lang] || item.description.es);
+  const highlight = item.highlight ? escapeHtml(item.highlight[lang] || item.highlight.es) : "";
+  const appliesTo = item.appliesTo ? escapeHtml(item.appliesTo[lang] || item.appliesTo.es) : "";
+  const phones = splitPhoneNumbers(item.phone).map((phone) => ({ tel: normalizePhoneForTel(phone), label: phone.trim() || formatPhoneLabel(phone) })).filter((phone) => phone.tel && phone.label);
+  const web = sanitizeExternalUrl(item.web);
+  const email = item.email && /^[^\s@<>"]+@[^\s@<>"]+$/.test(item.email) ? item.email : "";
+  const distance = distanceKm2 !== void 0 && Number.isFinite(distanceKm2) ? `<span class="detail-distance">${escapeHtml(text.distanceAway.replace("{d}", formatDistance(distanceKm2, lang)))}</span>` : "";
+  const callButton = phones[0] ? `<a class="btn btn-secondary" href="tel:${phones[0].tel}">${icon("phone")}<span>${escapeHtml(text.call)}</span></a>` : "";
+  const contactRows = [
+    ...phones.map((phone) => row(`tel:${phone.tel}`, "phone", escapeHtml(phone.label))),
+    web ? row(web, "globe", escapeHtml(web.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")), true) : "",
+    email ? row(`mailto:${encodeURIComponent(email).replace("%40", "@")}`, "mail", escapeHtml(email)) : ""
+  ].join("");
+  return `
+    <header class="detail-head">
+      ${buildLogoHtml(item, title).replace('class="card-logo', 'class="card-logo detail-logo')}
+      <div class="detail-titles">
+        <h2 id="detail-title" class="detail-title">${title}</h2>
+        <p class="detail-meta">
+          <span class="card-cat" style="--cat-text: var(${category.color}-text)">${icon(category.icon)}${escapeHtml(category.label[lang])}</span>
+          <span aria-hidden="true">\xB7</span>
+          <span class="detail-zone">${zone.shield ? `<img src="${zone.shield}" alt="" width="16" height="16">` : ""}${escapeHtml(item.city || zone.label[lang])}</span>
+        </p>
+      </div>
+      <button type="button" class="detail-close" data-detail-close aria-label="${escapeHtml(text.close)}">${icon("x")}</button>
+    </header>
+
+    ${highlight ? `<div class="detail-offer"><span class="tag tag-xl">${highlight}</span>${appliesTo ? `<span class="detail-applies">${appliesTo}</span>` : ""}</div>` : ""}
+
+    <div class="detail-actions">
+      <a class="btn btn-primary" href="${directionsUrl(item)}" target="_blank" rel="noopener noreferrer">${icon("navigation")}<span>${escapeHtml(text.directions)}</span></a>
+      ${callButton}
+    </div>
+
+    <p class="detail-place">${icon("mapPin")}<span>${escapeHtml(item.address)}</span>${distance}</p>
+
+    <p class="detail-description">${description}</p>
+    <p class="detail-reminder">${escapeHtml(text.showCard)}</p>
+
+    ${contactRows ? `<nav class="detail-contact" aria-label="${escapeHtml(text.call)}">${contactRows}</nav>` : ""}
+
+    <button type="button" class="btn btn-ghost detail-share" data-detail-share>${icon("share2")}<span>${escapeHtml(text.share)}</span></button>
+  `;
+};
+
+// src/scripts/app/detail.ts
+var HOME_TITLE = "Gu\xEDa Piolet";
+var SWIPE_CLOSE_PX = 80;
+var slugFromPath = (path) => path.match(/^\/beneficio\/([^/]+)\/?$/)?.[1];
+var benefitUrl = (slug) => `/beneficio/${slug}/`;
+var setupDetail = ({ bySlug: bySlug2, distanceOf, onOpen, onClose, showNotice: showNotice2 }) => {
+  const panel = document.getElementById("detail");
+  const body = document.getElementById("detail-body");
+  const grip = document.getElementById("detail-grip");
+  let current = null;
+  let returnFocus = null;
+  const render = () => {
+    if (!current || !body) return;
+    body.innerHTML = buildDetailHtml(current, getLang(), distanceOf(current));
+  };
+  const open = (slug, { push = true } = {}) => {
+    const item = bySlug2.get(slug);
+    if (!item || !panel) return false;
+    if (!current) returnFocus = document.activeElement;
+    current = item;
+    render();
+    panel.hidden = false;
+    document.body.classList.add("has-detail");
+    document.title = `${item.title[getLang()] || item.title.es} \xB7 Pioguia`;
+    if (push && location.pathname !== benefitUrl(slug)) history.pushState({ slug }, "", benefitUrl(slug));
+    panel.querySelector("[data-detail-close]")?.focus({ preventScroll: true });
+    body?.scrollTo({ top: 0 });
+    onOpen(item);
+    return true;
+  };
+  const close = ({ push = true } = {}) => {
+    if (!current || !panel) return;
+    const closed = current;
+    current = null;
+    panel.hidden = true;
+    document.body.classList.remove("has-detail");
+    document.title = HOME_TITLE;
+    if (push && slugFromPath(location.pathname)) history.pushState({}, "", "/");
+    onClose();
+    const target = returnFocus && returnFocus !== document.body && document.contains(returnFocus) ? returnFocus : document.querySelector(`.card[data-id="${CSS.escape(closed.id)}"]`);
+    target?.focus({ preventScroll: true });
+    returnFocus = null;
+  };
+  const share = async () => {
+    if (!current) return;
+    const url = new URL(benefitUrl(current.slug), location.origin).href;
+    const title = current.title[getLang()] || current.title.es;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      showNotice2(uiText[getLang()].linkCopied);
+    } catch {
+    }
+  };
+  body?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (target.closest("[data-detail-close]")) close();
+    else if (target.closest("[data-detail-share]")) void share();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && current) close();
+  });
+  grip?.addEventListener("pointerdown", (start) => {
+    if (!panel) return;
+    const startY = start.clientY;
+    const onMove = (move) => {
+      const dy = Math.max(0, move.clientY - startY);
+      panel.style.transform = `translateY(${dy}px)`;
+    };
+    const onUp = (end) => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      panel.style.removeProperty("transform");
+      if (end.clientY - startY > SWIPE_CLOSE_PX) close();
+    };
+    window.addEventListener("pointermove", onMove);
+    window.addEventListener("pointerup", onUp);
+  });
+  window.addEventListener("popstate", () => {
+    const slug = slugFromPath(location.pathname);
+    if (slug && bySlug2.has(slug)) open(slug, { push: false });
+    else close({ push: false });
+  });
+  const openInitial = () => {
+    const slug = document.body.dataset.initialSlug || slugFromPath(location.pathname);
+    if (document.body.dataset.unavailable === "true" || slug && !bySlug2.has(slug)) {
+      showNotice2(uiText[getLang()].unavailable);
+      if (slug) history.replaceState({}, "", "/");
+      return;
+    }
+    if (slug) open(slug, { push: false });
+  };
+  return { open, close, render, openInitial, current: () => current };
+};
+
 // src/scripts/app/filters.ts
 var matchesFilters = (item, state, skip) => (skip === "categories" || state.categories.size === 0 || state.categories.has(item.category)) && (skip === "zones" || state.zones.size === 0 || state.zones.has(item.zone));
 var setupFilters = (onChange) => {
@@ -462,72 +729,6 @@ var setupFilters = (onChange) => {
   return { state, isActive, clear, updateCounts, updateLabels };
 };
 
-// src/icons/index.ts
-var ICON_PATHS = {
-  "mountainSnow": '<path d="m8 3 4 8 5-5 5 15H2L8 3z" /><path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />',
-  "ferrisWheel": '<circle cx="12" cy="12" r="2" /><path d="M12 2v4" /><path d="m6.8 15-3.5 2" /><path d="m20.7 7-3.5 2" /><path d="M6.8 9 3.3 7" /><path d="m20.7 17-3.5-2" /><path d="m9 22 3-8 3 8" /><path d="M8 22h8" /><path d="M18 18.7a9 9 0 1 0-12 0" />',
-  "shoppingBag": '<path d="M16 10a4 4 0 0 1-8 0" /><path d="M3.103 6.034h17.794" /><path d="M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z" />',
-  "landmark": '<path d="M10 18v-7" /><path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" /><path d="M14 18v-7" /><path d="M18 18v-7" /><path d="M3 22h18" /><path d="M6 18v-7" />',
-  "conciergeBell": '<path d="M3 20a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1Z" /><path d="M20 16a8 8 0 1 0-16 0" /><path d="M12 4v4" /><path d="M10 4h4" />',
-  "utensils": '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />',
-  "search": '<path d="m21 21-4.34-4.34" /><circle cx="11" cy="11" r="8" />',
-  "slidersHorizontal": '<path d="M10 5H3" /><path d="M12 19H3" /><path d="M14 3v4" /><path d="M16 17v4" /><path d="M21 12h-9" /><path d="M21 19h-5" /><path d="M21 5h-7" /><path d="M8 10v4" /><path d="M8 12H3" />',
-  "locateFixed": '<line x1="2" x2="5" y1="12" y2="12" /><line x1="19" x2="22" y1="12" y2="12" /><line x1="12" x2="12" y1="2" y2="5" /><line x1="12" x2="12" y1="19" y2="22" /><circle cx="12" cy="12" r="7" /><circle cx="12" cy="12" r="3" />',
-  "layers": '<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" />',
-  "list": '<path d="M3 5h.01" /><path d="M3 12h.01" /><path d="M3 19h.01" /><path d="M8 5h13" /><path d="M8 12h13" /><path d="M8 19h13" />',
-  "map": '<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" />',
-  "phone": '<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />',
-  "navigation": '<polygon points="3 11 22 2 13 21 11 13 3 11" />',
-  "globe": '<circle cx="12" cy="12" r="10" /><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" /><path d="M2 12h20" />',
-  "mail": '<path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /><rect x="2" y="4" width="20" height="16" rx="2" />',
-  "x": '<path d="M18 6 6 18" /><path d="m6 6 12 12" />',
-  "chevronRight": '<path d="m9 18 6-6-6-6" />',
-  "chevronDown": '<path d="m6 9 6 6 6-6" />',
-  "share2": '<circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" /><line x1="8.59" x2="15.42" y1="13.51" y2="17.49" /><line x1="15.41" x2="8.59" y1="6.51" y2="10.49" />',
-  "info": '<circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" />',
-  "mapPin": '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" /><circle cx="12" cy="10" r="3" />'
-};
-var icon = (name, className = "icon", label) => `<svg class="${className}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ${label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"'}>${ICON_PATHS[name]}</svg>`;
-
-// src/scripts/map-card.ts
-var formatDistance = (km, lang) => {
-  if (km < 1) return `${Math.max(10, Math.round(km * 1e3 / 10) * 10)} m`;
-  const value = km < 10 ? km.toFixed(1) : Math.round(km).toString();
-  return `${lang === "en" ? value : value.replace(".", ",")} km`;
-};
-var buildLogoHtml = (item, title) => {
-  const category = CATEGORIES[item.category];
-  const logoUrl = sanitizeImageUrl(item.logo);
-  if (logoUrl) {
-    const dark = item.logoBackground === "dark" ? " card-logo--dark" : "";
-    return `<span class="card-logo${dark}"><img src="${logoUrl}" alt="" loading="lazy" decoding="async"></span>`;
-  }
-  return `<span class="card-logo card-logo--icon" style="--cat: var(${category.color})" aria-hidden="true">${icon(category.icon)}</span>`;
-};
-var buildCardHtml = (item, lang, distanceKm2) => {
-  const category = CATEGORIES[item.category];
-  const title = escapeHtml(item.title[lang] || item.title.es);
-  const highlight = item.highlight ? escapeHtml(item.highlight[lang] || item.highlight.es) : "";
-  const appliesTo = item.appliesTo ? escapeHtml(item.appliesTo[lang] || item.appliesTo.es) : "";
-  const where = distanceKm2 !== void 0 && Number.isFinite(distanceKm2) ? escapeHtml(uiText[lang].distanceAway.replace("{d}", formatDistance(distanceKm2, lang))) : escapeHtml(item.city ?? "");
-  const tag = highlight ? `<span class="card-tag"><span class="tag">${highlight}</span>${appliesTo ? `<span class="tag-who">${appliesTo}</span>` : ""}</span>` : "";
-  return `
-    <li>
-      <button type="button" class="card" data-id="${escapeHtml(item.id)}">
-        ${buildLogoHtml(item, title)}
-        <span class="card-main">
-          <span class="card-name">${title}</span>
-          <span class="card-meta">
-            <span class="card-cat" style="--cat-text: var(${category.color}-text)">${icon(category.icon)}${escapeHtml(category.label[lang])}</span>
-            ${where ? `<span aria-hidden="true">\xB7</span><span class="card-where">${where}</span>` : ""}
-          </span>
-        </span>
-        ${tag}
-      </button>
-    </li>
-  `;
-};
-
 // src/scripts/app/list-view.ts
 var createListView = ({ results: results2, emptyState: emptyState2, onCardClick }) => {
   const cardFor = (id) => results2.querySelector(`.card[data-id="${CSS.escape(id)}"]`);
@@ -561,36 +762,6 @@ var createListView = ({ results: results2, emptyState: emptyState2, onCardClick 
 
 // src/scripts/app/map-view.ts
 var import_leaflet = __toESM(require_leaflet_src(), 1);
-
-// src/scripts/app/map-popup.ts
-var buildPopupActionsHtml = (item) => {
-  const safeMapsUrl = sanitizeExternalUrl(item.googleMapsUrl);
-  const safeWebUrl = sanitizeExternalUrl(item.web);
-  const phoneEntries = splitPhoneNumbers(item.phone).map((phone) => ({ tel: normalizePhoneForTel(phone), label: formatPhoneLabel(phone) })).filter((phone) => Boolean(phone.tel && phone.label));
-  const mapLink = safeMapsUrl ? `<a class="popup-action" href="${safeMapsUrl}" target="_blank" rel="noopener noreferrer" data-card-action aria-label="Abrir en Google Maps" title="Abrir en Google Maps"><img src="/img/Google_Maps_icon_(2020).svg" alt="" aria-hidden="true" class="popup-action-icon" /></a>` : "";
-  const webLink = safeWebUrl ? `<a class="popup-action" href="${safeWebUrl}" target="_blank" rel="noopener noreferrer" data-card-action aria-label="Abrir sitio web" title="Abrir sitio web"><svg viewBox="0 0 24 24" aria-hidden="true" class="popup-action-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.19 8.688a4.5 4.5 0 0 1 6.364 6.364l-1.757 1.757a4.5 4.5 0 0 1-6.364 0m1.061-5.303a4.5 4.5 0 0 1 0 6.364l-1.757 1.757a4.5 4.5 0 1 1-6.364-6.364l1.757-1.757a4.5 4.5 0 0 1 6.364 0"></path></svg></a>` : "";
-  const phoneIcon = '<svg viewBox="0 0 24 24" aria-hidden="true" class="popup-action-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a.75.75 0 0 0 .75-.75V16.88a.75.75 0 0 0-.57-.73l-4.42-1.01a.75.75 0 0 0-.78.29l-.97 1.29a12.12 12.12 0 0 1-5.96-5.96l1.29-.97a.75.75 0 0 0 .29-.78L7.1 4.57a.75.75 0 0 0-.73-.57H3a.75.75 0 0 0-.75.75v2Z"></path></svg>';
-  const callLinks = phoneEntries.length === 1 ? `<a class="popup-action" href="tel:${phoneEntries[0]?.tel}" data-card-action aria-label="Llamar (${escapeHtml(phoneEntries[0]?.label || "")})" title="Llamar ${escapeHtml(phoneEntries[0]?.label || "")}">${phoneIcon}</a>` : phoneEntries.length > 1 ? `<details class="popup-action-details" data-call-menu data-card-action><summary class="popup-action" data-card-action aria-label="Mostrar telefonos" title="Mostrar telefonos">${phoneIcon}</summary><div class="popup-action-menu">${phoneEntries.map((phone) => `<a class="popup-action-menu-item" href="tel:${phone.tel}" data-card-action title="Llamar ${escapeHtml(phone.label)}">${escapeHtml(phone.label)}</a>`).join("")}</div></details>` : "";
-  return `${mapLink}${callLinks}${webLink}`;
-};
-var buildPopupHtml = (item) => {
-  const safeLogoUrl = sanitizeImageUrl(item.logo);
-  const title = escapeHtml(item.title.es);
-  const address = escapeHtml(item.address);
-  const logoCell = safeLogoUrl ? `<img class="popup-logo-cell" src="${safeLogoUrl}" alt="${title}">` : `<div class="popup-logo-cell popup-logo-cell--placeholder" aria-hidden="true"></div>`;
-  const actions = buildPopupActionsHtml(item);
-  const actionsWrap = actions ? `<div class="popup-actions">${actions}</div>` : "";
-  return `<div class="popup-content">
-  <div class="popup-grid">
-    ${logoCell}
-    <div class="popup-title">${title}</div>
-    ${actionsWrap}
-    <div class="popup-address">${address}</div>
-  </div>
-</div>`;
-};
-
-// src/scripts/app/map-view.ts
 var DEFAULT_CENTER = [41.75, 2.2];
 var DEFAULT_ZOOM = 8;
 var LOCATION_ZOOM = 18;
@@ -656,7 +827,6 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
       alt: item.title.es,
       riseOnHover: true
     });
-    marker.bindPopup(buildPopupHtml(item), { autoPan: false });
     marker.on("click", () => onMarkerClick(item.id));
     markers.set(item.id, marker);
   });
@@ -664,7 +834,7 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
     data2.filter(hasValidCoordinates).map((item) => [item.lat, item.lng])
   );
   if (bounds.isValid()) {
-    map.fitBounds(bounds, { padding: [24, 24] });
+    map.fitBounds(bounds, { padding: [24, 24], animate: false });
   }
   let programmatic = false;
   let userMoved = false;
@@ -704,14 +874,13 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
     map.setView(map.unproject(point, zoom), zoom, { animate: true });
     window.setTimeout(() => programmatic = false, 450);
   }
-  const setMarkerActive = (id, active, { center = false, openPopup = false, offsetY = 0 } = {}) => {
+  const setMarkerActive = (id, active, { center = false, offsetY = 0 } = {}) => {
     const marker = markers.get(id);
     if (!marker) return;
     marker.getElement()?.querySelector(".pg-marker")?.classList.toggle("is-active", active);
     marker.setZIndexOffset(active ? 1e3 : 0);
     if (!active) return;
     if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
-    if (openPopup) marker.openPopup();
   };
   let userLocation = null;
   let userMarker = null;
@@ -900,48 +1069,73 @@ if (!dataElement || !mapElement || !results) {
 }
 import_leaflet2.default.Icon.Default.mergeOptions({ iconRetinaUrl: marker_icon_2x_default, iconUrl: marker_icon_default, shadowUrl: marker_shadow_default });
 var data = readBenefits(dataElement);
+var byId = new Map(data.map((item) => [item.id, item]));
+var bySlug = new Map(data.map((item) => [item.slug, item]));
 var searchInput = document.getElementById("search-input");
 var emptyState = document.getElementById("empty-state");
 var resultsCount = document.getElementById("results-count");
 var sheet = setupSheet();
 var activeId = null;
-var sheetOffset = () => sheet.currentHeight();
-var setActive = (id, { center = false, openPopup = false, scroll = false } = {}) => {
+var sheetOffset = () => {
+  if (!sheet.isMobile()) return 0;
+  const detail2 = document.getElementById("detail");
+  const bottom = detail2 && !detail2.hidden ? detail2.getBoundingClientRect().height : sheet.currentHeight();
+  const top = document.getElementById("app-header")?.getBoundingClientRect().bottom ?? 0;
+  return bottom - top;
+};
+var setActive = (id, { center = false, scroll = false } = {}) => {
   if (activeId) {
     mapView.setMarkerActive(activeId, false);
     listView.setCardActive(activeId, false);
   }
   activeId = id;
   if (!id) return;
-  mapView.setMarkerActive(id, true, { center, openPopup, offsetY: sheetOffset() });
+  mapView.setMarkerActive(id, true, { center, offsetY: sheetOffset() });
   listView.setCardActive(id, true, { scroll });
 };
 var listView = createListView({
   results,
   emptyState,
   onCardClick: (id) => {
-    if (sheet.isMobile() && sheet.getSnap() === "full") {
-      sheet.setSnap("half");
-      window.setTimeout(() => listView.scrollToCard(id), 240);
-    }
-    if (!mapView.hasMarker(id)) {
-      setActive(id, { scroll: true });
-      return;
-    }
-    setActive(id, { center: true, openPopup: true, scroll: true });
+    const item = byId.get(id);
+    if (item) detail.open(item.slug);
   }
 });
 var mapView = createMapView({
   element: mapElement,
   data,
   onMarkerClick: (id) => {
-    if (sheet.isMobile() && sheet.getSnap() === "peek") sheet.setSnap("half");
-    setActive(id, { openPopup: true, scroll: true });
+    const item = byId.get(id);
+    if (item) detail.open(item.slug);
   },
   onUserLocation: () => applyFilter(),
   bottomInset: () => sheetOffset()
 });
 var filters = setupFilters(() => applyFilter({ refit: true }));
+var distanceTo = (item) => {
+  const origin = mapView.getUserLocation();
+  return origin && hasValidCoordinates(item) ? distanceKm(origin, item) : void 0;
+};
+var notice = document.getElementById("notice");
+var noticeTimer = 0;
+var showNotice = (message) => {
+  const textElement = document.getElementById("notice-text");
+  if (!notice || !textElement) return;
+  textElement.textContent = message;
+  notice.hidden = false;
+  window.clearTimeout(noticeTimer);
+  noticeTimer = window.setTimeout(() => notice.hidden = true, 6e3);
+};
+document.getElementById("notice-close")?.addEventListener("click", () => notice && (notice.hidden = true));
+var detail = setupDetail({
+  bySlug,
+  distanceOf: distanceTo,
+  showNotice,
+  onOpen: (item) => {
+    setActive(item.id, { center: mapView.hasMarker(item.id), scroll: true });
+  },
+  onClose: () => setActive(null)
+});
 var emptyMessage = document.getElementById("empty-message");
 var applyFilter = ({ refit = false } = {}) => {
   const rawQuery = searchInput?.value.trim() ?? "";
@@ -1032,6 +1226,7 @@ var setLanguage = (lang) => {
   document.documentElement.lang = lang;
   updateUiText(lang);
   applyFilter();
+  detail.render();
 };
 setupLanguageMenu(setLanguage);
 var searchTimer = 0;
@@ -1048,4 +1243,7 @@ layersButton?.addEventListener("click", () => {
 document.getElementById("locate-button")?.addEventListener("click", () => mapView.centerOnUser());
 mapView.requestInitialLocation();
 setLanguage(getLang());
-requestAnimationFrame(() => mapView.map.invalidateSize());
+requestAnimationFrame(() => {
+  mapView.map.invalidateSize();
+  detail.openInitial();
+});

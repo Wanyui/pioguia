@@ -5,7 +5,6 @@ import { icon } from "../../icons";
 import { uiText } from "../map-i18n";
 import { escapeHtml } from "../map-utils";
 import { distanceKm, getLang, hasValidCoordinates, type LatLng } from "./context";
-import { buildPopupHtml } from "./map-popup";
 
 const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
 // Fallback view when there are no benefits with coordinates.
@@ -101,7 +100,6 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
       alt: item.title.es,
       riseOnHover: true,
     });
-    marker.bindPopup(buildPopupHtml(item), { autoPan: false });
     marker.on("click", () => onMarkerClick(item.id));
     markers.set(item.id, marker);
   });
@@ -110,7 +108,8 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     data.filter(hasValidCoordinates).map((item): L.LatLngTuple => [item.lat, item.lng])
   );
   if (bounds.isValid()) {
-    map.fitBounds(bounds, { padding: [24, 24] });
+    // Instant: an animated first fit would swallow a centring requested right after load.
+    map.fitBounds(bounds, { padding: [24, 24], animate: false });
   }
 
   // Track whether the user moved the map by hand, so filtering does not fight them.
@@ -161,7 +160,7 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
   const setMarkerActive = (
     id: string,
     active: boolean,
-    { center = false, openPopup = false, offsetY = 0 } = {}
+    { center = false, offsetY = 0 } = {}
   ) => {
     const marker = markers.get(id);
     if (!marker) return;
@@ -169,7 +168,6 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     marker.setZIndexOffset(active ? 1000 : 0);
     if (!active) return;
     if (center) centerOn(marker.getLatLng(), Math.max(map.getZoom(), 17), offsetY);
-    if (openPopup) marker.openPopup();
   };
 
   // ----- User location -----

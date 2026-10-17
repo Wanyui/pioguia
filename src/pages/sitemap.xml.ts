@@ -1,6 +1,8 @@
+import { benefitPath, loadBenefits } from "../lib/benefits";
+
 export const prerender = true;
 
-export const GET = ({ site }: { site?: URL }) => {
+export const GET = async ({ site }: { site?: URL }) => {
   const origin = site?.origin ?? "http://localhost:4321";
   const now = new Date().toISOString();
 
@@ -11,6 +13,12 @@ export const GET = ({ site }: { site?: URL }) => {
       priority: "1.0",
       lastmod: now,
     },
+    ...(await loadBenefits()).map((item) => ({
+      loc: `${origin}${benefitPath(item.slug)}`,
+      changefreq: "monthly",
+      priority: "0.7",
+      lastmod: now,
+    })),
   ];
 
   const body = `<?xml version="1.0" encoding="UTF-8"?>

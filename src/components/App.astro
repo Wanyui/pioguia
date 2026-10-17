@@ -1,0 +1,225 @@
+---
+import Map from "./Map.astro";
+import { icon } from "../icons";
+import { ZONES, ZONE_KEYS } from "../lib/zones";
+import { CATEGORIES, CATEGORY_KEYS } from "../lib/categories";
+import { hasCoordinates, loadBenefits, placeJsonLd, siteOriginFrom } from "../lib/benefits";
+import "../styles/index.css";
+
+type Props = {
+  /** Page <title> and description; defaults are the home page's. */
+  title?: string;
+  description?: string;
+  /** Path of this page, for the canonical URL ("/" or "/beneficio/<slug>/"). */
+  path?: string;
+  /** Benefit to open in the detail panel on load. */
+  initialSlug?: string;
+  /** Show "this benefit is no longer available" (archived or unknown link). */
+  unavailable?: boolean;
+  noindex?: boolean;
+  ogImage?: string;
+};
+
+const {
+  title = "Guía Piolet",
+  description = "Guía de ventajas del Club Piolet para consultar beneficios y localizarlos en el mapa.",
+  path = "/",
+  initialSlug,
+  unavailable = false,
+  noindex = false,
+  ogImage,
+} = Astro.props;
+
+const items = await loadBenefits();
+const initialLang = "es";
+const isDev = import.meta.env.DEV;
+const siteOrigin = siteOriginFrom(Astro.site);
+const canonical = `${siteOrigin}${path}`;
+const selected = initialSlug ? items.find((item) => item.slug === initialSlug) : undefined;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": selected
+    ? [placeJsonLd(selected, siteOrigin)]
+    : [
+        { "@type": "WebSite", name: "Guía Piolet", url: `${siteOrigin}/`, inLanguage: ["es", "ca", "en", "fr", "ru"] },
+        ...items.filter(hasCoordinates).map((item) => placeJsonLd(item, siteOrigin)),
+      ],
+};
+---
+
+<!doctype html>
+<html lang={initialLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="/img/marker.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/img/marker.png" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#1d7a4f" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    {ogImage && <meta property="og:image" content={`${siteOrigin}${ogImage}`} />}
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
+    {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
+  </head>
+  <body class="h-dvh overflow-hidden bg-canvas font-sans text-ink antialiased" data-initial-slug={initialSlug} data-unavailable={unavailable ? "true" : undefined}>
+    <div id="app" class="app" data-view="map">
+      <header id="app-header" class="app-top">
+        <div class="search-row">
+          <label class="search-pill">
+            <Fragment set:html={icon("search", "icon text-muted")} />
+            <input
+              id="search-input"
+              type="search"
+              aria-label="Buscar ventajas"
+              placeholder="Buscar por palabra clave (ej: desayuno)"
+              autocomplete="off"
+            />
+            <span class="brand" aria-hidden="true">Pioguia</span>
+          </label>
+          <div id="lang-controls" class="lang-controls">
+            <button
+              id="lang-trigger"
+              type="button"
+              class="lang-trigger"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+            >
+              <span id="lang-trigger-label">🇪🇸 Español</span>
+            </button>
+            <ul id="lang-menu" role="listbox" class="lang-menu hidden">
+              <li>
+                <button type="button" data-lang-option="es" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="ca" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="en" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="fr" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
+              </li>
+              <li>
+                <button type="button" data-lang-option="ru" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
+              </li>
+            </ul>
+            <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
+            <option value="es" selected>Español</option>
+            <option value="ca">Català</option>
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="ru">Русский</option>
+            </select>
+          </div>
+        </div>
+        <div class="filters" role="group" aria-label="Filtros" id="filters">
+          <div class="chips" id="filter-chips">
+            <button type="button" id="zone-trigger" class="chip" aria-expanded="false" aria-controls="zone-panel">
+              <span class="chip-dot chip-dot--plain"><Fragment set:html={icon("mapPin")} /></span>
+              <span class="chip-label" data-i18n="zoneButton">Zona</span>
+              <span class="chip-count" id="zone-count" hidden></span>
+              <Fragment set:html={icon("chevronDown", "icon chip-caret")} />
+            </button>
+            {CATEGORY_KEYS.map((key) => (
+              <button type="button" class="chip" data-category={key} aria-pressed="false">
+                <span class="chip-dot" style={`--cat: var(${CATEGORIES[key].color})`}>
+                  <Fragment set:html={icon(CATEGORIES[key].icon)} />
+                </span>
+                <span class="chip-label">{CATEGORIES[key].label.es}</span>
+                <span class="chip-count"></span>
+              </button>
+            ))}
+            <button type="button" id="clear-filters" class="chip chip-clear" hidden>
+              <Fragment set:html={icon("x")} />
+              <span data-i18n="clearFilters">Quitar filtros</span>
+            </button>
+          </div>
+          <div id="zone-panel" class="zone-panel" hidden>
+            {ZONE_KEYS.map((key) => (
+              <button type="button" class="zone-option" data-zone={key} aria-pressed="false">
+                {ZONES[key].shield ? <img src={ZONES[key].shield} alt="" width="20" height="20" /> : <span class="zone-dot"><Fragment set:html={icon("mapPin")} /></span>}
+                <span class="zone-label">{ZONES[key].label.es}</span>
+                <span class="chip-count"></span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <section class="map-area" aria-label="Mapa">
+        <Map id="map" />
+        <div class="map-fabs">
+          <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
+            <Fragment set:html={icon("layers")} />
+          </button>
+          <button id="locate-button" type="button" class="fab" title="Volver a mi ubicación" aria-label="Volver a mi ubicación">
+            <Fragment set:html={icon("locateFixed")} />
+          </button>
+        </div>
+      </section>
+
+      <aside id="panel" class="panel" data-snap="half" aria-labelledby="page-title">
+        <button id="sheet-handle" type="button" class="sheet-handle" aria-label="Ampliar o reducir la lista">
+          <span aria-hidden="true"></span>
+        </button>
+        <div class="panel-head">
+          <h1 id="page-title" class="panel-title">Guía de ventajas Piolet</h1>
+          <p id="results-count" class="panel-count" aria-live="polite"></p>
+        </div>
+        <div class="panel-scroll">
+          <ul id="results" class="results"></ul>
+          <div id="empty-state" class="empty-state" hidden>
+            <Fragment set:html={icon("search", "icon empty-icon")} />
+            <p id="empty-message">No se han encontrado resultados.</p>
+            <div class="empty-actions">
+              <button type="button" class="empty-button" data-empty-action="filters" data-i18n="clearFilters">Quitar filtros</button>
+              <button type="button" class="empty-button" data-empty-action="search" data-i18n="clearSearch">Borrar búsqueda</button>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <section id="detail" class="detail" role="dialog" aria-modal="false" aria-labelledby="detail-title" hidden>
+        <div class="detail-grip" id="detail-grip" aria-hidden="true"><span></span></div>
+        <div class="detail-scroll" id="detail-body"></div>
+      </section>
+
+      <div id="notice" class="notice" role="status" hidden>
+        <Fragment set:html={icon("info")} />
+        <span id="notice-text" data-i18n="unavailable">Esta ventaja ya no está disponible.</span>
+        <button type="button" id="notice-close" class="notice-close" aria-label="Cerrar">
+          <Fragment set:html={icon("x")} />
+        </button>
+      </div>
+
+      <nav id="view-toggle" class="view-toggle" aria-label="Vista">
+        <button type="button" data-view-button="list" aria-pressed="false">
+          <Fragment set:html={icon("list")} />
+          <span class="view-label">Lista</span>
+        </button>
+        <button type="button" data-view-button="map" aria-pressed="true">
+          <Fragment set:html={icon("map")} />
+          <span class="view-label">Mapa</span>
+        </button>
+      </nav>
+    </div>
+
+    <script
+      type="application/json"
+      id="benefits-data"
+      set:html={JSON.stringify(items)}
+    ></script>
+    {isDev ? (
+      <script type="module" src="/src/scripts/map.ts"></script>
+    ) : (
+      <script type="module" src="/scripts/map.js"></script>
+    )}
+  </body>
+</html>

@@ -27,6 +27,16 @@ export const uiText: Record<
     clearSearch: string;
     emptyQuery: string;
     emptyFilters: string;
+    close: string;
+    directions: string;
+    call: string;
+    website: string;
+    email: string;
+    share: string;
+    linkCopied: string;
+    address: string;
+    showCard: string;
+    unavailable: string;
   }
 > = {
   es: {
@@ -54,6 +64,16 @@ export const uiText: Record<
     clearSearch: "Borrar búsqueda",
     emptyQuery: "Vaya, no hay «{q}» por aquí. Prueba con otra palabra o quita los filtros.",
     emptyFilters: "Vaya, no hay ventajas con estos filtros.",
+    close: "Cerrar",
+    directions: "Cómo llegar",
+    call: "Llamar",
+    website: "Web",
+    email: "Email",
+    share: "Compartir",
+    linkCopied: "Enlace copiado",
+    address: "Dirección",
+    showCard: "Presenta tu carnet del Club Piolet.",
+    unavailable: "Esta ventaja ya no está disponible.",
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -80,6 +100,16 @@ export const uiText: Record<
     clearSearch: "Esborra la cerca",
     emptyQuery: "Vaja, no hi ha «{q}» per aquí. Prova una altra paraula o treu els filtres.",
     emptyFilters: "Vaja, no hi ha avantatges amb aquests filtres.",
+    close: "Tanca",
+    directions: "Com arribar-hi",
+    call: "Truca",
+    website: "Web",
+    email: "Correu",
+    share: "Comparteix",
+    linkCopied: "Enllaç copiat",
+    address: "Adreça",
+    showCard: "Presenta el teu carnet del Club Piolet.",
+    unavailable: "Aquest avantatge ja no està disponible.",
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -106,6 +136,16 @@ export const uiText: Record<
     clearSearch: "Clear search",
     emptyQuery: "Oh, there's no “{q}” around here. Try another word or clear the filters.",
     emptyFilters: "Oh, there are no benefits with these filters.",
+    close: "Close",
+    directions: "Directions",
+    call: "Call",
+    website: "Website",
+    email: "Email",
+    share: "Share",
+    linkCopied: "Link copied",
+    address: "Address",
+    showCard: "Show your Club Piolet card.",
+    unavailable: "This benefit is no longer available.",
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -132,6 +172,16 @@ export const uiText: Record<
     clearSearch: "Effacer la recherche",
     emptyQuery: "Mince, pas de « {q} » par ici. Essaie un autre mot ou enlève les filtres.",
     emptyFilters: "Mince, aucun avantage avec ces filtres.",
+    close: "Fermer",
+    directions: "Itinéraire",
+    call: "Appeler",
+    website: "Site web",
+    email: "E-mail",
+    share: "Partager",
+    linkCopied: "Lien copié",
+    address: "Adresse",
+    showCard: "Présente ta carte du Club Piolet.",
+    unavailable: "Cet avantage n'est plus disponible.",
   },
   ru: {
     title: "Гид по преимуществам Piolet",
@@ -158,6 +208,16 @@ export const uiText: Record<
     clearSearch: "Очистить поиск",
     emptyQuery: "Хм, «{q}» здесь нет. Попробуй другое слово или сбрось фильтры.",
     emptyFilters: "Хм, с этими фильтрами ничего нет.",
+    close: "Закрыть",
+    directions: "Маршрут",
+    call: "Позвонить",
+    website: "Сайт",
+    email: "Почта",
+    share: "Поделиться",
+    linkCopied: "Ссылка скопирована",
+    address: "Адрес",
+    showCard: "Покажи свою карту Club Piolet.",
+    unavailable: "Это предложение больше недоступно.",
   },
 };
 
