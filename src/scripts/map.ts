@@ -1,5 +1,6 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import "maplibre-gl/dist/maplibre-gl.css";
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
@@ -77,23 +78,36 @@ const GEOLOCATION_OPTIONS: PositionOptions = {
 
 const map = L.map(mapElement).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 let userMarker: L.Marker | null = null;
-const baseLayers = {
-  osm: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "&copy; OpenStreetMap contributors",
-    maxZoom: 19,
-  }),
-  positron: L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
-    {
-      attribution: "&copy; OpenStreetMap contributors &copy; CARTO",
-      maxZoom: 19,
-    }
-  ),
+type BaseStyle = "osm" | "positron";
+const BASE_MAX_ZOOM = 19;
+const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+  attribution: "&copy; OpenStreetMap contributors",
+  maxZoom: BASE_MAX_ZOOM,
+});
+
+// CARTO's raster Positron now requires an API key; OpenFreeMap serves the same
+// style as free vector tiles. MapLibre is heavy, so it is loaded on first use.
+let positronLayer: L.Layer | null = null;
+const loadPositronLayer = async () => {
+  if (!positronLayer) {
+    await import("@maplibre/maplibre-gl-leaflet");
+    // The plugin's types omit Leaflet's own `attribution` layer option.
+    const options: L.LeafletMaplibreGLOptions & L.LayerOptions = {
+      style: "https://tiles.openfreemap.org/styles/positron",
+      attribution:
+        '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> &copy; OpenStreetMap contributors',
+    };
+    positronLayer = L.maplibreGL(options);
+  }
+  return positronLayer;
 };
 
-let activeBaseLayer: L.TileLayer = baseLayers.osm;
+const isBaseStyle = (value: string | undefined): value is BaseStyle =>
+  value === "osm" || value === "positron";
+
+let activeBaseLayer: L.Layer = osmLayer;
 activeBaseLayer.addTo(map);
-map.setMaxZoom(19);
+map.setMaxZoom(BASE_MAX_ZOOM);
 
 let userLocation: { lat: number; lng: number } | null = null;
 
@@ -583,22 +597,28 @@ document.addEventListener("click", (event) => {
 const styleButtons = document.querySelectorAll<HTMLButtonElement>(
   ".map-style-button"
 );
-const applyBaseLayer = (style: keyof typeof baseLayers) => {
-  map.removeLayer(activeBaseLayer);
-  activeBaseLayer = baseLayers[style];
-  activeBaseLayer.addTo(map);
-  const maxZoom = activeBaseLayer.options.maxZoom ?? 18;
-  map.setMaxZoom(maxZoom);
-  if (map.getZoom() > maxZoom) {
-    map.setZoom(maxZoom);
+let requestedStyle: BaseStyle = "osm";
+const applyBaseLayer = async (style: BaseStyle) => {
+  requestedStyle = style;
+  let layer: L.Layer;
+  try {
+    layer = style === "positron" ? await loadPositronLayer() : osmLayer;
+  } catch (error) {
+    console.error("No se pudo cargar el estilo de mapa.", error);
+    return;
   }
+  // Ignore a slow load if the user picked another style meanwhile.
+  if (requestedStyle !== style || layer === activeBaseLayer) return;
+  map.removeLayer(activeBaseLayer);
+  activeBaseLayer = layer;
+  activeBaseLayer.addTo(map);
 };
 
 styleButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    const style = button.dataset.style as keyof typeof baseLayers | undefined;
-    if (!style || !(style in baseLayers)) return;
-    applyBaseLayer(style);
+    const style = button.dataset.style;
+    if (!isBaseStyle(style)) return;
+    void applyBaseLayer(style);
     styleButtons.forEach((btn) => btn.classList.remove("is-active"));
     button.classList.add("is-active");
   });

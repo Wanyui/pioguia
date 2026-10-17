@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:map": "esbuild src/scripts/map.ts --bundle --format=esm --platform=browser --target=es2020 --outfile=public/scripts/map.js --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash]",
+    "build:map": "esbuild src/scripts/map.ts --bundle --splitting --format=esm --platform=browser --target=es2020 --outdir=public/scripts --entry-names=[name] --chunk-names=chunks/[name]-[hash] --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash]",
     "predev": "npm run build:map",
     "dev": "astro dev",
     "prebuild": "npm run build:map",
@@ -12,8 +12,10 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@maplibre/maplibre-gl-leaflet": "^0.0.22",
     "astro": "^5.17.1",
-    "leaflet": "^1.9.4"
+    "leaflet": "^1.9.4",
+    "maplibre-gl": "^4.7.1"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
