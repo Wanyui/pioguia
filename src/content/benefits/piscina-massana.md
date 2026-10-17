@@ -18,12 +18,7 @@ tags:
   en: ["pool", "family", "children", "discount"]
   fr: ["piscine", "famille", "enfants", "réduction"]
   ru: ["бассейн", "семья", "дети", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Complex Tabola, Piscina Prat del Molí, Camí Ral, s/n, AD400 La Massana"
 city: "La Massana"
 lat: 42.5449181

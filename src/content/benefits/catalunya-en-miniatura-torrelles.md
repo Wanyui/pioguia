@@ -18,12 +18,7 @@ tags:
   en: ["models", "park", "2-for-1"]
   fr: ["maquettes", "parc", "2x1"]
   ru: ["макеты", "парк", "2в1"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carrer Can Balasch de Baix s/n, 08629 Torrelles de Llobregat (Barcelona)"
 city: "Torrelles de Llobregat"
 lat: 41.3591537

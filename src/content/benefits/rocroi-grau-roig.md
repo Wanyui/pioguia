@@ -18,12 +18,7 @@ tags:
   en: ["dog sledding", "snowshoes", "winter", "discount"]
   fr: ["mushing", "raquettes", "hiver", "réduction"]
   ru: ["собачьи упряжки", "снегоступы", "зима", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Pàrquing de Cubil - Grau Roig, Estació d'esquí Grandvalira, AD200 Encamp"
 city: "Encamp"
 lat: 42.5333432

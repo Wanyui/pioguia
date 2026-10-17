@@ -18,12 +18,7 @@ tags:
   en: ["museum", "free admission"]
   fr: ["musée", "entrée gratuite"]
   ru: ["музей", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Santa Clara s/n, 08783 Masquefa (Barcelona)"
 city: "Masquefa"
 lat: 41.497787

@@ -18,12 +18,7 @@ tags:
   en: ["aquarium", "tickets", "family", "discount"]
   fr: ["aquarium", "billets", "famille", "réduction"]
   ru: ["аквариум", "билеты", "семья", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Moll d'Espanya del Port Vell, s/n, 08039 Barcelona"
 city: "Barcelona"
 lat: 41.3768473

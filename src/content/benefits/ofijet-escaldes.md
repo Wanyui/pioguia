@@ -18,12 +18,7 @@ tags:
   en: ["stationery", "IT", "discount"]
   fr: ["papeterie", "informatique", "réduction"]
   ru: ["канцтовары", "IT", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Edifici Prat de Patrona, Av. de les Nacions Unides, Bloc A Local 3, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5098907

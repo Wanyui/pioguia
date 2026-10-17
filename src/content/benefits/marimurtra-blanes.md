@@ -18,12 +18,7 @@ tags:
   en: ["botanical garden", "family", "free admission"]
   fr: ["jardin botanique", "famille", "entrée gratuite"]
   ru: ["ботанический сад", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Jardí Botànic Marimurtra, Passeig de Carles Faust, 9, 17300 Blanes (Girona)"
 city: "Blanes"
 lat: 41.676727

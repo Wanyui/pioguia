@@ -18,12 +18,7 @@ tags:
   en: ["stationery", "toys", "books", "discount"]
   fr: ["papeterie", "jouets", "livres", "réduction"]
   ru: ["канцтовары", "игрушки", "книги", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Centre UAILO (antic CCA), 2ª planta, Av. Meritxell, 92, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5079096

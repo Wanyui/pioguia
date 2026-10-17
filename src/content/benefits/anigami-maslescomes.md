@@ -18,12 +18,7 @@ tags:
   en: ["adventure", "activities", "2-for-1", "leisure"]
   fr: ["aventure", "activités", "2x1", "loisirs"]
   ru: ["приключения", "активности", "2в1", "досуг"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Parc d'Aventura Anigami Mas les Comes, Carretera C153, km 18,7, 08511 L'Esquirol"
 city: "L'Esquirol"
 lat: 42.0460298

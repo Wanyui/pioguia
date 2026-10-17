@@ -18,12 +18,7 @@ tags:
   en: ["theme park", "dinosaurs", "tickets", "discount", "family"]
   fr: ["parc à thème", "dinosaures", "billets", "réduction", "famille"]
   ru: ["тематический парк", "динозавры", "билеты", "скидка", "семья"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Polígono Los Planos s/n, 44002 Teruel"
 city: "Teruel"
 lat: 40.3325029

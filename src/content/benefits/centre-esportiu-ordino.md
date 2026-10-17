@@ -18,12 +18,7 @@ tags:
   en: ["sports", "gym", "resident price"]
   fr: ["sports", "salle de sport", "tarif résident"]
   ru: ["спорт", "зал", "цена резидента"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "C/ Santa Bàrbara s/n, AD300 Ordino"
 city: "Ordino"
 lat: 42.556249

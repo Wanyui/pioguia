@@ -18,12 +18,7 @@ tags:
   en: ["park", "summer", "family", "discount"]
   fr: ["parc", "été", "famille", "réduction"]
   ru: ["парк", "лето", "семья", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Grandvalira Sector Canillo"
 city: "Canillo"
 lat: 42.5659122

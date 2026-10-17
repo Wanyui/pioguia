@@ -18,12 +18,7 @@ tags:
   en: ["museum", "electricity", "free admission"]
   fr: ["musée", "électricité", "entrée gratuite"]
   ru: ["музей", "электричество", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carretera d'Engolasters s/n, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.516962

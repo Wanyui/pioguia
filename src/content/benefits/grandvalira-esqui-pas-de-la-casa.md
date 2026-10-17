@@ -18,12 +18,7 @@ tags:
   en: ["skiing", "sports", "discount", "children"]
   fr: ["ski", "sports", "réduction", "enfants"]
   ru: ["лыжи", "спорт", "скидка", "дети"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Grandvalira | Pas de la Casa, AD200 Encamp"
 city: "Pas de la Casa"
 lat: 42.5412517

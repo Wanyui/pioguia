@@ -1,4 +1,5 @@
 import { defineCollection, z } from "astro:content";
+import { CATEGORY_KEYS } from "../lib/categories";
 
 const localizedString = z.object({
   es: z.string(),
@@ -21,7 +22,11 @@ const benefitSchema = z.object({
   title: localizedString,
   description: localizedString,
   tags: localizedStringArray,
-  category: localizedString.optional(),
+  category: z.enum(CATEGORY_KEYS),
+  /** Short, scannable benefit shown as a tag: "−15%", "2x1", "Gratis". */
+  highlight: localizedString.optional(),
+  /** Who the benefit applies to, kept short: "tú + 3 acompañantes", "3–13 años". */
+  appliesTo: localizedString.optional(),
   address: z.string(),
   city: z.string().optional(),
   lat: z.number(),

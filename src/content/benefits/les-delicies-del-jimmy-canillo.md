@@ -18,12 +18,7 @@ tags:
   en: ["pastry", "cake", "birthday", "discount", "bakery"]
   fr: ["patisserie", "gateau", "anniversaire", "reduction", "boulangerie"]
   ru: ["кондитерская", "торт", "день рождения", "скидка", "выпечка"]
-category:
-  es: "Restauración"
-  ca: "Restauració"
-  en: "Dining"
-  fr: "Restauration"
-  ru: "Рестораны"
+category: "restauracion"
 address: "Canillo"
 city: "Canillo"
 lat: 42.5661089

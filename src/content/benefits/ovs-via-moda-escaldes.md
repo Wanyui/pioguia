@@ -18,12 +18,7 @@ tags:
   en: ["fashion", "shop", "discount"]
   fr: ["mode", "boutique", "réduction"]
   ru: ["мода", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "C.C. Illa Carlemany, Av. Carlemany 70, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5088351

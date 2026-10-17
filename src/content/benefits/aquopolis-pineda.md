@@ -18,12 +18,7 @@ tags:
   en: ["water park", "tickets", "family", "discount"]
   fr: ["parc aquatique", "billets", "famille", "réduction"]
   ru: ["аквапарк", "билеты", "семья", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Passeig Pau Casals, 65, 43481 La Pineda (Tarragona)"
 city: "La Pineda"
 lat: 41.073503

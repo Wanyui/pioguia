@@ -18,12 +18,7 @@ tags:
   en: ["karate", "sports", "discount"]
   fr: ["karaté", "sports", "réduction"]
   ru: ["карате", "спорт", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Pavelló Prat Gran, C/ Prat Gran 2-4, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5098613

@@ -18,12 +18,7 @@ tags:
   en: ["music", "school", "discount", "children"]
   fr: ["musique", "école", "réduction", "enfants"]
   ru: ["музыка", "школа", "скидка", "дети"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "LA TRAPA, Centre Cultural Lauredià, Plaça de la Germandat 4-5-6, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
 lat: 42.4651808

@@ -18,12 +18,7 @@ tags:
   en: ["children", "fashion", "shop", "discount"]
   fr: ["enfants", "mode", "boutique", "réduction"]
   ru: ["дети", "мода", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Carrer Bonaventura Riberaygua, 32, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5064349

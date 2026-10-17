@@ -18,12 +18,7 @@ tags:
   en: ["kayak", "rental", "discount"]
   fr: ["kayak", "location", "réduction"]
   ru: ["каякинг", "аренда", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Moll de Ponent s/n, 08800 Vilanova i la Geltrú (Barcelona)"
 city: "Vilanova i la Geltrú"
 lat: 41.2097047

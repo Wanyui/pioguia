@@ -19,12 +19,7 @@ tags:
   en: ["baby care", "shop", "discount", "children"]
   fr: ["puériculture", "boutique", "réduction", "enfants"]
   ru: ["товары для малышей", "магазин", "скидка", "дети"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Av. Carlemany, 83, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5086403

@@ -18,12 +18,7 @@ tags:
   en: ["skiing", "sports", "discount", "children"]
   fr: ["ski", "sports", "réduction", "enfants"]
   ru: ["лыжи", "спорт", "скидка", "дети"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Grandvalira - Pas de la Casa - Grau Roig, AD200 Encamp"
 city: "Encamp"
 lat: 42.5324162

@@ -18,12 +18,7 @@ tags:
   en: ["toys", "shop", "discount"]
   fr: ["jouets", "boutique", "réduction"]
   ru: ["игрушки", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Cotxes: Av. de les Escoles 7, Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5090649

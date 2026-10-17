@@ -18,12 +18,7 @@ tags:
   en: ["ophthalmology", "health", "discount"]
   fr: ["ophtalmologie", "santé", "réduction"]
   ru: ["офтальмология", "здоровье", "скидка"]
-category:
-  es: "Servicios"
-  ca: "Serveis"
-  en: "Services"
-  fr: "Services"
-  ru: "Услуги"
+category: "servicios"
 address: "Av. de les Nacions Unides, 17, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5097693

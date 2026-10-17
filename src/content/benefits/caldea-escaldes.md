@@ -18,12 +18,7 @@ tags:
   en: ["thermal baths", "spa", "family", "free admission"]
   fr: ["thermes", "spa", "famille", "entrée gratuite"]
   ru: ["термы", "спа", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Parc de la Mola, 10, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5111929

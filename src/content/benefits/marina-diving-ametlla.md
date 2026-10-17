@@ -18,12 +18,7 @@ tags:
   en: ["diving", "kayak", "snorkel", "activities", "2-for-1"]
   fr: ["plongée", "kayak", "snorkel", "activités", "2x1"]
   ru: ["дайвинг", "каякинг", "снорклинг", "активности", "2в1"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Ametlla de Mar i port Marina Sant Jordi, Calafat, a 4 km d'Ametlla de Mar, 43860 (Tarragona)"
 city: "L'Ametlla de Mar"
 lat: 40.9153131

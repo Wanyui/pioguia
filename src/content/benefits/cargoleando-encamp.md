@@ -18,12 +18,7 @@ tags:
   en: ["parties", "games", "children", "voucher"]
   fr: ["fêtes", "jeux", "enfants", "bon"]
   ru: ["праздники", "игры", "дети", "бонус"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "C/ Príncep Benlloch, 4, AD200 Encamp"
 city: "Encamp"
 lat: 42.5342775

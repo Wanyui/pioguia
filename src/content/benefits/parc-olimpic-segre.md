@@ -18,12 +18,7 @@ tags:
   en: ["kayaking", "cycling", "family", "activities"]
   fr: ["kayak", "vélo", "famille", "activités"]
   ru: ["каякинг", "велосипед", "семья", "активности"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Carretera Circumval·lació s/n, 25700 La Seu d'Urgell"
 city: "La Seu d'Urgell"
 lat: 42.3540974

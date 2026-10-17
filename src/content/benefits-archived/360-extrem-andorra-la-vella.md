@@ -18,12 +18,7 @@ tags:
   en: ["leisure", "jumping", "freestyle", "skatepark", "discount"]
   fr: ["loisirs", "jumping", "freestyle", "skatepark", "réduction"]
   ru: ["досуг", "jumping", "freestyle", "скейтпарк", "скидка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Avinguda Santa Coloma, 115, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.4986491

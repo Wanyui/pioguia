@@ -18,12 +18,7 @@ tags:
   en: ["toys", "shop", "discount"]
   fr: ["jouets", "boutique", "réduction"]
   ru: ["игрушки", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Joguets: Av. Carlemany 28, Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5088717

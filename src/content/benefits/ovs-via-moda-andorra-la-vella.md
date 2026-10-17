@@ -18,12 +18,7 @@ tags:
   en: ["fashion", "shop", "discount"]
   fr: ["mode", "boutique", "réduction"]
   ru: ["мода", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Av. Meritxell, 12, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.507716

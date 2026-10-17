@@ -18,12 +18,7 @@ tags:
   en: ["fashion", "shop", "discount", "club piolet", "boutique"]
   fr: ["mode", "boutique", "réduction", "club piolet", "magasin"]
   ru: ["мода", "магазин", "скидка", "club piolet", "бутик"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "C.C. Illa Carlemany, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5089935

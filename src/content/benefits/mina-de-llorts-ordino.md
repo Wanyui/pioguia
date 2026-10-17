@@ -18,12 +18,7 @@ tags:
   en: ["museum", "mine", "culture", "family", "free entry"]
   fr: ["musée", "mine", "culture", "famille", "entrée gratuite"]
   ru: ["музей", "шахта", "культура", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Av. de l'Angonella, s/n, Llorts, AD300 Ordino"
 city: "Ordino"
 lat: 42.599813

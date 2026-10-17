@@ -18,12 +18,7 @@ tags:
   en: ["theme park", "marine", "tickets", "discount", "family"]
   fr: ["parc à thème", "marin", "billets", "réduction", "famille"]
   ru: ["тематический парк", "морской", "билеты", "скидка", "семья"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Ctra Malgrat a Palafolls s/n, 08389 Palafolls (Barcelona)"
 city: "Palafolls"
 lat: 41.6608358

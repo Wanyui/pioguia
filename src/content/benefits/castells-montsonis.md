@@ -18,12 +18,7 @@ tags:
   en: ["castle", "visit", "discount", "2-for-1"]
   fr: ["château", "visite", "réduction", "2x1"]
   ru: ["замок", "экскурсия", "скидка", "2в1"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "C/ Major, 7-9, Montsonís (Lleida)"
 city: "Montsonís"
 lat: 41.8870862

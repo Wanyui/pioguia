@@ -18,12 +18,7 @@ tags:
   en: ["rafting", "kayak", "adventure", "2-for-1"]
   fr: ["rafting", "kayak", "aventure", "2x1"]
   ru: ["рафтинг", "каякинг", "приключения", "2в1"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Hort de Rei s/n, Ctra Vall d'Aran C-13 km 140, 25595 Llavorsí (Lleida)"
 city: "Llavorsí"
 lat: 42.4825383

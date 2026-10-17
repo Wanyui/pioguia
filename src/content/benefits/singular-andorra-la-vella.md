@@ -18,12 +18,7 @@ tags:
   en: ["English", "education", "discount"]
   fr: ["anglais", "éducation", "réduction"]
   ru: ["английский", "образование", "скидка"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Ed. Montclar Bonav. Armengol 10, 267 i Ed. Cornella II Pau Casals 8, 1-4, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5079449

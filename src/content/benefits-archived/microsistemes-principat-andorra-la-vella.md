@@ -18,12 +18,7 @@ tags:
   en: ["technology", "computing", "computers", "laptops", "components"]
   fr: ["technologie", "informatique", "ordinateurs", "portables", "composants"]
   ru: ["технологии", "компьютеры", "ноутбуки", "компоненты", "скидка"]
-category:
-  es: "Tecnología"
-  ca: "Tecnologia"
-  en: "Technology"
-  fr: "Technologie"
-  ru: "Технологии"
+category: "tiendas"
 address: "C/ Prat del Rull, 12, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5051245

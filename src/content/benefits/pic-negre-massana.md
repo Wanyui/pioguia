@@ -18,12 +18,7 @@ tags:
   en: ["ski", "equipment", "discount"]
   fr: ["ski", "matériel", "réduction"]
   ru: ["лыжи", "снаряжение", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Av. Sant Antoni, edif. JML, 43, AD400 La Massana"
 city: "La Massana"
 lat: 42.5437361

@@ -18,12 +18,7 @@ tags:
   en: ["ski", "equipment", "discount"]
   fr: ["ski", "matériel", "réduction"]
   ru: ["лыжи", "снаряжение", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Av. François Miterrand, 83, AD200 Encamp"
 city: "Encamp"
 lat: 42.5349589

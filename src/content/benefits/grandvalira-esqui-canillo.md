@@ -18,12 +18,7 @@ tags:
   en: ["skiing", "sports", "discount", "children"]
   fr: ["ski", "sports", "réduction", "enfants"]
   ru: ["лыжи", "спорт", "скидка", "дети"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Telecabina Grandvalira Mon(t) Màgic, Canillo, Andorra"
 city: "Canillo"
 lat: 42.5659122

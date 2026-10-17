@@ -18,12 +18,7 @@ tags:
   en: ["restaurant", "pizza", "discount", "birthday"]
   fr: ["restaurant", "pizza", "réduction", "anniversaire"]
   ru: ["ресторан", "пицца", "скидка", "день рождения"]
-category:
-  es: "Restauración"
-  ca: "Restauració"
-  en: "Dining"
-  fr: "Restauration"
-  ru: "Рестораны"
+category: "restauracion"
 address: "Av. Carlemany, 70, 2a planta, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5090696

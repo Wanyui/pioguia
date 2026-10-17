@@ -18,12 +18,7 @@ tags:
   en: ["karting", "sport", "activities", "discount"]
   fr: ["karting", "sport", "activités", "réduction"]
   ru: ["картинг", "спорт", "активности", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "El Pla de Sant Tirs (Lleida), a 8 km de la Seu d'Urgell dirección Lleida"
 city: "El Pla de Sant Tirs"
 lat: 42.3034095

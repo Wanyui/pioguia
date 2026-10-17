@@ -18,12 +18,7 @@ tags:
   en: ["music", "school", "discount", "children"]
   fr: ["musique", "école", "réduction", "enfants"]
   ru: ["музыка", "школа", "скидка", "дети"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carrer Dr. Nequi, 7, 1r pis, porta D, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5076859

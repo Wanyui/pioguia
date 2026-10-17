@@ -18,12 +18,7 @@ tags:
   en: ["caves", "museum", "free admission"]
   fr: ["grottes", "musée", "entrée gratuite"]
   ru: ["пещеры", "музей", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "L'Espluga de Francolí (Tarragona)"
 city: "L'Espluga de Francolí"
 lat: 41.398156

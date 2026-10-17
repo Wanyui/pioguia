@@ -18,12 +18,7 @@ tags:
   en: ["shop", "kids", "discount"]
   fr: ["boutique", "enfants", "réduction"]
   ru: ["магазин", "дети", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Centre UAILO (antic CCA), 3ª planta, Av. Meritxell, 92, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5080655

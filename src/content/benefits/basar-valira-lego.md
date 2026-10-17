@@ -18,12 +18,7 @@ tags:
   en: ["toys", "LEGO", "shop", "discount"]
   fr: ["jouets", "LEGO", "boutique", "réduction"]
   ru: ["игрушки", "LEGO", "магазин", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "LEGO: Av. Carlemany 47, Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5086503

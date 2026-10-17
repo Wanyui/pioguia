@@ -18,12 +18,7 @@ tags:
   en: ["hairdressing", "discount", "services"]
   fr: ["coiffure", "réduction", "services"]
   ru: ["парикмахерская", "скидка", "услуги"]
-category:
-  es: "Servicios"
-  ca: "Serveis"
-  en: "Services"
-  fr: "Services"
-  ru: "Услуги"
+category: "servicios"
 address: "Carrer Josep Rossell, 8, AD400 La Massana"
 city: "La Massana"
 lat: 42.545041

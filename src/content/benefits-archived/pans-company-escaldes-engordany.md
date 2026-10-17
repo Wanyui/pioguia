@@ -18,12 +18,7 @@ tags:
   en: ["dining", "food", "discount", "club piolet", "sandwiches"]
   fr: ["restauration", "repas", "réduction", "club piolet", "sandwichs"]
   ru: ["рестораны", "еда", "скидка", "club piolet", "сэндвичи"]
-category:
-  es: "Restauración"
-  ca: "Restauració"
-  en: "Dining"
-  fr: "Restauration"
-  ru: "Рестораны"
+category: "restauracion"
 address: "Av. Carlemany, 70, 2a planta, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.508882

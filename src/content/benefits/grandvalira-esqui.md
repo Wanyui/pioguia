@@ -18,12 +18,7 @@ tags:
   en: ["skiing", "sports", "discount", "children"]
   fr: ["ski", "sports", "réduction", "enfants"]
   ru: ["лыжи", "спорт", "скидка", "дети"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Grandvalira Funicamp, Av. de la Bartra, AD200 Encamp"
 city: "Encamp"
 lat: 42.5354418

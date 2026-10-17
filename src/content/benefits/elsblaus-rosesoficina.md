@@ -18,12 +18,7 @@ tags:
   en: ["excursions", "family", "children", "boat"]
   fr: ["excursions", "famille", "enfants", "bateau"]
   ru: ["экскурсии", "семья", "дети", "лодка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Oficina Centre de Roses: C/ Sant Elm, 5, 17480 Roses (Girona)"
 city: "Roses"
 lat: 42.2617102

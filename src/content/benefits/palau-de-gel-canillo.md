@@ -18,12 +18,7 @@ tags:
   en: ["ice skating", "ice", "family", "free admission"]
   fr: ["patinage", "glace", "famille", "entrée gratuite"]
   ru: ["катание на коньках", "лёд", "семья", "бесплатный вход"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Carretera General, s/n, AD100 Canillo"
 city: "Canillo"
 lat: 42.5664099

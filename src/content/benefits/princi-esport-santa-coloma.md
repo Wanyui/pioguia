@@ -18,12 +18,7 @@ tags:
   en: ["sports", "camps", "birthdays", "discount"]
   fr: ["sports", "campus", "anniversaires", "réduction"]
   ru: ["спорт", "лагеря", "дни рождения", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Av. d'Enclar, 105, AD500 Santa Coloma"
 city: "Andorra la Vella"
 lat: 42.4930534

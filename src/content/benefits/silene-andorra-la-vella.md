@@ -18,12 +18,7 @@ tags:
   en: ["hairdressing", "beauty", "discount"]
   fr: ["coiffure", "esthétique", "réduction"]
   ru: ["парикмахерская", "эстетика", "скидка"]
-category:
-  es: "Servicios"
-  ca: "Serveis"
-  en: "Services"
-  fr: "Services"
-  ru: "Услуги"
+category: "servicios"
 address: "Av. Santa Coloma, 12, planta baixa local 1, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5045355

@@ -18,12 +18,7 @@ tags:
   en: ["excursions", "family", "children", "boat"]
   fr: ["excursions", "famille", "enfants", "bateau"]
   ru: ["экскурсии", "семья", "дети", "лодка"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Taquilla Santa Margarida: Av. de la Bocana s/n, Passeig Marítim (al costat de l'Hotel Victoria)"
 city: "Roses"
 lat: 42.2603213

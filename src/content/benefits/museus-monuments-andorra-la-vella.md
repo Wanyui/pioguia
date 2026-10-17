@@ -18,12 +18,7 @@ tags:
   en: ["museums", "monuments", "culture", "family", "free entry"]
   fr: ["musées", "monuments", "culture", "famille", "entrée gratuite"]
   ru: ["музеи", "памятники", "культура", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Av. Meritxell, 73, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5087851

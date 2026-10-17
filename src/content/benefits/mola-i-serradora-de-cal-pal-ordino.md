@@ -18,12 +18,7 @@ tags:
   en: ["museum", "history", "culture", "family", "free entry"]
   fr: ["musée", "histoire", "culture", "famille", "entrée gratuite"]
   ru: ["музей", "история", "культура", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Av. de Sant Martí, s/n, La Cortinada, AD300 Ordino"
 city: "Ordino"
 lat: 42.5768772

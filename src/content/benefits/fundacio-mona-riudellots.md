@@ -18,12 +18,7 @@ tags:
   en: ["primates", "centre", "free admission"]
   fr: ["primates", "centre", "entrée gratuite"]
   ru: ["приматы", "центр", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Veïnat de l'Estació s/n, 17457 Riudellots de la Selva (Girona)"
 city: "Riudellots de la Selva"
 lat: 41.9016324

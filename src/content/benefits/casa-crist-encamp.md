@@ -18,12 +18,7 @@ tags:
   en: ["museum", "glass", "free admission"]
   fr: ["musée", "cristal", "entrée gratuite"]
   ru: ["музей", "стекло", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carrer Cavallers, 2, AD200 Encamp"
 city: "Encamp"
 lat: 42.5351509

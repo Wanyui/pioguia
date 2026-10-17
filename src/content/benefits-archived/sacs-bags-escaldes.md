@@ -18,12 +18,7 @@ tags:
   en: ["children", "fashion", "bags", "discount"]
   fr: ["enfants", "mode", "sacs", "réduction"]
   ru: ["дети", "мода", "сумки", "скидка"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Av. Carlemany, 77, AD700 Escaldes-Engordany"
 city: "Escaldes-Engordany"
 lat: 42.5086281

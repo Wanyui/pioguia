@@ -18,12 +18,7 @@ tags:
   en: ["museum", "toys", "free admission"]
   fr: ["musée", "jouets", "entrée gratuite"]
   ru: ["музей", "игрушки", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carrer Sant Pere, 1, 17600 Figueres (Girona)"
 city: "Figueres"
 lat: 42.266631

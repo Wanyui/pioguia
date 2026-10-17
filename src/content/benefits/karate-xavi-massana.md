@@ -18,12 +18,7 @@ tags:
   en: ["karate", "sports", "discount"]
   fr: ["karaté", "sports", "réduction"]
   ru: ["карате", "спорт", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "C/ de l'Església s/n (sala miralls, al costat Esplai La Massana), AD400 La Massana"
 city: "La Massana"
 lat: 42.5449996

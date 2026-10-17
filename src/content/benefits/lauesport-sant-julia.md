@@ -18,12 +18,7 @@ tags:
   en: ["sports", "pool", "birthdays", "discount"]
   fr: ["sports", "piscine", "anniversaires", "réduction"]
   ru: ["спорт", "бассейн", "дни рождения", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "Plaça de Calonge - Sant Antoni s/n, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
 lat: 42.4657225

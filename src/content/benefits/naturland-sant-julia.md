@@ -18,12 +18,7 @@ tags:
   en: ["park", "adventure", "family", "free admission"]
   fr: ["parc", "aventure", "famille", "entrée gratuite"]
   ru: ["парк", "приключения", "семья", "бесплатный вход"]
-category:
-  es: "Ocio"
-  ca: "Oci"
-  en: "Leisure"
-  fr: "Loisirs"
-  ru: "Досуг"
+category: "ocio"
 address: "Ctra. de la Rabassa Km 8, AD600 Sant Julià de Lòria"
 city: "Sant Julià de Lòria"
 lat: 42.4420394

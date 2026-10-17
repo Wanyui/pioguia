@@ -1,4 +1,5 @@
 import type { CollectionEntry } from "astro:content";
+import { CATEGORIES, type CategoryKey } from "./categories";
 
 export type Localized<T> = {
   es: T;
@@ -14,7 +15,9 @@ export type SearchItem = {
   title: Localized<string>;
   description: Localized<string>;
   tags: Localized<string[]>;
-  category?: Localized<string>;
+  category: CategoryKey;
+  highlight?: Localized<string>;
+  appliesTo?: Localized<string>;
   address: string;
   city?: string;
   lat: number;
@@ -46,12 +49,14 @@ const buildLocalizedText = (
   const title = entry.title[lang] ?? "";
   const description = entry.description[lang] ?? "";
   const tags = entry.tags[lang]?.join(" ") ?? "";
-  const category = entry.category?.[lang] ?? "";
+  const category = CATEGORIES[entry.category].label[lang];
+  const highlight = entry.highlight?.[lang] ?? "";
   return joinParts([
     title,
     description,
     tags,
     category,
+    highlight,
     entry.address,
     entry.city,
     entry.email,
@@ -85,6 +90,8 @@ export const buildSearchIndex = (
       description: data.description,
       tags: data.tags,
       category: data.category,
+      highlight: data.highlight,
+      appliesTo: data.appliesTo,
       address: data.address,
       city: data.city,
       lat: data.lat,

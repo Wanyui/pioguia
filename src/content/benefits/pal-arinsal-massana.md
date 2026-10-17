@@ -18,12 +18,7 @@ tags:
   en: ["ski", "park", "summer", "discount"]
   fr: ["ski", "parc", "été", "réduction"]
   ru: ["лыжи", "парк", "лето", "скидка"]
-category:
-  es: "Deportes"
-  ca: "Esports"
-  en: "Sports"
-  fr: "Sports"
-  ru: "Спорт"
+category: "deportes"
 address: "La Massana"
 city: "La Massana"
 lat: 42.5729281

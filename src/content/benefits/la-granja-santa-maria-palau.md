@@ -18,12 +18,7 @@ tags:
   en: ["camps", "adventure", "horse riding", "education"]
   fr: ["colonies", "aventure", "équitation", "éducation"]
   ru: ["лагеря", "приключения", "верховая езда", "образование"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Finca Granja Escola Santa Maria de Palautordera (Montseny, Barcelona)"
 city: "Santa Maria de Palautordera"
 lat: 41.6683879

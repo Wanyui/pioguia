@@ -18,12 +18,7 @@ tags:
   en: ["fashion", "shop", "discount", "club piolet", "boutique"]
   fr: ["mode", "boutique", "réduction", "club piolet", "magasin"]
   ru: ["мода", "магазин", "скидка", "club piolet", "бутик"]
-category:
-  es: "Moda"
-  ca: "Moda"
-  en: "Fashion"
-  fr: "Mode"
-  ru: "Мода"
+category: "tiendas"
 address: "Av. Meritxell, 92, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5080655

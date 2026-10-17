@@ -18,12 +18,7 @@ tags:
   en: ["museum", "bicycles", "free entry"]
   fr: ["musée", "vélos", "entrée gratuite"]
   ru: ["музей", "велосипеды", "бесплатный вход"]
-category:
-  es: "Educación"
-  ca: "Educació"
-  en: "Education"
-  fr: "Éducation"
-  ru: "Образование"
+category: "educacion"
 address: "Carrer Prat de la Creu, 70, AD500 Andorra la Vella"
 city: "Andorra la Vella"
 lat: 42.5062395
