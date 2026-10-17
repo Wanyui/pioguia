@@ -1,0 +1,93 @@
+/*
+ * Design tokens — Pioguia "Bosc" (docs/rediseno/04-DESIGN.md).
+ * Raw values live in --pg-* custom properties so the dark theme can swap them;
+ * @theme inline exposes them to Tailwind as utilities (bg-surface, text-muted, …).
+ */
+
+:root {
+  color-scheme: light dark;
+
+  --pg-canvas: #f4f3ef;
+  --pg-surface: #ffffff;
+  --pg-soft: #eef1ec;
+  --pg-ink: #17201b;
+  --pg-muted: #5d6a63;
+  --pg-line: #e3e6e1;
+  --pg-accent: #1d7a4f;
+  --pg-on-accent: #ffffff;
+  --pg-focus: #1d7a4f;
+  --pg-me: #2a7bf6;
+
+  /* Category colours: base = marker fill (white icon on top); text = icon/text on surfaces. */
+  --pg-cat-deportes: #0e7c86;
+  --pg-cat-ocio: #6d4ad6;
+  --pg-cat-tiendas: #c2387a;
+  --pg-cat-educacion: #a8661a;
+  --pg-cat-servicios: #3e6fb0;
+  --pg-cat-restauracion: #d0561f;
+  --pg-cat-deportes-text: var(--pg-cat-deportes);
+  --pg-cat-ocio-text: var(--pg-cat-ocio);
+  --pg-cat-tiendas-text: var(--pg-cat-tiendas);
+  --pg-cat-educacion-text: var(--pg-cat-educacion);
+  --pg-cat-servicios-text: var(--pg-cat-servicios);
+  --pg-cat-restauracion-text: var(--pg-cat-restauracion);
+
+  --pg-shadow-float: 0 2px 10px rgb(20 30 25 / 0.14);
+  --pg-shadow-sheet: 0 -6px 24px rgb(0 0 0 / 0.12);
+  --pg-tile-filter: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pg-canvas: #121614;
+    --pg-surface: #1d2320;
+    --pg-soft: #26302b;
+    --pg-ink: #eef3ef;
+    --pg-muted: #9aa8a0;
+    --pg-line: #2c3530;
+    --pg-accent: #4cc38a;
+    --pg-on-accent: #0b1a12;
+    --pg-focus: #4cc38a;
+    --pg-me: #5b9cff;
+
+    --pg-cat-deportes-text: #3fb8c1;
+    --pg-cat-ocio-text: #a08cf2;
+    --pg-cat-tiendas-text: #ec74a8;
+    --pg-cat-educacion-text: #dda04a;
+    --pg-cat-servicios-text: #7aa5e6;
+    --pg-cat-restauracion-text: #f28b57;
+
+    --pg-shadow-float: 0 2px 10px rgb(0 0 0 / 0.45);
+    --pg-shadow-sheet: 0 -6px 24px rgb(0 0 0 / 0.4);
+    --pg-tile-filter: brightness(0.7) contrast(1.1) saturate(0.6);
+  }
+}
+
+@theme inline {
+  --color-canvas: var(--pg-canvas);
+  --color-surface: var(--pg-surface);
+  --color-soft: var(--pg-soft);
+  --color-ink: var(--pg-ink);
+  --color-muted: var(--pg-muted);
+  --color-line: var(--pg-line);
+  --color-accent: var(--pg-accent);
+  --color-on-accent: var(--pg-on-accent);
+  --color-focus: var(--pg-focus);
+  --color-me: var(--pg-me);
+
+  --color-cat-deportes: var(--pg-cat-deportes);
+  --color-cat-ocio: var(--pg-cat-ocio);
+  --color-cat-tiendas: var(--pg-cat-tiendas);
+  --color-cat-educacion: var(--pg-cat-educacion);
+  --color-cat-servicios: var(--pg-cat-servicios);
+  --color-cat-restauracion: var(--pg-cat-restauracion);
+
+  --font-sans: "Rubik Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+
+  --shadow-float: var(--pg-shadow-float);
+  --shadow-sheet: var(--pg-shadow-sheet);
+}
