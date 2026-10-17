@@ -650,3 +650,55 @@
   color: inherit;
   cursor: pointer;
 }
+
+/* ---------- Near me (§F4) ---------- */
+
+#near-chip[aria-busy="true"] .chip-dot {
+  animation: pg-pulse 1s ease-in-out infinite;
+}
+
+@keyframes pg-pulse {
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.panel-status {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sort-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  padding: 0 8px 0 10px;
+  border-radius: 999px;
+  border: 0;
+  background: var(--pg-soft);
+  color: var(--pg-accent);
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.sort-indicator[hidden] {
+  display: none;
+}
+
+.sort-indicator .icon {
+  width: 14px;
+  height: 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #near-chip[aria-busy="true"] .chip-dot {
+    animation: none;
+  }
+}

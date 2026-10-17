@@ -51,7 +51,10 @@ var uiText = {
     linkCopied: "Enlace copiado",
     address: "Direcci\xF3n",
     showCard: "Presenta tu carnet del Club Piolet.",
-    unavailable: "Esta ventaja ya no est\xE1 disponible."
+    unavailable: "Esta ventaja ya no est\xE1 disponible.",
+    nearMe: "Cerca de m\xED",
+    sortedByDistance: "Ordenado por cercan\xEDa",
+    stopSorting: "Quitar orden por cercan\xEDa"
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -87,7 +90,10 @@ var uiText = {
     linkCopied: "Enlla\xE7 copiat",
     address: "Adre\xE7a",
     showCard: "Presenta el teu carnet del Club Piolet.",
-    unavailable: "Aquest avantatge ja no est\xE0 disponible."
+    unavailable: "Aquest avantatge ja no est\xE0 disponible.",
+    nearMe: "A prop meu",
+    sortedByDistance: "Ordenat per proximitat",
+    stopSorting: "Treu l'ordre per proximitat"
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -123,7 +129,10 @@ var uiText = {
     linkCopied: "Link copied",
     address: "Address",
     showCard: "Show your Club Piolet card.",
-    unavailable: "This benefit is no longer available."
+    unavailable: "This benefit is no longer available.",
+    nearMe: "Near me",
+    sortedByDistance: "Sorted by distance",
+    stopSorting: "Stop sorting by distance"
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -159,7 +168,10 @@ var uiText = {
     linkCopied: "Lien copi\xE9",
     address: "Adresse",
     showCard: "Pr\xE9sente ta carte du Club Piolet.",
-    unavailable: "Cet avantage n'est plus disponible."
+    unavailable: "Cet avantage n'est plus disponible.",
+    nearMe: "Pr\xE8s de moi",
+    sortedByDistance: "Tri\xE9 par proximit\xE9",
+    stopSorting: "Ne plus trier par proximit\xE9"
   },
   ru: {
     title: "\u0413\u0438\u0434 \u043F\u043E \u043F\u0440\u0435\u0438\u043C\u0443\u0449\u0435\u0441\u0442\u0432\u0430\u043C Piolet",
@@ -195,7 +207,10 @@ var uiText = {
     linkCopied: "\u0421\u0441\u044B\u043B\u043A\u0430 \u0441\u043A\u043E\u043F\u0438\u0440\u043E\u0432\u0430\u043D\u0430",
     address: "\u0410\u0434\u0440\u0435\u0441",
     showCard: "\u041F\u043E\u043A\u0430\u0436\u0438 \u0441\u0432\u043E\u044E \u043A\u0430\u0440\u0442\u0443 Club Piolet.",
-    unavailable: "\u042D\u0442\u043E \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0431\u043E\u043B\u044C\u0448\u0435 \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E."
+    unavailable: "\u042D\u0442\u043E \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 \u0431\u043E\u043B\u044C\u0448\u0435 \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E.",
+    nearMe: "\u0420\u044F\u0434\u043E\u043C \u0441\u043E \u043C\u043D\u043E\u0439",
+    sortedByDistance: "\u041F\u043E \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u044E",
+    stopSorting: "\u0423\u0431\u0440\u0430\u0442\u044C \u0441\u043E\u0440\u0442\u0438\u0440\u043E\u0432\u043A\u0443 \u043F\u043E \u0440\u0430\u0441\u0441\u0442\u043E\u044F\u043D\u0438\u044E"
   }
 };
 var resolveLanguage = (currentLang) => {
@@ -781,7 +796,14 @@ var markerIcon = (item) => {
     popupAnchor: [0, -18]
   });
 };
-var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bottomInset = () => 0 }) => {
+var createMapView = ({
+  element,
+  data: data2,
+  onMarkerClick,
+  onUserLocation,
+  onLocationError,
+  bottomInset = () => 0
+}) => {
   const map = import_leaflet.default.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   import_leaflet.default.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
@@ -934,24 +956,17 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
       animate: true
     });
   };
-  const showLocationError = (error) => {
-    const text = uiText[getLang()];
-    const message = error && error.code === error.PERMISSION_DENIED ? text.locationDenied : text.locationUnavailable;
-    import_leaflet.default.popup().setLatLng(map.getCenter()).setContent(escapeHtml(message)).openOn(map);
-  };
+  const reportError = (error) => onLocationError(error && error.code === error.PERMISSION_DENIED ? "denied" : "unavailable");
   const centerOnUser = () => {
     if (userLocation) {
       frameUserAndNearest();
       return;
     }
     if (!("geolocation" in navigator)) {
-      showLocationError();
+      reportError();
       return;
     }
-    requestUserLocation(updateUserLocation, showLocationError);
-  };
-  const requestInitialLocation = () => {
-    if ("geolocation" in navigator) requestUserLocation(updateUserLocation);
+    requestUserLocation(updateUserLocation, reportError);
   };
   const setUserPopupText = (text) => userMarker?.setPopupContent(text);
   return {
@@ -963,7 +978,6 @@ var createMapView = ({ element, data: data2, onMarkerClick, onUserLocation, bott
     setMarkerActive,
     hasMarker: (id) => markers.has(id),
     centerOnUser,
-    requestInitialLocation,
     setUserPopupText,
     getUserLocation: () => userLocation
   };
@@ -1108,10 +1122,35 @@ var mapView = createMapView({
     const item = byId.get(id);
     if (item) detail.open(item.slug);
   },
-  onUserLocation: () => applyFilter(),
+  onUserLocation: () => setNearMe(true),
+  onLocationError: (reason) => {
+    setNearBusy(false);
+    const text = uiText[getLang()];
+    showNotice(reason === "denied" ? text.locationDenied : text.locationUnavailable);
+  },
   bottomInset: () => sheetOffset()
 });
 var filters = setupFilters(() => applyFilter({ refit: true }));
+var nearMe = false;
+var nearChip = document.getElementById("near-chip");
+var sortIndicator = document.getElementById("sort-indicator");
+function setNearBusy(busy) {
+  if (busy) nearChip?.setAttribute("aria-busy", "true");
+  else nearChip?.removeAttribute("aria-busy");
+}
+function setNearMe(on) {
+  nearMe = on;
+  setNearBusy(false);
+  nearChip?.setAttribute("aria-pressed", String(on));
+  if (sortIndicator) sortIndicator.hidden = !on;
+  applyFilter();
+}
+var askNearMe = () => {
+  setNearBusy(true);
+  mapView.centerOnUser();
+};
+nearChip?.addEventListener("click", () => nearMe ? setNearMe(false) : askNearMe());
+sortIndicator?.addEventListener("click", () => setNearMe(false));
 var distanceTo = (item) => {
   const origin = mapView.getUserLocation();
   return origin && hasValidCoordinates(item) ? distanceKm(origin, item) : void 0;
@@ -1151,7 +1190,7 @@ var applyFilter = ({ refit = false } = {}) => {
   if (!query && !filters.isActive()) mapView.resetUserMoved();
   const origin = mapView.getUserLocation();
   const distanceOf = (item) => origin && hasValidCoordinates(item) ? distanceKm(origin, item) : void 0;
-  if (origin) {
+  if (origin && nearMe) {
     filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
   listView.render(filtered, lang, distanceOf);
@@ -1214,13 +1253,34 @@ var updateUiText = (lang) => {
   setLabel(document.getElementById("locate-button"), text.locationButton);
   setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
   setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
+  setLabel(sortIndicator, text.stopSorting);
   document.querySelectorAll("[data-view-button]").forEach((button) => {
     const label = button.querySelector(".view-label");
     if (label) label.textContent = button.dataset.viewButton === "list" ? text.viewList : text.viewMap;
   });
   mapView.setUserPopupText(text.locationPopup);
 };
-var setLanguage = (lang) => {
+var LANG_KEY = "pioguia.lang";
+var SUPPORTED = ["es", "ca", "en", "fr", "ru"];
+var preferredLanguage = () => {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && SUPPORTED.includes(saved)) return saved;
+  } catch {
+  }
+  for (const tag of navigator.languages ?? [navigator.language]) {
+    const base = tag?.toLowerCase().split("-")[0];
+    if (base && SUPPORTED.includes(base)) return resolveLanguage(base);
+  }
+  return "es";
+};
+var setLanguage = (lang, { remember = true } = {}) => {
+  if (remember) {
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch {
+    }
+  }
   const langSelect = document.getElementById("lang-select");
   if (langSelect) langSelect.value = lang;
   document.documentElement.lang = lang;
@@ -1228,7 +1288,7 @@ var setLanguage = (lang) => {
   applyFilter();
   detail.render();
 };
-setupLanguageMenu(setLanguage);
+setupLanguageMenu((lang) => setLanguage(lang));
 var searchTimer = 0;
 searchInput?.addEventListener("input", () => {
   window.clearTimeout(searchTimer);
@@ -1240,9 +1300,8 @@ layersButton?.addEventListener("click", () => {
   layersButton.setAttribute("aria-pressed", String(light));
   void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
-document.getElementById("locate-button")?.addEventListener("click", () => mapView.centerOnUser());
-mapView.requestInitialLocation();
-setLanguage(getLang());
+document.getElementById("locate-button")?.addEventListener("click", askNearMe);
+setLanguage(preferredLanguage(), { remember: false });
 requestAnimationFrame(() => {
   mapView.map.invalidateSize();
   detail.openInitial();

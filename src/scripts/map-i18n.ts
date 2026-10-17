@@ -37,6 +37,9 @@ export const uiText: Record<
     address: string;
     showCard: string;
     unavailable: string;
+    nearMe: string;
+    sortedByDistance: string;
+    stopSorting: string;
   }
 > = {
   es: {
@@ -74,6 +77,9 @@ export const uiText: Record<
     address: "Dirección",
     showCard: "Presenta tu carnet del Club Piolet.",
     unavailable: "Esta ventaja ya no está disponible.",
+    nearMe: "Cerca de mí",
+    sortedByDistance: "Ordenado por cercanía",
+    stopSorting: "Quitar orden por cercanía",
   },
   ca: {
     title: "Guia d'avantatges Piolet",
@@ -110,6 +116,9 @@ export const uiText: Record<
     address: "Adreça",
     showCard: "Presenta el teu carnet del Club Piolet.",
     unavailable: "Aquest avantatge ja no està disponible.",
+    nearMe: "A prop meu",
+    sortedByDistance: "Ordenat per proximitat",
+    stopSorting: "Treu l'ordre per proximitat",
   },
   en: {
     title: "Piolet Benefits Guide",
@@ -146,6 +155,9 @@ export const uiText: Record<
     address: "Address",
     showCard: "Show your Club Piolet card.",
     unavailable: "This benefit is no longer available.",
+    nearMe: "Near me",
+    sortedByDistance: "Sorted by distance",
+    stopSorting: "Stop sorting by distance",
   },
   fr: {
     title: "Guide des avantages Piolet",
@@ -182,6 +194,9 @@ export const uiText: Record<
     address: "Adresse",
     showCard: "Présente ta carte du Club Piolet.",
     unavailable: "Cet avantage n'est plus disponible.",
+    nearMe: "Près de moi",
+    sortedByDistance: "Trié par proximité",
+    stopSorting: "Ne plus trier par proximité",
   },
   ru: {
     title: "Гид по преимуществам Piolet",
@@ -218,6 +233,9 @@ export const uiText: Record<
     address: "Адрес",
     showCard: "Покажи свою карту Club Piolet.",
     unavailable: "Это предложение больше недоступно.",
+    nearMe: "Рядом со мной",
+    sortedByDistance: "По расстоянию",
+    stopSorting: "Убрать сортировку по расстоянию",
   },
 };
 

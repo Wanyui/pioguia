@@ -6,7 +6,7 @@ import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import type { SearchItem } from "../lib/search-index";
-import { uiText, type LanguageCode } from "./map-i18n";
+import { resolveLanguage, uiText, type LanguageCode } from "./map-i18n";
 import { normalize } from "./map-utils";
 import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
@@ -75,11 +75,42 @@ const mapView = createMapView({
     const item = byId.get(id);
     if (item) detail.open(item.slug);
   },
-  onUserLocation: () => applyFilter(),
+  onUserLocation: () => setNearMe(true),
+  onLocationError: (reason) => {
+    setNearBusy(false);
+    const text = uiText[getLang()];
+    showNotice(reason === "denied" ? text.locationDenied : text.locationUnavailable);
+  },
   bottomInset: () => sheetOffset(),
 });
 
 const filters = setupFilters(() => applyFilter({ refit: true }));
+
+// ----- "Near me": location is only requested when the user asks for it. -----
+let nearMe = false;
+const nearChip = document.getElementById("near-chip");
+const sortIndicator = document.getElementById("sort-indicator");
+
+function setNearBusy(busy: boolean) {
+  if (busy) nearChip?.setAttribute("aria-busy", "true");
+  else nearChip?.removeAttribute("aria-busy");
+}
+
+function setNearMe(on: boolean) {
+  nearMe = on;
+  setNearBusy(false);
+  nearChip?.setAttribute("aria-pressed", String(on));
+  if (sortIndicator) sortIndicator.hidden = !on;
+  applyFilter();
+}
+
+const askNearMe = () => {
+  setNearBusy(true);
+  mapView.centerOnUser();
+};
+
+nearChip?.addEventListener("click", () => (nearMe ? setNearMe(false) : askNearMe()));
+sortIndicator?.addEventListener("click", () => setNearMe(false));
 
 const distanceTo = (item: SearchItem) => {
   const origin = mapView.getUserLocation();
@@ -124,7 +155,7 @@ const applyFilter = ({ refit = false } = {}) => {
   const origin = mapView.getUserLocation();
   const distanceOf = (item: SearchItem) =>
     origin && hasValidCoordinates(item) ? distanceKm(origin, item) : undefined;
-  if (origin) {
+  if (origin && nearMe) {
     filtered.sort((a, b) => (distanceOf(a) ?? Infinity) - (distanceOf(b) ?? Infinity));
   }
   listView.render(filtered, lang, distanceOf);
@@ -192,6 +223,7 @@ const updateUiText = (lang: LanguageCode) => {
   setLabel(document.getElementById("locate-button"), text.locationButton);
   setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
   setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
+  setLabel(sortIndicator, text.stopSorting);
   document.querySelectorAll<HTMLElement>("[data-view-button]").forEach((button) => {
     const label = button.querySelector(".view-label");
     if (label) label.textContent = button.dataset.viewButton === "list" ? text.viewList : text.viewMap;
@@ -200,7 +232,32 @@ const updateUiText = (lang: LanguageCode) => {
   mapView.setUserPopupText(text.locationPopup);
 };
 
-const setLanguage = (lang: LanguageCode) => {
+// ----- Language: remembered choice, else the browser's language if supported, else Spanish. -----
+const LANG_KEY = "pioguia.lang";
+const SUPPORTED: LanguageCode[] = ["es", "ca", "en", "fr", "ru"];
+
+const preferredLanguage = (): LanguageCode => {
+  try {
+    const saved = localStorage.getItem(LANG_KEY);
+    if (saved && SUPPORTED.includes(saved as LanguageCode)) return saved as LanguageCode;
+  } catch {
+    // Storage blocked (private mode): fall through to the browser language.
+  }
+  for (const tag of navigator.languages ?? [navigator.language]) {
+    const base = tag?.toLowerCase().split("-")[0];
+    if (base && SUPPORTED.includes(base as LanguageCode)) return resolveLanguage(base);
+  }
+  return "es";
+};
+
+const setLanguage = (lang: LanguageCode, { remember = true } = {}) => {
+  if (remember) {
+    try {
+      localStorage.setItem(LANG_KEY, lang);
+    } catch {
+      // Not critical: the choice just will not persist.
+    }
+  }
   const langSelect = document.getElementById("lang-select") as HTMLSelectElement | null;
   if (langSelect) langSelect.value = lang;
   document.documentElement.lang = lang;
@@ -209,7 +266,7 @@ const setLanguage = (lang: LanguageCode) => {
   detail.render();
 };
 
-setupLanguageMenu(setLanguage);
+setupLanguageMenu((lang) => setLanguage(lang));
 let searchTimer = 0;
 searchInput?.addEventListener("input", () => {
   window.clearTimeout(searchTimer);
@@ -222,10 +279,9 @@ layersButton?.addEventListener("click", () => {
   layersButton.setAttribute("aria-pressed", String(light));
   void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
-document.getElementById("locate-button")?.addEventListener("click", () => mapView.centerOnUser());
+document.getElementById("locate-button")?.addEventListener("click", askNearMe);
 
-mapView.requestInitialLocation();
-setLanguage(getLang());
+setLanguage(preferredLanguage(), { remember: false });
 // Size the map first; centring on a benefit before that gets cancelled.
 requestAnimationFrame(() => {
   mapView.map.invalidateSize();

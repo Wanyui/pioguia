@@ -121,6 +121,10 @@ const structuredData = {
         </div>
         <div class="filters" role="group" aria-label="Filtros" id="filters">
           <div class="chips" id="filter-chips">
+            <button type="button" id="near-chip" class="chip" aria-pressed="false">
+              <span class="chip-dot chip-dot--plain"><Fragment set:html={icon("locateFixed")} /></span>
+              <span class="chip-label" data-i18n="nearMe">Cerca de mí</span>
+            </button>
             <button type="button" id="zone-trigger" class="chip" aria-expanded="false" aria-controls="zone-panel">
               <span class="chip-dot chip-dot--plain"><Fragment set:html={icon("mapPin")} /></span>
               <span class="chip-label" data-i18n="zoneButton">Zona</span>
@@ -171,7 +175,13 @@ const structuredData = {
         </button>
         <div class="panel-head">
           <h1 id="page-title" class="panel-title">Guía de ventajas Piolet</h1>
-          <p id="results-count" class="panel-count" aria-live="polite"></p>
+          <div class="panel-status">
+            <button type="button" id="sort-indicator" class="sort-indicator" hidden>
+              <span data-i18n="sortedByDistance">Ordenado por cercanía</span>
+              <Fragment set:html={icon("x")} />
+            </button>
+            <p id="results-count" class="panel-count" aria-live="polite"></p>
+          </div>
         </div>
         <div class="panel-scroll">
           <ul id="results" class="results"></ul>

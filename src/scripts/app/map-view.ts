@@ -3,7 +3,6 @@ import { CATEGORIES } from "../../lib/categories";
 import type { SearchItem } from "../../lib/search-index";
 import { icon } from "../../icons";
 import { uiText } from "../map-i18n";
-import { escapeHtml } from "../map-utils";
 import { distanceKm, getLang, hasValidCoordinates, type LatLng } from "./context";
 
 const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
@@ -38,11 +37,20 @@ type MapViewOptions = {
   data: SearchItem[];
   onMarkerClick: (id: string) => void;
   onUserLocation: () => void;
+  /** Location could not be obtained: "denied" (permission) or "unavailable" (error, timeout, unsupported). */
+  onLocationError: (reason: "denied" | "unavailable") => void;
   /** Pixels of map hidden at the bottom (mobile sheet), so framing keeps things visible. */
   bottomInset?: () => number;
 };
 
-export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bottomInset = () => 0 }: MapViewOptions) => {
+export const createMapView = ({
+  element,
+  data,
+  onMarkerClick,
+  onUserLocation,
+  onLocationError,
+  bottomInset = () => 0,
+}: MapViewOptions) => {
   const map = L.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   L.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
@@ -240,12 +248,8 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     });
   };
 
-  const showLocationError = (error?: GeolocationPositionError) => {
-    const text = uiText[getLang()];
-    const message =
-      error && error.code === error.PERMISSION_DENIED ? text.locationDenied : text.locationUnavailable;
-    L.popup().setLatLng(map.getCenter()).setContent(escapeHtml(message)).openOn(map);
-  };
+  const reportError = (error?: GeolocationPositionError) =>
+    onLocationError(error && error.code === error.PERMISSION_DENIED ? "denied" : "unavailable");
 
   const centerOnUser = () => {
     if (userLocation) {
@@ -253,16 +257,13 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
       return;
     }
     if (!("geolocation" in navigator)) {
-      showLocationError();
+      reportError();
       return;
     }
-    requestUserLocation(updateUserLocation, showLocationError);
+    requestUserLocation(updateUserLocation, reportError);
   };
 
 
-  const requestInitialLocation = () => {
-    if ("geolocation" in navigator) requestUserLocation(updateUserLocation);
-  };
 
   const setUserPopupText = (text: string) => userMarker?.setPopupContent(text);
 
@@ -275,7 +276,6 @@ export const createMapView = ({ element, data, onMarkerClick, onUserLocation, bo
     setMarkerActive,
     hasMarker: (id: string) => markers.has(id),
     centerOnUser,
-    requestInitialLocation,
     setUserPopupText,
     getUserLocation: () => userLocation,
   };
