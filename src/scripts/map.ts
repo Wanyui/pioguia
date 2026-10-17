@@ -1,3 +1,4 @@
+// Client entry point (bundled to public/scripts/map.js). Wires data, map, list and controls.
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -5,657 +6,145 @@ import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
 import type { SearchItem } from "../lib/search-index";
-import { buildCardHtml } from "./map-card";
-import { animateCardResize } from "./map-card-state";
-import { resolveLanguage, type LanguageCode, uiText } from "./map-i18n";
-import {
-  escapeHtml,
-  formatPhoneLabel,
-  normalize,
-  normalizePhoneForTel,
-  sanitizeExternalUrl,
-  sanitizeImageUrl,
-  splitPhoneNumbers,
-} from "./map-utils";
+import { uiText, type LanguageCode } from "./map-i18n";
+import { normalize } from "./map-utils";
+import { distanceKm, getLang, hasValidCoordinates, MOBILE_QUERY, readBenefits } from "./app/context";
+import { setupCompactHeader } from "./app/header";
+import { setupLanguageMenu } from "./app/language-menu";
+import { createListView } from "./app/list-view";
+import { createMapView, isBaseStyle } from "./app/map-view";
 
 const dataElement = document.getElementById("benefits-data");
 const mapElement = document.getElementById("map");
-const mapContainer = mapElement?.closest(".map-container") as HTMLElement | null;
-const appHeader = document.getElementById("app-header");
-const headerInner = document.getElementById("header-inner");
-const headerMetaRow = document.getElementById("header-meta-row");
-const langControls = document.getElementById("lang-controls");
-const mapStyleControls = document.getElementById("map-style-controls");
-const pageTitle = document.getElementById("page-title");
-const langTrigger = document.getElementById("lang-trigger") as
-  | HTMLButtonElement
-  | null;
-const langTriggerLabel = document.getElementById("lang-trigger-label");
-const langMenu = document.getElementById("lang-menu");
-const langOptionButtons = document.querySelectorAll<HTMLButtonElement>(
-  "[data-lang-option]"
-);
-const searchInput = document.getElementById("search-input") as
-  | HTMLInputElement
-  | null;
-const langSelect = document.getElementById("lang-select") as
-  | HTMLSelectElement
-  | null;
 const results = document.getElementById("results");
-const emptyState = document.getElementById("empty-state");
-
 if (!dataElement || !mapElement || !results) {
   throw new Error("No se encontró el contenedor del mapa o los datos.");
 }
 
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl,
-  iconUrl,
-  shadowUrl,
-});
+L.Icon.Default.mergeOptions({ iconRetinaUrl, iconUrl, shadowUrl });
 
-let data: SearchItem[] = [];
-try {
-  const parsedData = JSON.parse(dataElement.textContent ?? "[]");
-  data = Array.isArray(parsedData) ? (parsedData as SearchItem[]) : [];
-} catch (error) {
-  if (import.meta.env.DEV) {
-    console.error("No se pudo leer los datos del mapa", error);
-  }
-}
-
-function getLang(): LanguageCode {
-  return resolveLanguage(langSelect?.value || document.documentElement.lang || "es");
-}
-
-const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
-// Fallback view when there are no benefits with coordinates.
-const DEFAULT_ZOOM = 8;
-const LOCATION_ZOOM = 18;
-const GEOLOCATION_OPTIONS: PositionOptions = {
-  enableHighAccuracy: true,
-  timeout: 8000,
-  maximumAge: 60000,
-};
-
-const map = L.map(mapElement).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
-let userMarker: L.Marker | null = null;
-type BaseStyle = "osm" | "positron";
-const BASE_MAX_ZOOM = 19;
-const osmLayer = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-  attribution: "&copy; OpenStreetMap contributors",
-  maxZoom: BASE_MAX_ZOOM,
-});
-
-// CARTO's raster Positron now requires an API key; OpenFreeMap serves the same
-// style as free vector tiles. MapLibre is heavy, so it is loaded on first use.
-let positronLayer: L.Layer | null = null;
-const loadPositronLayer = async () => {
-  if (!positronLayer) {
-    await import("@maplibre/maplibre-gl-leaflet");
-    // The plugin's types omit Leaflet's own `attribution` layer option.
-    const options: L.LeafletMaplibreGLOptions & L.LayerOptions = {
-      style: "https://tiles.openfreemap.org/styles/positron",
-      attribution:
-        '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> &copy; OpenStreetMap contributors',
-    };
-    positronLayer = L.maplibreGL(options);
-  }
-  return positronLayer;
-};
-
-const isBaseStyle = (value: string | undefined): value is BaseStyle =>
-  value === "osm" || value === "positron";
-
-let activeBaseLayer: L.Layer = osmLayer;
-activeBaseLayer.addTo(map);
-map.setMaxZoom(BASE_MAX_ZOOM);
-
-let userLocation: { lat: number; lng: number } | null = null;
-
-const hasValidCoordinates = (item: Pick<SearchItem, "lat" | "lng">) =>
-  Number.isFinite(item.lat) &&
-  Number.isFinite(item.lng) &&
-  !(item.lat === 0 && item.lng === 0);
-
-const benefitBounds = L.latLngBounds(
-  data.filter(hasValidCoordinates).map((item): L.LatLngTuple => [item.lat, item.lng])
-);
-if (benefitBounds.isValid()) {
-  map.fitBounds(benefitBounds, { padding: [24, 24] });
-}
-
-const toRad = (value: number) => (value * Math.PI) / 180;
-const distanceKm = (from: { lat: number; lng: number }, to: { lat: number; lng: number }) => {
-  const R = 6371;
-  const dLat = toRad(to.lat - from.lat);
-  const dLng = toRad(to.lng - from.lng);
-  const lat1 = toRad(from.lat);
-  const lat2 = toRad(to.lat);
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
-  return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-};
-
-const updateUserLocation = (position: GeolocationPosition) => {
-  const { latitude, longitude } = position.coords;
-  userLocation = { lat: latitude, lng: longitude };
-  map.setView([latitude, longitude], LOCATION_ZOOM, { animate: true });
-  const userIcon = L.icon({
-    iconUrl: "/img/marker.png",
-    iconSize: [48, 48],
-    iconAnchor: [24, 48],
-    popupAnchor: [0, -42],
-  });
-  if (userMarker) {
-    map.removeLayer(userMarker);
-  }
-  userMarker = L.marker([latitude, longitude], { icon: userIcon })
-    .addTo(map)
-    .bindPopup(uiText[getLang()].locationPopup);
-  applyFilter();
-};
-
-// High accuracy often times out on desktops without GPS, so retry once with
-// a coarse fix unless the user denied permission.
-const requestUserLocation = (
-  onSuccess: PositionCallback,
-  onError?: (error: GeolocationPositionError) => void
-) => {
-  const fail = (error: GeolocationPositionError) => {
-    if (import.meta.env.DEV) {
-      console.warn("Geolocation error:", error.message);
-    }
-    onError?.(error);
-  };
-  navigator.geolocation.getCurrentPosition(
-    onSuccess,
-    (error) => {
-      if (error.code === error.PERMISSION_DENIED) {
-        fail(error);
-        return;
-      }
-      navigator.geolocation.getCurrentPosition(onSuccess, fail, {
-        ...GEOLOCATION_OPTIONS,
-        enableHighAccuracy: false,
-      });
-    },
-    GEOLOCATION_OPTIONS
-  );
-};
-
-const showLocationError = (error?: GeolocationPositionError) => {
-  const text = uiText[getLang()];
-  const message =
-    error && error.code === error.PERMISSION_DENIED
-      ? text.locationDenied
-      : text.locationUnavailable;
-  L.popup().setLatLng(map.getCenter()).setContent(escapeHtml(message)).openOn(map);
-};
-
-const centerOnUser = () => {
-  if (userLocation) {
-    map.setView([userLocation.lat, userLocation.lng], Math.max(map.getZoom(), LOCATION_ZOOM), {
-      animate: true,
-    });
-    return;
-  }
-  if (!("geolocation" in navigator)) {
-    showLocationError();
-    return;
-  }
-  requestUserLocation(updateUserLocation, showLocationError);
-};
-
-if ("geolocation" in navigator) {
-  requestUserLocation(updateUserLocation);
-}
-
-const locationControl = L.Control.extend({
-  onAdd() {
-    const container = L.DomUtil.create(
-      "div",
-      "leaflet-bar leaflet-control leaflet-control-zoom leaflet-control-custom-location"
-    );
-    const button = L.DomUtil.create("a", "leaflet-control-zoom-in", container);
-    button.href = "#";
-    button.title = uiText[getLang()].locationButton;
-    button.setAttribute("aria-label", uiText[getLang()].locationButton);
-    button.textContent = "◎";
-
-    L.DomEvent.disableClickPropagation(container);
-    L.DomEvent.on(button, "click", (event) => {
-      L.DomEvent.preventDefault(event);
-      centerOnUser();
-    });
-
-    return container;
-  },
-});
-
-const locationControlInstance = new locationControl({ position: "topleft" });
-locationControlInstance.addTo(map);
+const data = readBenefits(dataElement);
+const searchInput = document.getElementById("search-input") as HTMLInputElement | null;
+const emptyState = document.getElementById("empty-state");
+const mapContainer = mapElement.closest(".map-container") as HTMLElement | null;
 
 let activeId: string | null = null;
-// Colours come from CSS (.pg-marker in index.css) so they follow the design tokens and dark mode.
-const defaultMarkerStyle: L.CircleMarkerOptions = {
-  radius: 6,
-  fillOpacity: 1,
-  weight: 2,
-  className: "pg-marker",
-};
-const activeMarkerStyle: L.CircleMarkerOptions = {
-  radius: 9,
-  fillOpacity: 1,
-  weight: 3,
-  className: "pg-marker",
-};
 
 const setActive = (
   id: string | null,
-  {
-    center = false,
-    openPopup = false,
-    scroll = false,
-  }: { center?: boolean; openPopup?: boolean; scroll?: boolean } = {}
+  { center = false, openPopup = false, scroll = false } = {}
 ) => {
   if (activeId) {
-    const previousMarker = markers.get(activeId);
-    if (previousMarker) {
-      previousMarker.setStyle(defaultMarkerStyle);
-      previousMarker.getElement()?.classList.remove("is-active");
-    }
-    const previousCard = results?.querySelector(`.card[data-id="${activeId}"]`);
-    previousCard?.classList.remove("is-active");
-    animateCardResize(previousCard ?? null, false);
+    mapView.setMarkerActive(activeId, false);
+    listView.setCardActive(activeId, false);
   }
-
   activeId = id;
   if (!id) return;
+  mapView.setMarkerActive(id, true, { center, openPopup });
+  listView.setCardActive(id, true, { scroll });
+};
 
-  const marker = markers.get(id);
-  if (marker) {
-    marker.setStyle(activeMarkerStyle);
-    marker.getElement()?.classList.add("is-active");
-    marker.bringToFront();
-    if (center) {
-      const targetZoom = Math.max(map.getZoom(), 18);
-      map.setView(marker.getLatLng(), targetZoom, { animate: true });
+const listView = createListView({
+  results,
+  emptyState,
+  onCardClick: (id) => {
+    if (window.matchMedia(MOBILE_QUERY).matches) {
+      mapContainer?.scrollIntoView({ behavior: "smooth", block: "start" });
     }
-    if (openPopup) marker.openPopup();
-  }
-
-  const card = results?.querySelector(`.card[data-id="${id}"]`);
-  if (card) {
-    card.classList.add("is-active");
-    animateCardResize(card, true);
-    if (scroll) {
-      card.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    if (!mapView.hasMarker(id)) {
+      setActive(id, { scroll: true });
+      return;
     }
-  }
-};
-
-const markers = new Map<string, L.CircleMarker>();
-
-const buildPopupActionsHtml = (item: SearchItem) => {
-  const safeMapsUrl = sanitizeExternalUrl(item.googleMapsUrl);
-  const safeWebUrl = sanitizeExternalUrl(item.web);
-  const phoneNumbers = splitPhoneNumbers(item.phone);
-  const phoneEntries = phoneNumbers
-    .map((phone) => ({ tel: normalizePhoneForTel(phone), label: formatPhoneLabel(phone) }))
-    .filter((phone) => Boolean(phone.tel && phone.label));
-
-  const mapLink = safeMapsUrl
-    ? `<a class="popup-action" href="${safeMapsUrl}" target="_blank" rel="noopener noreferrer" data-card-action aria-label="Abrir en Google Maps" title="Abrir en Google Maps"><img src="/img/Google_Maps_icon_(2020).svg" alt="" aria-hidden="true" class="popup-action-icon" /></a>`
-    : "";
-
-  const webLink = safeWebUrl
-    ? `<a class="popup-action" href="${safeWebUrl}" target="_blank" rel="noopener noreferrer" data-card-action aria-label="Abrir sitio web" title="Abrir sitio web"><svg viewBox="0 0 24 24" aria-hidden="true" class="popup-action-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13.19 8.688a4.5 4.5 0 0 1 6.364 6.364l-1.757 1.757a4.5 4.5 0 0 1-6.364 0m1.061-5.303a4.5 4.5 0 0 1 0 6.364l-1.757 1.757a4.5 4.5 0 1 1-6.364-6.364l1.757-1.757a4.5 4.5 0 0 1 6.364 0"></path></svg></a>`
-    : "";
-
-  const phoneIcon =
-    '<svg viewBox="0 0 24 24" aria-hidden="true" class="popup-action-icon" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a.75.75 0 0 0 .75-.75V16.88a.75.75 0 0 0-.57-.73l-4.42-1.01a.75.75 0 0 0-.78.29l-.97 1.29a12.12 12.12 0 0 1-5.96-5.96l1.29-.97a.75.75 0 0 0 .29-.78L7.1 4.57a.75.75 0 0 0-.73-.57H3a.75.75 0 0 0-.75.75v2Z"></path></svg>';
-
-  const callLinks =
-    phoneEntries.length === 1
-      ? `<a class="popup-action" href="tel:${phoneEntries[0]?.tel}" data-card-action aria-label="Llamar (${escapeHtml(phoneEntries[0]?.label || "")})" title="Llamar ${escapeHtml(phoneEntries[0]?.label || "")}">${phoneIcon}</a>`
-      : phoneEntries.length > 1
-        ? `<details class="popup-action-details" data-call-menu data-card-action><summary class="popup-action" data-card-action aria-label="Mostrar telefonos" title="Mostrar telefonos">${phoneIcon}</summary><div class="popup-action-menu">${phoneEntries
-            .map((phone) => `<a class="popup-action-menu-item" href="tel:${phone.tel}" data-card-action title="Llamar ${escapeHtml(phone.label)}">${escapeHtml(phone.label)}</a>`)
-            .join("")}</div></details>`
-        : "";
-
-  return `${mapLink}${callLinks}${webLink}`;
-};
-
-const buildPopupHtml = (item: SearchItem) => {
-  const safeLogoUrl = sanitizeImageUrl(item.logo);
-  const title = escapeHtml(item.title.es);
-  const address = escapeHtml(item.address);
-  const logoCell = safeLogoUrl
-    ? `<img class="popup-logo-cell" src="${safeLogoUrl}" alt="${title}">`
-    : `<div class="popup-logo-cell popup-logo-cell--placeholder" aria-hidden="true"></div>`;
-  const actions = buildPopupActionsHtml(item);
-  const actionsWrap = actions
-    ? `<div class="popup-actions">${actions}</div>`
-    : "";
-
-  return `<div class="popup-content">
-  <div class="popup-grid">
-    ${logoCell}
-    <div class="popup-title">${title}</div>
-    ${actionsWrap}
-    <div class="popup-address">${address}</div>
-  </div>
-</div>`;
-};
-
-data.forEach((item) => {
-  if (!hasValidCoordinates(item)) return;
-  const marker = L.circleMarker([item.lat, item.lng], defaultMarkerStyle);
-  marker.bindPopup(
-    buildPopupHtml(item),
-    { autoPan: false }
-  );
-  marker.on("click", () => {
-    setActive(item.id, { openPopup: true, scroll: true });
-  });
-  markers.set(item.id, marker);
+    setActive(id, { center: true, openPopup: true, scroll: true });
+  },
 });
+
+const mapView = createMapView({
+  element: mapElement,
+  data,
+  onMarkerClick: (id) => setActive(id, { openPopup: true, scroll: true }),
+  onUserLocation: () => applyFilter(),
+});
+
+const applyFilter = () => {
+  const query = normalize(searchInput?.value ?? "");
+  const lang = getLang();
+  const filtered: SearchItem[] = data.filter((item) => {
+    if (!query) return true;
+    const text = item.text?.[lang] || item.text?.all || "";
+    return text.includes(query);
+  });
+  const origin = mapView.getUserLocation();
+  if (origin) {
+    const distance = (item: SearchItem) =>
+      hasValidCoordinates(item) ? distanceKm(origin, item) : Number.POSITIVE_INFINITY;
+    filtered.sort((a, b) => distance(a) - distance(b));
+  }
+  listView.render(filtered, lang);
+  mapView.showOnly(filtered);
+  if (activeId && !filtered.some((item) => item.id === activeId)) {
+    setActive(null);
+  } else if (activeId) {
+    setActive(activeId);
+  }
+};
 
 const updateUiText = (lang: LanguageCode) => {
   const text = uiText[lang];
+  const pageTitle = document.getElementById("page-title");
+  const langTriggerLabel = document.getElementById("lang-trigger-label");
   if (pageTitle) pageTitle.textContent = text.title;
   if (searchInput) searchInput.placeholder = text.searchPlaceholder;
   if (emptyState) emptyState.textContent = text.emptyState;
   if (langTriggerLabel) langTriggerLabel.textContent = text.languageLabel;
-  langOptionButtons.forEach((button) => {
+  document.querySelectorAll<HTMLButtonElement>("[data-lang-option]").forEach((button) => {
     const isSelected = button.dataset.langOption === lang;
     button.classList.toggle("bg-soft", isSelected);
     button.classList.toggle("text-accent", isSelected);
     button.classList.toggle("font-semibold", isSelected);
   });
 
-  const locationControlButton = document.querySelector<HTMLAnchorElement>(
+  const locationButton = document.querySelector<HTMLAnchorElement>(
     ".leaflet-control-custom-location .leaflet-control-zoom-in"
   );
-  if (locationControlButton) {
-    locationControlButton.title = text.locationButton;
-    locationControlButton.setAttribute("aria-label", text.locationButton);
+  if (locationButton) {
+    locationButton.title = text.locationButton;
+    locationButton.setAttribute("aria-label", text.locationButton);
   }
 
-  const osmLabel = document.querySelector<HTMLElement>(
-    '.map-style-button[data-style="osm"] .map-style-label'
-  );
+  const osmLabel = document.querySelector<HTMLElement>('.map-style-button[data-style="osm"] .map-style-label');
   const positronLabel = document.querySelector<HTMLElement>(
     '.map-style-button[data-style="positron"] .map-style-label'
   );
   if (osmLabel) osmLabel.textContent = text.mapStyleOsm;
   if (positronLabel) positronLabel.textContent = text.mapStylePositron;
 
-  if (userMarker) {
-    userMarker.setPopupContent(text.locationPopup);
-  }
+  mapView.setUserPopupText(text.locationPopup);
 };
 
 const setLanguage = (lang: LanguageCode) => {
+  const langSelect = document.getElementById("lang-select") as HTMLSelectElement | null;
   if (langSelect) langSelect.value = lang;
   document.documentElement.lang = lang;
   updateUiText(lang);
   applyFilter();
 };
 
-const renderList = (items: SearchItem[]) => {
-  if (!results) return;
-  const lang = getLang();
-  results.innerHTML = items.map((item) => buildCardHtml(item, lang)).join("");
-};
+const languageMenu = setupLanguageMenu(setLanguage);
+setupCompactHeader(() => languageMenu.close());
+searchInput?.addEventListener("input", applyFilter);
 
-const focusOnMarker = (id: string) => {
-  const shouldBringMapIntoView = window.matchMedia("(max-width: 900px)").matches;
-  if (shouldBringMapIntoView) {
-    mapContainer?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-  if (!markers.has(id)) {
-    setActive(id, { scroll: true });
-    return;
-  }
-  setActive(id, { center: true, openPopup: true, scroll: true });
-};
-
-const updateMap = (items: SearchItem[]) => {
-  markers.forEach((marker) => map.removeLayer(marker));
-  items.forEach((item) => {
-    const marker = markers.get(item.id);
-    if (marker) marker.addTo(map);
-  });
-  map.invalidateSize();
-};
-
-const applyFilter = () => {
-  const query = normalize(searchInput?.value ?? "");
-  const lang = getLang();
-  const filtered = data.filter((item) => {
-    if (!query) return true;
-    const text = item.text?.[lang] || item.text?.all || "";
-    return text.includes(query);
-  });
-  if (userLocation) {
-    const origin = userLocation;
-    filtered.sort((a, b) => {
-      const distA = hasValidCoordinates(a)
-        ? distanceKm(origin, { lat: a.lat, lng: a.lng })
-        : Number.POSITIVE_INFINITY;
-      const distB = hasValidCoordinates(b)
-        ? distanceKm(origin, { lat: b.lat, lng: b.lng })
-        : Number.POSITIVE_INFINITY;
-      return distA - distB;
-    });
-  }
-  renderList(filtered);
-  updateMap(filtered);
-  if (activeId && !filtered.some((item) => item.id === activeId)) {
-    setActive(null);
-  } else if (activeId) {
-    setActive(activeId);
-  }
-  if (emptyState) emptyState.hidden = filtered.length > 0;
-};
-
-if (searchInput) searchInput.addEventListener("input", applyFilter);
-if (langSelect) {
-  langSelect.addEventListener("change", () => {
-    setLanguage(getLang());
-  });
-}
-if (langTrigger && langMenu) {
-  const languageOptions = Array.from(langOptionButtons);
-  const closeLanguageMenu = () => {
-    langMenu.classList.add("hidden");
-    langTrigger.setAttribute("aria-expanded", "false");
-  };
-  const openLanguageMenu = () => {
-    langMenu.classList.remove("hidden");
-    langTrigger.setAttribute("aria-expanded", "true");
-  };
-  langTrigger.addEventListener("click", () => {
-    const isOpen = !langMenu.classList.contains("hidden");
-    if (isOpen) {
-      closeLanguageMenu();
-      return;
-    }
-    openLanguageMenu();
-  });
-  langOptionButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const lang = button.dataset.langOption as LanguageCode | undefined;
-      if (!lang) return;
-      setLanguage(lang);
-      closeLanguageMenu();
-    });
-    button.addEventListener("keydown", (event) => {
-      const currentIndex = languageOptions.indexOf(button);
-      if (event.key === "ArrowDown") {
-        event.preventDefault();
-        languageOptions[(currentIndex + 1) % languageOptions.length]?.focus();
-        return;
-      }
-      if (event.key === "ArrowUp") {
-        event.preventDefault();
-        languageOptions[
-          (currentIndex - 1 + languageOptions.length) % languageOptions.length
-        ]?.focus();
-        return;
-      }
-      if (event.key === "Home") {
-        event.preventDefault();
-        languageOptions[0]?.focus();
-        return;
-      }
-      if (event.key === "End") {
-        event.preventDefault();
-        languageOptions[languageOptions.length - 1]?.focus();
-        return;
-      }
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeLanguageMenu();
-        langTrigger.focus();
-      }
-    });
-  });
-  langTrigger.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      const isOpen = !langMenu.classList.contains("hidden");
-      if (isOpen) {
-        closeLanguageMenu();
-        return;
-      }
-      openLanguageMenu();
-      languageOptions[0]?.focus();
-      return;
-    }
-    if (event.key === "ArrowDown") {
-      event.preventDefault();
-      openLanguageMenu();
-      languageOptions[0]?.focus();
-    }
-  });
-  document.addEventListener("click", (event) => {
-    const target = event.target as Node;
-    if (!langMenu.contains(target) && !langTrigger.contains(target)) {
-      closeLanguageMenu();
-    }
-  });
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape" && !langMenu.classList.contains("hidden")) {
-      closeLanguageMenu();
-      langTrigger.focus();
-    }
-  });
-}
-
-const MOBILE_BREAKPOINT = "(max-width: 900px)";
-const HEADER_COMPACT_ENTER_Y = 12;
-const HEADER_COMPACT_EXIT_Y = 2;
-let isHeaderCompact = false;
-
-const applyHeaderCompactClasses = (shouldCompact: boolean) => {
-  if (
-    !appHeader ||
-    !headerInner ||
-    !headerMetaRow ||
-    !langControls ||
-    !mapStyleControls
-  ) {
-    return;
-  }
-  if (isHeaderCompact === shouldCompact) return;
-
-  isHeaderCompact = shouldCompact;
-  appHeader.classList.toggle("header-compact", shouldCompact);
-  headerInner.classList.toggle("py-3", !shouldCompact);
-  headerInner.classList.toggle("py-2", shouldCompact);
-  headerMetaRow.classList.toggle("hidden", shouldCompact);
-  langControls.classList.toggle("hidden", shouldCompact);
-  mapStyleControls.classList.toggle("hidden", shouldCompact);
-  mapStyleControls.classList.toggle("inline-flex", !shouldCompact);
-
-  if (shouldCompact && langMenu && langTrigger) {
-    langMenu.classList.add("hidden");
-    langTrigger.setAttribute("aria-expanded", "false");
-  }
-};
-
-const updateHeaderCompactMode = () => {
-  const isMobile = window.matchMedia(MOBILE_BREAKPOINT).matches;
-  if (!isMobile) {
-    applyHeaderCompactClasses(false);
-    return;
-  }
-  const y = window.scrollY;
-  // Keep compact mode stable while scrolling; only restore full header near top.
-  const shouldCompact =
-    (!isHeaderCompact && y > HEADER_COMPACT_ENTER_Y) ||
-    (isHeaderCompact && y > HEADER_COMPACT_EXIT_Y);
-  applyHeaderCompactClasses(shouldCompact);
-};
-
-window.addEventListener("scroll", updateHeaderCompactMode, { passive: true });
-window.addEventListener("resize", updateHeaderCompactMode);
-updateHeaderCompactMode();
-
-results.addEventListener("click", (event) => {
-  const target = event.target as HTMLElement | null;
-  if (target?.closest("[data-card-action]")) return;
-  const card = target?.closest(".card") as HTMLElement | null;
-  const id = card?.dataset?.id;
-  if (id) focusOnMarker(id);
-});
-
-document.addEventListener("click", (event) => {
-  const target = event.target as Node | null;
-  const callMenus = document.querySelectorAll<HTMLDetailsElement>("[data-call-menu]");
-  callMenus.forEach((menu) => {
-    if (!target || menu.contains(target)) return;
-    menu.removeAttribute("open");
-  });
-});
-
-const styleButtons = document.querySelectorAll<HTMLButtonElement>(
-  ".map-style-button"
-);
-let requestedStyle: BaseStyle = "osm";
-const applyBaseLayer = async (style: BaseStyle) => {
-  requestedStyle = style;
-  let layer: L.Layer;
-  try {
-    layer = style === "positron" ? await loadPositronLayer() : osmLayer;
-  } catch (error) {
-    console.error("No se pudo cargar el estilo de mapa.", error);
-    return;
-  }
-  // Ignore a slow load if the user picked another style meanwhile.
-  if (requestedStyle !== style || layer === activeBaseLayer) return;
-  map.removeLayer(activeBaseLayer);
-  activeBaseLayer = layer;
-  activeBaseLayer.addTo(map);
-};
-
+const styleButtons = document.querySelectorAll<HTMLButtonElement>(".map-style-button");
 styleButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const style = button.dataset.style;
     if (!isBaseStyle(style)) return;
-    void applyBaseLayer(style);
+    void mapView.applyBaseLayer(style);
     styleButtons.forEach((btn) => btn.classList.remove("is-active"));
     button.classList.add("is-active");
   });
 });
 
+mapView.requestInitialLocation();
 setLanguage(getLang());
-
-requestAnimationFrame(() => {
-  map.invalidateSize();
-});
+requestAnimationFrame(() => mapView.map.invalidateSize());
