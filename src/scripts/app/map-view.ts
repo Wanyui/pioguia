@@ -10,8 +10,10 @@ const DEFAULT_CENTER: L.LatLngTuple = [41.75, 2.2];
 const DEFAULT_ZOOM = 8;
 const LOCATION_ZOOM = 18;
 const BASE_MAX_ZOOM = 19;
+// Coarse (Wi-Fi / network) location first: fast and enough for "what's near me". GPS-level
+// accuracy can take the whole timeout on computers without GPS, so it is only the retry.
 const GEOLOCATION_OPTIONS: PositionOptions = {
-  enableHighAccuracy: true,
+  enableHighAccuracy: false,
   timeout: 8000,
   maximumAge: 60000,
 };
@@ -207,8 +209,7 @@ export const createMapView = ({
     onUserLocation();
   };
 
-  // High accuracy often times out on desktops without GPS, so retry once with
-  // a coarse fix unless the user denied permission.
+  // If the coarse fix fails (and permission was not denied), retry once asking for high accuracy.
   const requestUserLocation = (
     onSuccess: PositionCallback,
     onError?: (error: GeolocationPositionError) => void
@@ -228,7 +229,7 @@ export const createMapView = ({
         }
         navigator.geolocation.getCurrentPosition(onSuccess, fail, {
           ...GEOLOCATION_OPTIONS,
-          enableHighAccuracy: false,
+          enableHighAccuracy: true,
         });
       },
       GEOLOCATION_OPTIONS
