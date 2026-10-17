@@ -12,6 +12,7 @@ import { normalize } from "./map-utils";
 import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
 import { setupDetail } from "./app/detail";
+import { searchText } from "./app/search-text";
 import { matchesFilters, setupFilters } from "./app/filters";
 import { createListView } from "./app/list-view";
 import { createMapView } from "./app/map-view";
@@ -155,8 +156,7 @@ const applyFilter = ({ refit = false } = {}) => {
   const lang = getLang();
   const textMatches: SearchItem[] = data.filter((item) => {
     if (!query) return true;
-    const text = item.text?.[lang] || item.text?.all || "";
-    return text.includes(query);
+    return searchText(item, lang).includes(query);
   });
   filters.updateCounts(textMatches);
   const filtered = textMatches.filter((item) => matchesFilters(item, filters.state));
@@ -226,6 +226,7 @@ const updateUiText = (lang: LanguageCode) => {
     button.classList.toggle("bg-soft", isSelected);
     button.classList.toggle("text-accent", isSelected);
     button.classList.toggle("font-semibold", isSelected);
+    button.setAttribute("aria-pressed", String(isSelected));
   });
 
   const setLabel = (element: Element | null, label: string) => {

@@ -6,6 +6,12 @@
   padding: 0 16px 16px;
 }
 
+.results > li {
+  /* 82 cards: let the browser skip rendering the ones off screen. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+}
+
 .results > li + li .card {
   border-top: 1px solid var(--pg-line);
 }
@@ -176,7 +182,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .pg-marker,
-  .card {
+  .card,
+  .chip-caret {
     transition: none;
   }
 }
@@ -217,6 +224,10 @@
   font-weight: 500;
   white-space: nowrap;
   cursor: pointer;
+}
+
+.chip:hover {
+  border-color: var(--pg-muted);
 }
 
 .chip-dot {

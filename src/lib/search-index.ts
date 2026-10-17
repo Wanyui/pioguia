@@ -1,5 +1,5 @@
 import type { CollectionEntry } from "astro:content";
-import { CATEGORIES, type CategoryKey } from "./categories";
+import type { CategoryKey } from "./categories";
 import { zoneOf, type ZoneKey } from "./zones";
 
 export type Localized<T> = {
@@ -31,39 +31,6 @@ export type SearchItem = {
   web?: string;
   googleMapsUrl?: string;
   languages: string[];
-  text: Record<string, string>;
-};
-
-const normalize = (value: string) =>
-  value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/\s+/g, " ")
-    .trim();
-
-const joinParts = (parts: Array<string | undefined>) =>
-  normalize(parts.filter(Boolean).join(" "));
-
-const buildLocalizedText = (
-  entry: CollectionEntry<"benefits">["data"],
-  lang: keyof Localized<string>
-) => {
-  const title = entry.title[lang] ?? "";
-  const description = entry.description[lang] ?? "";
-  const tags = entry.tags[lang]?.join(" ") ?? "";
-  const category = CATEGORIES[entry.category].label[lang];
-  const highlight = entry.highlight?.[lang] ?? "";
-  return joinParts([
-    title,
-    description,
-    tags,
-    category,
-    highlight,
-    entry.address,
-    entry.city,
-    entry.email,
-  ]);
 };
 
 export const buildSearchIndex = (
@@ -71,21 +38,6 @@ export const buildSearchIndex = (
 ): SearchItem[] =>
   entries.map((entry) => {
     const { data } = entry;
-    const text = {
-      es: buildLocalizedText(data, "es"),
-      ca: buildLocalizedText(data, "ca"),
-      en: buildLocalizedText(data, "en"),
-      fr: buildLocalizedText(data, "fr"),
-      ru: buildLocalizedText(data, "ru"),
-      all: joinParts([
-        buildLocalizedText(data, "es"),
-        buildLocalizedText(data, "ca"),
-        buildLocalizedText(data, "en"),
-        buildLocalizedText(data, "fr"),
-        buildLocalizedText(data, "ru"),
-      ]),
-    };
-
     return {
       id: data.id,
       slug: entry.slug,
@@ -107,6 +59,5 @@ export const buildSearchIndex = (
       web: data.web,
       googleMapsUrl: data.googleMapsUrl,
       languages: data.languages ?? ["es"],
-      text,
     };
   });

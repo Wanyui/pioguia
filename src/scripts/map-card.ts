@@ -6,9 +6,9 @@ import { escapeHtml, sanitizeImageUrl } from "./map-utils";
 
 /** "350 m" / "1,2 km" (decimal separator per language). */
 export const formatDistance = (km: number, lang: LanguageCode) => {
-  if (km < 1) return `${Math.max(10, Math.round((km * 1000) / 10) * 10)} m`;
-  const value = km < 10 ? km.toFixed(1) : Math.round(km).toString();
-  return `${lang === "en" ? value : value.replace(".", ",")} km`;
+  if (km < 1) return `${new Intl.NumberFormat(lang).format(Math.max(10, Math.round((km * 1000) / 10) * 10))} m`;
+  const digits = km < 10 ? 1 : 0;
+  return `${new Intl.NumberFormat(lang, { minimumFractionDigits: digits, maximumFractionDigits: digits }).format(km)} km`;
 };
 
 /** Logo, parish shield or (fallback) the category icon on a tinted tile. */
@@ -17,7 +17,7 @@ export const buildLogoHtml = (item: SearchItem, title: string) => {
   const logoUrl = sanitizeImageUrl(item.logo);
   if (logoUrl) {
     const dark = item.logoBackground === "dark" ? " card-logo--dark" : "";
-    return `<span class="card-logo${dark}"><img src="${logoUrl}" alt="" loading="lazy" decoding="async"></span>`;
+    return `<span class="card-logo${dark}"><img src="${logoUrl}" alt="" width="36" height="36" loading="lazy" decoding="async"></span>`;
   }
   return `<span class="card-logo card-logo--icon" style="--cat: var(${category.color})" aria-hidden="true">${icon(category.icon)}</span>`;
 };

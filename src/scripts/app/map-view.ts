@@ -51,7 +51,13 @@ export const createMapView = ({
   onLocationError,
   bottomInset = () => 0,
 }: MapViewOptions) => {
-  const map = L.map(element, { zoomControl: false }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
+  const animate = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const map = L.map(element, {
+    zoomControl: false,
+    zoomAnimation: animate,
+    fadeAnimation: animate,
+    markerZoomAnimation: animate,
+  }).setView(DEFAULT_CENTER, DEFAULT_ZOOM);
   L.control.zoom({ position: "bottomright" }).addTo(map);
   map.setMaxZoom(BASE_MAX_ZOOM);
 
@@ -107,6 +113,8 @@ export const createMapView = ({
       title: item.title.es,
       alt: item.title.es,
       riseOnHover: true,
+      // The list offers the same benefits; 82 tab stops on the map would trap keyboard users.
+      keyboard: false,
     });
     marker.on("click", () => onMarkerClick(item.id));
     markers.set(item.id, marker);
@@ -145,7 +153,7 @@ export const createMapView = ({
           paddingTopLeft: [32, 120],
           paddingBottomRight: [64, bottomInset() + 32],
           maxZoom: 16,
-          animate: true,
+          animate,
         });
       }
     });
@@ -161,7 +169,7 @@ export const createMapView = ({
   function centerOn(latLng: L.LatLngExpression, zoom: number, offsetY = 0) {
     const point = map.project(latLng, zoom).add([0, offsetY / 2]);
     programmatic = true;
-    map.setView(map.unproject(point, zoom), zoom, { animate: true });
+    map.setView(map.unproject(point, zoom), zoom, { animate });
     window.setTimeout(() => (programmatic = false), 450);
   }
 
@@ -244,7 +252,7 @@ export const createMapView = ({
       paddingTopLeft: [32, 80],
       paddingBottomRight: [64, bottomInset() + 32],
       maxZoom: LOCATION_ZOOM - 1,
-      animate: true,
+      animate,
     });
   };
 

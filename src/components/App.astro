@@ -3,8 +3,9 @@ import Map from "./Map.astro";
 import { icon } from "../icons";
 import { ZONES, ZONE_KEYS } from "../lib/zones";
 import { CATEGORIES, CATEGORY_KEYS } from "../lib/categories";
-import { hasCoordinates, loadBenefits, placeJsonLd, siteOriginFrom } from "../lib/benefits";
+import { benefitPath, hasCoordinates, loadBenefits, placeJsonLd, siteOriginFrom } from "../lib/benefits";
 import { GUIDE } from "../lib/guide";
+import { readdirSync } from "node:fs";
 import "../styles/index.css";
 
 type Props = {
@@ -36,6 +37,12 @@ const initialLang = "es";
 const isDev = import.meta.env.DEV;
 const siteOrigin = siteOriginFrom(Astro.site);
 const canonical = `${siteOrigin}${path}`;
+// The Leaflet chunk is imported by map.js; preloading it lets both download in parallel.
+const preloadChunks = isDev
+  ? []
+  : readdirSync(new URL("../../public/scripts/chunks/", import.meta.url))
+      .filter((file) => file.startsWith("chunk-") && file.endsWith(".js"))
+      .map((file) => `/scripts/chunks/${file}`);
 const selected = initialSlug ? items.find((item) => item.slug === initialSlug) : undefined;
 
 const structuredData = {
@@ -44,7 +51,16 @@ const structuredData = {
     ? [placeJsonLd(selected, siteOrigin)]
     : [
         { "@type": "WebSite", name: "Pioguia", description, url: `${siteOrigin}/`, inLanguage: ["es", "ca", "en", "fr", "ru"] },
-        ...items.filter(hasCoordinates).map((item) => placeJsonLd(item, siteOrigin)),
+        // Each benefit has its own page with full Place data; the home page only lists them.
+        {
+          "@type": "ItemList",
+          itemListElement: items.filter(hasCoordinates).map((item, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: item.title.es,
+            url: `${siteOrigin}${benefitPath(item.slug)}`,
+          })),
+        },
       ],
 };
 ---
@@ -60,7 +76,8 @@ const structuredData = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
-    <meta name="theme-color" content="#1d7a4f" />
+    <meta name="theme-color" content="#f4f3ef" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121614" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -68,6 +85,11 @@ const structuredData = {
     {ogImage && <meta property="og:image" content={`${siteOrigin}${ogImage}`} />}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
     {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
+    {!isDev && <link rel="modulepreload" href="/scripts/map.js" />}
+    {preloadChunks.map((href) => <link rel="modulepreload" href={href} />)}
+    <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
+    <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
+    <link rel="preconnect" href="https://c.tile.openstreetmap.org" crossorigin />
   </head>
   <body class="h-dvh overflow-hidden bg-canvas font-sans text-ink antialiased" data-initial-slug={initialSlug} data-unavailable={unavailable ? "true" : undefined}>
     <a class="skip-link" href="#results" data-i18n="skipToList">Ir a la lista</a>
@@ -79,37 +101,40 @@ const structuredData = {
             <input
               id="search-input"
               type="search"
+              name="q"
+              enterkeyhint="search"
               aria-label="Buscar ventajas"
               placeholder="Buscar ventajas…"
               autocomplete="off"
             />
-            <span class="brand" aria-hidden="true">Pioguia</span>
+            <span class="brand" aria-hidden="true" translate="no">Pioguia</span>
           </label>
           <div id="lang-controls" class="lang-controls">
             <button
               id="lang-trigger"
               type="button"
               class="lang-trigger"
-              aria-haspopup="listbox"
+              aria-haspopup="true"
+              aria-controls="lang-menu"
               aria-expanded="false"
             >
               <span id="lang-trigger-label">🇪🇸 Español</span>
             </button>
-            <ul id="lang-menu" role="listbox" class="lang-menu hidden">
+            <ul id="lang-menu" class="lang-menu hidden">
               <li>
-                <button type="button" data-lang-option="es" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
+                <button type="button" data-lang-option="es" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
               </li>
               <li>
-                <button type="button" data-lang-option="ca" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
+                <button type="button" data-lang-option="ca" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
               </li>
               <li>
-                <button type="button" data-lang-option="en" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
+                <button type="button" data-lang-option="en" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
               </li>
               <li>
-                <button type="button" data-lang-option="fr" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
+                <button type="button" data-lang-option="fr" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
               </li>
               <li>
-                <button type="button" data-lang-option="ru" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
+                <button type="button" data-lang-option="ru" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
               </li>
             </ul>
             <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
@@ -159,17 +184,6 @@ const structuredData = {
         </div>
       </header>
 
-      <section class="map-area" aria-label="Mapa">
-        <Map id="map" />
-        <div class="map-fabs">
-          <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
-            <Fragment set:html={icon("layers")} />
-          </button>
-          <button id="locate-button" type="button" class="fab" title="Ver dónde estoy" aria-label="Ver dónde estoy">
-            <Fragment set:html={icon("locateFixed")} />
-          </button>
-        </div>
-      </section>
 
       <aside id="panel" class="panel" data-snap="half" aria-labelledby="page-title">
         <button id="sheet-handle" type="button" class="sheet-handle" aria-label="Ampliar o reducir la lista">
@@ -205,6 +219,18 @@ const structuredData = {
           </footer>
         </div>
       </aside>
+
+      <section class="map-area" aria-label="Mapa">
+        <Map id="map" />
+        <div class="map-fabs">
+          <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
+            <Fragment set:html={icon("layers")} />
+          </button>
+          <button id="locate-button" type="button" class="fab" title="Ver dónde estoy" aria-label="Ver dónde estoy">
+            <Fragment set:html={icon("locateFixed")} />
+          </button>
+        </div>
+      </section>
 
       <dialog id="about" class="about" aria-labelledby="about-title">
         <div class="about-inner">
