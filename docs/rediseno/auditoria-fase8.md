@@ -2,7 +2,7 @@
 
 > Revisión con la skill `web-design-guidelines` (reglas fijadas, commit 434b7f9) sobre
 > `src/components/App.astro`, `src/styles/*.css` y `src/scripts/**/*.ts` de la rama `feature/nuevo-diseno`.
-> Estado: **todos los hallazgos corregidos** en la fase 8 (2026-10-18).
+> Estado: hallazgos corregidos en la fase 8 (2026-10-18), con la salvedad anotada en `translate="no"`.
 
 ## src/components/App.astro
 
@@ -10,6 +10,7 @@
 - App.astro:98 - `role="listbox"` con `<button>` sin `role="option"` → ARIA inválido para lectores de pantalla → **grave**
 - App.astro:81 - el input de búsqueda no tiene `name` ni `enterkeyhint="search"` → menor
 - App.astro:86, 202, 212 - "Pioguia" y "Club Piolet" sin `translate="no"` (el traductor del navegador los rompe) → menor
+  (Corregido solo para la marca "Pioguia" del buscador; "Club Piolet" va dentro de frases traducidas y se deja así.)
 
 ## src/styles
 
