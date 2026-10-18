@@ -12,6 +12,7 @@ import { normalize } from "./map-utils";
 import { distanceKm, getLang, hasValidCoordinates, readBenefits } from "./app/context";
 import { setupLanguageMenu } from "./app/language-menu";
 import { setupDetail } from "./app/detail";
+import { setupSearchBox } from "./app/search-box";
 import { searchText } from "./app/search-text";
 import { matchesFilters, setupFilters } from "./app/filters";
 import { createListView } from "./app/list-view";
@@ -236,6 +237,10 @@ const updateUiText = (lang: LanguageCode) => {
   setLabel(searchInput, text.searchLabel);
   setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
   setLabel(document.getElementById("about-fab"), text.about);
+  setLabel(document.getElementById("lang-trigger"), text.languageLabel);
+  setLabel(document.getElementById("search-toggle"), text.searchLabel);
+  setLabel(document.getElementById("search-close"), text.clearSearch);
+  setLabel(document.getElementById("query-chip"), text.clearSearch);
   setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
   setLabel(sortIndicator, text.stopSorting);
   document.querySelectorAll<HTMLElement>("[data-view-button]").forEach((button) => {
@@ -281,6 +286,8 @@ const setLanguage = (lang: LanguageCode, { remember = true } = {}) => {
 };
 
 setupLanguageMenu((lang) => setLanguage(lang));
+setupSearchBox(searchInput, () => applyFilter({ refit: true }));
+
 let searchTimer = 0;
 searchInput?.addEventListener("input", () => {
   window.clearTimeout(searchTimer);

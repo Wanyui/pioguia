@@ -816,3 +816,19 @@
     margin-bottom: 24px;
   }
 }
+
+.chip-query {
+  border-color: var(--pg-accent);
+  color: var(--pg-accent);
+  font-weight: 600;
+  padding: 0 10px 0 12px;
+}
+
+.chip-query .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.chip-query[hidden] {
+  display: none;
+}

@@ -21,6 +21,33 @@ export const setupFilters = (onChange: () => void) => {
   const clearButton = document.getElementById("clear-filters");
 
   const isActive = () => state.categories.size > 0 || state.zones.size > 0;
+  const chipsRow = document.getElementById("filter-chips");
+  const defaultOrder = [...categoryChips];
+  const reduceMotion = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /**
+   * Selected categories move right after "near me" and "zone" (in the order they were picked);
+   * the rest keep their default order. FLIP animation so the move is easy to follow.
+   */
+  const reorderChips = () => {
+    if (!chipsRow) return;
+    const selected = [...state.categories]
+      .map((key) => categoryChips.find((chip) => chip.dataset.category === key))
+      .filter((chip): chip is HTMLButtonElement => Boolean(chip));
+    const ordered = [...selected, ...defaultOrder.filter((chip) => !selected.includes(chip))];
+    const before = new Map(ordered.map((chip) => [chip, chip.getBoundingClientRect().left]));
+    const anchor = clearButton ?? null;
+    ordered.forEach((chip) => chipsRow.insertBefore(chip, anchor));
+    if (reduceMotion()) return;
+    ordered.forEach((chip) => {
+      const dx = (before.get(chip) ?? 0) - chip.getBoundingClientRect().left;
+      if (Math.abs(dx) < 1) return;
+      chip.animate([{ transform: `translateX(${dx}px)` }, { transform: "translateX(0)" }], {
+        duration: 260,
+        easing: "cubic-bezier(.2,.8,.2,1)",
+      });
+    });
+  };
 
   const sync = () => {
     categoryChips.forEach((chip) => {
@@ -43,6 +70,9 @@ export const setupFilters = (onChange: () => void) => {
     chip.addEventListener("click", () => {
       toggle(state.categories, chip.dataset.category as CategoryKey);
       sync();
+      reorderChips();
+      // Keep the start of the row in view so the chip that just moved is visible.
+      chipsRow?.scrollTo({ left: 0, behavior: reduceMotion() ? "auto" : "smooth" });
       onChange();
     });
   });
@@ -79,6 +109,7 @@ export const setupFilters = (onChange: () => void) => {
     state.categories.clear();
     state.zones.clear();
     sync();
+    reorderChips();
     onChange();
   };
   clearButton?.addEventListener("click", clear);

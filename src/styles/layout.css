@@ -64,34 +64,15 @@
 
 .lang-controls {
   position: relative;
-  flex: 0 0 auto;
-}
-
-.lang-trigger {
-  display: inline-flex;
-  align-items: center;
-  height: 46px;
-  max-width: 150px;
-  padding: 0 14px;
-  border-radius: 999px;
-  border: 1px solid var(--pg-line);
-  background: var(--pg-surface);
-  color: var(--pg-ink);
-  box-shadow: var(--pg-shadow-float);
-  font: inherit;
-  font-size: 14px;
-  font-weight: 500;
-  white-space: nowrap;
-  overflow: hidden;
-  cursor: pointer;
 }
 
 .lang-menu {
   position: absolute;
-  right: 0;
+  right: 52px;
+  top: 0;
   z-index: 1300;
-  margin-top: 8px;
   min-width: 160px;
+  margin: 0;
   padding: 4px;
   list-style: none;
   border-radius: 14px;
@@ -230,9 +211,9 @@
 @media (max-width: 899.98px) {
   .app {
     --sheet-peek: 112px;
-    --sheet-half: 46dvh;
-    /* Below the floating search + filter rows (~118px). */
-    --sheet-full: calc(100dvh - 122px);
+    --sheet-half: 35dvh;
+    /* Below the floating search + filter row (~60px). */
+    --sheet-full: calc(100dvh - 68px);
     --toggle-space: 76px;
   }
 
@@ -255,12 +236,9 @@
     pointer-events: auto;
   }
 
-  .lang-trigger {
-    max-width: 112px;
-  }
 
   .map-fabs {
-    top: 112px;
+    top: 68px;
   }
 
   .panel {
@@ -411,5 +389,108 @@
 
   .has-detail .map-area .leaflet-bottom {
     bottom: 72dvh;
+  }
+}
+
+/* ---------- Search: always open on desktop, folded into a magnifier on mobile ---------- */
+
+.search-toggle,
+.search-close {
+  display: none;
+}
+
+@media (max-width: 899.98px) {
+  .app-top {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .app-top .filters {
+    flex: 1 1 auto;
+    min-width: 0;
+    margin-top: 0;
+  }
+
+  .search-toggle {
+    position: relative;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--pg-line);
+    background: var(--pg-surface);
+    color: var(--pg-ink);
+    box-shadow: var(--pg-shadow-float);
+    cursor: pointer;
+  }
+
+  .search-toggle .icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* A search is active while folded: small accent dot on the magnifier. */
+  .search-toggle.has-query::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--pg-accent);
+  }
+
+  .search-pill {
+    display: none;
+  }
+
+  .app-top.is-searching .search-pill {
+    display: flex;
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    top: max(12px, env(safe-area-inset-top));
+    z-index: 2;
+    animation: pg-search-open 220ms ease-out;
+  }
+
+  .app-top.is-searching .search-pill .brand {
+    display: none;
+  }
+
+  .app-top.is-searching .search-close {
+    display: grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    margin-right: -6px;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--pg-muted);
+    cursor: pointer;
+  }
+
+  .app-top.is-searching .filters {
+    visibility: hidden;
+  }
+
+  @keyframes pg-search-open {
+    from {
+      clip-path: inset(0 calc(100% - 46px) 0 0 round 999px);
+    }
+    to {
+      clip-path: inset(0 0 0 0 round 999px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .app-top.is-searching .search-pill {
+      animation: none;
+    }
   }
 }

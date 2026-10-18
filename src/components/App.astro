@@ -107,7 +107,10 @@ const structuredData = {
     <div id="app" class="app" data-view="map">
       <header id="app-header" class="app-top">
         <div class="search-row">
-          <label class="search-pill">
+          <button type="button" id="search-toggle" class="search-toggle" aria-label="Buscar ventajas" aria-expanded="false" aria-controls="search-pill">
+            <Fragment set:html={icon("search")} />
+          </button>
+          <label class="search-pill" id="search-pill">
             <Fragment set:html={icon("search", "icon text-muted")} />
             <input
               id="search-input"
@@ -119,46 +122,17 @@ const structuredData = {
               autocomplete="off"
             />
             <span class="brand" aria-hidden="true" translate="no">Pioguia</span>
-          </label>
-          <div id="lang-controls" class="lang-controls">
-            <button
-              id="lang-trigger"
-              type="button"
-              class="lang-trigger"
-              aria-haspopup="true"
-              aria-controls="lang-menu"
-              aria-expanded="false"
-            >
-              <span id="lang-trigger-label">🇪🇸 Español</span>
+            <button type="button" id="search-close" class="search-close" aria-label="Cerrar búsqueda">
+              <Fragment set:html={icon("x")} />
             </button>
-            <ul id="lang-menu" class="lang-menu hidden">
-              <li>
-                <button type="button" data-lang-option="es" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
-              </li>
-              <li>
-                <button type="button" data-lang-option="ca" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
-              </li>
-              <li>
-                <button type="button" data-lang-option="en" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
-              </li>
-              <li>
-                <button type="button" data-lang-option="fr" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
-              </li>
-              <li>
-                <button type="button" data-lang-option="ru" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
-              </li>
-            </ul>
-            <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
-            <option value="es" selected>Español</option>
-            <option value="ca">Català</option>
-            <option value="en">English</option>
-            <option value="fr">Français</option>
-            <option value="ru">Русский</option>
-            </select>
-          </div>
+          </label>
         </div>
         <div class="filters" role="group" aria-label="Filtros" id="filters">
           <div class="chips" id="filter-chips">
+            <button type="button" id="query-chip" class="chip chip-query" hidden>
+              <span class="chip-label" id="query-chip-label"></span>
+              <Fragment set:html={icon("x")} />
+            </button>
             <button type="button" id="near-chip" class="chip" aria-pressed="false">
               <span class="chip-dot chip-dot--plain"><Fragment set:html={icon("locateFixed")} /></span>
               <span class="chip-label" data-i18n="nearMe">Cerca de mí</span>
@@ -236,6 +210,43 @@ const structuredData = {
           <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
             <Fragment set:html={icon("layers")} />
           </button>
+            <div id="lang-controls" class="lang-controls">
+              <button
+                id="lang-trigger"
+                type="button"
+                class="fab lang-trigger"
+                aria-haspopup="true"
+                aria-controls="lang-menu"
+                aria-expanded="false"
+              >
+                <Fragment set:html={icon("globe")} />
+                <span id="lang-trigger-label" class="sr-only">🇪🇸 Español</span>
+              </button>
+              <ul id="lang-menu" class="lang-menu hidden">
+                <li>
+                  <button type="button" data-lang-option="es" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇪🇸 Español</button>
+                </li>
+                <li>
+                  <button type="button" data-lang-option="ca" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇦🇩 Català</button>
+                </li>
+                <li>
+                  <button type="button" data-lang-option="en" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇬🇧 English</button>
+                </li>
+                <li>
+                  <button type="button" data-lang-option="fr" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇫🇷 Français</button>
+                </li>
+                <li>
+                  <button type="button" data-lang-option="ru" aria-pressed="false" class="lang-option w-full rounded-lg px-3 py-2 text-left text-sm text-ink transition hover:bg-soft hover:text-accent">🇷🇺 Русский</button>
+                </li>
+              </ul>
+              <select id="lang-select" class="hidden" aria-hidden="true" tabindex="-1">
+              <option value="es" selected>Español</option>
+              <option value="ca">Català</option>
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ru">Русский</option>
+              </select>
+            </div>
           <button id="about-fab" type="button" class="fab" title="Acerca de" aria-label="Acerca de">
             <Fragment set:html={icon("info")} />
           </button>
