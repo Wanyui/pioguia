@@ -250,9 +250,13 @@
     height: var(--sheet-half);
     border-radius: 22px 22px 0 0;
     box-shadow: var(--pg-shadow-sheet);
-    padding-bottom: var(--toggle-space);
     transition: height 200ms ease-out;
     touch-action: pan-y;
+  }
+
+  /* The list runs under the floating Lista/Mapa toggle; the padding lets the last card scroll clear of it. */
+  .panel-scroll {
+    padding-bottom: var(--toggle-space);
   }
 
   .panel[data-snap="peek"] {
