@@ -18,7 +18,7 @@ tags:
   en: ["botanical garden", "family", "free admission"]
   fr: ["jardin botanique", "famille", "entrée gratuite"]
   ru: ["ботанический сад", "семья", "бесплатный вход"]
-category: "ocio"
+category: "educacion"
 highlight:
   es: "Gratis"
   ca: "Gratis"
