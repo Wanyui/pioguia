@@ -733,31 +733,6 @@
   top: 12px;
 }
 
-.panel-foot {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px 12px;
-  margin: 8px 16px 16px;
-  padding-top: 12px;
-  border-top: 1px solid var(--pg-line);
-  font-size: 12px;
-  color: var(--pg-muted);
-}
-
-.panel-foot p {
-  margin: 0;
-}
-
-.panel-foot a,
-.link-button {
-  color: var(--pg-accent);
-  font: inherit;
-  font-weight: 600;
-  text-decoration: none;
-}
-
 .link-button {
   padding: 6px 0;
   border: 0;
@@ -809,12 +784,6 @@
 .about-report {
   color: var(--pg-muted);
   font-size: 14px !important;
-}
-
-@media (max-width: 899.98px) {
-  .panel-foot {
-    margin-bottom: 24px;
-  }
 }
 
 .chip-query {
