@@ -43,7 +43,7 @@ export const setupFilters = (onChange: () => void) => {
       const dx = (before.get(chip) ?? 0) - chip.getBoundingClientRect().left;
       if (Math.abs(dx) < 1) return;
       chip.animate([{ transform: `translateX(${dx}px)` }, { transform: "translateX(0)" }], {
-        duration: 260,
+        duration: 420,
         easing: "cubic-bezier(.2,.8,.2,1)",
       });
     });
