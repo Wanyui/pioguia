@@ -234,7 +234,6 @@ const updateUiText = (lang: LanguageCode) => {
     element?.setAttribute("title", label);
   };
   setLabel(searchInput, text.searchLabel);
-  setLabel(document.getElementById("locate-button"), text.locationButton);
   setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
   setLabel(document.getElementById("about-fab"), text.about);
   setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
@@ -294,15 +293,22 @@ layersButton?.addEventListener("click", () => {
   layersButton.setAttribute("aria-pressed", String(light));
   void mapView.applyBaseLayer(light ? "positron" : "osm");
 });
-document.getElementById("locate-button")?.addEventListener("click", askNearMe);
 
 // ----- "About" dialog -----
 const about = document.getElementById("about") as HTMLDialogElement | null;
-document.getElementById("about-fab")?.addEventListener("click", () => about?.showModal());
+document.getElementById("about-fab")?.addEventListener("click", () => {
+  if (!about) return;
+  // Older iOS versions lack showModal(); show the dialog non-modally instead.
+  if (typeof about.showModal === "function") about.showModal();
+  else about.setAttribute("open", "");
+});
 about?.addEventListener("click", (event) => {
   // Close on the ✕ button or a click on the backdrop (outside the inner box).
   const target = event.target as HTMLElement;
-  if (target === about || target.closest("[data-about-close]")) about.close();
+  if (target === about || target.closest("[data-about-close]")) {
+    if (typeof about.close === "function") about.close();
+    else about.removeAttribute("open");
+  }
 });
 
 setLanguage(preferredLanguage(), { remember: false });

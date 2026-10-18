@@ -262,7 +262,9 @@ export const createMapView = ({
 
   const centerOnUser = () => {
     if (userLocation) {
+      // Location already known (e.g. "near me" turned off and on again): reuse it.
       frameUserAndNearest();
+      onUserLocation();
       return;
     }
     if (!("geolocation" in navigator)) {

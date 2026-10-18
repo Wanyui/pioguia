@@ -5,7 +5,8 @@ import { ZONES, ZONE_KEYS } from "../lib/zones";
 import { CATEGORIES, CATEGORY_KEYS } from "../lib/categories";
 import { benefitPath, hasCoordinates, loadBenefits, placeJsonLd, siteOriginFrom } from "../lib/benefits";
 import { GUIDE } from "../lib/guide";
-import { readdirSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { readdirSync, readFileSync } from "node:fs";
 import "../styles/index.css";
 
 type Props = {
@@ -43,6 +44,16 @@ const preloadChunks = isDev
   : readdirSync(new URL("../../public/scripts/chunks/", import.meta.url))
       .filter((file) => file.startsWith("chunk-") && file.endsWith(".js"))
       .map((file) => `/scripts/chunks/${file}`);
+// map.js / map.css keep fixed names; a content hash in the URL makes browsers fetch each new version.
+const assetVersion = (file: string) => {
+  try {
+    return createHash("sha1").update(readFileSync(new URL(`../../public/scripts/${file}`, import.meta.url))).digest("hex").slice(0, 10);
+  } catch {
+    return "dev";
+  }
+};
+const mapJs = `/scripts/map.js?v=${assetVersion("map.js")}`;
+const mapCss = `/scripts/map.css?v=${assetVersion("map.css")}`;
 const selected = initialSlug ? items.find((item) => item.slug === initialSlug) : undefined;
 
 const structuredData = {
@@ -84,8 +95,8 @@ const structuredData = {
     <meta property="og:url" content={canonical} />
     {ogImage && <meta property="og:image" content={`${siteOrigin}${ogImage}`} />}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
-    {!isDev && <link rel="stylesheet" href="/scripts/map.css" />}
-    {!isDev && <link rel="modulepreload" href="/scripts/map.js" />}
+    {!isDev && <link rel="stylesheet" href={mapCss} />}
+    {!isDev && <link rel="modulepreload" href={mapJs} />}
     {preloadChunks.map((href) => <link rel="modulepreload" href={href} />)}
     <link rel="preconnect" href="https://a.tile.openstreetmap.org" crossorigin />
     <link rel="preconnect" href="https://b.tile.openstreetmap.org" crossorigin />
@@ -225,9 +236,6 @@ const structuredData = {
           <button id="layers-button" type="button" class="fab" aria-pressed="false" title="Mapa claro" aria-label="Mapa claro">
             <Fragment set:html={icon("layers")} />
           </button>
-          <button id="locate-button" type="button" class="fab" title="Ver dónde estoy" aria-label="Ver dónde estoy">
-            <Fragment set:html={icon("locateFixed")} />
-          </button>
           <button id="about-fab" type="button" class="fab" title="Acerca de" aria-label="Acerca de">
             <Fragment set:html={icon("info")} />
           </button>
@@ -292,7 +300,7 @@ const structuredData = {
     {isDev ? (
       <script type="module" src="/src/scripts/map.ts"></script>
     ) : (
-      <script type="module" src="/scripts/map.js"></script>
+      <script type="module" src={mapJs}></script>
     )}
   </body>
 </html>
