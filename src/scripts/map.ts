@@ -298,7 +298,6 @@ document.getElementById("locate-button")?.addEventListener("click", askNearMe);
 
 // ----- "About" dialog -----
 const about = document.getElementById("about") as HTMLDialogElement | null;
-document.getElementById("about-open")?.addEventListener("click", () => about?.showModal());
 document.getElementById("about-fab")?.addEventListener("click", () => about?.showModal());
 about?.addEventListener("click", (event) => {
   // Close on the ✕ button or a click on the backdrop (outside the inner box).

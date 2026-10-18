@@ -79,10 +79,10 @@ Ejemplos de referencia: **−15%** · tú + 3 acompañantes · "Vaya, no hay «p
 
 > **Lema (trueline):** "Las ventajas del Club Piolet, fáciles de encontrar."
 >
-> **Historia breve (base para "Acerca de"):** Pioguia nació porque la guía de ventajas del Club Piolet solo
-> se podía consultar en un PDF de 30 MB, imposible de abrir en la calle. La hice para usarla con mi hija, y
-> ahora es para cualquiera: las mismas ventajas, buscables, en el mapa y a un toque. Es una web
-> independiente y sin publicidad.
+> **Historia breve (texto de "Acerca de"):** Pioguia nació para tener las ventajas del Club Piolet siempre
+> a mano en el móvil. La hice para usarla con mi hija, y ahora es para cualquiera: las mismas ventajas, con
+> buscador, en el mapa y a un toque. Es una web independiente y sin publicidad, que complementa la guía oficial
+> del Club Piolet. (Tono asertivo: nunca se critica la guía oficial; 2026-10-18.)
 >
 > **Lo que queremos que digan:** "es más útil y fácil de usar".
 
