@@ -18,7 +18,7 @@ tags:
   en: ["museum", "mine", "culture", "family", "free entry"]
   fr: ["musée", "mine", "culture", "famille", "entrée gratuite"]
   ru: ["музей", "шахта", "культура", "семья", "бесплатный вход"]
-category: "ocio"
+category: "educacion"
 highlight:
   es: "Gratis"
   ca: "Gratis"

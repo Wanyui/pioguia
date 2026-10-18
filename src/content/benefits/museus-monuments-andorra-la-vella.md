@@ -18,7 +18,7 @@ tags:
   en: ["museums", "monuments", "culture", "family", "free entry"]
   fr: ["musées", "monuments", "culture", "famille", "entrée gratuite"]
   ru: ["музеи", "памятники", "культура", "семья", "бесплатный вход"]
-category: "ocio"
+category: "educacion"
 highlight:
   es: "Gratis"
   ca: "Gratis"

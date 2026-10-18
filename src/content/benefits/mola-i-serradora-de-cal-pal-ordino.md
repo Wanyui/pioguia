@@ -18,7 +18,7 @@ tags:
   en: ["museum", "history", "culture", "family", "free entry"]
   fr: ["musée", "histoire", "culture", "famille", "entrée gratuite"]
   ru: ["музей", "история", "культура", "семья", "бесплатный вход"]
-category: "ocio"
+category: "educacion"
 highlight:
   es: "Gratis"
   ca: "Gratis"
