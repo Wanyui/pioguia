@@ -236,6 +236,7 @@ const updateUiText = (lang: LanguageCode) => {
   setLabel(searchInput, text.searchLabel);
   setLabel(document.getElementById("locate-button"), text.locationButton);
   setLabel(document.getElementById("layers-button"), text.mapStyleToggle);
+  setLabel(document.getElementById("about-fab"), text.about);
   setLabel(document.getElementById("sheet-handle"), text.sheetHandle);
   setLabel(sortIndicator, text.stopSorting);
   document.querySelectorAll<HTMLElement>("[data-view-button]").forEach((button) => {
@@ -298,6 +299,7 @@ document.getElementById("locate-button")?.addEventListener("click", askNearMe);
 // ----- "About" dialog -----
 const about = document.getElementById("about") as HTMLDialogElement | null;
 document.getElementById("about-open")?.addEventListener("click", () => about?.showModal());
+document.getElementById("about-fab")?.addEventListener("click", () => about?.showModal());
 about?.addEventListener("click", (event) => {
   // Close on the ✕ button or a click on the backdrop (outside the inner box).
   const target = event.target as HTMLElement;
