@@ -74,14 +74,15 @@ export const createMapView = ({
   let positronLayer: L.Layer | null = null;
   const loadPositronLayer = async () => {
     if (!positronLayer) {
-      await import("@maplibre/maplibre-gl-leaflet");
+      // Use the named export: the plugin only patches L when the Leaflet object is extensible.
+      const { maplibreGL } = await import("@maplibre/maplibre-gl-leaflet");
       // The plugin's types omit Leaflet's own `attribution` layer option.
       const options: L.LeafletMaplibreGLOptions & L.LayerOptions = {
         style: "https://tiles.openfreemap.org/styles/positron",
         attribution:
           '<a href="https://openfreemap.org" target="_blank" rel="noopener">OpenFreeMap</a> &copy; OpenStreetMap contributors',
       };
-      positronLayer = L.maplibreGL(options);
+      positronLayer = maplibreGL(options);
     }
     return positronLayer;
   };

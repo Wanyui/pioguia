@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build:map": "esbuild src/scripts/map.ts --bundle --minify --splitting --format=esm --platform=browser --target=es2020 --define:import.meta.env.DEV=false --outdir=public/scripts --entry-names=[name] --chunk-names=chunks/[name]-[hash] --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash]",
+    "build:map": "esbuild src/scripts/map.ts --bundle --minify --splitting --format=esm --platform=browser --target=es2020 --define:import.meta.env.DEV=false --outdir=public/scripts --entry-names=[name] --chunk-names=chunks/[name]-[hash] --loader:.png=file --loader:.svg=file --asset-names=assets/[name]-[hash] && cp node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs public/scripts/chunks/",
     "predev": "npm run build:map",
     "dev": "astro dev",
     "prebuild": "npm run build:map",
@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@fontsource-variable/rubik": "^5.3.0",
-    "@maplibre/maplibre-gl-leaflet": "^0.0.22",
+    "@maplibre/maplibre-gl-leaflet": "^0.1.4",
     "astro": "^5.17.1",
     "leaflet": "^1.9.4",
-    "maplibre-gl": "^4.7.1"
+    "maplibre-gl": "^6.15.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
