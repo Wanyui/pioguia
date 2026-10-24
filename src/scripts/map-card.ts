@@ -12,7 +12,7 @@ export const formatDistance = (km: number, lang: LanguageCode) => {
 };
 
 /** Logo, parish shield or (fallback) the category icon on a tinted tile. */
-export const buildLogoHtml = (item: SearchItem, title: string) => {
+export const buildLogoHtml = (item: SearchItem) => {
   const category = CATEGORIES[item.category];
   const logoUrl = sanitizeImageUrl(item.logo);
   if (logoUrl) {
@@ -39,7 +39,7 @@ export const buildCardHtml = (item: SearchItem, lang: LanguageCode, distanceKm?:
   return `
     <li>
       <button type="button" class="card" data-id="${escapeHtml(item.id)}">
-        ${buildLogoHtml(item, title)}
+        ${buildLogoHtml(item)}
         <span class="card-main">
           <span class="card-name">${title}</span>
           <span class="card-meta">

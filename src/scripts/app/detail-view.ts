@@ -50,7 +50,7 @@ export const buildDetailHtml = (item: SearchItem, lang: LanguageCode, distanceKm
 
   return `
     <header class="detail-head">
-      ${buildLogoHtml(item, title).replace('class="card-logo', 'class="card-logo detail-logo')}
+      ${buildLogoHtml(item).replace('class="card-logo', 'class="card-logo detail-logo')}
       <div class="detail-titles">
         <h2 id="detail-title" class="detail-title">${title}</h2>
         <p class="detail-meta">
